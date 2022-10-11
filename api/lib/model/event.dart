@@ -25,7 +25,7 @@ class Event {
     this.state,
     this.country,
     this.sensorData,
-    this.eventDetail,
+    this.eventDetails,
     this.verifyBy,
   });
 
@@ -53,7 +53,7 @@ class Event {
 
   Object? sensorData;
 
-  Object? eventDetail;
+  Object? eventDetails;
 
   User? verifyBy;
 
@@ -71,7 +71,7 @@ class Event {
      other.state == state &&
      other.country == country &&
      other.sensorData == sensorData &&
-     other.eventDetail == eventDetail &&
+     other.eventDetails == eventDetails &&
      other.verifyBy == verifyBy;
 
   @override
@@ -89,11 +89,11 @@ class Event {
     (state == null ? 0 : state.hashCode) +
     (country == null ? 0 : country.hashCode) +
     (sensorData == null ? 0 : sensorData.hashCode) +
-    (eventDetail == null ? 0 : eventDetail.hashCode) +
+    (eventDetails == null ? 0 : eventDetails.hashCode) +
     (verifyBy == null ? 0 : verifyBy.hashCode);
 
   @override
-  String toString() => 'Event[id=$id, eventId=$eventId, eventType=$eventType, time=$time, status=$status, image=$image, comment=$comment, location=$location, city=$city, state=$state, country=$country, sensorData=$sensorData, eventDetail=$eventDetail, verifyBy=$verifyBy]';
+  String toString() => 'Event[id=$id, eventId=$eventId, eventType=$eventType, time=$time, status=$status, image=$image, comment=$comment, location=$location, city=$city, state=$state, country=$country, sensorData=$sensorData, eventDetails=$eventDetails, verifyBy=$verifyBy]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -133,8 +133,8 @@ class Event {
     if (sensorData != null) {
       json[r'sensorData'] = sensorData;
     }
-    if (eventDetail != null) {
-      json[r'eventDetail'] = eventDetail;
+    if (eventDetails != null) {
+      json[r'eventDetails'] = eventDetails;
     }
     if (verifyBy != null) {
       json[r'verifyBy'] = verifyBy;
@@ -165,7 +165,7 @@ class Event {
         state: mapValueOfType<String>(json, r'state'),
         country: mapValueOfType<String>(json, r'country'),
         sensorData: mapValueOfType<Object>(json, r'sensorData'),
-        eventDetail: mapValueOfType<Object>(json, r'eventDetail'),
+        eventDetails: mapValueOfType<Object>(json, r'eventDetails'),
         verifyBy: User.fromJson(json[r'verifyBy']),
       );
     }
@@ -223,10 +223,10 @@ class EventEventTypeEnum {
   static const FLOODED = EventEventTypeEnum._(r'FLOODED');
   static const TSUNAMI = EventEventTypeEnum._(r'TSUNAMI');
   static const EARTHQUAKE = EventEventTypeEnum._(r'EARTHQUAKE');
-  static const bUILDINGSETTLEMENT = EventEventTypeEnum._(r'BUILDING SETTLEMENT');
+  static const BUILDING_SETTLEMENT = EventEventTypeEnum._(r'BUILDING_SETTLEMENT');
   static const SINKHOLE = EventEventTypeEnum._(r'SINKHOLE');
   static const ERUPTION = EventEventTypeEnum._(r'ERUPTION');
-  static const fORESTFIRE = EventEventTypeEnum._(r'FOREST FIRE');
+  static const FOREST_FIRE = EventEventTypeEnum._(r'FOREST_FIRE');
 
   /// List of all possible values in this [enum][EventEventTypeEnum].
   static const values = <EventEventTypeEnum>[
@@ -235,10 +235,10 @@ class EventEventTypeEnum {
     FLOODED,
     TSUNAMI,
     EARTHQUAKE,
-    bUILDINGSETTLEMENT,
+    BUILDING_SETTLEMENT,
     SINKHOLE,
     ERUPTION,
-    fORESTFIRE,
+    FOREST_FIRE,
   ];
 
   static EventEventTypeEnum? fromJson(dynamic value) =>
@@ -275,10 +275,10 @@ class EventEventTypeEnumTypeTransformer {
         case r'FLOODED': return EventEventTypeEnum.FLOODED;
         case r'TSUNAMI': return EventEventTypeEnum.TSUNAMI;
         case r'EARTHQUAKE': return EventEventTypeEnum.EARTHQUAKE;
-        case r'BUILDING SETTLEMENT': return EventEventTypeEnum.bUILDINGSETTLEMENT;
+        case r'BUILDING_SETTLEMENT': return EventEventTypeEnum.BUILDING_SETTLEMENT;
         case r'SINKHOLE': return EventEventTypeEnum.SINKHOLE;
         case r'ERUPTION': return EventEventTypeEnum.ERUPTION;
-        case r'FOREST FIRE': return EventEventTypeEnum.fORESTFIRE;
+        case r'FOREST_FIRE': return EventEventTypeEnum.FOREST_FIRE;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
