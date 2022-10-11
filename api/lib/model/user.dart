@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -25,25 +25,25 @@ class User {
     this.token,
   });
 
-  String id;
+  String? id;
 
-  String name;
+  String? name;
 
-  String email;
+  String? email;
 
-  String passwordHash;
+  String? passwordHash;
 
-  UserRoleEnum role;
+  UserRoleEnum? role;
 
-  UserPrefLangEnum prefLang;
+  UserPrefLangEnum? prefLang;
 
-  UserStatusEnum status;
+  UserStatusEnum? status;
 
-  String apiKey;
+  String? apiKey;
 
-  User createdBy;
+  User? createdBy;
 
-  String token;
+  String? token;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is User &&
@@ -113,7 +113,7 @@ class User {
   /// Returns a new [User] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static User fromJson(dynamic value) {
+  static User? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return User(
@@ -132,13 +132,13 @@ class User {
     return null;
   }
 
-  static List<User> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+  static List<User?>? listFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) =>
     json is List && json.isNotEmpty
       ? json.map(User.fromJson).toList(growable: true == growable)
       : true == emptyIsNull ? null : <User>[];
 
-  static Map<String, User> mapFromJson(dynamic json) {
-    final map = <String, User>{};
+  static Map<String, User?> mapFromJson(dynamic json) {
+    final map = <String, User?>{};
     if (json is Map && json.isNotEmpty) {
       json
         .cast<String, dynamic>()
@@ -148,8 +148,8 @@ class User {
   }
 
   // maps a json object with a list of User-objects as value to a dart map
-  static Map<String, List<User>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<User>>{};
+  static Map<String, List<User?>?> mapListFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) {
+    final Map<String, List<User?>?> map = <String, List<User>?>{};
     if (json is Map && json.isNotEmpty) {
       json
         .cast<String, dynamic>()
@@ -174,7 +174,7 @@ class UserRoleEnum {
   final String value;
 
   @override
-  String toString() => value ?? '';
+  String toString() => value;
 
   String toJson() => value;
 
@@ -189,10 +189,10 @@ class UserRoleEnum {
     SUPERADMIN,
   ];
 
-  static UserRoleEnum fromJson(dynamic value) =>
+  static UserRoleEnum? fromJson(dynamic value) =>
     UserRoleEnumTypeTransformer().decode(value);
 
-  static List<UserRoleEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+  static List<UserRoleEnum?>? listFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) =>
     json is List && json.isNotEmpty
       ? json.map(UserRoleEnum.fromJson).toList(growable: true == growable)
       : true == emptyIsNull ? null : <UserRoleEnum>[];
@@ -215,7 +215,7 @@ class UserRoleEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  UserRoleEnum decode(dynamic data, {bool allowNull}) {
+  UserRoleEnum? decode(dynamic data, {bool? allowNull}) {
     if (data != null) {
       switch (data.toString()) {
         case r'USER': return UserRoleEnum.USER;
@@ -231,7 +231,7 @@ class UserRoleEnumTypeTransformer {
   }
 
   /// Singleton [UserRoleEnumTypeTransformer] instance.
-  static UserRoleEnumTypeTransformer _instance;
+  static UserRoleEnumTypeTransformer? _instance;
 }
 
 
@@ -244,7 +244,7 @@ class UserPrefLangEnum {
   final String value;
 
   @override
-  String toString() => value ?? '';
+  String toString() => value;
 
   String toJson() => value;
 
@@ -261,10 +261,10 @@ class UserPrefLangEnum {
     PORTUGUESE,
   ];
 
-  static UserPrefLangEnum fromJson(dynamic value) =>
+  static UserPrefLangEnum? fromJson(dynamic value) =>
     UserPrefLangEnumTypeTransformer().decode(value);
 
-  static List<UserPrefLangEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+  static List<UserPrefLangEnum?>? listFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) =>
     json is List && json.isNotEmpty
       ? json.map(UserPrefLangEnum.fromJson).toList(growable: true == growable)
       : true == emptyIsNull ? null : <UserPrefLangEnum>[];
@@ -287,7 +287,7 @@ class UserPrefLangEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  UserPrefLangEnum decode(dynamic data, {bool allowNull}) {
+  UserPrefLangEnum? decode(dynamic data, {bool? allowNull}) {
     if (data != null) {
       switch (data.toString()) {
         case r'ENGLISH': return UserPrefLangEnum.ENGLISH;
@@ -304,7 +304,7 @@ class UserPrefLangEnumTypeTransformer {
   }
 
   /// Singleton [UserPrefLangEnumTypeTransformer] instance.
-  static UserPrefLangEnumTypeTransformer _instance;
+  static UserPrefLangEnumTypeTransformer? _instance;
 }
 
 
@@ -317,7 +317,7 @@ class UserStatusEnum {
   final String value;
 
   @override
-  String toString() => value ?? '';
+  String toString() => value;
 
   String toJson() => value;
 
@@ -330,10 +330,10 @@ class UserStatusEnum {
     INACTIVE,
   ];
 
-  static UserStatusEnum fromJson(dynamic value) =>
+  static UserStatusEnum? fromJson(dynamic value) =>
     UserStatusEnumTypeTransformer().decode(value);
 
-  static List<UserStatusEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+  static List<UserStatusEnum?>? listFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) =>
     json is List && json.isNotEmpty
       ? json.map(UserStatusEnum.fromJson).toList(growable: true == growable)
       : true == emptyIsNull ? null : <UserStatusEnum>[];
@@ -356,7 +356,7 @@ class UserStatusEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  UserStatusEnum decode(dynamic data, {bool allowNull}) {
+  UserStatusEnum? decode(dynamic data, {bool? allowNull}) {
     if (data != null) {
       switch (data.toString()) {
         case r'ACTIVE': return UserStatusEnum.ACTIVE;
@@ -371,7 +371,7 @@ class UserStatusEnumTypeTransformer {
   }
 
   /// Singleton [UserStatusEnumTypeTransformer] instance.
-  static UserStatusEnumTypeTransformer _instance;
+  static UserStatusEnumTypeTransformer? _instance;
 }
 
 

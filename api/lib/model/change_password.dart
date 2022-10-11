@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -18,11 +18,11 @@ class ChangePassword {
     this.conformPassword,
   });
 
-  String oldPassword;
+  String? oldPassword;
 
-  String newPassword;
+  String? newPassword;
 
-  String conformPassword;
+  String? conformPassword;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ChangePassword &&
@@ -57,7 +57,7 @@ class ChangePassword {
   /// Returns a new [ChangePassword] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static ChangePassword fromJson(dynamic value) {
+  static ChangePassword? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return ChangePassword(
@@ -69,13 +69,13 @@ class ChangePassword {
     return null;
   }
 
-  static List<ChangePassword> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+  static List<ChangePassword?>? listFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) =>
     json is List && json.isNotEmpty
       ? json.map(ChangePassword.fromJson).toList(growable: true == growable)
       : true == emptyIsNull ? null : <ChangePassword>[];
 
-  static Map<String, ChangePassword> mapFromJson(dynamic json) {
-    final map = <String, ChangePassword>{};
+  static Map<String, ChangePassword?> mapFromJson(dynamic json) {
+    final map = <String, ChangePassword?>{};
     if (json is Map && json.isNotEmpty) {
       json
         .cast<String, dynamic>()
@@ -85,8 +85,8 @@ class ChangePassword {
   }
 
   // maps a json object with a list of ChangePassword-objects as value to a dart map
-  static Map<String, List<ChangePassword>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<ChangePassword>>{};
+  static Map<String, List<ChangePassword?>?> mapListFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) {
+    final Map<String, List<ChangePassword?>?> map = <String, List<ChangePassword>?>{};
     if (json is Map && json.isNotEmpty) {
       json
         .cast<String, dynamic>()

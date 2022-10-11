@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -29,33 +29,33 @@ class Event {
     this.verifyBy,
   });
 
-  String id;
+  String? id;
 
-  String eventId;
+  String? eventId;
 
-  EventEventTypeEnum eventType;
+  EventEventTypeEnum? eventType;
 
-  String time;
+  String? time;
 
-  EventStatusEnum status;
+  EventStatusEnum? status;
 
-  List<String> image;
+  List<String>? image;
 
-  String comment;
+  String? comment;
 
-  List<num> location;
+  List<num>? location;
 
-  String city;
+  String? city;
 
-  String state;
+  String? state;
 
-  String country;
+  String? country;
 
-  Object sensorData;
+  Object? sensorData;
 
-  Object eventDetail;
+  Object? eventDetail;
 
-  User verifyBy;
+  User? verifyBy;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Event &&
@@ -145,7 +145,7 @@ class Event {
   /// Returns a new [Event] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static Event fromJson(dynamic value) {
+  static Event? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return Event(
@@ -172,13 +172,13 @@ class Event {
     return null;
   }
 
-  static List<Event> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+  static List<Event?>? listFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) =>
     json is List && json.isNotEmpty
       ? json.map(Event.fromJson).toList(growable: true == growable)
       : true == emptyIsNull ? null : <Event>[];
 
-  static Map<String, Event> mapFromJson(dynamic json) {
-    final map = <String, Event>{};
+  static Map<String, Event?> mapFromJson(dynamic json) {
+    final map = <String, Event?>{};
     if (json is Map && json.isNotEmpty) {
       json
         .cast<String, dynamic>()
@@ -188,8 +188,8 @@ class Event {
   }
 
   // maps a json object with a list of Event-objects as value to a dart map
-  static Map<String, List<Event>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<Event>>{};
+  static Map<String, List<Event?>?> mapListFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) {
+    final Map<String, List<Event?>?> map = <String, List<Event>?>{};
     if (json is Map && json.isNotEmpty) {
       json
         .cast<String, dynamic>()
@@ -214,7 +214,7 @@ class EventEventTypeEnum {
   final String value;
 
   @override
-  String toString() => value ?? '';
+  String toString() => value;
 
   String toJson() => value;
 
@@ -241,10 +241,10 @@ class EventEventTypeEnum {
     fORESTFIRE,
   ];
 
-  static EventEventTypeEnum fromJson(dynamic value) =>
+  static EventEventTypeEnum? fromJson(dynamic value) =>
     EventEventTypeEnumTypeTransformer().decode(value);
 
-  static List<EventEventTypeEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+  static List<EventEventTypeEnum?>? listFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) =>
     json is List && json.isNotEmpty
       ? json.map(EventEventTypeEnum.fromJson).toList(growable: true == growable)
       : true == emptyIsNull ? null : <EventEventTypeEnum>[];
@@ -267,7 +267,7 @@ class EventEventTypeEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  EventEventTypeEnum decode(dynamic data, {bool allowNull}) {
+  EventEventTypeEnum? decode(dynamic data, {bool? allowNull}) {
     if (data != null) {
       switch (data.toString()) {
         case r'LANDSLIDE': return EventEventTypeEnum.LANDSLIDE;
@@ -289,7 +289,7 @@ class EventEventTypeEnumTypeTransformer {
   }
 
   /// Singleton [EventEventTypeEnumTypeTransformer] instance.
-  static EventEventTypeEnumTypeTransformer _instance;
+  static EventEventTypeEnumTypeTransformer? _instance;
 }
 
 
@@ -302,7 +302,7 @@ class EventStatusEnum {
   final String value;
 
   @override
-  String toString() => value ?? '';
+  String toString() => value;
 
   String toJson() => value;
 
@@ -319,10 +319,10 @@ class EventStatusEnum {
     ARCHIVED,
   ];
 
-  static EventStatusEnum fromJson(dynamic value) =>
+  static EventStatusEnum? fromJson(dynamic value) =>
     EventStatusEnumTypeTransformer().decode(value);
 
-  static List<EventStatusEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+  static List<EventStatusEnum?>? listFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) =>
     json is List && json.isNotEmpty
       ? json.map(EventStatusEnum.fromJson).toList(growable: true == growable)
       : true == emptyIsNull ? null : <EventStatusEnum>[];
@@ -345,7 +345,7 @@ class EventStatusEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  EventStatusEnum decode(dynamic data, {bool allowNull}) {
+  EventStatusEnum? decode(dynamic data, {bool? allowNull}) {
     if (data != null) {
       switch (data.toString()) {
         case r'PENDING': return EventStatusEnum.PENDING;
@@ -362,7 +362,7 @@ class EventStatusEnumTypeTransformer {
   }
 
   /// Singleton [EventStatusEnumTypeTransformer] instance.
-  static EventStatusEnumTypeTransformer _instance;
+  static EventStatusEnumTypeTransformer? _instance;
 }
 
 

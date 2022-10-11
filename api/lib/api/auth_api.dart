@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -12,7 +12,7 @@ part of openapi.api;
 
 
 class AuthApi {
-  AuthApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  AuthApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -33,7 +33,7 @@ class AuthApi {
     final path = r'/auth/forget_password_request';
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -62,7 +62,7 @@ class AuthApi {
   /// Parameters:
   ///
   /// * [String] email (required):
-  Future<Object> forgetPasswordRequest(String email,) async {
+  Future<Object?> forgetPasswordRequest(String email,) async {
     final response = await forgetPasswordRequestWithHttpInfo(email,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -71,7 +71,7 @@ class AuthApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object?;
     
     }
     return Future<Object>.value();
@@ -85,7 +85,7 @@ class AuthApi {
     final path = r'/auth/login';
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -108,7 +108,7 @@ class AuthApi {
   }
 
   /// Login
-  Future<LoginResponce> login() async {
+  Future<LoginResponce?> login() async {
     final response = await loginWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -117,7 +117,7 @@ class AuthApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'LoginResponce',) as LoginResponce;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'LoginResponce',) as LoginResponce?;
     
     }
     return Future<LoginResponce>.value();
@@ -131,7 +131,7 @@ class AuthApi {
     final path = r'/auth/recover_password_request';
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};

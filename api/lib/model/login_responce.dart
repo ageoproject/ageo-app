@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -17,9 +17,9 @@ class LoginResponce {
     this.user,
   });
 
-  String token;
+  String? token;
 
-  User user;
+  User? user;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is LoginResponce &&
@@ -49,7 +49,7 @@ class LoginResponce {
   /// Returns a new [LoginResponce] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static LoginResponce fromJson(dynamic value) {
+  static LoginResponce? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return LoginResponce(
@@ -60,13 +60,13 @@ class LoginResponce {
     return null;
   }
 
-  static List<LoginResponce> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+  static List<LoginResponce?>? listFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) =>
     json is List && json.isNotEmpty
       ? json.map(LoginResponce.fromJson).toList(growable: true == growable)
       : true == emptyIsNull ? null : <LoginResponce>[];
 
-  static Map<String, LoginResponce> mapFromJson(dynamic json) {
-    final map = <String, LoginResponce>{};
+  static Map<String, LoginResponce?> mapFromJson(dynamic json) {
+    final map = <String, LoginResponce?>{};
     if (json is Map && json.isNotEmpty) {
       json
         .cast<String, dynamic>()
@@ -76,8 +76,8 @@ class LoginResponce {
   }
 
   // maps a json object with a list of LoginResponce-objects as value to a dart map
-  static Map<String, List<LoginResponce>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<LoginResponce>>{};
+  static Map<String, List<LoginResponce?>?> mapListFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) {
+    final Map<String, List<LoginResponce?>?> map = <String, List<LoginResponce>?>{};
     if (json is Map && json.isNotEmpty) {
       json
         .cast<String, dynamic>()

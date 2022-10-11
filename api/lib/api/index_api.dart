@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -12,7 +12,7 @@ part of openapi.api;
 
 
 class IndexApi {
-  IndexApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  IndexApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -111,7 +111,7 @@ class IndexApi {
   /// Parameters:
   ///
   /// * [Event] eventReport (required):
-  Future<EventReportResponse> reportEvents(Event eventReport,) async {
+  Future<EventReportResponse?> reportEvents(Event eventReport,) async {
     final response = await reportEventsWithHttpInfo(eventReport,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -120,7 +120,7 @@ class IndexApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'EventReportResponse',) as EventReportResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'EventReportResponse',) as EventReportResponse?;
     
     }
     return Future<EventReportResponse>.value();

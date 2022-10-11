@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -17,9 +17,9 @@ class UpdateEventRequest {
     this.eventStatus,
   });
 
-  String eventId;
+  String? eventId;
 
-  UpdateEventRequestEventStatusEnum eventStatus;
+  UpdateEventRequestEventStatusEnum? eventStatus;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UpdateEventRequest &&
@@ -49,7 +49,7 @@ class UpdateEventRequest {
   /// Returns a new [UpdateEventRequest] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static UpdateEventRequest fromJson(dynamic value) {
+  static UpdateEventRequest? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return UpdateEventRequest(
@@ -60,13 +60,13 @@ class UpdateEventRequest {
     return null;
   }
 
-  static List<UpdateEventRequest> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+  static List<UpdateEventRequest?>? listFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) =>
     json is List && json.isNotEmpty
       ? json.map(UpdateEventRequest.fromJson).toList(growable: true == growable)
       : true == emptyIsNull ? null : <UpdateEventRequest>[];
 
-  static Map<String, UpdateEventRequest> mapFromJson(dynamic json) {
-    final map = <String, UpdateEventRequest>{};
+  static Map<String, UpdateEventRequest?> mapFromJson(dynamic json) {
+    final map = <String, UpdateEventRequest?>{};
     if (json is Map && json.isNotEmpty) {
       json
         .cast<String, dynamic>()
@@ -76,8 +76,8 @@ class UpdateEventRequest {
   }
 
   // maps a json object with a list of UpdateEventRequest-objects as value to a dart map
-  static Map<String, List<UpdateEventRequest>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<UpdateEventRequest>>{};
+  static Map<String, List<UpdateEventRequest?>?> mapListFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) {
+    final Map<String, List<UpdateEventRequest?>?> map = <String, List<UpdateEventRequest>?>{};
     if (json is Map && json.isNotEmpty) {
       json
         .cast<String, dynamic>()
@@ -102,7 +102,7 @@ class UpdateEventRequestEventStatusEnum {
   final String value;
 
   @override
-  String toString() => value ?? '';
+  String toString() => value;
 
   String toJson() => value;
 
@@ -119,10 +119,10 @@ class UpdateEventRequestEventStatusEnum {
     ARCHIVED,
   ];
 
-  static UpdateEventRequestEventStatusEnum fromJson(dynamic value) =>
+  static UpdateEventRequestEventStatusEnum? fromJson(dynamic value) =>
     UpdateEventRequestEventStatusEnumTypeTransformer().decode(value);
 
-  static List<UpdateEventRequestEventStatusEnum> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+  static List<UpdateEventRequestEventStatusEnum?>? listFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) =>
     json is List && json.isNotEmpty
       ? json.map(UpdateEventRequestEventStatusEnum.fromJson).toList(growable: true == growable)
       : true == emptyIsNull ? null : <UpdateEventRequestEventStatusEnum>[];
@@ -145,7 +145,7 @@ class UpdateEventRequestEventStatusEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  UpdateEventRequestEventStatusEnum decode(dynamic data, {bool allowNull}) {
+  UpdateEventRequestEventStatusEnum? decode(dynamic data, {bool? allowNull}) {
     if (data != null) {
       switch (data.toString()) {
         case r'PENDING': return UpdateEventRequestEventStatusEnum.PENDING;
@@ -162,7 +162,7 @@ class UpdateEventRequestEventStatusEnumTypeTransformer {
   }
 
   /// Singleton [UpdateEventRequestEventStatusEnumTypeTransformer] instance.
-  static UpdateEventRequestEventStatusEnumTypeTransformer _instance;
+  static UpdateEventRequestEventStatusEnumTypeTransformer? _instance;
 }
 
 
