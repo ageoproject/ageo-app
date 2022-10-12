@@ -1,5 +1,6 @@
 import 'package:ageo/helpers/locationHelper.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoder2/geocoder2.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -13,9 +14,11 @@ class MapView extends StatefulWidget {
 class _MapViewState extends State<MapView> {
   CameraPosition _cameraPosition=const CameraPosition(target: LatLng(37.42796133580664, -122.085749655962), zoom: 14.4746,);
   late GoogleMapController googleMapController;
+  LocationHelper _locationHelper=LocationHelper();
    Set<Marker> _marker={};
    bool _enableTrafficView=false;
    MapType _mapType=MapType.normal;
+   String? _address;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,12 +34,14 @@ class _MapViewState extends State<MapView> {
               markers: _marker,
               trafficEnabled: _enableTrafficView,
               // padding:const EdgeInsets.only(bottom: 60),
-              onTap: (LatLng latLng){
+              onTap: (LatLng latLng)async{
                 _marker={};
                 _marker.add(Marker(
                     markerId:const MarkerId("Selected Location"),
                     position:latLng
                 ));
+                GeoData geoAddress=await _locationHelper.getCoordinateDetails(latitude: latLng.latitude, longitude: latLng.longitude);
+                _address=geoAddress.address;
                 setState(() {});
               },
               onMapCreated: (GoogleMapController controller)async {
@@ -46,6 +51,28 @@ class _MapViewState extends State<MapView> {
 
             ),
 
+            Visibility(
+              visible: _address!=null,
+              child: Positioned(
+                bottom: 10,
+                left: 20,
+                right: 20,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12)
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.location_on,color: Colors.black87,),
+                      Expanded(
+                        child: Text("$_address",style:const TextStyle(color: Colors.black87),),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             Positioned(
               bottom: 110,
               right: 12,
@@ -56,9 +83,8 @@ class _MapViewState extends State<MapView> {
                   child:const Icon(Icons.my_location,color: Colors.black87,),
                 ),
                 onTap: ()async{
-                  LocationHelper locationHelper=LocationHelper();
                   // googleMapController.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-                  Position currentLocation=await locationHelper.getLocation();
+                  Position currentLocation=await _locationHelper.getLocation();
                   _cameraPosition=CameraPosition(target: LatLng(currentLocation.latitude, currentLocation.longitude),zoom: 14.4746,);
                   googleMapController.animateCamera(CameraUpdate.newCameraPosition(_cameraPosition));
                   setState(() {});
