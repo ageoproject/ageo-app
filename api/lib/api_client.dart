@@ -197,6 +197,8 @@ class ApiClient {
           return ChangePassword.fromJson(value);
         case 'Event':
           return Event.fromJson(value);
+        case 'EventLocation':
+          return EventLocation.fromJson(value);
         case 'EventReportResponse':
           return EventReportResponse.fromJson(value);
         case 'InlineObject':

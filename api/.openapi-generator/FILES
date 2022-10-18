@@ -5,6 +5,7 @@ analysis_options.yaml
 doc/AuthApi.md
 doc/ChangePassword.md
 doc/Event.md
+doc/EventLocation.md
 doc/EventReportResponse.md
 doc/IndexApi.md
 doc/InlineObject.md
@@ -29,6 +30,7 @@ lib/auth/http_bearer_auth.dart
 lib/auth/oauth.dart
 lib/model/change_password.dart
 lib/model/event.dart
+lib/model/event_location.dart
 lib/model/event_report_response.dart
 lib/model/inline_object.dart
 lib/model/inline_object1.dart
@@ -37,3 +39,4 @@ lib/model/login_responce.dart
 lib/model/update_event_request.dart
 lib/model/user.dart
 pubspec.yaml
+test/event_location_test.dart

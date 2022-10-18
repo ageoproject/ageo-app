@@ -1,5 +1,6 @@
 import 'package:ageoClient/api.dart';
 import 'package:flutter/foundation.dart';
+import 'package:geocoder2/geocoder2.dart';
 
 class AgeoConfig{
   late ApiClient _apiClient;
@@ -24,16 +25,16 @@ class AgeoConfig{
     return _instance;
   }
 
-  Future<String?> reportEvent()async{
+  Future<String?> reportEvent({required List<double> location,required GeoData geoData})async{
     Event event=Event(
       eventType: EventEventTypeEnum.EARTHQUAKE,
       time: DateTime.now().toString(),
       image: ["location/test/image.png"],
       comment: "The is a test comment",
-      location: [12323.233,123.123],
-      city: "Mumbai",
-      state: "Maharashtra",
-      country: "India",
+      location: EventLocation(coordinates: location),
+      city: geoData.city,
+      state: geoData.state,
+      country: geoData.country,
       eventDetails: '{"name":"FLOODED"}'
     );
     EventReportResponse? eventReportResponse= await _indexApi.reportEvents(event);

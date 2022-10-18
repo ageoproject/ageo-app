@@ -20,7 +20,7 @@ class Event {
     this.status = const EventStatusEnum._('PENDING'),
     this.image = const [],
     this.comment,
-    this.location = const [],
+    this.location,
     this.city,
     this.state,
     this.country,
@@ -43,7 +43,7 @@ class Event {
 
   String? comment;
 
-  List<num>? location;
+  EventLocation? location;
 
   String? city;
 
@@ -158,9 +158,7 @@ class Event {
           ? (json[r'image'] as List).cast<String>()
           : null,
         comment: mapValueOfType<String>(json, r'comment'),
-        location: json[r'location'] is List
-          ? (json[r'location'] as List).cast<num>()
-          : null,
+        location: EventLocation.fromJson(json[r'location']),
         city: mapValueOfType<String>(json, r'city'),
         state: mapValueOfType<String>(json, r'state'),
         country: mapValueOfType<String>(json, r'country'),

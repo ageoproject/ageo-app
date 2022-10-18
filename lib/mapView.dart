@@ -1,3 +1,4 @@
+import 'package:ageo/ageoConfig.dart';
 import 'package:ageo/helpers/locationHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder2/geocoder2.dart';
@@ -18,7 +19,8 @@ class _MapViewState extends State<MapView> {
    Set<Marker> _marker={};
    bool _enableTrafficView=false;
    MapType _mapType=MapType.normal;
-   String? _address;
+   GeoData? _address;
+   late List<double> _location;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,8 +42,8 @@ class _MapViewState extends State<MapView> {
                     markerId:const MarkerId("Selected Location"),
                     position:latLng
                 ));
-                GeoData geoAddress=await _locationHelper.getCoordinateDetails(latitude: latLng.latitude, longitude: latLng.longitude);
-                _address=geoAddress.address;
+                _location=[latLng.latitude,latLng.longitude];
+                _address=await _locationHelper.getCoordinateDetails(latitude: latLng.latitude, longitude: latLng.longitude);
                 setState(() {});
               },
               onMapCreated: (GoogleMapController controller)async {
@@ -52,7 +54,7 @@ class _MapViewState extends State<MapView> {
             ),
 
             Visibility(
-              visible: _address!=null,
+              visible: _address?.address!=null,
               child: Positioned(
                 bottom: 10,
                 left: 20,
@@ -66,7 +68,7 @@ class _MapViewState extends State<MapView> {
                     children: [
                       const Icon(Icons.location_on,color: Colors.black87,),
                       Expanded(
-                        child: Text("$_address",style:const TextStyle(color: Colors.black87),),
+                        child: Text("${_address?.address}",style:const TextStyle(color: Colors.black87),),
                       ),
                     ],
                   ),
@@ -87,6 +89,7 @@ class _MapViewState extends State<MapView> {
                   Position currentLocation=await _locationHelper.getLocation();
                   _cameraPosition=CameraPosition(target: LatLng(currentLocation.latitude, currentLocation.longitude),zoom: 14.4746,);
                   googleMapController.animateCamera(CameraUpdate.newCameraPosition(_cameraPosition));
+                  print(" this is my current latitude: ${currentLocation.latitude} longitude: ${currentLocation.longitude}");
                   setState(() {});
                 },
               ),
@@ -150,7 +153,14 @@ class _MapViewState extends State<MapView> {
           ],
         ),
       ),
-
+      floatingActionButton: FloatingActionButton(
+        child:const Icon(Icons.send),
+        onPressed: ()async{
+          AgeoConfig ageoConfig=AgeoConfig();
+          String? eventId=await ageoConfig.reportEvent(location: _location,geoData: _address!);
+          print("Event Reported successfully and eventId is => $eventId");
+        },
+      ),
     );
   }
 }

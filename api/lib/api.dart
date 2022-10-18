@@ -33,6 +33,7 @@ part 'api/user_api.dart';
 
 part 'model/change_password.dart';
 part 'model/event.dart';
+part 'model/event_location.dart';
 part 'model/event_report_response.dart';
 part 'model/inline_object.dart';
 part 'model/inline_object1.dart';

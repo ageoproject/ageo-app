@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **status** | **String** |  | [optional] [default to 'PENDING']
 **image** | **List<String>** |  | [optional] [default to const []]
 **comment** | **String** |  | [optional] 
-**location** | **List<num>** |  | [optional] [default to const []]
+**location** | [**EventLocation**](EventLocation.md) |  | [optional] 
 **city** | **String** |  | [optional] 
 **state** | **String** |  | [optional] 
 **country** | **String** |  | [optional] 
