@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:ageo/ageoConfig.dart';
 import 'package:ageo/helpers/imagehelper.dart';
 import 'package:ageo/mapView.dart';
+import 'package:ageo/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geolocator/geolocator.dart';
@@ -21,9 +22,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      darkTheme: ThemeData(
+        fontFamily: "Oktaneue",
+        brightness: Brightness.dark,
+      ),
+      themeMode: ThemeMode.light,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        fontFamily: "Oktaneue",
+        brightness: Brightness.light,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -87,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // AgeoConfig ageoConfig=AgeoConfig();
           // String? eventId=await ageoConfig.reportEvent();
 
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> const MapView()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> const SplashScreen()));
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
