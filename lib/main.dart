@@ -1,18 +1,34 @@
 import 'dart:io';
 import 'dart:math';
-
 import 'package:ageo/ageoConfig.dart';
 import 'package:ageo/helpers/imagehelper.dart';
+import 'package:ageo/helpers/language_helper.dart';
+import 'package:ageo/helpers/local_Storage.dart';
 import 'package:ageo/mapView.dart';
-import 'package:ageo/splash_screen.dart';
+import 'package:ageo/view/splash_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  LocalStorage localStorage=LocalStorage();
+  LanguageHelper languageHelper=LanguageHelper();
+  String? languageCode=localStorage.readStringValue(key: languageHelper.languageKey);
+  Locale defaultLanguage=Locale(languageHelper.englishLanguageCode,);
+  runApp(
+    EasyLocalization(
+      supportedLocales: [Locale(languageHelper.englishLanguageCode),Locale(languageHelper.frenchLanguageCode),Locale(languageHelper.portugueseLanguageCode),Locale(languageHelper.spanishLanguageCode)],
+      path: "assets/translations",
+      fallbackLocale: defaultLanguage,
+      // fallbackLocale: languageCode != null ? languageHelper.languageCodeList.contains(languageCode) ? Locale(languageCode) : defaultLanguage : defaultLanguage,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,6 +38,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       darkTheme: ThemeData(
         fontFamily: "Oktaneue",
         brightness: Brightness.dark,
@@ -82,6 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: ()async{
+          // context.setLocale(Locale('pt'));
           // XFile? image=await uploadImage();
           // if(image!=null){
           //  _imageList.add(image);
