@@ -1,5 +1,5 @@
 {
-  "splash_screen": {
-    "welcome_text": "french welcome"
+  "common_key": {
+    "next_btn": " french Next"
   }
 }

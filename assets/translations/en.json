@@ -1,5 +1,5 @@
 {
-  "splash_screen": {
-    "welcome_text": "Welcome"
+  "common_key": {
+    "next_btn": "Next"
   }
 }

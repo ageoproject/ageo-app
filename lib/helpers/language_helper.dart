@@ -7,5 +7,12 @@ class LanguageHelper {
   final String spanishLanguageCode="es";
   final String portugueseLanguageCode="pt";
 
-  List<String> get languageCodeList=>[englishLanguageCode,frenchLanguageCode,spanishLanguageCode,portugueseLanguageCode];
+  List<String> get languageCodeList => [englishLanguageCode,frenchLanguageCode,spanishLanguageCode,portugueseLanguageCode];
+  List<String> get languageNameList => ["English","French","Spanish","Portuguese"];
+  Map<String,String> get languageMap=>{
+    "English": englishLanguageCode,
+    "French": frenchLanguageCode,
+    "Spanish": spanishLanguageCode,
+    "Portuguese": portugueseLanguageCode
+  };
 }

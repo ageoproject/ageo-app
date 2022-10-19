@@ -4,12 +4,15 @@ import 'package:ageo/ageoConfig.dart';
 import 'package:ageo/helpers/imagehelper.dart';
 import 'package:ageo/helpers/language_helper.dart';
 import 'package:ageo/helpers/local_Storage.dart';
+import 'package:ageo/main_controller.dart';
 import 'package:ageo/mapView.dart';
+import 'package:ageo/view/language_selection.dart';
 import 'package:ageo/view/splash_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
@@ -24,19 +27,33 @@ void main() async{
     EasyLocalization(
       supportedLocales: [Locale(languageHelper.englishLanguageCode),Locale(languageHelper.frenchLanguageCode),Locale(languageHelper.portugueseLanguageCode),Locale(languageHelper.spanishLanguageCode)],
       path: "assets/translations",
-      fallbackLocale: defaultLanguage,
-      // fallbackLocale: languageCode != null ? languageHelper.languageCodeList.contains(languageCode) ? Locale(languageCode) : defaultLanguage : defaultLanguage,
-      child: const MyApp(),
+      fallbackLocale: languageCode != null ? languageHelper.languageCodeList.contains(languageCode) ? Locale(languageCode) : defaultLanguage : defaultLanguage,
+      child: MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
+  final MainController _mainController=Get.put(MainController());
   // This widget is the root of your application.
+
+  Widget screenSelector({required String route}){
+    if(route=="splash_screen"){
+      return const SplashScreen();
+    }else if(route=="home_screen"){
+      return const MyHomePage(title: 'Flutter Demo Home Page');
+    }else{
+      return LanguageSelection();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    _mainController.initAppLanguage();
+    Future.delayed(const Duration(milliseconds: 1800),(){
+      _mainController.setInitialRoute();
+    });
     return MaterialApp(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
@@ -50,7 +67,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Oktaneue",
         brightness: Brightness.light,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: screenSelector(route: _mainController.initialRoute.value),
     );
   }
 }
