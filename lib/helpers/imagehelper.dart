@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:ageo/helpers/dashSeparator.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -6,6 +9,16 @@ class ImageSelector extends StatelessWidget {
    ImageSelector({Key? key}) : super(key: key);
 
   final ImagePicker _picker = ImagePicker();
+
+   Future<String> getFileSize(String filepath, int decimals) async {
+     var file = File(filepath);
+     int bytes = await file.length();
+     if (bytes <= 0) return "0 B";
+     const suffixes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+     var i = (log(bytes) / log(1024)).floor();
+     return '${(bytes / pow(1024, i)).toStringAsFixed(decimals)} ${suffixes[i]}';
+   }
+
   @override
   Widget build(BuildContext context) {
 

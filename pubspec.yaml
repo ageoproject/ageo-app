@@ -42,7 +42,7 @@ dependencies:
   geolocator: ^9.0.2
   geocoder2: ^1.4.0
   easy_localization: ^3.0.1
-  get_storage: ^2.0.3
+  shared_preferences: ^2.0.15
   get: ^4.6.5
   device_info_plus: ^6.0.0
 
@@ -91,9 +91,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Oktaneue
+    - family: WorkSans
       fonts:
-        - asset: assets/fonts/oktaneue-ultralight.otf
+        - asset: assets/fonts/WorkSans-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

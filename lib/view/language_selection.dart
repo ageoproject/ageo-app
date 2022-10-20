@@ -10,10 +10,12 @@ class LanguageSelection extends StatelessWidget {
   final double _ageoLogoWidth=265;
   final LanguageHelper _languageHelper=LanguageHelper();
   final MainController _mainController=Get.find();
+  late String _appLanguage;
 
   @override
   Widget build(BuildContext context) {
     final CustomThemeData appTheme=Theme.of(context).customTheme;
+    _appLanguage=_mainController.appLanguage.value;
     return Scaffold(
       body: Stack(
         children: [
@@ -27,7 +29,7 @@ class LanguageSelection extends StatelessWidget {
 
                 Padding(
                   padding: const EdgeInsets.only(top: 85,bottom: 25),
-                  child: Text("Select your preferred language",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 16,fontWeight: FontWeight.normal),),
+                  child: Text("Select your preferred language",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 16,),),
                 ),
                 Container(
                   decoration:BoxDecoration(
@@ -48,13 +50,14 @@ class LanguageSelection extends StatelessWidget {
                           //child: new Text(value),
                           child: Padding(
                             padding: const EdgeInsets.all(0.0),
-                            child: Text(value,),
+                            child: Text(value,style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)),
                           ),
                         );
                       }).toList(),
                       onChanged: (language) {
                         if(language!=null) {
-                          _mainController.changeAppLanguage(language: language,context: context);
+                          _appLanguage = language;
+                          _mainController.changeLanguage(language: language,context: context);
                         }
                       },
                     ),
@@ -65,14 +68,19 @@ class LanguageSelection extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: TextButton(
-        style: TextButton.styleFrom(
-          backgroundColor: appTheme.primaryActionColor
-        ),
-        onPressed: (){
+      bottomNavigationBar: SizedBox(
+        height: 60,
+        child: TextButton(
+          style: TextButton.styleFrom(
+            backgroundColor: appTheme.primaryActionColor,
 
-        },
-        child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w900),).tr(),
+          ),
+          onPressed: (){
+            _mainController.changeAppLanguage(language: _appLanguage,context: context);
+            _mainController.setInitialRoute();
+          },
+          child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
+        ),
       ),
     );
   }

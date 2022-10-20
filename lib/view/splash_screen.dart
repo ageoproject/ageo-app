@@ -11,27 +11,23 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
 
-  late final AnimationController _controller ;
+  late final AnimationController _controller = AnimationController(
+    duration:const Duration(milliseconds: 500),
+    vsync: this,
+  );
 
-  late final Animation<Offset> _offsetAnimation;
+  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
+    begin: const Offset(0, 5.5),
+    end: Offset.zero,
+  ).animate(_controller);
 
-
-  Future<void> startAnimation()async{
-    _controller = AnimationController(
-      duration:const Duration(milliseconds: 400),
-      vsync: this,
-    );
-    _offsetAnimation = Tween<Offset>(
-      begin: const Offset(0, 5.5),
-      end: Offset.zero,
-    ).animate(_controller);
-    await Future.delayed(const Duration(milliseconds: 300),()async{
-      await _controller.forward();
-      // await Future.delayed(const Duration(milliseconds: 200));
-      // Navigator.push(context, MaterialPageRoute(builder: (context)=> LanguageSelection()));
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 800),()async{
+      _controller.forward();
     });
   }
-
   @override
   void dispose() {
     _controller.dispose();
@@ -40,7 +36,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    startAnimation();
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
