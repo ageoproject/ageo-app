@@ -1,6 +1,7 @@
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/language_helper.dart';
-import 'package:ageo/main_controller.dart';
+import 'package:ageo/controllers/main_controller.dart';
+import 'package:ageo/view/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +14,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     return Scaffold(
+      drawer: CustomAppDrawer(),
       body: Stack(
         children: [
           Opacity(
@@ -27,12 +29,16 @@ class HomePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    MaterialButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: (){
-
-                      },
-                      child: Image.asset("assets/images/home_page/hamburger_menu.png",height: 60,width: 60,fit:BoxFit.fill),
+                    Builder(
+                      builder: (context) {
+                        return MaterialButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: (){
+                            Scaffold.of(context).openDrawer();
+                          },
+                          child: Image.asset("assets/images/home_page/hamburger_menu.png",height: 60,width: 60,fit:BoxFit.fill),
+                        );
+                      }
                     ),
 
                     Padding(
@@ -97,23 +103,37 @@ class HomePage extends StatelessWidget {
                                       },
                                       child: Image.asset("assets/images/home_page/circular_camera_ic.png",scale: 3,),
                                     ),
-                                    SizedBox(width: 16,),
+                                    const SizedBox(width: 16,),
                                     Expanded(
-                                      child: TextButton(
-                                        style: TextButton.styleFrom(
-                                          backgroundColor: appTheme.primaryActionColor
+                                      child: Container(
+                                        height: 48,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(22),
+                                            color: appTheme.primaryActionColor,
+                                            boxShadow: [
+                                            BoxShadow(
+                                              offset:const Offset(0, 3),
+                                              blurRadius: 6,
+                                              color: appTheme.primaryActionColor.withOpacity(0.64)
+                                            ),
+                                          ],
                                         ),
-                                        onPressed: (){
+                                        child: TextButton(
+                                          style: TextButton.styleFrom(
+                                            backgroundColor: Colors.transparent
+                                          ),
+                                          onPressed: (){
 
-                                        },
-                                        child:const Text("Monitor an event",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color:Colors.white),),
+                                          },
+                                          child:const Text("Monitor an event",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color:Colors.white),),
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 16,horizontal: 30),
+                                padding: const EdgeInsets.symmetric(vertical: 18,horizontal: 30),
                                 child: Text("Inform AGEO about geo - hazards and other incidents",textAlign: TextAlign.center,style: TextStyle(fontSize: 16,color: appTheme.placeHolderTextColor),),
                               )
                             ],

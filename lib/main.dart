@@ -1,6 +1,6 @@
 import 'package:ageo/helpers/language_helper.dart';
 import 'package:ageo/helpers/local_Storage.dart';
-import 'package:ageo/main_controller.dart';
+import 'package:ageo/controllers/main_controller.dart';
 import 'package:ageo/view/home_page.dart';
 import 'package:ageo/view/language_selection.dart';
 import 'package:ageo/view/splash_screen.dart';
