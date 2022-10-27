@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:ageo/controllers/app_drawer_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/url_launcher.dart';
+import 'package:ageo/view/about.dart';
+import 'package:ageo/view/contact.dart';
+import 'package:ageo/view/home_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -68,6 +71,8 @@ class CustomAppDrawer extends StatelessWidget {
                         ),
                         onPressed: (){
                           _appDrawerController.changeActiveButton(value: "home");
+                          Scaffold.of(context).openEndDrawer();
+                          Navigator.popUntil(context, (route) => route.isFirst);
                         },
                       ),
                       TextButton(
@@ -143,6 +148,10 @@ class CustomAppDrawer extends StatelessWidget {
                         ),
                         onPressed:(){
                           _appDrawerController.changeActiveButton(value: "contact");
+                          Scaffold.of(context).openEndDrawer();
+                          // Navigator.push(context, MaterialPageRoute(builder: (context)=>ContactUs()));
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>ContactUs()), (route)=> route.isFirst);
+
                         },
                       ),
                       TextButton(
@@ -167,7 +176,18 @@ class CustomAppDrawer extends StatelessWidget {
                           ),
                         ),
                         onPressed: (){
+                          Scaffold.of(context).openEndDrawer();
                           _appDrawerController.changeActiveButton(value: "about");
+                          // Navigator.push(context, MaterialPageRoute(builder: (context)=>AboutUS()));
+                          // Navigator.popUntil(context, (route) => route.isFirst);
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>AboutUS()), (route)=> route.isFirst);
+
+                          // Navigator.of(context).popUntil((route) {
+                          //   print("${route.settings.name},${route.isFirst}");
+                          //   if (route.settings.name != "/home") return false;
+                          //   return true;
+                          // });
+                          // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>AboutUS()), (route) => route.isFirst);
                         },
                       ),
                     ],
