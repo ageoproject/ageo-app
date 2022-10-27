@@ -16,6 +16,7 @@ void main() async{
   LanguageHelper languageHelper=LanguageHelper();
   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
   localStorage.initSharedPreferences(sharedPreferences: sharedPreferences);
+  // await localStorage.deleteValue(key: languageHelper.languageKey);
   String? languageCode=localStorage.readStringValue(key: languageHelper.languageKey);
   Locale defaultLanguage=Locale(languageHelper.englishLanguageCode,);
   runApp(

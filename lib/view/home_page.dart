@@ -2,6 +2,7 @@ import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/language_helper.dart';
 import 'package:ageo/controllers/main_controller.dart';
 import 'package:ageo/view/app_drawer.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -125,7 +126,7 @@ class HomePage extends StatelessWidget {
                                           onPressed: (){
 
                                           },
-                                          child:const Text("Monitor an event",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color:Colors.white),),
+                                          child:const Text("home_page.monitor_event",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color:Colors.white),).tr(),
                                         ),
                                       ),
                                     ),
@@ -134,7 +135,7 @@ class HomePage extends StatelessWidget {
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(vertical: 18,horizontal: 30),
-                                child: Text("Inform AGEO about geo - hazards and other incidents",textAlign: TextAlign.center,style: TextStyle(fontSize: 16,color: appTheme.placeHolderTextColor),),
+                                child: Text("home_page.description_txt",textAlign: TextAlign.center,style: TextStyle(fontSize: 16,color: appTheme.placeHolderTextColor),).tr(),
                               )
                             ],
                           ),

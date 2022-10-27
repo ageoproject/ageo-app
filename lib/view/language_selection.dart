@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/language_helper.dart';
 import 'package:ageo/controllers/main_controller.dart';
@@ -69,11 +70,10 @@ class LanguageSelection extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: SizedBox(
-        height: 60,
+        height: Platform.isIOS? 66:40,
         child: TextButton(
           style: TextButton.styleFrom(
             backgroundColor: appTheme.primaryActionColor,
-
           ),
           onPressed: (){
             _mainController.changeAppLanguage(language: _appLanguage,context: context);

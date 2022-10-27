@@ -1,130 +1,196 @@
+import 'dart:io';
+
 import 'package:ageo/controllers/app_drawer_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
+import 'package:ageo/helpers/url_launcher.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomAppDrawer extends StatelessWidget {
   CustomAppDrawer({Key? key}) : super(key: key);
   final AppDrawerController _appDrawerController=Get.put(AppDrawerController());
+  final CustomUrlLauncher _customUrlLauncher=CustomUrlLauncher();
+
+  Color getButtonColor({required String buttonId,required CustomThemeData appTheme}){
+    if(_appDrawerController.activeButton.value==buttonId){
+      return appTheme.primaryActionColor;
+    }else{
+      return Colors.transparent;
+    }
+  }
+
+  Color getIconAndTextColor({required String buttonId,required CustomThemeData appTheme}){
+    if(_appDrawerController.activeButton.value==buttonId){
+      return Colors.white;
+    }else{
+      return appTheme.primaryActionColor;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     return Drawer(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 100,horizontal: 20),
-            child: Image.asset("assets/images/app_drawer/agro_logo_ic.png"),
-          ),
-
-          Obx(
-            ()=> Column(
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
               children: [
-                TextButton(
-                  style: TextButton.styleFrom(
-                    // backgroundColor: appTheme.primaryActionColor,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                  ),
-                  child: SizedBox(
-                    height: 48,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0,left: 16),
-                          child: Image.asset("assets/images/app_drawer/home_ic.png",height: 23,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 100,horizontal: 20),
+                  child: Image.asset("assets/images/app_drawer/agro_logo_ic.png"),
+                ),
+
+                Obx(
+                  ()=> Column(
+                    children: [
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          // backgroundColor: appTheme.primaryActionColor,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
                         ),
-                        Text("Home",style: TextStyle(fontSize: 14,color: _appDrawerController.activeButton.value=="home"?Colors.white:appTheme.primaryActionColor),)
-                      ],
-                    ),
-                  ),
-                  onPressed: (){
-_appDrawerController.changeActiveButton(value: "home");
-                  },
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    // backgroundColor: appTheme.primaryActionColor,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                  ),
-                  child: SizedBox(
-                    height: 48,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0,left: 16),
-                          child: Image.asset("assets/images/app_drawer/educational_ic.png",height: 23,),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: getButtonColor(buttonId: "home", appTheme: appTheme),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          height: 48,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0,left: 16),
+                                child: Image.asset("assets/images/app_drawer/home_ic.png",height: 23,color: getIconAndTextColor(buttonId: "home", appTheme: appTheme),),
+                              ),
+                              Text("app_drawer.home",style: TextStyle(fontSize: 14,color: getIconAndTextColor(buttonId: "home", appTheme: appTheme)),).tr(),
+                            ],
+                          ),
                         ),
-                        Text("Educational content",style: TextStyle(fontSize: 14,color: _appDrawerController.activeButton.value=="home"?Colors.white:appTheme.primaryActionColor),)
-                      ],
-                    ),
-                  ),
-                  onPressed: (){
-_appDrawerController.changeActiveButton(value: "home");
-                  },
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    // backgroundColor: appTheme.primaryActionColor,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                  ),
-                  child: SizedBox(
-                    height: 48,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0,left: 16),
-                          child: Image.asset("assets/images/app_drawer/partners_ic.png",height: 23,),
-                        ), Text("Partners",style: TextStyle(fontSize: 14,color: _appDrawerController.activeButton.value=="hom"?Colors.white:appTheme.primaryActionColor),)
-                      ],
-                    ),
-                  ),
-                  onPressed: (){
-                    _appDrawerController.changeActiveButton(value: "hom");
-                  },
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    // backgroundColor: appTheme.primaryActionColor,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                  ),
-                  child: SizedBox(
-                    height: 48,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0,left: 16),
-                          child: Image.asset("assets/images/app_drawer/contact_ic.png",height: 23,),
+                        onPressed: (){
+                          _appDrawerController.changeActiveButton(value: "home");
+                        },
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          // backgroundColor: appTheme.primaryActionColor,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
                         ),
-                        Text("Contact Us",style: TextStyle(fontSize: 14,color: _appDrawerController.activeButton.value=="contact"?Colors.white:appTheme.primaryActionColor),)
-                      ],
-                    ),
-                  ),
-                  onPressed:(){
-                    _appDrawerController.changeActiveButton(value: "contact");
-                  },
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    // backgroundColor: appTheme.primaryActionColor,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                  ),
-                  child: SizedBox(
-                    height: 48,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0,left: 16),
-                          child: Image.asset("assets/images/app_drawer/about_ic.png",height: 23,),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: getButtonColor(buttonId: "educational", appTheme: appTheme),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          height: 48,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0,left: 16),
+                                child: Image.asset("assets/images/app_drawer/educational_ic.png",height: 23,color: getIconAndTextColor(buttonId: "educational", appTheme: appTheme),),
+                              ),
+                              Text("app_drawer.education",style: TextStyle(fontSize: 14,color: getIconAndTextColor(buttonId: "educational", appTheme: appTheme)),).tr()
+                            ],
+                          ),
                         ),
-                        Text("About US",style: TextStyle(fontSize: 14,color: _appDrawerController.activeButton.value=="about"?Colors.white:appTheme.primaryActionColor),)
-                      ],
-                    ),
+                        onPressed: (){
+                          _appDrawerController.changeActiveButton(value: "educational");
+                        },
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          // backgroundColor: appTheme.primaryActionColor,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: getButtonColor(buttonId: "partners", appTheme: appTheme),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          height: 48,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0,left: 16),
+                                child: Image.asset("assets/images/app_drawer/partners_ic.png",height: 23,color: getIconAndTextColor(buttonId: "partners", appTheme: appTheme),),
+                              ),
+                              Text("app_drawer.partners",style: TextStyle(fontSize: 14,color:getIconAndTextColor(buttonId: "partners", appTheme: appTheme)),).tr()
+                            ],
+                          ),
+                        ),
+                        onPressed: (){
+                          _appDrawerController.changeActiveButton(value: "partners");
+                        },
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          // backgroundColor: appTheme.primaryActionColor,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: getButtonColor(buttonId: "contact", appTheme: appTheme),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          height: 48,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0,left: 16),
+                                child: Image.asset("assets/images/app_drawer/contact_ic.png",height: 23,color: getIconAndTextColor(buttonId: "contact", appTheme: appTheme),),
+                              ),
+                              Text("app_drawer.contact",style: TextStyle(fontSize: 14,color: getIconAndTextColor(buttonId: "contact", appTheme: appTheme)),).tr()
+                            ],
+                          ),
+                        ),
+                        onPressed:(){
+                          _appDrawerController.changeActiveButton(value: "contact");
+                        },
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          // backgroundColor: appTheme.primaryActionColor,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: getButtonColor(buttonId: "about", appTheme: appTheme),
+                          ),
+                          height: 48,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0,left: 16),
+                                child: Image.asset("assets/images/app_drawer/about_ic.png",height: 23,color: getIconAndTextColor(buttonId: "about", appTheme: appTheme)),
+                              ),
+                              Text("app_drawer.about",style: TextStyle(fontSize: 14,color: getIconAndTextColor(buttonId: "about", appTheme: appTheme)),).tr()
+                            ],
+                          ),
+                        ),
+                        onPressed: (){
+                          _appDrawerController.changeActiveButton(value: "about");
+                        },
+                      ),
+                    ],
                   ),
-                  onPressed: (){
-                    _appDrawerController.changeActiveButton(value: "about");
-                  },
-                ),
+                )
+              ],
+            ),
+          ),
+          SliverFillRemaining(
+            fillOverscroll: false,
+            hasScrollBody: false,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: Platform.isIOS ? 16 : 0),
+                  child: TextButton(
+                    child: Text(_customUrlLauncher.ageoWebLink,style: TextStyle(fontSize: 14,color: appTheme.primaryActionColor),),
+                    onPressed: (){
+                      _customUrlLauncher.openInBrowser(url: _customUrlLauncher.ageoWebLink);
+                    },
+                  ),
+                )
               ],
             ),
           )

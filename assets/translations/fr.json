@@ -1,5 +1,16 @@
 {
   "common_key": {
     "next_btn": " french Next"
+  },
+  "home_page": {
+    "monitor_event": "Monitor an event",
+    "description_txt": "Inform AGEO about geo - hazards and other incidents"
+  },
+  "app_drawer": {
+    "home": "Home",
+    "education": "Education Content",
+    "partners": "Partners",
+    "contact": "Contact Us",
+    "about": "About Us"
   }
 }
