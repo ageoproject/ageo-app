@@ -1,3 +1,4 @@
+import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/view/language_selection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
+    CustomThemeData appTheme=Theme.of(context).customTheme;
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
@@ -50,6 +52,10 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
               position: _offsetAnimation,
               child: Image.asset("assets/images/splash_screen/ageo_logo.png",width: 265,),
             ),
+          ),
+          Positioned(
+            bottom: 20,
+            child: Text("v5.0.1",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),)
           )
         ],
       ),

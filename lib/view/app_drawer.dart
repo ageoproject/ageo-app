@@ -202,15 +202,16 @@ class CustomAppDrawer extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                TextButton(
+                  child: Text(_customUrlLauncher.ageoWebLink,style: TextStyle(fontSize: 14,color: appTheme.primaryActionColor),),
+                  onPressed: (){
+                    _customUrlLauncher.openInBrowser(url: _customUrlLauncher.ageoWebLink);
+                  },
+                ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: Platform.isIOS ? 16 : 0),
-                  child: TextButton(
-                    child: Text(_customUrlLauncher.ageoWebLink,style: TextStyle(fontSize: 14,color: appTheme.primaryActionColor),),
-                    onPressed: (){
-                      _customUrlLauncher.openInBrowser(url: _customUrlLauncher.ageoWebLink);
-                    },
-                  ),
-                )
+                  padding: EdgeInsets.only(bottom: Platform.isIOS ? 18 : 0,top: 16),
+                  child: Text("v1.0.5",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),),
+                ),
               ],
             ),
           )

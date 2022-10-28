@@ -15,17 +15,17 @@ class CustomAppBar extends StatelessWidget {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     return Container(
       height: 70,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius:const BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.16),
-            offset:const Offset(0, 2),
-            blurRadius: 6,
-          )
-        ]
-      ),
+      // decoration: BoxDecoration(
+      //   color: Colors.white,
+      //   borderRadius:const BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
+      //   boxShadow: [
+      //     BoxShadow(
+      //       color: Colors.black.withOpacity(0.16),
+      //       offset:const Offset(0, 2),
+      //       blurRadius: 6,
+      //     )
+      //   ]
+      // ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
