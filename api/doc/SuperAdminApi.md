@@ -1,4 +1,4 @@
-# ageoClient.api.IndexApi
+# ageoClient.api.SuperAdminApi
 
 ## Load the API package
 ```dart
@@ -9,26 +9,26 @@ All URIs are relative to *http://localhost:3000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**reportEvents**](IndexApi.md#reportevents) | **POST** /report_event | Report events
+[**createUser**](SuperAdminApi.md#createuser) | **POST** /create_user | Admin creates manager
 
 
-# **reportEvents**
-> EventReportResponse reportEvents(eventReport)
+# **createUser**
+> User createUser(userDetails)
 
-Report events
+Admin creates manager
 
 ### Example
 ```dart
 import 'package:ageoClient/api.dart';
 
-final api_instance = IndexApi();
-final eventReport = Event(); // Event | 
+final api_instance = SuperAdminApi();
+final userDetails = InlineObject(); // InlineObject | 
 
 try {
-    final result = api_instance.reportEvents(eventReport);
+    final result = api_instance.createUser(userDetails);
     print(result);
 } catch (e) {
-    print('Exception when calling IndexApi->reportEvents: $e\n');
+    print('Exception when calling SuperAdminApi->createUser: $e\n');
 }
 ```
 
@@ -36,11 +36,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **eventReport** | [**Event**](Event.md)|  | 
+ **userDetails** | [**InlineObject**](InlineObject.md)|  | [optional] 
 
 ### Return type
 
-[**EventReportResponse**](EventReportResponse.md)
+[**User**](User.md)
 
 ### Authorization
 

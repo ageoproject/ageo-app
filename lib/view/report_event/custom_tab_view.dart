@@ -46,7 +46,7 @@ class CustomTabView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     IconButton(
-                      icon: Image.asset("assets/images/home_page/camera_ic.png",scale: 3,),
+                      icon: Image.asset("assets/images/report_event/camera_ic.png",scale: 3.5,color: appTheme.primaryActionColor,),
                       onPressed: (){
 
                       },
@@ -55,7 +55,7 @@ class CustomTabView extends StatelessWidget {
                       decoration: BoxDecoration(
                           border: Border(
                             bottom: BorderSide(
-                              color: getUnderLineBorderColor(widgetId: "select_event", appTheme: appTheme),
+                              color: getUnderLineBorderColor(widgetId: "event_type", appTheme: appTheme),
                               width: 4.0,
                             ),
                           ),
@@ -63,7 +63,7 @@ class CustomTabView extends StatelessWidget {
                       child: TextButton(
                         child: Text("Event type",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w900,color: getTextColor(widgetId: "select_event", appTheme: appTheme)),),
                         onPressed: (){
-                          _reportEventController.changeActiveTab(value: "select_event");
+                          _reportEventController.changeActiveTab(value: "event_type");
                         },
                       ),
                     ),

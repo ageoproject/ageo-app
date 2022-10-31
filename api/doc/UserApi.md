@@ -73,7 +73,7 @@ import 'package:ageoClient/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('Token').apiKeyPrefix = 'Bearer';
 
 final api_instance = UserApi();
-final changePreferredLanguage = InlineObject(); // InlineObject | 
+final changePreferredLanguage = InlineObject1(); // InlineObject1 | 
 
 try {
     api_instance.changePreferredLanguage(changePreferredLanguage);
@@ -86,7 +86,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **changePreferredLanguage** | [**InlineObject**](InlineObject.md)|  | 
+ **changePreferredLanguage** | [**InlineObject1**](InlineObject1.md)|  | 
 
 ### Return type
 
@@ -117,7 +117,7 @@ import 'package:ageoClient/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('Token').apiKeyPrefix = 'Bearer';
 
 final api_instance = UserApi();
-final changeUserStatus = InlineObject1(); // InlineObject1 | 
+final changeUserStatus = InlineObject2(); // InlineObject2 | 
 
 try {
     api_instance.changeUserStatus(changeUserStatus);
@@ -130,7 +130,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **changeUserStatus** | [**InlineObject1**](InlineObject1.md)|  | 
+ **changeUserStatus** | [**InlineObject2**](InlineObject2.md)|  | 
 
 ### Return type
 

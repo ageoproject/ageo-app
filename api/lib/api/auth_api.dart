@@ -23,14 +23,14 @@ class AuthApi {
   /// Parameters:
   ///
   /// * [String] email (required):
-  Future<Response> forgetPasswordRequestWithHttpInfo(String email,) async {
+  Future<Response> forgetPasswordWithHttpInfo(String email,) async {
     // Verify required params are set.
     if (email == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: email');
     }
 
     // ignore: prefer_const_declarations
-    final path = r'/auth/forget_password_request';
+    final path = r'/auth/forget_password';
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -62,8 +62,8 @@ class AuthApi {
   /// Parameters:
   ///
   /// * [String] email (required):
-  Future<Object?> forgetPasswordRequest(String email,) async {
-    final response = await forgetPasswordRequestWithHttpInfo(email,);
+  Future<Object?> forgetPassword(String email,) async {
+    final response = await forgetPasswordWithHttpInfo(email,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -80,19 +80,25 @@ class AuthApi {
   /// Login
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> loginWithHttpInfo() async {
+  ///
+  /// Parameters:
+  ///
+  /// * [InlineObject3] loginRequest:
+  Future<Response> loginWithHttpInfo({ InlineObject3? loginRequest, }) async {
+    // Verify required params are set.
+
     // ignore: prefer_const_declarations
     final path = r'/auth/login';
 
     // ignore: prefer_final_locals
-    Object? postBody;
+    Object? postBody = loginRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
     const authNames = <String>[];
-    const contentTypes = <String>[];
+    const contentTypes = <String>['application/json'];
 
 
     return apiClient.invokeAPI(
@@ -108,8 +114,12 @@ class AuthApi {
   }
 
   /// Login
-  Future<LoginResponce?> login() async {
-    final response = await loginWithHttpInfo();
+  ///
+  /// Parameters:
+  ///
+  /// * [InlineObject3] loginRequest:
+  Future<LoginResponce?> login({ InlineObject3? loginRequest, }) async {
+    final response = await loginWithHttpInfo( loginRequest: loginRequest, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -159,5 +169,61 @@ class AuthApi {
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
+  }
+
+  /// Sign up
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [InlineObject4] signupRequest:
+  Future<Response> signupWithHttpInfo({ InlineObject4? signupRequest, }) async {
+    // Verify required params are set.
+
+    // ignore: prefer_const_declarations
+    final path = r'/auth/signup';
+
+    // ignore: prefer_final_locals
+    Object? postBody = signupRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>[];
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Sign up
+  ///
+  /// Parameters:
+  ///
+  /// * [InlineObject4] signupRequest:
+  Future<LoginResponse?> signup({ InlineObject4? signupRequest, }) async {
+    final response = await signupWithHttpInfo( signupRequest: signupRequest, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'LoginResponse',) as LoginResponse?;
+    
+    }
+    return Future<LoginResponse>.value();
   }
 }

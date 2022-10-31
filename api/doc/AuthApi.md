@@ -9,13 +9,14 @@ All URIs are relative to *http://localhost:3000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**forgetPasswordRequest**](AuthApi.md#forgetpasswordrequest) | **POST** /auth/forget_password_request | Initiating forget password
+[**forgetPassword**](AuthApi.md#forgetpassword) | **POST** /auth/forget_password | Initiating forget password
 [**login**](AuthApi.md#login) | **POST** /auth/login | Login
 [**recoverPasswordRequest**](AuthApi.md#recoverpasswordrequest) | **POST** /auth/recover_password_request | Reset Password
+[**signup**](AuthApi.md#signup) | **POST** /auth/signup | Sign up
 
 
-# **forgetPasswordRequest**
-> Object forgetPasswordRequest(email)
+# **forgetPassword**
+> Object forgetPassword(email)
 
 Initiating forget password
 
@@ -27,10 +28,10 @@ final api_instance = AuthApi();
 final email = email_example; // String | 
 
 try {
-    final result = api_instance.forgetPasswordRequest(email);
+    final result = api_instance.forgetPassword(email);
     print(result);
 } catch (e) {
-    print('Exception when calling AuthApi->forgetPasswordRequest: $e\n');
+    print('Exception when calling AuthApi->forgetPassword: $e\n');
 }
 ```
 
@@ -56,7 +57,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **login**
-> LoginResponce login()
+> LoginResponce login(loginRequest)
 
 Login
 
@@ -65,9 +66,10 @@ Login
 import 'package:ageoClient/api.dart';
 
 final api_instance = AuthApi();
+final loginRequest = InlineObject3(); // InlineObject3 | 
 
 try {
-    final result = api_instance.login();
+    final result = api_instance.login(loginRequest);
     print(result);
 } catch (e) {
     print('Exception when calling AuthApi->login: $e\n');
@@ -75,7 +77,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **loginRequest** | [**InlineObject3**](InlineObject3.md)|  | [optional] 
 
 ### Return type
 
@@ -87,7 +92,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -125,6 +130,47 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **signup**
+> LoginResponse signup(signupRequest)
+
+Sign up
+
+### Example
+```dart
+import 'package:ageoClient/api.dart';
+
+final api_instance = AuthApi();
+final signupRequest = InlineObject4(); // InlineObject4 | 
+
+try {
+    final result = api_instance.signup(signupRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling AuthApi->signup: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **signupRequest** | [**InlineObject4**](InlineObject4.md)|  | [optional] 
+
+### Return type
+
+[**LoginResponse**](LoginResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

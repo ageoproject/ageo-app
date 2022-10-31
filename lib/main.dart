@@ -6,6 +6,7 @@ import 'package:ageo/view/language_selection.dart';
 import 'package:ageo/view/splash_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,6 +21,10 @@ void main() async{
   // await localStorage.deleteValue(key: languageHelper.languageKey);
   String? languageCode=localStorage.readStringValue(key: languageHelper.languageKey);
   Locale defaultLanguage=Locale(languageHelper.englishLanguageCode,);
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.dark,
+  ));
   runApp(
     EasyLocalization(
       supportedLocales: [Locale(languageHelper.englishLanguageCode),Locale(languageHelper.frenchLanguageCode),Locale(languageHelper.portugueseLanguageCode),Locale(languageHelper.spanishLanguageCode)],

@@ -46,6 +46,7 @@ dependencies:
   get: ^4.6.5
   device_info_plus: ^6.0.0
   url_launcher: ^6.1.6
+  permission_handler: ^10.2.0
 
   ageoClient:
     path: ./api/
@@ -79,6 +80,8 @@ flutter:
     - assets/images/splash_screen/
     - assets/images/home_page/
     - assets/images/app_drawer/
+    - assets/images/report_event/
+    - assets/images/report_event/event_type/
 
   #   - images/a_dot_ham.jpeg
 

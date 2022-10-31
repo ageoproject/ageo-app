@@ -11,29 +11,26 @@
 part of openapi.api;
 
 
-class IndexApi {
-  IndexApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+class SuperAdminApi {
+  SuperAdminApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
-  /// Report events
+  /// Admin creates manager
   ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
   ///
-  /// * [Event] eventReport (required):
-  Future<Response> reportEventsWithHttpInfo(Event eventReport,) async {
+  /// * [InlineObject] userDetails:
+  Future<Response> createUserWithHttpInfo({ InlineObject? userDetails, }) async {
     // Verify required params are set.
-    if (eventReport == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: eventReport');
-    }
 
     // ignore: prefer_const_declarations
-    final path = r'/report_event';
+    final path = r'/create_user';
 
     // ignore: prefer_final_locals
-    Object postBody = eventReport;
+    Object? postBody = userDetails;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -55,13 +52,13 @@ class IndexApi {
     );
   }
 
-  /// Report events
+  /// Admin creates manager
   ///
   /// Parameters:
   ///
-  /// * [Event] eventReport (required):
-  Future<EventReportResponse?> reportEvents(Event eventReport,) async {
-    final response = await reportEventsWithHttpInfo(eventReport,);
+  /// * [InlineObject] userDetails:
+  Future<User?> createUser({ InlineObject? userDetails, }) async {
+    final response = await createUserWithHttpInfo( userDetails: userDetails, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -69,9 +66,9 @@ class IndexApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'EventReportResponse',) as EventReportResponse?;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'User',) as User?;
     
     }
-    return Future<EventReportResponse>.value();
+    return Future<User>.value();
   }
 }
