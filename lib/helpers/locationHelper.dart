@@ -39,7 +39,7 @@ class LocationHelper{
     GeoData data = await Geocoder2.getDataFromCoordinates(
         latitude: latitude,
         longitude: longitude,
-        googleMapApiKey: "AIzaSyBjH9cpklkD16Mm5mldcoZ68uoK-bF0xYs");
+        googleMapApiKey: "AIzaSyBNr1H9xOYypZMoB2rTtVTAbe-B6_n8zwM");
     return data;
   }
 }

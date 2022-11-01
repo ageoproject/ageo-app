@@ -1,7 +1,7 @@
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/view/app_drawer.dart';
-import 'package:ageo/view/report_event/app_bar.dart';
+import 'package:ageo/view/app_bar.dart';
 import 'package:ageo/view/report_event/custom_tab_view.dart';
 import 'package:ageo/view/report_event/event_type.dart';
 import 'package:flutter/material.dart';
@@ -24,19 +24,16 @@ class ReportEvent extends StatelessWidget {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     return Scaffold(
       drawer: CustomAppDrawer(),
-      body: Padding(
-        padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top),
-        child: Column(
-          children: [
-            CustomAppBar(title: "Select Event type",),
-            CustomTabView(),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Obx(()=> pageSelector()),
-              ),
+      body: Column(
+        children: [
+          CustomAppBar(title: "Select Event type",),
+          CustomTabView(),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Obx(()=> pageSelector()),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

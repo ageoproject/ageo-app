@@ -15,7 +15,7 @@ class ReportEventController extends GetxController{
 
   void changeSelectedEventType({required EventEventTypeEnum value }){
     _selectedEventType=value;
-    print(_selectedEventType);
+    // print(_selectedEventType);
     // update();
   }
 }

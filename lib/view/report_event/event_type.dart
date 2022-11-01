@@ -46,14 +46,13 @@ class EventTypeList extends StatelessWidget {
       "event_type": EventEventTypeEnum.SINKHOLE
     },
     {
-      "event_name": "Building Settlement",
-      "icon_name": "buildingSettlement_ic",
-      "event_type": EventEventTypeEnum.BUILDING_SETTLEMENT
-    },
-    {
       "event_name": "Eruption",
       "icon_name": "eruption_ic",
       "event_type": EventEventTypeEnum.ERUPTION
+    },{
+      "event_name": "Building\nSettlement",
+      "icon_name": "buildingSettlement_ic",
+      "event_type": EventEventTypeEnum.BUILDING_SETTLEMENT
     },
 
   ];
@@ -66,7 +65,7 @@ class EventTypeList extends StatelessWidget {
       child: Wrap(
         children: List<Widget>.generate(_eventDetailList.length, (index) {
           return Padding(
-            padding: index % 2 ==0 ? const EdgeInsets.only(right: 8.0,bottom: 8.0):const EdgeInsets.only(bottom: 8),
+            padding: index % 2 ==0 ? const EdgeInsets.only(right: 12.0,bottom: 12.0):const EdgeInsets.only(bottom: 12),
             child: GestureDetector(
               onTap: (){
                 _reportEventController.changeSelectedEventType(value: _eventDetailList[index]["event_type"]);
@@ -82,7 +81,7 @@ class EventTypeList extends StatelessWidget {
                     Image.asset("$_filePath${_eventDetailList[index]["icon_name"]}.jpg",width: 100,),
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
-                      child: Text("${_eventDetailList[index]["event_name"]}"),
+                      child: Text("${_eventDetailList[index]["event_name"]}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: appTheme.primaryTextColor),textAlign: TextAlign.center,),
                     ),
                   ],
                 ),

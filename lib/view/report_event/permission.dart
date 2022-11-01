@@ -25,7 +25,7 @@ class DevicePermissionsHandler extends StatelessWidget {
                       // child: Text("Close",style: TextStyle(fontSize: 16,color: appTheme.primaryTextColor),),
                       child: Icon(Icons.close,color: appTheme.primaryTextColor,size: 36,),
                       onPressed: (){
-                        Navigator.pop(context);
+                        Navigator.pop(context,false);
                       },
                     )
                   ),

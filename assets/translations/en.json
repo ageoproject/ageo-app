@@ -12,5 +12,38 @@
     "partners": "Partners",
     "contact": "Contact Us",
     "about": "About Us"
+  },
+  "permission_page": {
+    "ok": "OK!",
+    "we_need_some_access": "We need some access!",
+    "allow_button": "Allow all permission",
+    "permission_type": {
+      "location": "Location",
+      "location_description": "",
+      "camera": "Camera",
+      "camera_description": "",
+      "media": "Media",
+      "media_description": ""
+    }
+  },
+  "monitor_event": {
+    "app_bar_tittle": "Select Event Type",
+    "tab_view": {
+      "event_type": "Event type",
+      "map": "Map",
+      "questions": "Questions",
+      "damage": "Damage"
+    },
+    "event_type_tab": {
+      "forest_fire": "Forest Fire",
+      "tsunami": "Tsunami",
+      "earthquake": "Earthquake",
+      "rockfall": "Rockfall",
+      "land_slide": "Land Slide",
+      "flood": "Flood",
+      "sinkhole": "Sinkhole",
+      "building_settlement": "Building Settlement",
+      "eruption": "Eruption"
+    }
   }
 }
