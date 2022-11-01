@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:ageo/helpers/app_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -37,11 +38,11 @@ class DevicePermissionsHandler extends StatelessWidget {
                       text: TextSpan(
                           children: [
                             TextSpan(
-                              text: "OK!\n",
+                              text: "${"permission_page.ok".tr()}\n",
                               style: TextStyle(color: appTheme.primaryActionColor,fontWeight: FontWeight.w600,fontSize: 22),
                             ),
                             TextSpan(
-                              text: "We need some access!",
+                              text: "permission_page.we_need_some_access".tr(),
                               style: TextStyle(color: appTheme.primaryActionColor,fontWeight: FontWeight.w900,fontSize: 22),
                             ),
 
@@ -63,11 +64,11 @@ class DevicePermissionsHandler extends StatelessWidget {
                               text: TextSpan(
                                   children: [
                                     TextSpan(
-                                      text: "Location\n",
+                                      text: "${"permission_page.permission_type.location".tr()}\n",
                                       style: TextStyle(color: appTheme.iconColor,fontSize: 16,fontWeight: FontWeight.w900),
                                     ),
                                     TextSpan(
-                                      text: "Need location access to\ncapture event location",
+                                      text: "permission_page.permission_type.location_description".tr(),
                                       style: TextStyle(color: appTheme.iconColor,fontSize: 16,fontWeight: FontWeight.w600),
                                     ),
                                   ]
@@ -80,30 +81,33 @@ class DevicePermissionsHandler extends StatelessWidget {
                         padding: EdgeInsets.symmetric(vertical: 16.0,horizontal: (MediaQuery.of(context).size.width)/2-50),
                         child: Divider(color: appTheme.inputFieldsBorderColor,),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset("assets/images/report_event/camera_ic.png",color: appTheme.iconColor,width: 27,),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            // child: Text("Camera",style: TextStyle(color: appTheme.iconColor,fontSize: 16,fontWeight: FontWeight.w900),),
-                            child: RichText(
-                              textScaleFactor: MediaQuery.of(context).textScaleFactor,
-                              text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: "Camera\n",
-                                      style: TextStyle(color: appTheme.iconColor,fontSize: 16,fontWeight: FontWeight.w900),
-                                    ),
-                                    TextSpan(
-                                      text: "Need camera access to\ncapture event photo's",
-                                      style: TextStyle(color: appTheme.iconColor,fontSize: 16,fontWeight: FontWeight.w600),
-                                    ),
-                                  ]
+                      SizedBox(
+                        width: 400,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/images/report_event/camera_ic.png",color: appTheme.iconColor,width: 27,),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16.0),
+                              // child: Text("Camera",style: TextStyle(color: appTheme.iconColor,fontSize: 16,fontWeight: FontWeight.w900),),
+                              child: RichText(
+                                textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                                text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: "${"permission_page.permission_type.camera".tr()}\n",
+                                        style: TextStyle(color: appTheme.iconColor,fontSize: 16,fontWeight: FontWeight.w900),
+                                      ),
+                                      TextSpan(
+                                        text: "permission_page.permission_type.camera_description".tr(),
+                                        style: TextStyle(color: appTheme.iconColor,fontSize: 16,fontWeight: FontWeight.w600),
+                                      ),
+                                    ]
+                                ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 16.0,horizontal: (MediaQuery.of(context).size.width)/2-50),
@@ -121,11 +125,11 @@ class DevicePermissionsHandler extends StatelessWidget {
                               text: TextSpan(
                                   children: [
                                     TextSpan(
-                                      text: "Media\n",
+                                      text: "${"permission_page.permission_type.media".tr()}\n",
                                       style: TextStyle(color: appTheme.iconColor,fontSize: 16,fontWeight: FontWeight.w900),
                                     ),
                                     TextSpan(
-                                      text: "Need media access to\nupload event photo's\nfrom gallery",
+                                      text: "permission_page.permission_type.media_description".tr(),
                                       style: TextStyle(color: appTheme.iconColor,fontSize: 16,fontWeight: FontWeight.w600),
                                     ),
                                   ]
@@ -161,7 +165,7 @@ class DevicePermissionsHandler extends StatelessWidget {
                         ]
                     ),
                     child: TextButton(
-                      child: Text("Allow permissions",style: TextStyle(color: appTheme.primaryActionColor,fontWeight: FontWeight.w400,fontSize: 16),),
+                      child: Text("permission_page.allow_button",style: TextStyle(color: appTheme.primaryActionColor,fontWeight: FontWeight.w400,fontSize: 16),).tr(),
                       onPressed: ()async{
                         if(Platform.isAndroid){
                           Map<Permission, PermissionStatus> statuses = await [

@@ -1,6 +1,7 @@
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageoClient/api.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,46 +12,46 @@ class EventTypeList extends StatelessWidget {
   final String _filePath="assets/images/report_event/event_type/";
   final List<Map<String,dynamic>> _eventDetailList=[
     {
-      "event_name": "Forest Fire",
+      "event_name": "monitor_event.event_type_tab.forest_fire",
       "icon_name": "forest_fire_ic",
       "event_type": EventEventTypeEnum.FOREST_FIRE
     },
     {
-      "event_name": "Tsunami",
+      "event_name": "monitor_event.event_type_tab.tsunami",
       "icon_name": "tsunami_ic",
       "event_type": EventEventTypeEnum.TSUNAMI
     },
     {
-      "event_name": "Earthquake",
+      "event_name": "monitor_event.event_type_tab.earthquake",
       "icon_name": "earthquake_ic",
       "event_type": EventEventTypeEnum.EARTHQUAKE
     },
     {
-      "event_name": "Rockfall",
+      "event_name": "monitor_event.event_type_tab.rockfall",
       "icon_name": "rockfall_ic",
       "event_type": EventEventTypeEnum.ROCKFALL
     },
     {
-      "event_name": "Land Slide",
+      "event_name": "monitor_event.event_type_tab.land_slide",
       "icon_name": "landSlide_ic",
       "event_type": EventEventTypeEnum.LANDSLIDE
     },
     {
-      "event_name": "Flood",
+      "event_name": "monitor_event.event_type_tab.flood",
       "icon_name": "flood_ic",
       "event_type": EventEventTypeEnum.FLOODED
     },
     {
-      "event_name": "Sinkhole",
+      "event_name": "monitor_event.event_type_tab.sinkhole",
       "icon_name": "sinkhole",
       "event_type": EventEventTypeEnum.SINKHOLE
     },
     {
-      "event_name": "Eruption",
+      "event_name": "monitor_event.event_type_tab.eruption",
       "icon_name": "eruption_ic",
       "event_type": EventEventTypeEnum.ERUPTION
     },{
-      "event_name": "Building\nSettlement",
+      "event_name": "monitor_event.event_type_tab.building_settlement",
       "icon_name": "buildingSettlement_ic",
       "event_type": EventEventTypeEnum.BUILDING_SETTLEMENT
     },
@@ -81,7 +82,7 @@ class EventTypeList extends StatelessWidget {
                     Image.asset("$_filePath${_eventDetailList[index]["icon_name"]}.jpg",width: 100,),
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
-                      child: Text("${_eventDetailList[index]["event_name"]}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: appTheme.primaryTextColor),textAlign: TextAlign.center,),
+                      child: Text("${_eventDetailList[index]["event_name"]}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: appTheme.primaryTextColor),textAlign: TextAlign.center,).tr(),
                     ),
                   ],
                 ),

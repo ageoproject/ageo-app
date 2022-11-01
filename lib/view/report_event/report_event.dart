@@ -4,6 +4,7 @@ import 'package:ageo/view/app_drawer.dart';
 import 'package:ageo/view/app_bar.dart';
 import 'package:ageo/view/report_event/custom_tab_view.dart';
 import 'package:ageo/view/report_event/event_type.dart';
+import 'package:ageo/view/report_event/mapView.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,10 +13,18 @@ class ReportEvent extends StatelessWidget {
   final ReportEventController _reportEventController=Get.put(ReportEventController());
 
   Widget pageSelector(){
-    if(_reportEventController.activeTab.value=="event_type"){
-      return EventTypeList();
-    }else{
-      return Container();
+    switch(_reportEventController.activeTab.value){
+      case "event_type":{
+        return SingleChildScrollView(
+            child: EventTypeList(),
+        );
+      }
+      case "map":{
+        return const MapView();
+      }
+      default:{
+        return Container();
+      }
     }
   }
 
@@ -29,9 +38,7 @@ class ReportEvent extends StatelessWidget {
           CustomAppBar(title: "Select Event type",),
           CustomTabView(),
           Expanded(
-            child: SingleChildScrollView(
-              child: Obx(()=> pageSelector()),
-            ),
+            child: Obx(()=> pageSelector()),
           ),
         ],
       ),

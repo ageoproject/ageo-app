@@ -16,14 +16,14 @@
   "permission_page": {
     "ok": "OK!",
     "we_need_some_access": "We need some access!",
-    "allow_button": "Allow all permission",
+    "allow_button": "Allow permissions",
     "permission_type": {
       "location": "Location",
-      "location_description": "",
+      "location_description": "Need location access to\ncapture event location",
       "camera": "Camera",
-      "camera_description": "",
+      "camera_description": "Need camera access to\ncapture event photo's",
       "media": "Media",
-      "media_description": ""
+      "media_description": "Need media access to\nupload event photo's\nfrom gallery"
     }
   },
   "monitor_event": {
@@ -42,8 +42,11 @@
       "land_slide": "Land Slide",
       "flood": "Flood",
       "sinkhole": "Sinkhole",
-      "building_settlement": "Building Settlement",
+      "building_settlement": "Building\nSettlement",
       "eruption": "Eruption"
+    },
+    "toast_message":{
+      "select_event_type": "Please select event type"
     }
   }
 }
