@@ -82,6 +82,7 @@ flutter:
     - assets/images/app_drawer/
     - assets/images/report_event/
     - assets/images/report_event/event_type/
+    - assets/images/report_event/map_view/
 
   #   - images/a_dot_ham.jpeg
 
