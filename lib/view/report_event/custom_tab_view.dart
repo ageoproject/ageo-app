@@ -25,6 +25,40 @@ class CustomTabView extends StatelessWidget {
       return Colors.transparent;
     }
   }
+
+  bool allowToChangeTab({required BuildContext context,required String actionType}){
+    switch(actionType){
+      case "event_type":{
+        return true;
+      }
+      case "map":{
+        if(_reportEventController.selectedEventType!=null){
+          return true;
+        }else{
+          _toastMessage.showErrorToastMessage(message: tr("monitor_event.toast_message.select_event_type"), duration: 1, context: context);
+          return false;
+        }
+      }
+      case "questions":{
+        if(_reportEventController.currentLocationMarker!=null){
+          return true;
+        }else{
+          _toastMessage.showErrorToastMessage(message: tr("monitor_event.toast_message.select_location"), duration: 1, context: context);
+          return false;
+        }
+      }
+      case "damage":{
+        // if(_reportEventController.currentLocationMarker!=null){
+        //   return true;
+        // }else{
+        // }
+          _toastMessage.showErrorToastMessage(message: tr("monitor_event.toast_message.select_event_date_time"), duration: 1, context: context);
+          return false;
+      }
+      default:
+        return false;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
@@ -64,7 +98,9 @@ class CustomTabView extends StatelessWidget {
                       child: TextButton(
                         child: Text("monitor_event.tab_view.event_type",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w900,color: getTextColor(widgetId: "select_event", appTheme: appTheme)),).tr(),
                         onPressed: (){
-                          _reportEventController.changeActiveTab(value: "event_type");
+                          if(allowToChangeTab(actionType: "event_type",context: context)){
+                            _reportEventController.changeActiveTab(value: "event_type");
+                          }
                         },
                       ),
                     ),
@@ -80,10 +116,8 @@ class CustomTabView extends StatelessWidget {
                       child: TextButton(
                         child: Text("monitor_event.tab_view.map",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w900,color: getTextColor(widgetId: "map", appTheme: appTheme),),).tr(),
                         onPressed: (){
-                          if(_reportEventController.selectedEventType!=null){
+                          if(allowToChangeTab(actionType: "map",context: context)){
                             _reportEventController.changeActiveTab(value: "map");
-                          }else{
-                            _toastMessage.showErrorToastMessage(message: tr("monitor_event.toast_message.select_event_type"), duration: 1, context: context);
                           }
                         },
                       ),
@@ -100,7 +134,9 @@ class CustomTabView extends StatelessWidget {
                       child: TextButton(
                         child: Text("monitor_event.tab_view.questions",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w900,color: getTextColor(widgetId: "questions", appTheme: appTheme)),).tr(),
                         onPressed: (){
-                          _reportEventController.changeActiveTab(value: "questions");
+                          if(allowToChangeTab(actionType: "questions",context: context)){
+                            _reportEventController.changeActiveTab(value: "questions");
+                          }
                         },
                       ),
                     ),
@@ -116,7 +152,9 @@ class CustomTabView extends StatelessWidget {
                       child: TextButton(
                         child: Text("monitor_event.tab_view.damage",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w900,color: getTextColor(widgetId: "damage", appTheme: appTheme)),).tr(),
                         onPressed: (){
-                          _reportEventController.changeActiveTab(value: "damage");
+                          if(allowToChangeTab(actionType: "damage",context: context)){
+                            _reportEventController.changeActiveTab(value: "damage");
+                          }
                         },
                       ),
                     ),

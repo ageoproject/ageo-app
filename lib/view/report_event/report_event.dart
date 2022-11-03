@@ -7,9 +7,15 @@ import 'package:ageo/view/report_event/map_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ReportEvent extends StatelessWidget {
-  ReportEvent({Key? key}) : super(key: key);
-  final ReportEventController _reportEventController=Get.put(ReportEventController());
+class ReportEvent extends StatefulWidget {
+  const ReportEvent({Key? key}) : super(key: key);
+
+  @override
+  State<ReportEvent> createState() => _ReportEventState();
+}
+
+class _ReportEventState extends State<ReportEvent> {
+  final ReportEventController _reportEventController=Get.put(ReportEventController(),permanent: false);
 
   Widget pageSelector(){
     switch(_reportEventController.activeTab.value){
@@ -25,6 +31,11 @@ class ReportEvent extends StatelessWidget {
     }
   }
 
+  @override
+  void dispose() {
+    Get.delete<ReportEventController>();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     // CustomThemeData appTheme=Theme.of(context).customTheme;

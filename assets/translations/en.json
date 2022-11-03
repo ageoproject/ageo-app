@@ -46,7 +46,9 @@
       "eruption": "Eruption"
     },
     "toast_message":{
-      "select_event_type": "Please select event type"
+      "select_event_type": "Please select event type",
+      "select_location": "Please mark event location on map",
+      "select_event_date_time": "Please enter location Date and time"
     }
   }
 }

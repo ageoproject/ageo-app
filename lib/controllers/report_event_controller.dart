@@ -47,6 +47,7 @@ class ReportEventController extends GetxController{
   RxBool get hideMapModeOption=>_hideMapModeOption;
   MapType get mapType=>_mapType;
   RxBool get enableTrafficMode=>_enableTrafficMode;
+  Marker? get currentLocationMarker=>_currentLocationMarker;
 
   void markLocation({required Marker marker,required LatLng locationCoordinate}){
     try{
@@ -70,10 +71,6 @@ class ReportEventController extends GetxController{
     _locationMarker.add(marker);
     _currentLocationMarker=marker;
     update();
-  }
-
-  void changeZoomLevel({required double value}){
-    _mapZoomLevel.value=value;
   }
 
   void changeAddress({required String address}){
