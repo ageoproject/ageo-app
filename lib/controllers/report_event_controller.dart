@@ -75,6 +75,7 @@ class ReportEventController extends GetxController{
 
   void changeAddress({required String address}){
     _locationAddress=address;
+    update();
   }
 
   void changeMapOptionState(){

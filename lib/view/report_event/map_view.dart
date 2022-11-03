@@ -61,14 +61,13 @@ class _MapViewState extends State<MapView> {
 
    Future<void> initializeLocation()async{
      _commonComponent.initializeLoader(context: context,message: "Fetching location info");
-     print("inside init function");
      bool permissionGranted=await _locationHelper.checkLocationPermission(context: context);
      Get.back();
      if(permissionGranted){
-       print("permission granted");
+       _commonComponent.initializeLoader(context: context,message: "Fetching location info");
        await getCurrentLocation();
+       Get.back();
      }else{
-       print("permission denied ##########################");
        // Navigator.pop(context);
        locationPermissionFailAlert(context: context);
      }
@@ -113,7 +112,7 @@ class _MapViewState extends State<MapView> {
   @override
   Widget build(BuildContext context) {
      appTheme=Theme.of(context).customTheme;
-     Future.delayed(Duration(milliseconds: 500),(){
+     Future.delayed(const Duration(milliseconds: 500),(){
        initializeLocation();
      });
     return GetBuilder<ReportEventController>(
@@ -138,6 +137,7 @@ class _MapViewState extends State<MapView> {
                 );
                 GeoData locationDetail=await _locationHelper.getCoordinateDetails(latitude: latLng.latitude, longitude: latLng.longitude);
                 _reportEventController.changeAddress(address: locationDetail.address);
+                print("Marked location");
               },
               onMapCreated: (GoogleMapController controller)async {
                 googleMapController =controller;
