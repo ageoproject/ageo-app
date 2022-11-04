@@ -47,6 +47,7 @@ dependencies:
   device_info_plus: ^6.0.0
   url_launcher: ^6.1.6
   permission_handler: ^10.2.0
+  camera: ^0.10.0+4
 
   ageoClient:
     path: ./api/

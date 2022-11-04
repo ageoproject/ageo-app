@@ -50,5 +50,18 @@
       "select_location": "Please mark event location on map",
       "select_event_date_time": "Please enter location Date and time"
     }
+  },
+
+  "common_question_page": {
+    "event_date": "Event Date",
+    "event_time": "Event Time",
+    "Is / Was it raining ?": "Is / Was it raining ?",
+    "People at risk ?": "People at risk ?",
+    "Animals at risk ?": "Animals at risk ?",
+    "Assets at risk ?": "Assets at risk ?",
+    "I am safe": "I am safe",
+    "upload_or_capture": "Upload or capture (min 1 and max 3)",
+    "add_comments": "Add comments",
+    "comment_hint": "Type here..."
   }
 }

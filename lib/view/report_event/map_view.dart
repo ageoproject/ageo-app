@@ -356,6 +356,7 @@ class _MapViewState extends State<MapView> {
                     fixedSize: Size(MediaQuery.of(context).size.width, 40)
                   ),
                   onPressed: ()async{
+                    _reportEventController.changeActiveTab(value: "questions");
                   },
                   child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
                 ),

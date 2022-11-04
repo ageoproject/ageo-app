@@ -1,6 +1,7 @@
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/view/app_drawer.dart';
 import 'package:ageo/view/app_bar.dart';
+import 'package:ageo/view/report_event/common_questions.dart';
 import 'package:ageo/view/report_event/custom_tab_view.dart';
 import 'package:ageo/view/report_event/event_type.dart';
 import 'package:ageo/view/report_event/map_view.dart';
@@ -23,7 +24,10 @@ class _ReportEventState extends State<ReportEvent> {
         return EventTypeList();
       }
       case "map":{
-        return MapView();
+        return const MapView();
+      }
+      case "questions":{
+        return CommonQuestions();
       }
       default:{
         return Container();

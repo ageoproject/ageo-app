@@ -1,10 +1,11 @@
 import 'package:ageoClient/api.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ReportEventController extends GetxController{
 
-  final RxString _activeTab="event_type".obs;
+  final RxString _activeTab="questions".obs;
 
   final Event _eventDetail= Event();
 
@@ -88,5 +89,76 @@ class ReportEventController extends GetxController{
 
   void toggleTrafficMode(){
     _enableTrafficMode.value=!_enableTrafficMode.value;
+  }
+
+
+  /// Common Question page
+
+  final RxString _eventDate = DateTime.now().toString().split(" ")[0].obs;
+  final RxString _eventTime= "${DateTime.now().hour}:${DateTime.now().minute}".obs;
+  // final List<String> _commonQuestionLocalizationKeys=["common_question_page.was_raining","common_question_page.people_at_risk","common_question_page.animals_at_risk","common_question_page.assets_at_risk","common_question_page.i_am_safe"];
+  final Map<String,dynamic> _commonQuestions={
+    "0":{
+      "question":"Is / Was it raining ?",
+      "answer":"NO"
+    },
+    "1":{
+      "question":"People at risk ?",
+      "answer":"NO"
+    },
+    "2":{
+      "question":"Animals at risk ?",
+      "answer":"NO"
+    },
+    "3":{
+      "question":"Assets at risk ?",
+      "answer":"NO"
+    },
+    "4":{
+      "question":"I am safe",
+      "answer":"NO"
+    }
+  };
+  String? _comment;
+  final List<XFile> _uploadedImageList=[];
+
+  RxString get eventDate=>_eventDate;
+  RxString get eventTime=>_eventTime;
+  Map<String,dynamic> get commonQuestion=>_commonQuestions;
+  List<XFile> get uploadedImageList=>_uploadedImageList;
+  // List<String> get commonQuestionLocalizationKeys=>_commonQuestionLocalizationKeys;
+
+
+  void changeEventDate({required String date}){
+    _eventDate.value=date;
+    changeEventDateAndTime();
+  }
+
+  void changeEventTime({required String date}){
+    _eventTime.value=date;
+    changeEventDateAndTime();
+  }
+
+  void changeEventDateAndTime(){
+    _eventDetail.time="${_eventDate.value} ${_eventTime.value}";
+  }
+
+  void updateAnswers({required String key,required String value}){
+    _commonQuestions[key]["answer"]=value;
+    update();
+  }
+
+  void updateComment({required String comment}){
+    _comment=comment;
+    _eventDetail.comment=_comment;
+  }
+
+  void addImage({required XFile image}){
+    _uploadedImageList.add(image);
+    update();
+  }
+  void deleteImage({required XFile image}){
+    _uploadedImageList.remove(image);
+    update();
   }
 }

@@ -1,7 +1,8 @@
 import 'dart:io';
 import 'dart:math';
-
-import 'package:ageo/helpers/dashSeparator.dart';
+import 'package:ageo/helpers/app_theme.dart';
+import 'package:ageo/helpers/custom_camera.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -21,45 +22,59 @@ class ImageSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Container(
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8)
-          ),
-          padding:const EdgeInsets.all(20),
-          child: DefaultTextStyle(
-            style:const  TextStyle(
-                fontSize: 22,
-                color: Colors.black,
-                fontWeight: FontWeight.w400
+     CustomThemeData appTheme=Theme.of(context).customTheme;
+     return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8)
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextButton(
-                  child:const Text("Click Picture",),
-                  onPressed: ()async{
-                    XFile? cameraImage = await _picker.pickImage(source: ImageSource.camera);
-                    if(cameraImage!=null){
-                      Navigator.pop(context,cameraImage);
-                    }
-                  },
-                ),
-                const DashSeparator(),
+            padding:const EdgeInsets.all(20),
+            child: DefaultTextStyle(
+              style:const  TextStyle(
+                  fontSize: 22,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w400
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset("assets/images/report_event/camera_ic.png",color:appTheme.primaryTextColor,width: 26,),
+                      TextButton(
+                        child: Text("Capture with camera",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),),
+                        onPressed: ()async{
+                          // XFile? cameraImage = await _picker.pickImage(source: ImageSource.camera);
+                          // if(cameraImage!=null){
+                          //   Navigator.pop(context,cameraImage);
+                          // }
+                          List<CameraDescription> cameraList = await availableCameras();
+                          XFile? image=await Navigator.push(context, MaterialPageRoute(builder: (context)=>CameraPage(cameraList: cameraList)));
+                          Navigator.pop(context,image);
+                        },
+                      ),
+                    ],
+                  ),
 
-                TextButton(
-                  child: const Text("select from gallery"),
-                  onPressed: ()async{
-                    XFile? galleryImage = await _picker.pickImage(source: ImageSource.gallery);
-                    if(galleryImage!=null){
-                      Navigator.pop(context,galleryImage);
-                    }
-                  },
-                ),
+                  Divider(color: appTheme.inputFieldsBorderColor,thickness: 1.5,),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset("assets/images/report_event/media_ic.png",color:appTheme.primaryTextColor,width: 24),
+                      TextButton(
+                        child: Text("select from gallery",style:TextStyle(fontSize: 14,color: appTheme.primaryTextColor)),
+                        onPressed: ()async{
+                          XFile? galleryImage = await _picker.pickImage(source: ImageSource.gallery);
+                          Navigator.pop(context,galleryImage);
+                        },
+                      ),
+                    ],
+                  ),
               ],
             ),
           ),
