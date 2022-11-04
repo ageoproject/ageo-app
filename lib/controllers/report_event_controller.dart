@@ -2,6 +2,7 @@ import 'package:ageoClient/api.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sensors_plus/sensors_plus.dart';
 
 class ReportEventController extends GetxController{
 
@@ -119,6 +120,24 @@ class ReportEventController extends GetxController{
       "answer":"NO"
     }
   };
+  final Map<String,dynamic> _sensorData={
+    "accelerometer":{
+      "x":"0.0",
+      "y":"0.0",
+      "z":"0.0",
+    },
+    "gyroscope":{
+      "x":"0.0",
+      "y":"0.0",
+      "z":"0.0",
+    },
+    "magnetometer":{
+      "x":"0.0",
+      "y":"0.0",
+      "z":"0.0",
+    }
+  };
+
   String? _comment;
   final List<XFile> _uploadedImageList=[];
 
@@ -160,5 +179,16 @@ class ReportEventController extends GetxController{
   void deleteImage({required XFile image}){
     _uploadedImageList.remove(image);
     update();
+  }
+  void updateSensorData({required AccelerometerEvent accelerometerEvent,required GyroscopeEvent gyroscopeEvent,required MagnetometerEvent magnetometerEvent}){
+    _sensorData["accelerometer"]["x"]=accelerometerEvent.x.toString();
+    _sensorData["accelerometer"]["y"]=accelerometerEvent.y.toString();
+    _sensorData["accelerometer"]["x"]=accelerometerEvent.z.toString();
+    _sensorData["gyroscope"]["x"]=gyroscopeEvent.x.toString();
+    _sensorData["gyroscope"]["y"]=gyroscopeEvent.y.toString();
+    _sensorData["gyroscope"]["x"]=gyroscopeEvent.z.toString();
+    _sensorData["magnetometer"]["x"]=magnetometerEvent.x.toString();
+    _sensorData["magnetometer"]["y"]=magnetometerEvent.y.toString();
+    _sensorData["magnetometer"]["x"]=magnetometerEvent.z.toString();
   }
 }
