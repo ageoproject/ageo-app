@@ -240,8 +240,68 @@ class ReportEventController extends GetxController{
     update();
   }
 
-  void selectObservedDamage({required int index,required String answer}){
+  void selectObservedDamageForEarthquake({required int index,required String answer}){
     _earthquakeDamage[index]["observed_damage"]["answer"]=answer;
     update();
+  }
+
+
+  /// Landslide
+
+  final Map<String,dynamic> _landslideDamage={
+    "volume_of_displacement": "10%",
+    "observed_damage": {
+      "question": "what infrastructure was affected ?",
+      "answer": [],
+      "comment":""
+    }
+  };
+
+  Map<String,dynamic> get landslideDamage=>_landslideDamage;
+
+  void changeVolumeOfDisplacedLand({required String value}){
+    _landslideDamage["volume_of_displacement"]=value;
+    update();
+  }
+
+  void selectObservedDamageForLandslide({required String value}){
+    if(_landslideDamage["observed_damage"]["answer"].contains(value)){
+      _landslideDamage["observed_damage"]["answer"].remove(value);
+    }else{
+      _landslideDamage["observed_damage"]["answer"].add(value);
+    }
+    update();
+  }
+  void updateLandslideComment({required String comment}){
+    _landslideDamage["observed_damage"]["comment"]=comment;
+  }
+
+
+  final Map<String,dynamic> _floodDamage={
+    "water_level": "10",
+    "observed_damage": {
+      "question": "what infrastructure was affected ?",
+      "answer": [],
+      "comment":""
+    }
+  };
+
+  Map<String,dynamic> get floodDamage=>_floodDamage;
+
+  void changeWaterLevelOfFlood({required String value}){
+    _floodDamage["water_level"]=value;
+    update();
+  }
+
+  void selectObservedDamageForFlood({required String value}){
+    if(_floodDamage["observed_damage"]["answer"].contains(value)){
+      _floodDamage["observed_damage"]["answer"].remove(value);
+    }else{
+      _floodDamage["observed_damage"]["answer"].add(value);
+    }
+    update();
+  }
+  void updateFloodComment({required String comment}){
+    _floodDamage["observed_damage"]["comment"]=comment;
   }
 }

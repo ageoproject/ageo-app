@@ -41,7 +41,7 @@ class Earthquake extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 8),
                 child: Column(
                   children: List.generate(_reportEventController.earthquakeDamage.length, (buildingIndex) {
                     return Padding(
@@ -61,7 +61,7 @@ class Earthquake extends StatelessWidget {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right: 8.0),
-                                      child: Text("${tr("monitor_event.earthquake.number_of_floors")}: ",style: TextStyle(fontSize: 12,color: appTheme.iconColor),),
+                                      child: Text("${tr("monitor_event.earthquake.number_of_floors")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
                                     ),
                                     Container(
                                       width:80,
@@ -113,7 +113,7 @@ class Earthquake extends StatelessWidget {
                               alignment: Alignment.centerLeft,
                               child: Padding(
                                 padding: const EdgeInsets.only(top:18.0,bottom: 12),
-                                child: Text("monitor_event.earthquake.select_observe_damage",style: TextStyle(fontSize:14,color:appTheme.primaryActionColor,fontWeight: FontWeight.w600 ),).tr(),
+                                child: Text("common_key.select_observe_damage",style: TextStyle(fontSize:14,color:appTheme.primaryActionColor,fontWeight: FontWeight.w600 ),).tr(),
                               ),
                             ),
                             Wrap(
@@ -122,7 +122,7 @@ class Earthquake extends StatelessWidget {
                                   padding:  EdgeInsets.only(bottom: 12.0,right: index%2==0?12:0),
                                   child: GestureDetector(
                                     onTap: (){
-                                      _reportEventController.selectObservedDamage(index: buildingIndex, answer: _typeOfEarthquakeDamage[index]["type_of_damage"]!);
+                                      _reportEventController.selectObservedDamageForEarthquake(index: buildingIndex, answer: _typeOfEarthquakeDamage[index]["type_of_damage"]!);
                                     },
                                     child: Container(
                                       height: 77,
@@ -192,7 +192,7 @@ class Earthquake extends StatelessWidget {
               onPressed: (){
                 // _reportEventController.changeActiveTab(value: "damage");
               },
-              child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
+              child: const Text("common_key.submit_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
             ),
           ),
         ),
