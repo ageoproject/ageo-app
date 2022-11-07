@@ -197,10 +197,10 @@ class ApiClient {
           return ChangePassword.fromJson(value);
         case 'Event':
           return Event.fromJson(value);
+        case 'EventCommonEventDetails':
+          return EventCommonEventDetails.fromJson(value);
         case 'EventLocation':
           return EventLocation.fromJson(value);
-        case 'EventReportResponse':
-          return EventReportResponse.fromJson(value);
         case 'InlineObject':
           return InlineObject.fromJson(value);
         case 'InlineObject1':
@@ -211,10 +211,10 @@ class ApiClient {
           return InlineObject3.fromJson(value);
         case 'InlineObject4':
           return InlineObject4.fromJson(value);
-        case 'LoginRequest':
-          return LoginRequest.fromJson(value);
-        case 'LoginResponce':
-          return LoginResponce.fromJson(value);
+        case 'InlineObject5':
+          return InlineObject5.fromJson(value);
+        case 'InlineResponse200':
+          return InlineResponse200.fromJson(value);
         case 'LoginResponse':
           return LoginResponse.fromJson(value);
         case 'UpdateEventRequest':

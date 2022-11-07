@@ -51,7 +51,7 @@ void main() {
       // TODO
     });
 
-    // List<num> location (default value: const [])
+    // EventLocation location
     test('to test the property `location`', () async {
       // TODO
     });
@@ -76,8 +76,13 @@ void main() {
       // TODO
     });
 
-    // Object eventDetail
-    test('to test the property `eventDetail`', () async {
+    // List<Object> commonEventDetails (default value: const [])
+    test('to test the property `commonEventDetails`', () async {
+      // TODO
+    });
+
+    // List<Object> customEventDetails (default value: const [])
+    test('to test the property `customEventDetails`', () async {
       // TODO
     });
 

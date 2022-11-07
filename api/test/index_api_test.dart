@@ -17,17 +17,24 @@ void main() {
   final instance = IndexApi();
 
   group('tests for IndexApi', () {
-    // Login api for System admin and managers
+    // Get paginated list of events
     //
-    //Future loginAPI(LoginRequest loginRequest) async
-    test('test loginAPI', () async {
+    //Future<InlineResponse200> getDatatableEventList({ Object datatableoptions }) async
+    test('test getDatatableEventList', () async {
+      // TODO
+    });
+
+    // Get list of events for map view
+    //
+    //Future<List<Event>> getMapEventList({ String eventType, String eventStatus, String fromDate, String toDate }) async
+    test('test getMapEventList', () async {
       // TODO
     });
 
     // Report events
     //
-    //Future<EventReportResponse> reportEvents(Event eventReport) async
-    test('test reportEvents', () async {
+    //Future<Event> reportEvent(Event eventReport) async
+    test('test reportEvent', () async {
       // TODO
     });
 

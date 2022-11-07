@@ -19,14 +19,14 @@ void main() {
   group('tests for AuthApi', () {
     // Initiating forget password
     //
-    //Future<Object> forgetPasswordRequest(String email) async
-    test('test forgetPasswordRequest', () async {
+    //Future<String> forgotPassword(String email) async
+    test('test forgotPassword', () async {
       // TODO
     });
 
     // Login
     //
-    //Future<LoginResponce> login() async
+    //Future<LoginResponse> login({ InlineObject3 loginRequest }) async
     test('test login', () async {
       // TODO
     });
@@ -35,6 +35,20 @@ void main() {
     //
     //Future recoverPasswordRequest() async
     test('test recoverPasswordRequest', () async {
+      // TODO
+    });
+
+    // Reset Password Request
+    //
+    //Future<String> resetPassword({ InlineObject5 signupRequest }) async
+    test('test resetPassword', () async {
+      // TODO
+    });
+
+    // Sign up
+    //
+    //Future<LoginResponse> signup({ InlineObject4 signupRequest }) async
+    test('test signup', () async {
       // TODO
     });
 

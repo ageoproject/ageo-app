@@ -44,10 +44,10 @@ final api_instance = AuthApi();
 final email = email_example; // String | 
 
 try {
-    final result = api_instance.forgetPassword(email);
+    final result = api_instance.forgotPassword(email);
     print(result);
 } catch (e) {
-    print('Exception when calling AuthApi->forgetPassword: $e\n');
+    print('Exception when calling AuthApi->forgotPassword: $e\n');
 }
 
 ```
@@ -58,11 +58,14 @@ All URIs are relative to *http://localhost:3000*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AuthApi* | [**forgetPassword**](doc//AuthApi.md#forgetpassword) | **POST** /auth/forget_password | Initiating forget password
+*AuthApi* | [**forgotPassword**](doc//AuthApi.md#forgotpassword) | **POST** /auth/forgot_password | Initiating forget password
 *AuthApi* | [**login**](doc//AuthApi.md#login) | **POST** /auth/login | Login
 *AuthApi* | [**recoverPasswordRequest**](doc//AuthApi.md#recoverpasswordrequest) | **POST** /auth/recover_password_request | Reset Password
+*AuthApi* | [**resetPassword**](doc//AuthApi.md#resetpassword) | **POST** /auth/reset_password | Reset Password Request
 *AuthApi* | [**signup**](doc//AuthApi.md#signup) | **POST** /auth/signup | Sign up
-*IndexApi* | [**reportEvents**](doc//IndexApi.md#reportevents) | **POST** /report_event | Report events
+*IndexApi* | [**getDatatableEventList**](doc//IndexApi.md#getdatatableeventlist) | **POST** /anonymous/get_datatable_event_list | Get paginated list of events
+*IndexApi* | [**getMapEventList**](doc//IndexApi.md#getmapeventlist) | **POST** /anonymous/get_map_event_list | Get list of events for map view
+*IndexApi* | [**reportEvent**](doc//IndexApi.md#reportevent) | **POST** /anonymous/report_event | Report events
 *SuperAdminApi* | [**createUser**](doc//SuperAdminApi.md#createuser) | **POST** /create_user | Admin creates manager
 *UserApi* | [**changePassword**](doc//UserApi.md#changepassword) | **PUT** /user/change_password | Change login user password
 *UserApi* | [**changePreferredLanguage**](doc//UserApi.md#changepreferredlanguage) | **PUT** /user/change_preferred_language | Change user's preferred language
@@ -74,15 +77,15 @@ Class | Method | HTTP request | Description
 
  - [ChangePassword](doc//ChangePassword.md)
  - [Event](doc//Event.md)
+ - [EventCommonEventDetails](doc//EventCommonEventDetails.md)
  - [EventLocation](doc//EventLocation.md)
- - [EventReportResponse](doc//EventReportResponse.md)
  - [InlineObject](doc//InlineObject.md)
  - [InlineObject1](doc//InlineObject1.md)
  - [InlineObject2](doc//InlineObject2.md)
  - [InlineObject3](doc//InlineObject3.md)
  - [InlineObject4](doc//InlineObject4.md)
- - [LoginRequest](doc//LoginRequest.md)
- - [LoginResponce](doc//LoginResponce.md)
+ - [InlineObject5](doc//InlineObject5.md)
+ - [InlineResponse200](doc//InlineResponse200.md)
  - [LoginResponse](doc//LoginResponse.md)
  - [UpdateEventRequest](doc//UpdateEventRequest.md)
  - [User](doc//User.md)

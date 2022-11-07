@@ -13,8 +13,8 @@ part of openapi.api;
 class LoginResponse {
   /// Returns a new [LoginResponse] instance.
   LoginResponse({
-    required this.token,
-    required this.user,
+    this.token,
+    this.user,
   });
 
   String? token;
@@ -37,8 +37,12 @@ class LoginResponse {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (token != null) {
       json[r'token'] = token;
+    }
+    if (user != null) {
       json[r'user'] = user;
+    }
     return json;
   }
 

@@ -25,7 +25,8 @@ class Event {
     this.state,
     this.country,
     this.sensorData,
-    this.eventDetails,
+    this.commonEventDetails = const [],
+    this.customEventDetails = const [],
     this.verifyBy,
   });
 
@@ -53,7 +54,9 @@ class Event {
 
   Object? sensorData;
 
-  Object? eventDetails;
+  List<EventCommonEventDetails?>? commonEventDetails;
+
+  List<EventCommonEventDetails?>? customEventDetails;
 
   User? verifyBy;
 
@@ -71,7 +74,8 @@ class Event {
      other.state == state &&
      other.country == country &&
      other.sensorData == sensorData &&
-     other.eventDetails == eventDetails &&
+     other.commonEventDetails == commonEventDetails &&
+     other.customEventDetails == customEventDetails &&
      other.verifyBy == verifyBy;
 
   @override
@@ -89,11 +93,12 @@ class Event {
     (state == null ? 0 : state.hashCode) +
     (country == null ? 0 : country.hashCode) +
     (sensorData == null ? 0 : sensorData.hashCode) +
-    (eventDetails == null ? 0 : eventDetails.hashCode) +
+    (commonEventDetails == null ? 0 : commonEventDetails.hashCode) +
+    (customEventDetails == null ? 0 : customEventDetails.hashCode) +
     (verifyBy == null ? 0 : verifyBy.hashCode);
 
   @override
-  String toString() => 'Event[id=$id, eventId=$eventId, eventType=$eventType, time=$time, status=$status, image=$image, comment=$comment, location=$location, city=$city, state=$state, country=$country, sensorData=$sensorData, eventDetails=$eventDetails, verifyBy=$verifyBy]';
+  String toString() => 'Event[id=$id, eventId=$eventId, eventType=$eventType, time=$time, status=$status, image=$image, comment=$comment, location=$location, city=$city, state=$state, country=$country, sensorData=$sensorData, commonEventDetails=$commonEventDetails, customEventDetails=$customEventDetails, verifyBy=$verifyBy]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -133,8 +138,11 @@ class Event {
     if (sensorData != null) {
       json[r'sensorData'] = sensorData;
     }
-    if (eventDetails != null) {
-      json[r'eventDetails'] = eventDetails;
+    if (commonEventDetails != null) {
+      json[r'commonEventDetails'] = commonEventDetails;
+    }
+    if (customEventDetails != null) {
+      json[r'customEventDetails'] = customEventDetails;
     }
     if (verifyBy != null) {
       json[r'verifyBy'] = verifyBy;
@@ -163,7 +171,8 @@ class Event {
         state: mapValueOfType<String>(json, r'state'),
         country: mapValueOfType<String>(json, r'country'),
         sensorData: mapValueOfType<Object>(json, r'sensorData'),
-        eventDetails: mapValueOfType<Object>(json, r'eventDetails'),
+        commonEventDetails: EventCommonEventDetails.listFromJson(json[r'commonEventDetails']),
+        customEventDetails: EventCommonEventDetails.listFromJson(json[r'customEventDetails']),
         verifyBy: User.fromJson(json[r'verifyBy']),
       );
     }
@@ -212,7 +221,7 @@ class EventEventTypeEnum {
   final String value;
 
   @override
-  String toString() => value;
+  String toString() => value ?? '';
 
   String toJson() => value;
 
@@ -300,7 +309,7 @@ class EventStatusEnum {
   final String value;
 
   @override
-  String toString() => value;
+  String toString() => value ?? '';
 
   String toJson() => value;
 

@@ -9,14 +9,15 @@ All URIs are relative to *http://localhost:3000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**forgetPassword**](AuthApi.md#forgetpassword) | **POST** /auth/forget_password | Initiating forget password
+[**forgotPassword**](AuthApi.md#forgotpassword) | **POST** /auth/forgot_password | Initiating forget password
 [**login**](AuthApi.md#login) | **POST** /auth/login | Login
 [**recoverPasswordRequest**](AuthApi.md#recoverpasswordrequest) | **POST** /auth/recover_password_request | Reset Password
+[**resetPassword**](AuthApi.md#resetpassword) | **POST** /auth/reset_password | Reset Password Request
 [**signup**](AuthApi.md#signup) | **POST** /auth/signup | Sign up
 
 
-# **forgetPassword**
-> Object forgetPassword(email)
+# **forgotPassword**
+> String forgotPassword(email)
 
 Initiating forget password
 
@@ -28,10 +29,10 @@ final api_instance = AuthApi();
 final email = email_example; // String | 
 
 try {
-    final result = api_instance.forgetPassword(email);
+    final result = api_instance.forgotPassword(email);
     print(result);
 } catch (e) {
-    print('Exception when calling AuthApi->forgetPassword: $e\n');
+    print('Exception when calling AuthApi->forgotPassword: $e\n');
 }
 ```
 
@@ -43,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Object**](Object.md)
+**String**
 
 ### Authorization
 
@@ -57,7 +58,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **login**
-> LoginResponce login(loginRequest)
+> LoginResponse login(loginRequest)
 
 Login
 
@@ -84,7 +85,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LoginResponce**](LoginResponce.md)
+[**LoginResponse**](LoginResponse.md)
 
 ### Authorization
 
@@ -130,6 +131,47 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **resetPassword**
+> String resetPassword(signupRequest)
+
+Reset Password Request
+
+### Example
+```dart
+import 'package:ageoClient/api.dart';
+
+final api_instance = AuthApi();
+final signupRequest = InlineObject5(); // InlineObject5 | 
+
+try {
+    final result = api_instance.resetPassword(signupRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling AuthApi->resetPassword: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **signupRequest** | [**InlineObject5**](InlineObject5.md)|  | [optional] 
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

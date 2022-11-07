@@ -11,18 +11,18 @@
 import 'package:ageoClient/api.dart';
 import 'package:test/test.dart';
 
-// tests for LoginRequest
+// tests for EventCommonEventDetails
 void main() {
-  final instance = LoginRequest();
+  final instance = EventCommonEventDetails();
 
-  group('test LoginRequest', () {
-    // String email
-    test('to test the property `email`', () async {
+  group('test EventCommonEventDetails', () {
+    // String question
+    test('to test the property `question`', () async {
       // TODO
     });
 
-    // String password
-    test('to test the property `password`', () async {
+    // String answer
+    test('to test the property `answer`', () async {
       // TODO
     });
 

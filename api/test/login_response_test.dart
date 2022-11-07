@@ -13,7 +13,7 @@ import 'package:test/test.dart';
 
 // tests for LoginResponse
 void main() {
-  // final instance = LoginResponse();
+  final instance = LoginResponse();
 
   group('test LoginResponse', () {
     // String token

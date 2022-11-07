@@ -174,19 +174,19 @@ class UserRoleEnum {
   final String value;
 
   @override
-  String toString() => value;
+  String toString() => value ?? '';
 
   String toJson() => value;
 
-  static const USER = UserRoleEnum._(r'USER');
+  static const APIUSER = UserRoleEnum._(r'APIUSER');
   static const MANAGER = UserRoleEnum._(r'MANAGER');
-  static const SUPERADMIN = UserRoleEnum._(r'SUPERADMIN');
+  static const ADMIN = UserRoleEnum._(r'ADMIN');
 
   /// List of all possible values in this [enum][UserRoleEnum].
   static const values = <UserRoleEnum>[
-    USER,
+    APIUSER,
     MANAGER,
-    SUPERADMIN,
+    ADMIN,
   ];
 
   static UserRoleEnum? fromJson(dynamic value) =>
@@ -218,9 +218,9 @@ class UserRoleEnumTypeTransformer {
   UserRoleEnum? decode(dynamic data, {bool? allowNull}) {
     if (data != null) {
       switch (data.toString()) {
-        case r'USER': return UserRoleEnum.USER;
+        case r'APIUSER': return UserRoleEnum.APIUSER;
         case r'MANAGER': return UserRoleEnum.MANAGER;
-        case r'SUPERADMIN': return UserRoleEnum.SUPERADMIN;
+        case r'ADMIN': return UserRoleEnum.ADMIN;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -244,7 +244,7 @@ class UserPrefLangEnum {
   final String value;
 
   @override
-  String toString() => value;
+  String toString() => value ?? '';
 
   String toJson() => value;
 
@@ -317,7 +317,7 @@ class UserStatusEnum {
   final String value;
 
   @override
-  String toString() => value;
+  String toString() => value ?? '';
 
   String toJson() => value;
 
