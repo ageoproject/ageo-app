@@ -44,6 +44,8 @@ class _MapViewState extends State<MapView> {
        ),
        latLng: latLng,
      );
+     GeoData locationDetail=await _locationHelper.getCoordinateDetails(latitude: latLng.latitude, longitude: latLng.longitude);
+     _reportEventController.changeAddress(locationDetail: locationDetail);
    }
 
    Future<void> changeZoomLevel({required double zoomLevel})async{
@@ -136,8 +138,7 @@ class _MapViewState extends State<MapView> {
                     locationCoordinate: latLng
                 );
                 GeoData locationDetail=await _locationHelper.getCoordinateDetails(latitude: latLng.latitude, longitude: latLng.longitude);
-                _reportEventController.changeAddress(address: locationDetail.address);
-                print("Marked location");
+                _reportEventController.changeAddress(locationDetail: locationDetail);
               },
               onMapCreated: (GoogleMapController controller)async {
                 googleMapController =controller;

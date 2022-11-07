@@ -1,4 +1,6 @@
+import 'package:ageo/ageoConfig.dart';
 import 'package:ageoClient/api.dart';
+import 'package:geocoder2/geocoder2.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,7 +17,6 @@ class ReportEventController extends GetxController{
   void changeActiveTab({required String value}){
     _activeTab.value=value;
   }
-
 
 
   ///  Select event type
@@ -75,8 +76,11 @@ class ReportEventController extends GetxController{
     update();
   }
 
-  void changeAddress({required String address}){
-    _locationAddress=address;
+  void changeAddress({required GeoData locationDetail}){
+    _locationAddress=locationDetail.address;
+    _eventDetail.city=locationDetail.city;
+    _eventDetail.country=locationDetail.country;
+    _eventDetail.state=locationDetail.state;
     update();
   }
 
@@ -96,7 +100,7 @@ class ReportEventController extends GetxController{
   /// Common Question page
 
   final RxString _eventDate = DateTime.now().toString().split(" ")[0].obs;
-  final RxString _eventTime= "${DateTime.now().hour}:${DateTime.now().minute}".obs;
+  final RxString _eventTime= "${DateTime.now().hour.toString().padLeft(2,"0")}:${DateTime.now().minute.toString().padLeft(2,"0")}".obs;
   // final List<String> _commonQuestionLocalizationKeys=["common_question_page.was_raining","common_question_page.people_at_risk","common_question_page.animals_at_risk","common_question_page.assets_at_risk","common_question_page.i_am_safe"];
   final List<Map<String,String>> _commonQuestions=[{
     "question":"Is / Was it raining ?",
@@ -135,6 +139,7 @@ class ReportEventController extends GetxController{
 
   String? _comment;
   final List<XFile> _uploadedImageList=[];
+  final List<String> _uploadedImagePathList=[];
 
   RxString get eventDate=>_eventDate;
   RxString get eventTime=>_eventTime;
@@ -169,10 +174,14 @@ class ReportEventController extends GetxController{
 
   void addImage({required XFile image}){
     _uploadedImageList.add(image);
+    _uploadedImagePathList.add(image.path);
+    _eventDetail.image =_uploadedImagePathList;
     update();
   }
   void deleteImage({required XFile image}){
     _uploadedImageList.remove(image);
+    _uploadedImagePathList.remove(image.path);
+    _eventDetail.image =_uploadedImagePathList;
     update();
   }
   void updateSensorData({required AccelerometerEvent accelerometerEvent,required GyroscopeEvent gyroscopeEvent,required MagnetometerEvent magnetometerEvent}){
@@ -187,6 +196,13 @@ class ReportEventController extends GetxController{
     _sensorData["magnetometer"]["x"]=magnetometerEvent.z.toString();
   }
 
+  void reportEvent()async{
+    AgeoConfig ageoConfig=AgeoConfig();
+    // _eventDetail.sensorData=_sensorData;
+    // _eventDetail.commonEventDetails=EventCommonEventDetails();
+    // print("This is event in controller => $_eventDetail");
+    await ageoConfig.reportEvent(eventDetail: _eventDetail);
+  }
 
   ///  Earthquake Page
 
@@ -225,7 +241,6 @@ class ReportEventController extends GetxController{
   }
 
   void selectObservedDamage({required int index,required String answer}){
-    print('$index => $answer');
     _earthquakeDamage[index]["observed_damage"]["answer"]=answer;
     update();
   }

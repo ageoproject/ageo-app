@@ -117,7 +117,7 @@ class ApiClient {
         ? formParams
         : await serializeAsync(body);
       final nullableHeaderParams = headerParams.isEmpty ? null : headerParams;
-
+      print(uri);
       switch(method) {
         case 'POST': return await _client.post(uri, headers: nullableHeaderParams, body: msgBody,);
         case 'PUT': return await _client.put(uri, headers: nullableHeaderParams, body: msgBody,);

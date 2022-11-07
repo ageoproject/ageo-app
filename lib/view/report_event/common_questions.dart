@@ -140,7 +140,7 @@ class CommonQuestions extends StatelessWidget {
                         ),
                       ),
                       onTap: ()async{
-                        TimeOfDay? selectedTime= await openTimeCalender(context: context, initialDateTime: "${_reportEventController.eventDate} ${_reportEventController.eventTime.value}");
+                        TimeOfDay? selectedTime= await openTimeCalender(context: context, initialDateTime: "${_reportEventController.eventDate.padLeft(2,"0")} ${_reportEventController.eventTime.value.padLeft(2,"0")}");
                         if(selectedTime!=null){
                           String eventTime="${selectedTime.hour.toString().padLeft(2,"0")}:${selectedTime.minute}";
                           _reportEventController.changeEventTime(date: eventTime);
@@ -322,18 +322,20 @@ class CommonQuestions extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Visibility(
-        visible: _reportEventController.uploadedImageList.isNotEmpty,
-        child: SizedBox(
-          height: Platform.isIOS? 66:40,
-          child: TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: appTheme.primaryActionColor,
+      bottomNavigationBar: GetBuilder<ReportEventController>(
+        builder:(_)=> Visibility(
+          visible: _reportEventController.uploadedImageList.isNotEmpty,
+          child: SizedBox(
+            height: Platform.isIOS? 66:40,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: appTheme.primaryActionColor,
+              ),
+              onPressed: (){
+                // _reportEventController.changeActiveTab(value: "damage");
+              },
+              child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
             ),
-            onPressed: (){
-              // _reportEventController.changeActiveTab(value: "damage");
-            },
-            child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
           ),
         ),
       ),

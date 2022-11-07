@@ -8,9 +8,9 @@ class AgeoConfig{
 
   AgeoConfig._constructor(){
     if(kReleaseMode){
-      _basePath="http://192.168.1.20:3000";
+      _basePath="http://192.168.1.19:3000";
     }else{
-      _basePath="http://192.168.1.20:3000";
+      _basePath="http://192.168.1.19:3000";
     }
     _apiClient=ApiClient(basePath: _basePath);
     _indexApi=IndexApi(_apiClient);
@@ -25,8 +25,9 @@ class AgeoConfig{
   }
 
   Future<String?> reportEvent({required Event eventDetail})async{
-    Event event=eventDetail;
-    Event? eventReportResponse= await _indexApi.reportEvent(event);
+
+    Event? eventReportResponse= await _indexApi.reportEvent(eventDetail);
+    print(eventReportResponse);
     return eventReportResponse?.eventId;
   }
 
