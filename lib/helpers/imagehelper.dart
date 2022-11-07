@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/custom_camera.dart';
 import 'package:camera/camera.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -46,7 +47,7 @@ class ImageSelector extends StatelessWidget {
                     children: [
                       Image.asset("assets/images/report_event/camera_ic.png",color:appTheme.primaryTextColor,width: 26,),
                       TextButton(
-                        child: Text("Capture with camera",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),),
+                        child: Text("upload_image_alert.capture_with_camera",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr(),
                         onPressed: ()async{
                           // XFile? cameraImage = await _picker.pickImage(source: ImageSource.camera);
                           // if(cameraImage!=null){
@@ -67,7 +68,7 @@ class ImageSelector extends StatelessWidget {
                     children: [
                       Image.asset("assets/images/report_event/media_ic.png",color:appTheme.primaryTextColor,width: 24),
                       TextButton(
-                        child: Text("select from gallery",style:TextStyle(fontSize: 14,color: appTheme.primaryTextColor)),
+                        child: Text("upload_image_alert.select_from_gallery",style:TextStyle(fontSize: 14,color: appTheme.primaryTextColor)).tr(),
                         onPressed: ()async{
                           XFile? galleryImage = await _picker.pickImage(source: ImageSource.gallery);
                           Navigator.pop(context,galleryImage);

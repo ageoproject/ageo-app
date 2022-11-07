@@ -48,7 +48,16 @@
     "toast_message":{
       "select_event_type": "Please select event type",
       "select_location": "Please mark event location on map",
-      "select_event_date_time": "Please enter location Date and time"
+      "select_event_date_time": "Please capture and upload event image"
+    },
+    "earthquake": {
+      "number_of_floors": "Number of floors",
+      "select_observe_damage": "Select observed damage",
+      "falling_object": "Falling Object",
+      "minor_damage": "Minor Damage",
+      "moderate_damage": "Moderate Damage",
+      "total_damage": "Partial/Total collapse",
+      "add_building": "Add building"
     }
   },
 
@@ -63,5 +72,9 @@
     "upload_or_capture": "Upload or capture (min 1 and max 3)",
     "add_comments": "Add comments",
     "comment_hint": "Type here..."
+  },
+  "upload_image_alert": {
+    "capture_with_camera": "Capture with camera",
+    "select_from_gallery": "Select from gallery"
   }
 }

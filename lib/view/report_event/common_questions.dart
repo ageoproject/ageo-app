@@ -162,7 +162,7 @@ class CommonQuestions extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: _reportEventController.commonQuestion["$index"]["answer"]=="YES"?appTheme.toggleSelectionColor:Colors.white,
+                            color: _reportEventController.commonQuestion[index]["answer"]=="YES"?appTheme.toggleSelectionColor:Colors.white,
                             borderRadius: BorderRadius.circular(_inputFieldBorderRadius),
                             border: Border.all(color: appTheme.inputFieldsBorderColor),
                           ),
@@ -173,20 +173,20 @@ class CommonQuestions extends StatelessWidget {
                                 height:18,
                                 padding: const EdgeInsets.only(right: 25),
                                 child: Checkbox(
-                                  value: _reportEventController.commonQuestion["$index"]["answer"]=="YES"?true:false,
+                                  value: _reportEventController.commonQuestion[index]["answer"]=="YES"?true:false,
                                   checkColor: appTheme.primaryActionColor,
                                   side: BorderSide(color: appTheme.inputFieldsBorderColor),
                                   fillColor: MaterialStateProperty.all(Colors.white),
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(_checkBoxBorderRadius)),
                                   onChanged: (value){
                                     if(value!=null){
-                                    _reportEventController.updateAnswers(key: "$index", value: value?"YES":"NO");
+                                    _reportEventController.updateAnswers(index: index, value: value?"YES":"NO");
                                     }
                                   },
                                 ),
                               ),
                               Expanded(
-                                child: Text("common_question_page.${_reportEventController.commonQuestion["$index"]["question"]}",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr(),
+                                child: Text("common_question_page.${_reportEventController.commonQuestion[index]["question"]}",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr(),
                               )
                             ],
                           ),

@@ -48,12 +48,12 @@ class CustomTabView extends StatelessWidget {
         }
       }
       case "damage":{
-        // if(_reportEventController.currentLocationMarker!=null){
-        //   return true;
-        // }else{
-        // }
+        if(_reportEventController.uploadedImageList.isNotEmpty){
+          return true;
+        }else{
           _toastMessage.showErrorToastMessage(message: tr("monitor_event.toast_message.select_event_date_time"), duration: 1, context: context);
-          return false;
+        }
+        return false;
       }
       default:
         return false;

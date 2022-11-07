@@ -6,7 +6,7 @@ import 'package:sensors_plus/sensors_plus.dart';
 
 class ReportEventController extends GetxController{
 
-  final RxString _activeTab="questions".obs;
+  final RxString _activeTab="damage".obs;
 
   final Event _eventDetail= Event();
 
@@ -98,28 +98,23 @@ class ReportEventController extends GetxController{
   final RxString _eventDate = DateTime.now().toString().split(" ")[0].obs;
   final RxString _eventTime= "${DateTime.now().hour}:${DateTime.now().minute}".obs;
   // final List<String> _commonQuestionLocalizationKeys=["common_question_page.was_raining","common_question_page.people_at_risk","common_question_page.animals_at_risk","common_question_page.assets_at_risk","common_question_page.i_am_safe"];
-  final Map<String,dynamic> _commonQuestions={
-    "0":{
-      "question":"Is / Was it raining ?",
-      "answer":"NO"
-    },
-    "1":{
-      "question":"People at risk ?",
-      "answer":"NO"
-    },
-    "2":{
-      "question":"Animals at risk ?",
-      "answer":"NO"
-    },
-    "3":{
-      "question":"Assets at risk ?",
-      "answer":"NO"
-    },
-    "4":{
-      "question":"I am safe",
-      "answer":"NO"
-    }
-  };
+  final List<Map<String,String>> _commonQuestions=[{
+    "question":"Is / Was it raining ?",
+    "answer":"NO"
+  },{
+    "question":"People at risk ?",
+    "answer":"NO"
+  },{
+    "question":"Animals at risk ?",
+    "answer":"NO"
+  },{
+    "question":"Assets at risk ?",
+    "answer":"NO"
+  },{
+    "question":"I am safe",
+    "answer":"NO"
+  }];
+
   final Map<String,dynamic> _sensorData={
     "accelerometer":{
       "x":"0.0",
@@ -143,7 +138,7 @@ class ReportEventController extends GetxController{
 
   RxString get eventDate=>_eventDate;
   RxString get eventTime=>_eventTime;
-  Map<String,dynamic> get commonQuestion=>_commonQuestions;
+  List<Map<String,String>> get commonQuestion=>_commonQuestions;
   List<XFile> get uploadedImageList=>_uploadedImageList;
   // List<String> get commonQuestionLocalizationKeys=>_commonQuestionLocalizationKeys;
 
@@ -162,8 +157,8 @@ class ReportEventController extends GetxController{
     _eventDetail.time="${_eventDate.value} ${_eventTime.value}";
   }
 
-  void updateAnswers({required String key,required String value}){
-    _commonQuestions[key]["answer"]=value;
+  void updateAnswers({required int index,required String value}){
+    _commonQuestions[index]["answer"]=value;
     update();
   }
 
@@ -190,5 +185,48 @@ class ReportEventController extends GetxController{
     _sensorData["magnetometer"]["x"]=magnetometerEvent.x.toString();
     _sensorData["magnetometer"]["y"]=magnetometerEvent.y.toString();
     _sensorData["magnetometer"]["x"]=magnetometerEvent.z.toString();
+  }
+
+
+  ///  Earthquake Page
+
+  final List<String> _numberOfBuilding=["1","2","3","4","5","6+"];
+  final List<Map<String,dynamic>> _earthquakeDamage=[{
+    "number_of_floors": "1",
+    "observed_damage": {
+      "question": "What is the observed_damage",
+      "answer": null
+    }
+  }];
+
+
+  List<String> get numberOfBuilding=> _numberOfBuilding;
+  List<Map<String,dynamic>> get earthquakeDamage=>_earthquakeDamage;
+
+  void addNewBuilding(){
+    _earthquakeDamage.add({
+      "number_of_floors": "1",
+      "observed_damage": {
+        "question": "What is the observed damage",
+        "answer": "Falling Object"
+      }
+    });
+    update();
+  }
+
+  void deleteBuilding({required int index}){
+    _earthquakeDamage.removeAt(index);
+    update();
+  }
+
+  void changeNumberOfBuilding({required int index,required String numberOfBuilding}){
+    _earthquakeDamage[index]["number_of_floors"]=numberOfBuilding;
+    update();
+  }
+
+  void selectObservedDamage({required int index,required String answer}){
+    print('$index => $answer');
+    _earthquakeDamage[index]["observed_damage"]["answer"]=answer;
+    update();
   }
 }

@@ -84,6 +84,8 @@ flutter:
     - assets/images/report_event/
     - assets/images/report_event/event_type/
     - assets/images/report_event/map_view/
+    - assets/images/report_event/event_specific_images/earthquake/
+    - assets/images/report_event/event_specific_images/landslide/
 
   #   - images/a_dot_ham.jpeg
 
