@@ -182,7 +182,7 @@ class Earthquake extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: Visibility(
-          visible: _reportEventController.earthquakeDamage[0]["observed_damage"]["answer"]!=null,
+          // visible: _reportEventController.earthquakeDamage[0]["observed_damage"]["answer"]!=null,
           child: SizedBox(
             height: Platform.isIOS? 66:40,
             child: TextButton(

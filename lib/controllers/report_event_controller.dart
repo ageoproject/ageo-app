@@ -103,9 +103,6 @@ class ReportEventController extends GetxController{
   final RxString _eventTime= "${DateTime.now().hour.toString().padLeft(2,"0")}:${DateTime.now().minute.toString().padLeft(2,"0")}".obs;
   // final List<String> _commonQuestionLocalizationKeys=["common_question_page.was_raining","common_question_page.people_at_risk","common_question_page.animals_at_risk","common_question_page.assets_at_risk","common_question_page.i_am_safe"];
   final List<Map<String,String>> _commonQuestions=[{
-    "question":"Is / Was it raining ?",
-    "answer":"NO"
-  },{
     "question":"People at risk ?",
     "answer":"NO"
   },{
@@ -253,7 +250,7 @@ class ReportEventController extends GetxController{
     "observed_damage": {
       "question": "what infrastructure was affected ?",
       "answer": [],
-      "comment":""
+      "other":""
     }
   };
 
@@ -273,16 +270,19 @@ class ReportEventController extends GetxController{
     update();
   }
   void updateLandslideComment({required String comment}){
-    _landslideDamage["observed_damage"]["comment"]=comment;
+    _landslideDamage["observed_damage"]["other"]=comment;
+    // update();
   }
 
+
+  /// Flood
 
   final Map<String,dynamic> _floodDamage={
     "water_level": "10",
     "observed_damage": {
       "question": "what infrastructure was affected ?",
       "answer": [],
-      "comment":""
+      "other":""
     }
   };
 
@@ -290,7 +290,6 @@ class ReportEventController extends GetxController{
 
   void changeWaterLevelOfFlood({required String value}){
     _floodDamage["water_level"]=value;
-    update();
   }
 
   void selectObservedDamageForFlood({required String value}){
@@ -301,7 +300,85 @@ class ReportEventController extends GetxController{
     }
     update();
   }
+
   void updateFloodComment({required String comment}){
-    _floodDamage["observed_damage"]["comment"]=comment;
+    _floodDamage["observed_damage"]["other"]=comment;
+    // update();
   }
+
+  /// Sinkhole
+
+  final Map<String,dynamic> _sinkholeDamage={
+    "dimension_of_sinkhole": "10",
+    "observed_damage": {
+      "question": "what infrastructure was affected ?",
+      "answer": "",
+      "other":""
+    },
+    "affected_infrastructure": {
+      "question": "what infrastructure was affected ?",
+      "answer": [],
+      "other":""
+    }
+  };
+
+  Map<String,dynamic> get sinkholeDamage=>_sinkholeDamage;
+
+  void changeDimensionOfSinkhole({required String value}){
+    _sinkholeDamage["dimension_of_sinkhole"]=value;
+  }
+
+  void selectObservedDamageForSinkhole({required String value}){
+    if(_sinkholeDamage["observed_damage"]["answer"]!=value){
+    _sinkholeDamage["observed_damage"]["answer"]=value;
+    }else{
+      _sinkholeDamage["observed_damage"]["answer"]="";
+    }
+    update();
+  }
+
+  void addOtherObserveDamageForSinkhole({required String comment}){
+    _sinkholeDamage["observed_damage"]["other"]=comment;
+    // update();
+  }
+
+  void selectInfrastructureDamageForSinkhole({required String value}){
+    if(_sinkholeDamage["affected_infrastructure"]["answer"].contains(value)){
+      _sinkholeDamage["affected_infrastructure"]["answer"].remove(value);
+    }else{
+      _sinkholeDamage["affected_infrastructure"]["answer"].add(value);
+    }
+    update();
+  }
+
+  void addOtherInfrastructureDamageForSinkhole({required String comment}){
+    _sinkholeDamage["affected_infrastructure"]["other"]=comment;
+    // update();
+  }
+
+
+  final Map<String,dynamic> _buildingSettlementDamage={
+    "type_of_settlement": {
+      "question": "how infrastructure was affected ?",
+      "answer": ""
+    },
+    "other_structure": {
+      "question": "what other infrastructure was affected ?",
+      "answer": "Wall / Stairs"
+    },
+    "direction_of_cracks": {
+      "dimension_of_crack": 10,
+      "question": "what was the direction of cracks?",
+      "answer": [
+        "vertical",
+        "horizontal",
+        "oblique_right",
+        "oblique_left",
+        "starry",
+        "no_cracks"
+      ]
+    }
+  };
+
+  Map<String,dynamic> get buildingSettlementDamage=>_buildingSettlementDamage;
 }

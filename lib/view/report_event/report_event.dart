@@ -5,12 +5,13 @@ import 'package:ageo/view/report_event/common_questions.dart';
 import 'package:ageo/view/report_event/custom_tab_view.dart';
 import 'package:ageo/view/report_event/event_specific_pages/earthquake.dart';
 import 'package:ageo/view/report_event/event_specific_pages/landslide.dart';
+import 'package:ageo/view/report_event/event_specific_pages/sinkhole.dart';
 import 'package:ageo/view/report_event/event_type.dart';
 import 'package:ageo/view/report_event/map_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'event_specific_pages/flood.dart';
+import 'event_specific_pages/river_flooding.dart';
 
 class ReportEvent extends StatefulWidget {
   const ReportEvent({Key? key}) : super(key: key);
@@ -34,7 +35,7 @@ class _ReportEventState extends State<ReportEvent> {
         return CommonQuestions();
       }
       case "damage":{
-        return Flood();
+        return Sinkhole();
       }
       default:{
         return Container();

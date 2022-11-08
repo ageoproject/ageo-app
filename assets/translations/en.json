@@ -1,8 +1,9 @@
 {
   "common_key": {
     "next_btn": "Next",
-    "submit_btn": "Next",
-    "select_observe_damage": "Select observed damage"
+    "submit_btn": "Submit",
+    "select_observe_damage": "Select observed damage",
+    "other": "Add other observed damage"
   },
   "home_page": {
     "monitor_event": "Monitor an event",
@@ -42,7 +43,7 @@
       "earthquake": "Earthquake",
       "rockfall": "Rockfall",
       "land_slide": "Land Slide",
-      "flood": "Flood",
+      "flood": "River Flooding",
       "sinkhole": "Sinkhole",
       "building_settlement": "Building\nSettlement",
       "eruption": "Eruption"
@@ -76,6 +77,19 @@
       "road": "Road",
       "railway": "Railway",
       "coastal": "Coastal"
+    },
+    "sinkhole": {
+      "sinkhole_dimension": "Dimension of Sinkhole (in foot steps)",
+      "green_area": "Green area",
+      "road": "Road",
+      "urban": "Urban",
+      "water": "Water",
+      "sanitation": "Sanitation",
+      "electricity": "Electricity",
+      "gas": "Gas",
+      "comm_line": "Communication lines",
+      "other": "Add other affected infrastructure",
+      "affected_infrastructure": "Select affected infrastructure"
     }
   },
 

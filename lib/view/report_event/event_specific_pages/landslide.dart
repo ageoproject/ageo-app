@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -133,12 +132,12 @@ class Landslide extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text("common_question_page.add_comments",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
+                        child: Text("common_key.other",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
                       ),
                       TextFormField(
                         // initialValue:_studentProfile.user?.dob==null?"": _component.formatDateMonthYearInWords.format(DateTime.parse("${_studentProfile.user!.dob}")),
                         textInputAction: TextInputAction.next,
-                        minLines: 6,
+                        minLines: 4,
                         keyboardType: TextInputType.multiline,
                         maxLines: null,
                         style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
@@ -187,16 +186,19 @@ class Landslide extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: SizedBox(
-          height: Platform.isIOS? 66:40,
-          child: TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: appTheme.primaryActionColor,
+        bottomNavigationBar: Visibility(
+          // visible: _reportEventController.landslideDamage["observed_damage"]["answer"].isNotEmpty || _reportEventController.landslideDamage["observed_damage"]["other"]!="",
+          child: SizedBox(
+            height: Platform.isIOS? 66:40,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: appTheme.primaryActionColor,
+              ),
+              onPressed: (){
+                // _reportEventController.changeActiveTab(value: "damage");
+              },
+              child: const Text("common_key.submit_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
             ),
-            onPressed: (){
-              // _reportEventController.changeActiveTab(value: "damage");
-            },
-            child: const Text("common_key.submit_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
           ),
         ),
       ),

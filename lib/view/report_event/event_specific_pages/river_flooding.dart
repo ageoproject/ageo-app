@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -7,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class Flood extends StatelessWidget {
-  Flood({Key? key}) : super(key: key);
+class RiverFlooding extends StatelessWidget {
+  RiverFlooding({Key? key}) : super(key: key);
   final ReportEventController _reportEventController=Get.find();
   final double _inputFieldBorderRadius = 4;
   final List<Map<String,String>> _typeOfFloodDamage=[
@@ -32,11 +31,6 @@ class Flood extends StatelessWidget {
       "type_of_damage":"Railway",
       "icon_path":"assets/images/report_event/event_specific_images/flood/railways_ic.png"
     },
-    {
-      "localization_ref":"monitor_event.flood.coastal",
-      "type_of_damage":"Coastal",
-      "icon_path":"assets/images/report_event/event_specific_images/flood/coastal_ic.png"
-    },
   ];
 
   @override
@@ -58,7 +52,7 @@ class Flood extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
-                          // initialValue:_studentProfile.user?.dob==null?"": _component.formatDateMonthYearInWords.format(DateTime.parse("${_studentProfile.user!.dob}")),
+                          initialValue:_reportEventController.floodDamage["water_level"],
                           keyboardType: TextInputType.number,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
@@ -145,12 +139,11 @@ class Flood extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("common_question_page.add_comments",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
+                          child: Text("common_key.other",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
                         ),
                         TextFormField(
-                          // initialValue:_studentProfile.user?.dob==null?"": _component.formatDateMonthYearInWords.format(DateTime.parse("${_studentProfile.user!.dob}")),
                           textInputAction: TextInputAction.next,
-                          minLines: 6,
+                          minLines: 4,
                           keyboardType: TextInputType.multiline,
                           maxLines: null,
                           style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
@@ -187,28 +180,29 @@ class Flood extends StatelessWidget {
                             ),
                           ),
                           onChanged: (value){
-                            _reportEventController.updateLandslideComment(comment: value);
+                            _reportEventController.updateFloodComment(comment: value);
                           },
                         ),
                       ],
                     ),
                   ),
-
-
                 ],
               ),
             ),
           ),
-          bottomNavigationBar: SizedBox(
-            height: Platform.isIOS? 66:40,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: appTheme.primaryActionColor,
+          bottomNavigationBar: Visibility(
+            // visible: _reportEventController.floodDamage["observed_damage"]["answer"].isNotEmpty || _reportEventController.floodDamage["observed_damage"]["other"]!="",
+            child: SizedBox(
+              height: Platform.isIOS? 66:40,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: appTheme.primaryActionColor,
+                ),
+                onPressed: (){
+                  // _reportEventController.changeActiveTab(value: "damage");
+                },
+                child: const Text("common_key.submit_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
               ),
-              onPressed: (){
-                // _reportEventController.changeActiveTab(value: "damage");
-              },
-              child: const Text("common_key.submit_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
             ),
           ),
         ),
