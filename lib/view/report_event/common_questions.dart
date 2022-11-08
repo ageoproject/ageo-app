@@ -323,7 +323,7 @@ class CommonQuestions extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: GetBuilder<ReportEventController>(
-        builder:(_)=> Visibility(
+        builder:(_)=> _reportEventController.hasSpecificDamagePage.contains(_reportEventController.selectedEventType)? Visibility(
           visible: _reportEventController.uploadedImageList.isNotEmpty,
           child: SizedBox(
             height: Platform.isIOS? 66:40,
@@ -335,6 +335,20 @@ class CommonQuestions extends StatelessWidget {
                 // _reportEventController.changeActiveTab(value: "damage");
               },
               child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
+            ),
+          ),
+        ):Visibility(
+          visible: _reportEventController.uploadedImageList.isNotEmpty,
+          child: SizedBox(
+            height: Platform.isIOS? 66:40,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: appTheme.primaryActionColor,
+              ),
+              onPressed: (){
+                // _reportEventController.changeActiveTab(value: "damage");
+              },
+              child: const Text("common_key.submit_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
             ),
           ),
         ),

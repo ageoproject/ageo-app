@@ -8,11 +8,14 @@ import 'package:sensors_plus/sensors_plus.dart';
 
 class ReportEventController extends GetxController{
 
-  final RxString _activeTab="damage".obs;
+  final RxString _activeTab="event_type".obs;
 
   final Event _eventDetail= Event();
 
+  final List<EventEventTypeEnum> _hasSpecificDamagePage=[EventEventTypeEnum.EARTHQUAKE,EventEventTypeEnum.LANDSLIDE,EventEventTypeEnum.FLOODED,EventEventTypeEnum.SINKHOLE,EventEventTypeEnum.BUILDING_SETTLEMENT];
+
   RxString get activeTab=> _activeTab;
+  List<EventEventTypeEnum> get hasSpecificDamagePage=>_hasSpecificDamagePage;
 
   void changeActiveTab({required String value}){
     _activeTab.value=value;
@@ -364,21 +367,47 @@ class ReportEventController extends GetxController{
     },
     "other_structure": {
       "question": "what other infrastructure was affected ?",
-      "answer": "Wall / Stairs"
+      "answer": ""
     },
     "direction_of_cracks": {
-      "dimension_of_crack": 10,
+      "dimension_of_crack": "10",
       "question": "what was the direction of cracks?",
-      "answer": [
-        "vertical",
-        "horizontal",
-        "oblique_right",
-        "oblique_left",
-        "starry",
-        "no_cracks"
-      ]
+      "answer": []
     }
   };
 
   Map<String,dynamic> get buildingSettlementDamage=>_buildingSettlementDamage;
+
+  void selectTypeOfSettlementForBuildingSettlement({required String value}){
+    if(_buildingSettlementDamage["type_of_settlement"]["answer"]!=value){
+      _buildingSettlementDamage["type_of_settlement"]["answer"]=value;
+    }else{
+      _buildingSettlementDamage["type_of_settlement"]["answer"]="";
+    }
+    update();
+  }
+
+  void selectOtherStructureForBuildingSettlement({required String value}){
+    if(_buildingSettlementDamage["other_structure"]["answer"]!=value){
+      _buildingSettlementDamage["other_structure"]["answer"]=value;
+    }else{
+      _buildingSettlementDamage["other_structure"]["answer"]="";
+    }
+    update();
+  }
+
+  void selectDirectionOfCrackForBuildingSettlement({required String value}){
+    if(_buildingSettlementDamage["direction_of_cracks"]["answer"].contains(value)){
+      _buildingSettlementDamage["direction_of_cracks"]["answer"].remove(value);
+    }else{
+      _buildingSettlementDamage["direction_of_cracks"]["answer"].add(value);
+    }
+    update();
+  }
+
+  void changeDimensionOfCrackForBuildingSettlement({required String value}){
+    _buildingSettlementDamage["direction_of_cracks"]["dimension_of_crack"]=value;
+    // update();
+  }
+
 }

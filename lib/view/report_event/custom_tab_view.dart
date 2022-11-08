@@ -12,7 +12,7 @@ class CustomTabView extends StatelessWidget {
 
   Color getTextColor({required String widgetId,required CustomThemeData appTheme}){
     if(_reportEventController.activeTab.value==widgetId){
-      return appTheme.primaryTextColor;
+      return appTheme.primaryActionColor;
     }else{
       return appTheme.placeHolderTextColor;
     }
@@ -20,7 +20,7 @@ class CustomTabView extends StatelessWidget {
 
   Color getUnderLineBorderColor({required String widgetId,required CustomThemeData appTheme}){
     if(_reportEventController.activeTab.value==widgetId){
-      return appTheme.iconColor;
+      return appTheme.primaryActionColor;
     }else{
       return Colors.transparent;
     }
@@ -59,6 +59,14 @@ class CustomTabView extends StatelessWidget {
         return false;
     }
   }
+
+  bool checkDamageTabVisibility(){
+    if(_reportEventController.hasSpecificDamagePage.contains(_reportEventController.selectedEventType)){
+     return true;
+    }else{
+      return false;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
@@ -79,6 +87,7 @@ class CustomTabView extends StatelessWidget {
           Obx(
                 ()=> Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
                       icon: Image.asset("assets/images/report_event/camera_ic.png",scale: 3.5,color: appTheme.primaryActionColor,),
@@ -140,24 +149,30 @@ class CustomTabView extends StatelessWidget {
                         },
                       ),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: getUnderLineBorderColor(widgetId: "damage", appTheme: appTheme),
-                            width: 4.0,
+                    GetBuilder<ReportEventController>(
+                      builder:(_)=> Visibility(
+                        visible: checkDamageTabVisibility(),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: getUnderLineBorderColor(widgetId: "damage", appTheme: appTheme),
+                                width: 4.0,
+                              ),
+                            ),
+                          ),
+                          child: TextButton(
+                            child: Text("monitor_event.tab_view.damage",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w900,color: getTextColor(widgetId: "damage", appTheme: appTheme)),).tr(),
+                            onPressed: (){
+                              if(allowToChangeTab(actionType: "damage",context: context)){
+                                _reportEventController.changeActiveTab(value: "damage");
+                              }
+                            },
                           ),
                         ),
                       ),
-                      child: TextButton(
-                        child: Text("monitor_event.tab_view.damage",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w900,color: getTextColor(widgetId: "damage", appTheme: appTheme)),).tr(),
-                        onPressed: (){
-                          if(allowToChangeTab(actionType: "damage",context: context)){
-                            _reportEventController.changeActiveTab(value: "damage");
-                          }
-                        },
-                      ),
                     ),
+
               ],
             ),
           ),

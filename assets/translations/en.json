@@ -48,7 +48,7 @@
       "building_settlement": "Building\nSettlement",
       "eruption": "Eruption"
     },
-    "toast_message":{
+    "toast_message": {
       "select_event_type": "Please select event type",
       "select_location": "Please mark event location on map",
       "select_event_date_time": "Please capture and upload event image"
@@ -90,6 +90,19 @@
       "comm_line": "Communication lines",
       "other": "Add other affected infrastructure",
       "affected_infrastructure": "Select affected infrastructure"
+    },
+    "building_settlement": {
+      "type_of_settlement": "Type of Settlement",
+      "other_structures": "Other Structures",
+      "cracks_direction": "Direction of Cracks",
+      "walls": "Walls",
+      "stairs": "Stairs",
+      "vertical": "Vertical",
+      "horizontal": "Horizontal",
+      "oblique": "Oblique",
+      "starry": "Starry",
+      "none": "None",
+      "crack_direction": "Dimension of crack (in millimeters)"
     }
   },
 
