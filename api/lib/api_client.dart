@@ -117,7 +117,7 @@ class ApiClient {
         ? formParams
         : await serializeAsync(body);
       final nullableHeaderParams = headerParams.isEmpty ? null : headerParams;
-      print(uri);
+
       switch(method) {
         case 'POST': return await _client.post(uri, headers: nullableHeaderParams, body: msgBody,);
         case 'PUT': return await _client.put(uri, headers: nullableHeaderParams, body: msgBody,);
@@ -213,6 +213,8 @@ class ApiClient {
           return InlineObject4.fromJson(value);
         case 'InlineObject5':
           return InlineObject5.fromJson(value);
+        case 'InlineObject6':
+          return InlineObject6.fromJson(value);
         case 'InlineResponse200':
           return InlineResponse200.fromJson(value);
         case 'LoginResponse':

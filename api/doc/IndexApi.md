@@ -56,7 +56,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getMapEventList**
-> List<Event> getMapEventList(eventType, eventStatus, fromDate, toDate)
+> List<Event> getMapEventList(eventType, eventStatus, fromDate, toDate, polygon)
 
 Get list of events for map view
 
@@ -67,11 +67,12 @@ import 'package:ageoClient/api.dart';
 final api_instance = IndexApi();
 final eventType = eventType_example; // String | 
 final eventStatus = eventStatus_example; // String | 
-final fromDate = fromDate_example; // String | 
-final toDate = toDate_example; // String | 
+final fromDate = 8.14; // num | 
+final toDate = 8.14; // num | 
+final polygon = [List<List<num>>()]; // List<List<num>> | 
 
 try {
-    final result = api_instance.getMapEventList(eventType, eventStatus, fromDate, toDate);
+    final result = api_instance.getMapEventList(eventType, eventStatus, fromDate, toDate, polygon);
     print(result);
 } catch (e) {
     print('Exception when calling IndexApi->getMapEventList: $e\n');
@@ -84,8 +85,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **eventType** | **String**|  | [optional] 
  **eventStatus** | **String**|  | [optional] 
- **fromDate** | **String**|  | [optional] 
- **toDate** | **String**|  | [optional] 
+ **fromDate** | **num**|  | [optional] 
+ **toDate** | **num**|  | [optional] 
+ **polygon** | [**List<List<num>>**](List.md)|  | [optional] 
 
 ### Return type
 
@@ -97,7 +99,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

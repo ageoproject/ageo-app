@@ -82,17 +82,19 @@ class IndexApi {
   ///
   /// * [String] eventStatus:
   ///
-  /// * [String] fromDate:
+  /// * [num] fromDate:
   ///
-  /// * [String] toDate:
-  Future<Response> getMapEventListWithHttpInfo({ String? eventType, String? eventStatus, String? fromDate, String? toDate, }) async {
+  /// * [num] toDate:
+  ///
+  /// * [List<List<num>>] polygon:
+  Future<Response> getMapEventListWithHttpInfo({ String? eventType, String? eventStatus, num? fromDate, num? toDate, List<List<num>>? polygon, }) async {
     // Verify required params are set.
 
     // ignore: prefer_const_declarations
     final path = r'/anonymous/get_map_event_list';
 
     // ignore: prefer_final_locals
-    Object? postBody;
+    Object? postBody = polygon;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -112,7 +114,7 @@ class IndexApi {
     }
 
     const authNames = <String>[];
-    const contentTypes = <String>[];
+    const contentTypes = <String>['application/json'];
 
 
     return apiClient.invokeAPI(
@@ -135,11 +137,13 @@ class IndexApi {
   ///
   /// * [String] eventStatus:
   ///
-  /// * [String] fromDate:
+  /// * [num] fromDate:
   ///
-  /// * [String] toDate:
-  Future<List<Event>> getMapEventList({ String? eventType, String? eventStatus, String? fromDate, String? toDate, }) async {
-    final response = await getMapEventListWithHttpInfo( eventType: eventType, eventStatus: eventStatus, fromDate: fromDate, toDate: toDate, );
+  /// * [num] toDate:
+  ///
+  /// * [List<List<num>>] polygon:
+  Future<List<Event>> getMapEventList({ String? eventType, String? eventStatus, num? fromDate, num? toDate, List<List<num>>? polygon, }) async {
+    final response = await getMapEventListWithHttpInfo( eventType: eventType, eventStatus: eventStatus, fromDate: fromDate, toDate: toDate, polygon: polygon, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

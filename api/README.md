@@ -66,6 +66,7 @@ Class | Method | HTTP request | Description
 *IndexApi* | [**getDatatableEventList**](doc//IndexApi.md#getdatatableeventlist) | **POST** /anonymous/get_datatable_event_list | Get paginated list of events
 *IndexApi* | [**getMapEventList**](doc//IndexApi.md#getmapeventlist) | **POST** /anonymous/get_map_event_list | Get list of events for map view
 *IndexApi* | [**reportEvent**](doc//IndexApi.md#reportevent) | **POST** /anonymous/report_event | Report events
+*ManagerApi* | [**downloadExcel**](doc//ManagerApi.md#downloadexcel) | **POST** /manager/download_excel | Download Excel file of events
 *SuperAdminApi* | [**createUser**](doc//SuperAdminApi.md#createuser) | **POST** /create_user | Admin creates manager
 *UserApi* | [**changePassword**](doc//UserApi.md#changepassword) | **PUT** /user/change_password | Change login user password
 *UserApi* | [**changePreferredLanguage**](doc//UserApi.md#changepreferredlanguage) | **PUT** /user/change_preferred_language | Change user's preferred language
@@ -85,6 +86,7 @@ Class | Method | HTTP request | Description
  - [InlineObject3](doc//InlineObject3.md)
  - [InlineObject4](doc//InlineObject4.md)
  - [InlineObject5](doc//InlineObject5.md)
+ - [InlineObject6](doc//InlineObject6.md)
  - [InlineResponse200](doc//InlineResponse200.md)
  - [LoginResponse](doc//LoginResponse.md)
  - [UpdateEventRequest](doc//UpdateEventRequest.md)
