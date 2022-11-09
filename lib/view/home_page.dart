@@ -1,3 +1,4 @@
+import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/common_component.dart';
 import 'package:ageo/helpers/language_helper.dart';
@@ -5,6 +6,7 @@ import 'package:ageo/controllers/main_controller.dart';
 import 'package:ageo/view/app_bar.dart';
 import 'package:ageo/view/app_drawer.dart';
 import 'package:ageo/view/report_event/permission.dart';
+import 'package:ageo/view/report_event/quick_report_event.dart';
 import 'package:ageo/view/report_event/report_event.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -50,9 +52,9 @@ class HomePage extends StatelessWidget {
                                 children: [
                                   MaterialButton(
                                     padding: EdgeInsets.zero,
-                                    onPressed: (){
-                                      CommonComponent component=CommonComponent();
-                                      component.showEventShareDialog(context: context, message: "message");
+                                    onPressed: ()async{
+                                      await Navigator.push(context, MaterialPageRoute(builder: (context)=>const QuickReportEvent()));
+                                      Get.delete<ReportEventController>();
                                     },
                                     child: Image.asset("assets/images/home_page/circular_camera_ic.png",scale: 3,),
                                   ),

@@ -23,8 +23,58 @@ class ReportEventController extends GetxController{
 
   ///  Select event type
 
+  final String _filePath="assets/images/report_event/event_type/";
+  final List<Map<String,dynamic>> _eventDetailList=[
+    {
+      "event_name": "monitor_event.event_type_tab.forest_fire",
+      "icon_name": "forestFire_ic",
+      "event_type": EventEventTypeEnum.FOREST_FIRE
+    },
+    {
+      "event_name": "monitor_event.event_type_tab.tsunami",
+      "icon_name": "tsunami_ic",
+      "event_type": EventEventTypeEnum.TSUNAMI
+    },
+    {
+      "event_name": "monitor_event.event_type_tab.earthquake",
+      "icon_name": "earthquake_ic",
+      "event_type": EventEventTypeEnum.EARTHQUAKE
+    },
+    {
+      "event_name": "monitor_event.event_type_tab.rockfall",
+      "icon_name": "rockfall_ic",
+      "event_type": EventEventTypeEnum.ROCKFALL
+    },
+    {
+      "event_name": "monitor_event.event_type_tab.land_slide",
+      "icon_name": "landslide_ic",
+      "event_type": EventEventTypeEnum.LANDSLIDE
+    },
+    {
+      "event_name": "monitor_event.event_type_tab.flood",
+      "icon_name": "flood_ic",
+      "event_type": EventEventTypeEnum.FLOODED
+    },
+    {
+      "event_name": "monitor_event.event_type_tab.sinkhole",
+      "icon_name": "sinkhole_ic",
+      "event_type": EventEventTypeEnum.SINKHOLE
+    },
+    {
+      "event_name": "monitor_event.event_type_tab.eruption",
+      "icon_name": "eruption_ic",
+      "event_type": EventEventTypeEnum.ERUPTION
+    },{
+      "event_name": "monitor_event.event_type_tab.building_settlement",
+      "icon_name": "buildingSettlement_ic",
+      "event_type": EventEventTypeEnum.BUILDING_SETTLEMENT
+    },
+
+  ];
   EventEventTypeEnum? _selectedEventType;
 
+  String get filePath=>_filePath;
+  List<Map<String,dynamic>> get eventDetailList=>_eventDetailList;
   EventEventTypeEnum? get selectedEventType=>_selectedEventType;
 
   void changeSelectedEventType({required EventEventTypeEnum value }){
@@ -401,6 +451,19 @@ class ReportEventController extends GetxController{
   void changeDimensionOfCrackForBuildingSettlement({required String value}){
     _buildingSettlementDamage["direction_of_cracks"]["dimension_of_crack"]=value;
     // update();
+  }
+
+  ////  Quick Report Event
+
+  final RxString _activeScreen="image_upload".obs;
+  final RxBool _quickReportingIsActive=false.obs;
+
+  RxString get activeScreen=>_activeScreen;
+  RxBool get quickReportingIsActive=>_quickReportingIsActive;
+
+  void changeActiveScreen({required String value}){
+    _activeScreen.value=value;
+    update();
   }
 
   /// Report Event

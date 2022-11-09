@@ -36,16 +36,21 @@ class _MapViewState extends State<MapView> {
 
   // void testFunction()async{
    void markCurrentLocation({required LatLng latLng})async{
-     _reportEventController.markCurrentLocation(
-       marker: Marker(
-         markerId:const MarkerId("My Location"),
-         position:latLng,
-         icon: await currentLocationBitmapDescriptor,
-       ),
-       latLng: latLng,
-     );
-     GeoData locationDetail=await _locationHelper.getCoordinateDetails(latitude: latLng.latitude, longitude: latLng.longitude);
-     _reportEventController.changeAddress(locationDetail: locationDetail);
+     try{
+       // _reportEventController.markCurrentLocation(
+       //   marker: Marker(
+       //     markerId:const MarkerId("My Location"),
+       //     position:latLng,
+       //     icon: await currentLocationBitmapDescriptor,
+       //   ),
+       //   latLng: latLng,
+       // );
+       print(latLng);
+       // GeoData locationDetail=await _locationHelper.getCoordinateDetails(latitude: latLng.latitude, longitude: latLng.longitude);
+       // _reportEventController.changeAddress(locationDetail: locationDetail);
+     }catch(e){
+       print("This is map error => $e");
+     }
    }
 
    Future<void> changeZoomLevel({required double zoomLevel})async{
@@ -357,7 +362,12 @@ class _MapViewState extends State<MapView> {
                     fixedSize: Size(MediaQuery.of(context).size.width, 40)
                   ),
                   onPressed: ()async{
-                    _reportEventController.changeActiveTab(value: "questions");
+                    if(_reportEventController.quickReportingIsActive.value){
+                      _reportEventController.changeActiveScreen(value: "event_type");
+                      print(_reportEventController.activeScreen.value);
+                    }else{
+                      _reportEventController.changeActiveTab(value: "questions");
+                    }
                   },
                   child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
                 ),

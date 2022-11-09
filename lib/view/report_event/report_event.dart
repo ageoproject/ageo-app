@@ -81,7 +81,7 @@ class _ReportEventState extends State<ReportEvent> {
       drawer: CustomAppDrawer(),
       body: Column(
         children: [
-          CustomAppBar(title: "Select Event type",),
+          CustomAppBar(title: "Monitor Event",),
           CustomTabView(),
           Expanded(
             child: Obx(()=> pageSelector()),

@@ -26,7 +26,8 @@ class SubmitButton extends StatelessWidget {
             String eventId = await _reportEventController.reportEvent();
             Get.back();
             _commonComponent.showEventShareDialog(context: context, message: eventId);
-          }catch(_){
+          }catch(e){
+            print(e);
             Get.back();
           }
         },
