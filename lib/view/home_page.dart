@@ -1,4 +1,5 @@
 import 'package:ageo/helpers/app_theme.dart';
+import 'package:ageo/helpers/common_component.dart';
 import 'package:ageo/helpers/language_helper.dart';
 import 'package:ageo/controllers/main_controller.dart';
 import 'package:ageo/view/app_bar.dart';
@@ -50,7 +51,8 @@ class HomePage extends StatelessWidget {
                                   MaterialButton(
                                     padding: EdgeInsets.zero,
                                     onPressed: (){
-
+                                      CommonComponent component=CommonComponent();
+                                      component.showEventShareDialog(context: context, message: "message");
                                     },
                                     child: Image.asset("assets/images/home_page/circular_camera_ic.png",scale: 3,),
                                   ),

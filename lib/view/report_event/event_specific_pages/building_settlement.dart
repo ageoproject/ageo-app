@@ -1,6 +1,6 @@
-import 'dart:io';
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
+import 'package:ageo/view/report_event/submit_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -250,18 +250,7 @@ class BuildingSettlement extends StatelessWidget {
       ),
       bottomNavigationBar: Visibility(
         // visible: _reportEventController.buildingSettlementDamage["type_of_settlement"]["answer"]!="" && _reportEventController.buildingSettlementDamage["other_structure"]["answer"]!="" && _reportEventController.buildingSettlementDamage["direction_of_cracks"]["answer"].isNotEmpty,
-        child: SizedBox(
-          height: Platform.isIOS? 66:40,
-          child: TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: appTheme.primaryActionColor,
-            ),
-            onPressed: (){
-              // _reportEventController.changeActiveTab(value: "damage");
-            },
-            child: const Text("common_key.submit_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
-          ),
-        ),
+        child: SubmitButton(),
       ),
     );
   }

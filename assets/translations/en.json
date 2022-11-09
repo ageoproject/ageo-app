@@ -30,6 +30,10 @@
     }
   },
   "monitor_event": {
+    "linked_copied": "Link copied successfully",
+    "send_ageo": "The event information is sent to AGEO",
+    "please_wait": "Please wait..",
+    "share": "Share",
     "app_bar_tittle": "Select Event Type",
     "tab_view": {
       "event_type": "Event type",

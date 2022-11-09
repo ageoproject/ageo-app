@@ -1,6 +1,6 @@
-import 'dart:io';
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
+import 'package:ageo/view/report_event/submit_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -305,18 +305,7 @@ class Sinkhole extends StatelessWidget {
         bottomNavigationBar: Visibility(
           // visible: (_reportEventController.sinkholeDamage["observed_damage"]["answer"]!="" || _reportEventController.sinkholeDamage["observed_damage"]["other"]!="") &&
           //     (_reportEventController.sinkholeDamage["affected_infrastructure"]["answer"].isNotEmpty || _reportEventController.sinkholeDamage["affected_infrastructure"]["other"]!=""),
-          child: SizedBox(
-            height: Platform.isIOS? 66:40,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: appTheme.primaryActionColor,
-              ),
-              onPressed: (){
-                // _reportEventController.changeActiveTab(value: "damage");
-              },
-              child: const Text("common_key.submit_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
-            ),
-          ),
+          child: SubmitButton(),
         ),
       ),
     );

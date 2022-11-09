@@ -273,7 +273,7 @@ class ReportEventController extends GetxController{
 
   /// Flood
 
-  final Map<String,dynamic> _floodDamage={
+  final Map<String,dynamic> _riverFloodingDamage={
     "water_level": "10",
     "observed_damage": {
       "question": "what infrastructure was affected ?",
@@ -282,23 +282,23 @@ class ReportEventController extends GetxController{
     }
   };
 
-  Map<String,dynamic> get floodDamage=>_floodDamage;
+  Map<String,dynamic> get riverFloodingDamage=>_riverFloodingDamage;
 
   void changeWaterLevelOfFlood({required String value}){
-    _floodDamage["water_level"]=value;
+    _riverFloodingDamage["water_level"]=value;
   }
 
   void selectObservedDamageForFlood({required String value}){
-    if(_floodDamage["observed_damage"]["answer"].contains(value)){
-      _floodDamage["observed_damage"]["answer"].remove(value);
+    if(_riverFloodingDamage["observed_damage"]["answer"].contains(value)){
+      _riverFloodingDamage["observed_damage"]["answer"].remove(value);
     }else{
-      _floodDamage["observed_damage"]["answer"].add(value);
+      _riverFloodingDamage["observed_damage"]["answer"].add(value);
     }
     update();
   }
 
   void updateFloodComment({required String comment}){
-    _floodDamage["observed_damage"]["other"]=comment;
+    _riverFloodingDamage["observed_damage"]["other"]=comment;
     // update();
   }
 
@@ -405,10 +405,34 @@ class ReportEventController extends GetxController{
 
   /// Report Event
 
-  Future<void> reportEvent()async{
+  List<Object> selectCustomEventDetail(){
+    switch(selectedEventType){
+      case EventEventTypeEnum.EARTHQUAKE:{
+        return _earthquakeDamage;
+      }
+      case EventEventTypeEnum.LANDSLIDE:{
+        return [_landslideDamage];
+      }
+      case EventEventTypeEnum.FLOODED:{
+        return [_riverFloodingDamage];
+      }
+      case EventEventTypeEnum.SINKHOLE:{
+        return [_sinkholeDamage];
+      }
+      case EventEventTypeEnum.BUILDING_SETTLEMENT:{
+        return [_buildingSettlementDamage];
+      }
+      default:{
+        return [{}];
+      }
+    }
+  }
 
+  Future<String> reportEvent()async{
     _eventDetail.sensorData=_sensorData;
-    // _eventDetail.commonEventDetails=_commonQuestions;
-    await _ageoConfig.reportEvent(eventDetail: _eventDetail);
+    _eventDetail.commonEventDetails=_commonQuestions;
+    _eventDetail.customEventDetails=selectCustomEventDetail();
+    String eventId= await _ageoConfig.reportEvent(eventDetail: _eventDetail)??"";
+    return eventId;
   }
 }

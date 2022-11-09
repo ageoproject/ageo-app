@@ -48,6 +48,7 @@ dependencies:
   url_launcher: ^6.1.6
   permission_handler: ^10.2.0
   camera: ^0.10.0+4
+  share_plus: ^6.2.0
 
   ageoClient:
     path: ./api/

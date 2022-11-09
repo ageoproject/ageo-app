@@ -5,10 +5,13 @@ class AgeoConfig{
   late ApiClient _apiClient;
   late IndexApi _indexApi;
   late String _basePath;
+  final String _frontendBasePath="https://ageo-web.web.app";
+
+  String get frontendBasePath=>_frontendBasePath;
 
   AgeoConfig._constructor(){
     if(kReleaseMode){
-      _basePath="http://192.168.1.19:3000";
+      _basePath="https://ageo-web.herokuapp.com";
     }else{
       _basePath="http://192.168.1.19:3000";
     }
@@ -25,7 +28,7 @@ class AgeoConfig{
   }
 
   Future<String?> reportEvent({required Event eventDetail})async{
-
+    print("Reporting=> $eventDetail");
     Event? eventReportResponse= await _indexApi.reportEvent(eventDetail);
     print(eventReportResponse);
     return eventReportResponse?.eventId;
