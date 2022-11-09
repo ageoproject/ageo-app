@@ -26,7 +26,7 @@ void main() {
 
     // Get list of events for map view
     //
-    //Future<List<Event>> getMapEventList({ String eventType, String eventStatus, String fromDate, String toDate }) async
+    //Future<List<Event>> getMapEventList({ String eventType, String eventStatus, num fromDate, num toDate, List<List<num>> polygon }) async
     test('test getMapEventList', () async {
       // TODO
     });

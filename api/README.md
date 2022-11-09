@@ -78,7 +78,6 @@ Class | Method | HTTP request | Description
 
  - [ChangePassword](doc//ChangePassword.md)
  - [Event](doc//Event.md)
- - [EventCommonEventDetails](doc//EventCommonEventDetails.md)
  - [EventLocation](doc//EventLocation.md)
  - [InlineObject](doc//InlineObject.md)
  - [InlineObject1](doc//InlineObject1.md)

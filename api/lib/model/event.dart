@@ -54,9 +54,9 @@ class Event {
 
   Object? sensorData;
 
-  List<EventCommonEventDetails?>? commonEventDetails;
+  List<Object>? commonEventDetails;
 
-  List<EventCommonEventDetails?>? customEventDetails;
+  List<Object>? customEventDetails;
 
   User? verifyBy;
 
@@ -171,8 +171,12 @@ class Event {
         state: mapValueOfType<String>(json, r'state'),
         country: mapValueOfType<String>(json, r'country'),
         sensorData: mapValueOfType<Object>(json, r'sensorData'),
-        commonEventDetails: EventCommonEventDetails.listFromJson(json[r'commonEventDetails']),
-        customEventDetails: EventCommonEventDetails.listFromJson(json[r'customEventDetails']),
+        commonEventDetails: json[r'commonEventDetails'] is List
+            ? (json[r'commonEventDetails'] as List).cast<Object>()
+            : null,
+        customEventDetails: json[r'customEventDetails'] is List
+            ? (json[r'customEventDetails'] as List).cast<Object>()
+            : null,
         verifyBy: User.fromJson(json[r'verifyBy']),
       );
     }
@@ -221,7 +225,7 @@ class EventEventTypeEnum {
   final String value;
 
   @override
-  String toString() => value ?? '';
+  String toString() => value;
 
   String toJson() => value;
 
@@ -309,7 +313,7 @@ class EventStatusEnum {
   final String value;
 
   @override
-  String toString() => value ?? '';
+  String toString() => value;
 
   String toJson() => value;
 

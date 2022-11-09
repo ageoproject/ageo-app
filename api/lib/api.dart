@@ -35,7 +35,6 @@ part 'api/user_api.dart';
 
 part 'model/change_password.dart';
 part 'model/event.dart';
-part 'model/event_common_event_details.dart';
 part 'model/event_location.dart';
 part 'model/inline_object.dart';
 part 'model/inline_object1.dart';

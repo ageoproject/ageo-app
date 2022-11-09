@@ -9,9 +9,8 @@ import 'package:sensors_plus/sensors_plus.dart';
 class ReportEventController extends GetxController{
 
   final RxString _activeTab="event_type".obs;
-
+  final AgeoConfig _ageoConfig=AgeoConfig();
   final Event _eventDetail= Event();
-
   final List<EventEventTypeEnum> _hasSpecificDamagePage=[EventEventTypeEnum.EARTHQUAKE,EventEventTypeEnum.LANDSLIDE,EventEventTypeEnum.FLOODED,EventEventTypeEnum.SINKHOLE,EventEventTypeEnum.BUILDING_SETTLEMENT];
 
   RxString get activeTab=> _activeTab;
@@ -105,7 +104,8 @@ class ReportEventController extends GetxController{
   final RxString _eventDate = DateTime.now().toString().split(" ")[0].obs;
   final RxString _eventTime= "${DateTime.now().hour.toString().padLeft(2,"0")}:${DateTime.now().minute.toString().padLeft(2,"0")}".obs;
   // final List<String> _commonQuestionLocalizationKeys=["common_question_page.was_raining","common_question_page.people_at_risk","common_question_page.animals_at_risk","common_question_page.assets_at_risk","common_question_page.i_am_safe"];
-  final List<Map<String,String>> _commonQuestions=[{
+  final List<Map<String,String>> _commonQuestions=[
+    {
     "question":"People at risk ?",
     "answer":"NO"
   },{
@@ -117,7 +117,8 @@ class ReportEventController extends GetxController{
   },{
     "question":"I am safe",
     "answer":"NO"
-  }];
+  }
+  ];
 
   final Map<String,dynamic> _sensorData={
     "accelerometer":{
@@ -194,14 +195,6 @@ class ReportEventController extends GetxController{
     _sensorData["magnetometer"]["x"]=magnetometerEvent.x.toString();
     _sensorData["magnetometer"]["y"]=magnetometerEvent.y.toString();
     _sensorData["magnetometer"]["x"]=magnetometerEvent.z.toString();
-  }
-
-  void reportEvent()async{
-    AgeoConfig ageoConfig=AgeoConfig();
-    // _eventDetail.sensorData=_sensorData;
-    // _eventDetail.commonEventDetails=EventCommonEventDetails();
-    // print("This is event in controller => $_eventDetail");
-    await ageoConfig.reportEvent(eventDetail: _eventDetail);
   }
 
   ///  Earthquake Page
@@ -410,4 +403,12 @@ class ReportEventController extends GetxController{
     // update();
   }
 
+  /// Report Event
+
+  Future<void> reportEvent()async{
+
+    _eventDetail.sensorData=_sensorData;
+    // _eventDetail.commonEventDetails=_commonQuestions;
+    await _ageoConfig.reportEvent(eventDetail: _eventDetail);
+  }
 }
