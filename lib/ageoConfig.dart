@@ -13,7 +13,7 @@ class AgeoConfig{
     if(kReleaseMode){
       _basePath="https://ageo-web.herokuapp.com";
     }else{
-      _basePath="http://192.168.1.19:3000";
+      _basePath="https://ageo-web.herokuapp.com";
     }
     _apiClient=ApiClient(basePath: _basePath);
     _indexApi=IndexApi(_apiClient);

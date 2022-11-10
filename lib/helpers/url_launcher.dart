@@ -2,7 +2,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class CustomUrlLauncher{
 
-  final String ageoWebLink="https://ageo.com/";
+  // final String ageoWebLink="https://ageo.com/";
 
   Future<bool> canOpenInBrowser({required String url})async{
     bool val=await canLaunchUrl(Uri(path: url.replaceAll(" ", "%20")));

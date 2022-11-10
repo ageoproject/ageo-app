@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:ageo/ageoConfig.dart';
 import 'package:ageo/controllers/app_drawer_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/url_launcher.dart';
@@ -14,6 +15,7 @@ class CustomAppDrawer extends StatelessWidget {
   CustomAppDrawer({Key? key}) : super(key: key);
   final AppDrawerController _appDrawerController=Get.put(AppDrawerController());
   final CustomUrlLauncher _customUrlLauncher=CustomUrlLauncher();
+  final AgeoConfig _ageoConfig=AgeoConfig();
 
   Color getButtonColor({required String buttonId,required CustomThemeData appTheme}){
     if(_appDrawerController.activeButton.value==buttonId){
@@ -203,9 +205,9 @@ class CustomAppDrawer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  child: Text(_customUrlLauncher.ageoWebLink,style: TextStyle(fontSize: 14,color: appTheme.primaryActionColor),),
+                  child: Text(_ageoConfig.frontendBasePath,style: TextStyle(fontSize: 14,color: appTheme.primaryActionColor),),
                   onPressed: (){
-                    _customUrlLauncher.openInBrowser(url: _customUrlLauncher.ageoWebLink);
+                    _customUrlLauncher.openInBrowser(url: _ageoConfig.frontendBasePath);
                   },
                 ),
                 Padding(

@@ -52,7 +52,7 @@ class CommonComponent{
   void  showEventShareDialog({required BuildContext context,required String message}){
     _appTheme=Theme.of(context).customTheme;
     AgeoConfig ageoConfig=AgeoConfig();
-    String eventLink="${ageoConfig.frontendBasePath}/$message";
+    String eventLink="${ageoConfig.frontendBasePath}/event-details/$message";
     showDialog(context: context,barrierDismissible: false,useRootNavigator: false, builder: (BuildContext context){
       return WillPopScope(
         onWillPop:()async{
