@@ -37,19 +37,19 @@ class _MapViewState extends State<MapView> {
   // void testFunction()async{
    void markCurrentLocation({required LatLng latLng})async{
      try{
-       // _reportEventController.markCurrentLocation(
-       //   marker: Marker(
-       //     markerId:const MarkerId("My Location"),
-       //     position:latLng,
-       //     icon: await currentLocationBitmapDescriptor,
-       //   ),
-       //   latLng: latLng,
-       // );
-       print(latLng);
-       // GeoData locationDetail=await _locationHelper.getCoordinateDetails(latitude: latLng.latitude, longitude: latLng.longitude);
-       // _reportEventController.changeAddress(locationDetail: locationDetail);
-     }catch(e){
-       print("This is map error => $e");
+       _reportEventController.markCurrentLocation(
+         marker: Marker(
+           markerId:const MarkerId("My Location"),
+           position:latLng,
+           icon: await currentLocationBitmapDescriptor,
+         ),
+         latLng: latLng,
+       );
+       // print(latLng);
+       GeoData locationDetail=await _locationHelper.getCoordinateDetails(latitude: latLng.latitude, longitude: latLng.longitude);
+       _reportEventController.changeAddress(locationDetail: locationDetail);
+     }catch(_){
+       // print("This is map error => $e");
      }
    }
 
@@ -134,6 +134,7 @@ class _MapViewState extends State<MapView> {
               markers: controller.locationMarker,
               trafficEnabled: controller.enableTrafficMode.value,
               onTap: (LatLng latLng)async{
+                try{
                 _reportEventController.markLocation(
                     marker:Marker(
                       markerId:const MarkerId("Selected Location"),
@@ -144,6 +145,7 @@ class _MapViewState extends State<MapView> {
                 );
                 GeoData locationDetail=await _locationHelper.getCoordinateDetails(latitude: latLng.latitude, longitude: latLng.longitude);
                 _reportEventController.changeAddress(locationDetail: locationDetail);
+                }catch(_){}
               },
               onMapCreated: (GoogleMapController controller)async {
                 googleMapController =controller;
@@ -335,22 +337,25 @@ class _MapViewState extends State<MapView> {
           ],
         ),
         bottomNavigationBar: Visibility(
-          visible: _reportEventController.locationAddress!=null,
+          visible: _reportEventController.eventDetail.location!=null,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Padding(
-                padding:const EdgeInsets.symmetric(horizontal: 16,vertical: 16),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 12.0,),
-                      child: Image.asset("assets/images/report_event/map_view/location_pin_ic.png",height: 20,),
-                    ),
-                    Expanded(
-                      child: Text(_reportEventController.locationAddress??"",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: appTheme.primaryActionColor),),
-                    ),
-                  ],
+              Visibility(
+                visible: _reportEventController.locationAddress!=null,
+                child: Padding(
+                  padding:const EdgeInsets.symmetric(horizontal: 16,vertical: 16),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12.0,),
+                        child: Image.asset("assets/images/report_event/map_view/location_pin_ic.png",height: 20,),
+                      ),
+                      Expanded(
+                        child: Text(_reportEventController.locationAddress??"",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: appTheme.primaryActionColor),),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Padding(
@@ -364,7 +369,6 @@ class _MapViewState extends State<MapView> {
                   onPressed: ()async{
                     if(_reportEventController.quickReportingIsActive.value){
                       _reportEventController.changeActiveScreen(value: "event_type");
-                      print(_reportEventController.activeScreen.value);
                     }else{
                       _reportEventController.changeActiveTab(value: "questions");
                     }

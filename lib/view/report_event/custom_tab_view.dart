@@ -1,5 +1,6 @@
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/toast_message.dart';
+import 'package:ageo/view/report_event/quick_report_event.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -91,8 +92,10 @@ class CustomTabView extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: Image.asset("assets/images/report_event/camera_ic.png",scale: 3.5,color: appTheme.primaryActionColor,),
-                      onPressed: (){
-
+                      onPressed: ()async{
+                        // Navigator.popUntil(context, (route) => route.isFirst);
+                        // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>QuickReportEvent()), (route) => route.isFirst);
+                        await Navigator.push(context, MaterialPageRoute(builder: (context)=>const QuickReportEvent()));
                       },
                     ),
                     Container(

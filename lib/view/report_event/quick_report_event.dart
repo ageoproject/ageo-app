@@ -5,11 +5,9 @@ import 'package:ageo/helpers/imagehelper.dart';
 import 'package:ageo/view/app_bar.dart';
 import 'package:ageo/view/report_event/event_type.dart';
 import 'package:ageo/view/report_event/map_view.dart';
-import 'package:ageo/view/report_event/submit_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
 class QuickReportEvent extends StatefulWidget {
@@ -20,7 +18,7 @@ class QuickReportEvent extends StatefulWidget {
 }
 
 class _QuickReportEventState extends State<QuickReportEvent> {
-  final ReportEventController _reportEventController=Get.put(ReportEventController(),permanent: false);
+  final ReportEventController _reportEventController=Get.put(ReportEventController());
   late CustomThemeData appTheme;
   final double _inputFieldBorderRadius = 4;
 
@@ -169,38 +167,7 @@ class _QuickReportEventState extends State<QuickReportEvent> {
         return EventTypeList();
       }
       default:{
-       return Container(
-         child: Text("Thuis is default page"),
-       );
-      }
-    }
-  }
-
-  Widget buildBottomNavigationBar(){
-    switch(_reportEventController.activeScreen.value){
-      case "image_upload":{
-        return Visibility(
-          visible: _reportEventController.uploadedImageList.isNotEmpty,
-          child: SizedBox(
-            height: Platform.isIOS? 66:40,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: appTheme.primaryActionColor,
-              ),
-              onPressed: (){
-                _reportEventController.changeActiveScreen(value: "map_view");
-              },
-              child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
-            ),
-          ),
-        );
-      }
-      case "event_type":{
-        return Visibility(visible: _reportEventController.selectedEventType!=null,
-            child: SubmitButton());
-      }
-      default:{
-        return Container();
+       return Container();
       }
     }
   }
@@ -240,12 +207,13 @@ class _QuickReportEventState extends State<QuickReportEvent> {
                 backgroundColor: appTheme.primaryActionColor,
               ),
               onPressed: (){
-                _reportEventController.changeActiveScreen(value: "event_type");
+                _reportEventController.toggleQuickReportingState();
+                _reportEventController.changeActiveScreen(value: "map_view");
               },
               child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
             ),
           ),
-        ):Container()),
+        ):const SizedBox()),
       ),
     );
   }

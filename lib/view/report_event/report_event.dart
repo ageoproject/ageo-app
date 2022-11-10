@@ -23,7 +23,7 @@ class ReportEvent extends StatefulWidget {
 }
 
 class _ReportEventState extends State<ReportEvent> {
-  final ReportEventController _reportEventController=Get.put(ReportEventController(),permanent: false);
+  final ReportEventController _reportEventController=Get.put(ReportEventController());
 
   Widget pageSelector(){
     switch(_reportEventController.activeTab.value){

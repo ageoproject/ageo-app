@@ -14,6 +14,7 @@ class ReportEventController extends GetxController{
   final List<EventEventTypeEnum> _hasSpecificDamagePage=[EventEventTypeEnum.EARTHQUAKE,EventEventTypeEnum.LANDSLIDE,EventEventTypeEnum.FLOODED,EventEventTypeEnum.SINKHOLE,EventEventTypeEnum.BUILDING_SETTLEMENT];
 
   RxString get activeTab=> _activeTab;
+  Event get eventDetail=>_eventDetail;
   List<EventEventTypeEnum> get hasSpecificDamagePage=>_hasSpecificDamagePage;
 
   void changeActiveTab({required String value}){
@@ -466,6 +467,10 @@ class ReportEventController extends GetxController{
     update();
   }
 
+  void toggleQuickReportingState(){
+    _quickReportingIsActive.value=!_quickReportingIsActive.value;
+    update();
+  }
   /// Report Event
 
   List<Object> selectCustomEventDetail(){

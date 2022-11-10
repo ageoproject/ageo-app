@@ -74,6 +74,7 @@ class LocationHelper{
   }
 
   Future<GeoData> getCoordinateDetails({required double latitude,required double longitude})async{
+    // print("#################### Calling Geocoder2 ############################");
     GeoData data = await Geocoder2.getDataFromCoordinates(
         latitude: latitude,
         longitude: longitude,
