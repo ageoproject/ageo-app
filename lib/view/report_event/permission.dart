@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:ageo/helpers/app_theme.dart';
+import 'package:ageo/helpers/locationHelper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -167,21 +168,25 @@ class DevicePermissionsHandler extends StatelessWidget {
                     child: TextButton(
                       child: Text("permission_page.allow_button",style: TextStyle(color: appTheme.primaryActionColor,fontWeight: FontWeight.w400,fontSize: 16),).tr(),
                       onPressed: ()async{
+                        LocationHelper locationHelper=LocationHelper();
+                        Map<Permission, PermissionStatus> statuses = await [
+                          Permission.location,
+                          Permission.camera,
+                          Permission.photos,
+                        ].request();
                         if(Platform.isAndroid){
-                          Map<Permission, PermissionStatus> statuses = await [
-                            Permission.location,
-                          ].request();
-                          if(statuses[Permission.location] == PermissionStatus.granted){
+                          if(statuses[Permission.location] == PermissionStatus.granted && statuses[Permission.camera] == PermissionStatus.granted){
                             Navigator.pop(context,true);
+                          }else if(statuses[Permission.location] == PermissionStatus.permanentlyDenied || statuses[Permission.camera] == PermissionStatus.permanentlyDenied){
+                            locationHelper.showLocationPermissionError(context: context, errorMessage: tr("permission_page.permission_denied_permanently"), actionType: "permission_denied_permanently");
+                            // openAppSettings();
                           }
                         }else{
-                          Map<Permission, PermissionStatus> statuses = await [
-                            Permission.location,
-                            Permission.camera,
-                            Permission.photos,
-                          ].request();
                           if(statuses[Permission.location] == PermissionStatus.granted && statuses[Permission.camera] == PermissionStatus.granted && statuses[Permission.photos] == PermissionStatus.granted){
                             Navigator.pop(context,true);
+                          }else if(statuses[Permission.location] == PermissionStatus.permanentlyDenied || statuses[Permission.camera] == PermissionStatus.permanentlyDenied || statuses[Permission.photos] == PermissionStatus.permanentlyDenied){
+                            // openAppSettings();
+                            locationHelper.showLocationPermissionError(context: context, errorMessage: tr("permission_page.permission_denied_permanently"), actionType: "permission_denied_permanently");
                           }
                         }
 

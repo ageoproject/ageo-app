@@ -20,6 +20,12 @@
     "ok": "OK!",
     "we_need_some_access": "We need some access!",
     "allow_button": "Allow permissions",
+    "permission_denied_permanently": "Permission denied permanently...Please open app setting and allow",
+    "location_permissions_denied": "Location permissions are denied",
+    "location_permissions_denied_permanently": "Location permissions are permanently denied, we cannot request permissions.",
+    "location_services_disabled": "Location services are disabled.",
+    "enable_location": "Enable Location",
+    "open _setting": "Open Setting",
     "permission_type": {
       "location": "Location",
       "location_description": "Need location access to\ncapture event location",

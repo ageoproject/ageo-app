@@ -1,8 +1,6 @@
+import 'dart:io';
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
-import 'package:ageo/helpers/common_component.dart';
-import 'package:ageo/helpers/language_helper.dart';
-import 'package:ageo/controllers/main_controller.dart';
 import 'package:ageo/view/app_bar.dart';
 import 'package:ageo/view/app_drawer.dart';
 import 'package:ageo/view/report_event/permission.dart';
@@ -10,12 +8,45 @@ import 'package:ageo/view/report_event/quick_report_event.dart';
 import 'package:ageo/view/report_event/report_event.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
-  final MainController _mainController=Get.find();
-  final LanguageHelper _languageHelper=LanguageHelper();
+  const HomePage({Key? key}) : super(key: key);
+  // final MainController _mainController=Get.find();
+  // final LanguageHelper _languageHelper=LanguageHelper();
+
+
+  Future<bool> checkPermissions()async{
+    LocationPermission locationPermission= await Geolocator.checkPermission();
+    PermissionStatus cameraPermission = await Permission.camera.status;
+      if(locationPermission ==LocationPermission.denied || locationPermission ==LocationPermission.deniedForever || cameraPermission.isDenied || cameraPermission.isPermanentlyDenied){
+        return false;
+      }else {
+        if (Platform.isIOS) {
+          PermissionStatus photosPermission = await Permission.photos.status;
+          if (photosPermission.isDenied || photosPermission.isPermanentlyDenied) {
+            return false;
+          }
+        }
+        return true;
+      }
+  }
+
+  Future<void> reportEvent({required Widget openPage,required BuildContext context})async{
+    if(await checkPermissions()){
+      await Navigator.push(context, MaterialPageRoute(builder: (context)=>openPage));
+    }else{
+      bool permissionGranted = await showDialog(context: context, builder: (BuildContext context){
+        return const DevicePermissionsHandler();
+      });
+      if(permissionGranted){
+        // ignore: use_build_context_synchronously
+        await Navigator.push(context, MaterialPageRoute(builder: (context)=> openPage));
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +84,8 @@ class HomePage extends StatelessWidget {
                                   MaterialButton(
                                     padding: EdgeInsets.zero,
                                     onPressed: ()async{
-                                      await Navigator.push(context, MaterialPageRoute(builder: (context)=>const QuickReportEvent()));
+                                      await reportEvent(openPage:const QuickReportEvent(), context: context);
+                                      // await Navigator.push(context, MaterialPageRoute(builder: (context)=>const QuickReportEvent()));
                                       Get.delete<ReportEventController>();
                                     },
                                     child: Image.asset("assets/images/home_page/circular_camera_ic.png",scale: 3,),
@@ -78,14 +110,7 @@ class HomePage extends StatelessWidget {
                                           backgroundColor: Colors.transparent
                                         ),
                                         onPressed: ()async{
-                                          // bool permissionGranted = await showDialog(context: context, builder: (BuildContext context){
-                                          //   return DevicePermissionsHandler();
-                                          // });
-                                          // print(permissionGranted);
-                                          // if(permissionGranted){
-                                          //   Navigator.push(context, MaterialPageRoute(builder: (context)=>DevicePermissionsHandler()));
-                                          // }
-                                          Navigator.push(context, MaterialPageRoute(builder: (context)=>ReportEvent()));
+                                          reportEvent(openPage:const ReportEvent(), context: context);
                                         },
                                         child:const Text("home_page.monitor_event",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color:Colors.white),).tr(),
                                       ),

@@ -1,4 +1,5 @@
 import 'package:ageo/helpers/app_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geolocator/geolocator.dart';
@@ -48,7 +49,7 @@ class LocationHelper{
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        errorMessage= 'Location permissions are denied';
+        errorMessage= tr('permission_page.location_permissions_denied');
         await showLocationPermissionError(context: context, errorMessage: errorMessage, actionType: "permission_denied");
         return false;
       }
@@ -56,7 +57,7 @@ class LocationHelper{
 
     if (permission == LocationPermission.deniedForever) {
       // Permissions are denied forever, handle appropriately.
-      errorMessage='Location permissions are permanently denied, we cannot request permissions.';
+      errorMessage=tr('permission_page.location_permissions_denied_permanently');
       await showLocationPermissionError(context: context, errorMessage: errorMessage, actionType: "permission_denied_permanently");
       return false;
     }
@@ -66,7 +67,7 @@ class LocationHelper{
       // Location services are not enabled don't continue
       // accessing the position and request users of the
       // App to enable the location services.
-      errorMessage="Location services are disabled.";
+      errorMessage=tr('permission_page.location_services_disabled');
       await showLocationPermissionError(context: context, errorMessage: errorMessage, actionType: "enable_location");
       return false;
     }
@@ -89,12 +90,13 @@ class LocationHelper{
         alignment: Alignment.center,
         child: Padding(
           padding: const EdgeInsets.all(26.0),
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8)
-            ),
-            padding: EdgeInsets.zero,
+          child: Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            // decoration: BoxDecoration(
+            //     color: Colors.white,
+            //     borderRadius: BorderRadius.circular(8)
+            // ),
+            // padding: EdgeInsets.zero,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -124,7 +126,7 @@ class LocationHelper{
                           style: TextButton.styleFrom(
                             backgroundColor: appTheme.primaryActionColor
                           ),
-                          child: const Text("Enable",style: TextStyle(fontSize: 14,color: Colors.white),),
+                          child: const Text("permission_page.enable_location",style: TextStyle(fontSize: 14,color: Colors.white),).tr(),
                           onPressed: ()async{
                             Get.back();
                             Geolocator.openLocationSettings();
@@ -137,7 +139,7 @@ class LocationHelper{
                           style: TextButton.styleFrom(
                               backgroundColor: appTheme.primaryActionColor
                           ),
-                          child: const Text("Allow Permission",style: TextStyle(fontSize: 14,color: Colors.white),),
+                          child: const Text("permission_page.allow_button",style: TextStyle(fontSize: 14,color: Colors.white),).tr(),
                           onPressed: ()async{
                             await Geolocator.requestPermission();
                             Get.back();
@@ -150,7 +152,7 @@ class LocationHelper{
                           style: TextButton.styleFrom(
                               backgroundColor: appTheme.primaryActionColor
                           ),
-                          child: const Text("Open Setting",style: TextStyle(fontSize: 14,color: Colors.white),),
+                          child: const Text("permission_page.open _setting",style: TextStyle(fontSize: 14,color: Colors.white),).tr(),
                           onPressed: ()async{
                             Get.back();
                             openAppSettings();

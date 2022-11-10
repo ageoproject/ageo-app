@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
 
   Widget screenSelector({required String route}){
     if(route=="home_screen"){
-      return HomePage();
+      return const HomePage();
     }else{
       return LanguageSelection();
     }
