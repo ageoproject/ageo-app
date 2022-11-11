@@ -15,6 +15,33 @@ class CustomAppDrawer extends StatelessWidget {
   final AppDrawerController _appDrawerController=Get.put(AppDrawerController());
   final CustomUrlLauncher _customUrlLauncher=CustomUrlLauncher();
   final AgeoConfig _ageoConfig=AgeoConfig();
+  final List<Map<String,String>> _pagesList=[
+    {
+      "localization_ref":"app_drawer.home",
+      "button_id":"home",
+      "icon_name":"home_ic.png"
+    },
+    {
+      "localization_ref":"app_drawer.educational",
+      "button_id":"educational",
+      "icon_name":"educational_ic.png"
+    },
+    {
+      "localization_ref":"app_drawer.partners",
+      "button_id":"partners",
+      "icon_name":"partners_ic.png"
+    },
+    {
+      "localization_ref":"app_drawer.contact",
+      "button_id":"contact",
+      "icon_name":"contact_ic.png"
+    },
+    {
+      "localization_ref":"app_drawer.about",
+      "button_id":"about",
+      "icon_name":"about_ic.png"
+    },
+  ];
 
   Color getButtonColor({required String buttonId,required CustomThemeData appTheme}){
     if(_appDrawerController.activeButton.value==buttonId){
@@ -32,169 +59,95 @@ class CustomAppDrawer extends StatelessWidget {
     }
   }
 
+  void clickTrigger({required String buttonId,required BuildContext context}){
+    switch(buttonId){
+      case "home":{
+        _appDrawerController.changeActiveButton(value: "home");
+        Navigator.popUntil(context, (route) => route.isFirst);
+        break;
+      }
+      case "educational":{
+        _appDrawerController.changeActiveButton(value: "educational");
+        // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>Partners()), (route)=> route.isFirst);
+        break;
+      }
+      case "partners":{
+        _appDrawerController.changeActiveButton(value: "partners");
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>Partners()), (route)=> route.isFirst);
+        break;
+      }
+      case "contact":{
+        _appDrawerController.changeActiveButton(value: "contact");
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>ContactUs()), (route)=> route.isFirst);
+        break;
+      }
+      case "about":{
+        _appDrawerController.changeActiveButton(value: "about");
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>AboutUS()), (route)=> route.isFirst);
+        break;
+      }
+      default:{}
+    }
+    Scaffold.of(context).openEndDrawer();
+  }
+
   @override
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     return Drawer(
+      elevation: 10,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 100,horizontal: 20),
-                  child: Image.asset("assets/images/app_drawer/agro_logo_ic.png"),
+                SizedBox(
+                  height: 260,
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: ClipRRect(borderRadius: BorderRadius.circular(8),
+                          child: Image.asset("assets/images/app_drawer/app_drawer_head.png",fit: BoxFit.fitHeight,height: 260,),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
 
                 Obx(
-                  ()=> Column(
-                    children: [
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          // backgroundColor: appTheme.primaryActionColor,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: getButtonColor(buttonId: "home", appTheme: appTheme),
-                            borderRadius: BorderRadius.circular(12),
+                  ()=> Padding(
+                    padding: const EdgeInsets.only(top: 18.0),
+                    child: Column(
+                      children: List.generate(_pagesList.length, (index) {
+                        return TextButton(
+                          style: TextButton.styleFrom(
+                            // backgroundColor: appTheme.primaryActionColor,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))
                           ),
-                          height: 48,
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0,left: 16),
-                                child: Image.asset("assets/images/app_drawer/home_ic.png",height: 23,color: getIconAndTextColor(buttonId: "home", appTheme: appTheme),),
-                              ),
-                              Text("app_drawer.home",style: TextStyle(fontSize: 14,color: getIconAndTextColor(buttonId: "home", appTheme: appTheme)),).tr(),
-                            ],
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: getButtonColor(buttonId: _pagesList[index]["button_id"]!, appTheme: appTheme),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            height: 48,
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0,left: 16),
+                                  child: Image.asset("assets/images/app_drawer/${_pagesList[index]["icon_name"]!}",height: 23,color: getIconAndTextColor(buttonId: _pagesList[index]["button_id"]!, appTheme: appTheme),),
+                                ),
+                                Text("${_pagesList[index]["localization_ref"]}",style: TextStyle(fontSize: 14,color: getIconAndTextColor(buttonId: _pagesList[index]["button_id"]!, appTheme: appTheme)),).tr(),
+                              ],
+                            ),
                           ),
-                        ),
-                        onPressed: (){
-                          _appDrawerController.changeActiveButton(value: "home");
-                          Scaffold.of(context).openEndDrawer();
-                          Navigator.popUntil(context, (route) => route.isFirst);
-                        },
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          // backgroundColor: appTheme.primaryActionColor,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: getButtonColor(buttonId: "educational", appTheme: appTheme),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          height: 48,
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0,left: 16),
-                                child: Image.asset("assets/images/app_drawer/educational_ic.png",height: 23,color: getIconAndTextColor(buttonId: "educational", appTheme: appTheme),),
-                              ),
-                              Text("app_drawer.education",style: TextStyle(fontSize: 14,color: getIconAndTextColor(buttonId: "educational", appTheme: appTheme)),).tr()
-                            ],
-                          ),
-                        ),
-                        onPressed: (){
-                          _appDrawerController.changeActiveButton(value: "educational");
-                        },
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          // backgroundColor: appTheme.primaryActionColor,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: getButtonColor(buttonId: "partners", appTheme: appTheme),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          height: 48,
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0,left: 16),
-                                child: Image.asset("assets/images/app_drawer/partners_ic.png",height: 23,color: getIconAndTextColor(buttonId: "partners", appTheme: appTheme),),
-                              ),
-                              Text("app_drawer.partners",style: TextStyle(fontSize: 14,color:getIconAndTextColor(buttonId: "partners", appTheme: appTheme)),).tr()
-                            ],
-                          ),
-                        ),
-                        onPressed: (){
-                          _appDrawerController.changeActiveButton(value: "partners");
-                          Scaffold.of(context).openEndDrawer();
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>Partners()), (route)=> route.isFirst);
-
-                        },
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          // backgroundColor: appTheme.primaryActionColor,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: getButtonColor(buttonId: "contact", appTheme: appTheme),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          height: 48,
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0,left: 16),
-                                child: Image.asset("assets/images/app_drawer/contact_ic.png",height: 23,color: getIconAndTextColor(buttonId: "contact", appTheme: appTheme),),
-                              ),
-                              Text("app_drawer.contact",style: TextStyle(fontSize: 14,color: getIconAndTextColor(buttonId: "contact", appTheme: appTheme)),).tr()
-                            ],
-                          ),
-                        ),
-                        onPressed:(){
-                          _appDrawerController.changeActiveButton(value: "contact");
-                          Scaffold.of(context).openEndDrawer();
-                          // Navigator.push(context, MaterialPageRoute(builder: (context)=>ContactUs()));
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>ContactUs()), (route)=> route.isFirst);
-
-                        },
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          // backgroundColor: appTheme.primaryActionColor,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: getButtonColor(buttonId: "about", appTheme: appTheme),
-                          ),
-                          height: 48,
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0,left: 16),
-                                child: Image.asset("assets/images/app_drawer/about_ic.png",height: 23,color: getIconAndTextColor(buttonId: "about", appTheme: appTheme)),
-                              ),
-                              Text("app_drawer.about",style: TextStyle(fontSize: 14,color: getIconAndTextColor(buttonId: "about", appTheme: appTheme)),).tr()
-                            ],
-                          ),
-                        ),
-                        onPressed: (){
-                          Scaffold.of(context).openEndDrawer();
-                          _appDrawerController.changeActiveButton(value: "about");
-                          // Navigator.push(context, MaterialPageRoute(builder: (context)=>AboutUS()));
-                          // Navigator.popUntil(context, (route) => route.isFirst);
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>AboutUS()), (route)=> route.isFirst);
-
-                          // Navigator.of(context).popUntil((route) {
-                          //   print("${route.settings.name},${route.isFirst}");
-                          //   if (route.settings.name != "/home") return false;
-                          //   return true;
-                          // });
-                          // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>AboutUS()), (route) => route.isFirst);
-                        },
-                      ),
-                    ],
+                          onPressed: (){
+                            clickTrigger(buttonId: _pagesList[index]["button_id"]!, context: context);
+                          },
+                        );
+                      }),
+                    ),
                   ),
                 )
               ],
@@ -213,8 +166,8 @@ class CustomAppDrawer extends StatelessWidget {
                   },
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: Platform.isIOS ? 18 : 0,top: 16),
-                  child: Text("v1.0.5",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),),
+                  padding: EdgeInsets.only(bottom: Platform.isIOS ? 18 : 4,top: 16),
+                  child: Text("${_ageoConfig.versionText} ",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),),
                 ),
               ],
             ),

@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           ),
           Positioned(
             bottom: 20,
-            child: Text("${_ageoConfig.appVersion} ",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),)
+            child: Text("${_ageoConfig.versionText} ",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),)
           )
         ],
       ),

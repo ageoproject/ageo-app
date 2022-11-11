@@ -11,6 +11,7 @@ class AgeoConfig{
 
   String get frontendBasePath=>_frontendBasePath;
   String get appVersion=>_appVersion;
+  String get versionText=>"v$appVersion   |   All rights reserved";
 
   AgeoConfig._constructor(){
     if(kReleaseMode){
