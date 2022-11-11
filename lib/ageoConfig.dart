@@ -1,13 +1,16 @@
 import 'package:ageoClient/api.dart';
 import 'package:flutter/foundation.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class AgeoConfig{
   late ApiClient _apiClient;
   late IndexApi _indexApi;
   late String _basePath;
+  late String _appVersion;
   final String _frontendBasePath="https://ageo-web.web.app";
 
   String get frontendBasePath=>_frontendBasePath;
+  String get appVersion=>_appVersion;
 
   AgeoConfig._constructor(){
     if(kReleaseMode){
@@ -28,10 +31,15 @@ class AgeoConfig{
   }
 
   Future<String?> reportEvent({required Event eventDetail})async{
-    print("Reporting=> $eventDetail");
+    // print("Reporting=> $eventDetail");
     Event? eventReportResponse= await _indexApi.reportEvent(eventDetail);
-    print(eventReportResponse);
+    // print(eventReportResponse);
     return eventReportResponse?.eventId;
   }
 
+  Future<void> checkAppVersion()async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    _appVersion=packageInfo.version;
+    // String appName = packageInfo.appName;
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:ageo/ageoConfig.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/toast_message.dart';
+import 'package:ageo/helpers/url_launcher.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +10,7 @@ import 'package:share_plus/share_plus.dart';
 class CommonComponent{
   late CustomThemeData _appTheme;
   final CustomToastMessage _toastMessage=CustomToastMessage();
+  final CustomUrlLauncher _customUrlLauncher=CustomUrlLauncher();
 
   void initializeLoader({required BuildContext context,String? message}){
     _appTheme=Theme.of(context).customTheme;
@@ -94,8 +96,7 @@ class CommonComponent{
                                     Expanded(
                                       child: TextButton(
                                         onPressed: (){
-
-
+                                          _customUrlLauncher.openInBrowser(url: eventLink);
                                         },
                                         child: Text(eventLink,style: TextStyle(color: _appTheme.primaryActionColor,fontSize: 14,decoration: TextDecoration.underline),),
                                       ),

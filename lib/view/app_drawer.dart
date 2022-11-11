@@ -1,12 +1,11 @@
 import 'dart:io';
-
 import 'package:ageo/ageoConfig.dart';
 import 'package:ageo/controllers/app_drawer_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/url_launcher.dart';
 import 'package:ageo/view/about.dart';
 import 'package:ageo/view/contact.dart';
-import 'package:ageo/view/home_page.dart';
+import 'package:ageo/view/partners.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -125,6 +124,9 @@ class CustomAppDrawer extends StatelessWidget {
                         ),
                         onPressed: (){
                           _appDrawerController.changeActiveButton(value: "partners");
+                          Scaffold.of(context).openEndDrawer();
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>Partners()), (route)=> route.isFirst);
+
                         },
                       ),
                       TextButton(

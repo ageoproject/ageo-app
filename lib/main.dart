@@ -1,3 +1,4 @@
+import 'package:ageo/ageoConfig.dart';
 import 'package:ageo/helpers/language_helper.dart';
 import 'package:ageo/helpers/local_Storage.dart';
 import 'package:ageo/controllers/main_controller.dart';
@@ -16,6 +17,8 @@ void main() async{
   await EasyLocalization.ensureInitialized();
   LocalStorage localStorage=LocalStorage();
   LanguageHelper languageHelper=LanguageHelper();
+  final AgeoConfig ageoConfig = AgeoConfig();
+  await ageoConfig.checkAppVersion();
   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
   localStorage.initSharedPreferences(sharedPreferences: sharedPreferences);
   // await localStorage.deleteValue(key: languageHelper.languageKey);

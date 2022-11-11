@@ -1,6 +1,5 @@
+import 'package:ageo/ageoConfig.dart';
 import 'package:ageo/helpers/app_theme.dart';
-import 'package:ageo/view/language_selection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,6 +11,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
 
+  final AgeoConfig _ageoConfig = AgeoConfig();
   late final AnimationController _controller = AnimationController(
     duration:const Duration(milliseconds: 500),
     vsync: this,
@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           ),
           Positioned(
             bottom: 20,
-            child: Text("v5.0.1",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),)
+            child: Text("${_ageoConfig.appVersion} ",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),)
           )
         ],
       ),
