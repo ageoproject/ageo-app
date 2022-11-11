@@ -71,6 +71,7 @@ class BuildingSettlement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
+    bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     return Scaffold(
       body: SingleChildScrollView(
         child: GetBuilder<ReportEventController>(
@@ -85,26 +86,25 @@ class BuildingSettlement extends StatelessWidget {
                 ),
 
                 Align(
-                  alignment: Alignment.center,
+                  alignment: isMobile ? Alignment.center :Alignment.centerLeft,
                   child: Wrap(
+                    spacing: 12,
+                    runSpacing: 12,
                     children: List.generate(_settlementTypeList.length, (index){
-                      return Padding(
-                        padding:  EdgeInsets.only(bottom: 12.0,right: index%2==0?12:0),
-                        child: GestureDetector(
-                          onTap: (){
-                            _reportEventController.selectTypeOfSettlementForBuildingSettlement(value: _settlementTypeList[index]["type_of_damage"]);
-                          },
-                          child: Container(
-                            height: 162,
-                            width: 162,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(_imageContainerBorderRadius),
-                              // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                              border: _reportEventController.buildingSettlementDamage["type_of_settlement"]["answer"]==_settlementTypeList[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
-                            ),
-                            padding:const EdgeInsets.all(12),
-                            child: Image.asset(_settlementTypeList[index]["icon_path"]),
+                      return GestureDetector(
+                        onTap: (){
+                          _reportEventController.selectTypeOfSettlementForBuildingSettlement(value: _settlementTypeList[index]["type_of_damage"]);
+                        },
+                        child: Container(
+                          height: 162,
+                          width: 162,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(_imageContainerBorderRadius),
+                            // border: Border.all(color: appTheme.inputFieldsBorderColor)
+                            border: _reportEventController.buildingSettlementDamage["type_of_settlement"]["answer"]==_settlementTypeList[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
                           ),
+                          padding:const EdgeInsets.all(12),
+                          child: Image.asset(_settlementTypeList[index]["icon_path"]),
                         ),
                       );
                     }),
@@ -112,36 +112,35 @@ class BuildingSettlement extends StatelessWidget {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.only(top:0.0,bottom: 12),
+                  padding: const EdgeInsets.only(top:20.0,bottom: 12),
                   child: Text("monitor_event.building_settlement.other_structures",style: TextStyle(fontSize:14,color:appTheme.primaryActionColor,fontWeight: FontWeight.w600 ),).tr(),
                 ),
 
                 Align(
-                  alignment: Alignment.center,
+                  alignment: isMobile ? Alignment.center :Alignment.centerLeft,
                   child: Wrap(
+                    spacing: 12,
+                    runSpacing: 12,
                     children: List.generate(_otherStructureList.length, (index){
-                      return Padding(
-                        padding:  EdgeInsets.only(bottom: 12.0,right: index%2==0?12:0),
-                        child: GestureDetector(
-                          onTap: (){
-                            _reportEventController.selectOtherStructureForBuildingSettlement(value: _otherStructureList[index]["type_of_damage"]);
-                          },
-                          child: Container(
-                            height: 162,
-                            width: 162,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(_imageContainerBorderRadius),
-                              // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                              border: _reportEventController.buildingSettlementDamage["other_structure"]["answer"]==_otherStructureList[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
-                            ),
-                            padding:const EdgeInsets.all(12),
-                            child: Column(
-                              children: [
-                                Image.asset(_otherStructureList[index]["icon_path"],height: 110,),
-                                const SizedBox(height: 12,),
-                                Expanded(child: Text(_otherStructureList[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
-                              ],
-                            ),
+                      return GestureDetector(
+                        onTap: (){
+                          _reportEventController.selectOtherStructureForBuildingSettlement(value: _otherStructureList[index]["type_of_damage"]);
+                        },
+                        child: Container(
+                          height: 162,
+                          width: 162,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(_imageContainerBorderRadius),
+                            // border: Border.all(color: appTheme.inputFieldsBorderColor)
+                            border: _reportEventController.buildingSettlementDamage["other_structure"]["answer"]==_otherStructureList[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                          ),
+                          padding:const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              Image.asset(_otherStructureList[index]["icon_path"],height: 110,),
+                              const SizedBox(height: 12,),
+                              Expanded(child: Text(_otherStructureList[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
+                            ],
                           ),
                         ),
                       );
@@ -150,36 +149,35 @@ class BuildingSettlement extends StatelessWidget {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.only(top:0.0,bottom: 12),
+                  padding: const EdgeInsets.only(top:20.0,bottom: 12),
                   child: Text("monitor_event.building_settlement.cracks_direction",style: TextStyle(fontSize:14,color:appTheme.primaryActionColor,fontWeight: FontWeight.w600 ),).tr(),
                 ),
 
                 Align(
-                  alignment: Alignment.center,
+                  alignment: isMobile ? Alignment.center :Alignment.centerLeft,
                   child: Wrap(
+                    spacing: 12,
+                    runSpacing: 12,
                     children: List.generate(_cracksDirectionList.length, (index){
-                      return Padding(
-                        padding:  EdgeInsets.only(bottom: 12.0,right: index%2==0?12:0),
-                        child: GestureDetector(
-                          onTap: (){
-                            _reportEventController.selectDirectionOfCrackForBuildingSettlement(value: _cracksDirectionList[index]["type_of_damage"]);
-                          },
-                          child: Container(
-                            height: 162,
-                            width: 162,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(_imageContainerBorderRadius),
-                              // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                              border: _reportEventController.buildingSettlementDamage["direction_of_cracks"]["answer"].contains(_cracksDirectionList[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
-                            ),
-                            padding:const EdgeInsets.all(12),
-                            child: Column(
-                              children: [
-                                Image.asset(_cracksDirectionList[index]["icon_path"],height: 110,),
-                                const SizedBox(height: 12,),
-                                Expanded(child: Text(_cracksDirectionList[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
-                              ],
-                            ),
+                      return GestureDetector(
+                        onTap: (){
+                          _reportEventController.selectDirectionOfCrackForBuildingSettlement(value: _cracksDirectionList[index]["type_of_damage"]);
+                        },
+                        child: Container(
+                          height: 162,
+                          width: 162,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(_imageContainerBorderRadius),
+                            // border: Border.all(color: appTheme.inputFieldsBorderColor)
+                            border: _reportEventController.buildingSettlementDamage["direction_of_cracks"]["answer"].contains(_cracksDirectionList[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                          ),
+                          padding:const EdgeInsets.all(12),
+                          child: Column(
+                            children: [
+                              Image.asset(_cracksDirectionList[index]["icon_path"],height: 110,),
+                              const SizedBox(height: 12,),
+                              Expanded(child: Text(_cracksDirectionList[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
+                            ],
                           ),
                         ),
                       );

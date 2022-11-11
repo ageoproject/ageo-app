@@ -72,6 +72,7 @@ class Partners extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
+    bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     return Scaffold(
       drawer: CustomAppDrawer(),
       body: WillPopScope(
@@ -88,30 +89,29 @@ class Partners extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Wrap(
                     // alignment: WrapAlignment.center,
+                    spacing: 12,
+                    runSpacing: 12,
                     children: List<Widget>.generate(_partnersDetailList.length, (index) {
-                      return Padding(
-                        padding: index % 2 ==0 ? const EdgeInsets.only(right: 12.0,bottom: 12.0):const EdgeInsets.only(bottom: 12),
-                        child: GestureDetector(
-                          onTap: (){
-                            _customUrlLauncher.openInBrowser(url: _partnersDetailList[index]["web_link"]??"");
-                          },
-                          child: Container(
-                            height: 160,
-                            width: 162,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: appTheme.inputFieldsBorderColor),
-                                borderRadius: BorderRadius.circular(12)
-                            ),
-                            padding:const EdgeInsets.all(10),
-                            child: Column(
-                              children: [
-                                Image.asset("assets/images/partners/${_partnersDetailList[index]["icon_name"]!}",height: 80,),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Text("${_partnersDetailList[index]["name"]}",style: TextStyle(fontSize: 12,color: appTheme.primaryActionColor),textAlign: TextAlign.center,),
-                                ),
-                              ],
-                            ),
+                      return GestureDetector(
+                        onTap: (){
+                          _customUrlLauncher.openInBrowser(url: _partnersDetailList[index]["web_link"]??"");
+                        },
+                        child: Container(
+                          height: 162,
+                          width: 162,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: appTheme.inputFieldsBorderColor),
+                              borderRadius: BorderRadius.circular(12)
+                          ),
+                          padding:const EdgeInsets.all(10),
+                          child: Column(
+                            children: [
+                              Image.asset("assets/images/partners/${_partnersDetailList[index]["icon_name"]!}",height: isMobile? 80:60,),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Text("${_partnersDetailList[index]["name"]}",style: TextStyle(fontSize: 12,color: appTheme.primaryActionColor),textAlign: TextAlign.center,),
+                              ),
+                            ],
                           ),
                         ),
                       );

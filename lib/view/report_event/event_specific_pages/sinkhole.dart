@@ -125,29 +125,28 @@ class Sinkhole extends StatelessWidget {
                 ),
 
                 Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
                   children: List.generate(_typeOfSinkholeDamage.length, (index) {
-                    return Padding(
-                      padding:  EdgeInsets.only(bottom: 12.0,right: index%2==0?12:0),
-                      child: GestureDetector(
-                        onTap: (){
-                          _reportEventController.selectObservedDamageForSinkhole(value: _typeOfSinkholeDamage[index]["type_of_damage"]!);
-                        },
-                        child: Container(
-                          height: 77,
-                          width: 162,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                            border: _reportEventController.sinkholeDamage["observed_damage"]["answer"]==_typeOfSinkholeDamage[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
-                          ),
-                          padding:const EdgeInsets.all(12),
-                          child: Row(
-                            children: [
-                              Image.asset(_typeOfSinkholeDamage[index]["icon_path"]!,),
-                              const SizedBox(width: 12,),
-                              Expanded(child: Text(_typeOfSinkholeDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
-                            ],
-                          ),
+                    return GestureDetector(
+                      onTap: (){
+                        _reportEventController.selectObservedDamageForSinkhole(value: _typeOfSinkholeDamage[index]["type_of_damage"]!);
+                      },
+                      child: Container(
+                        height: 77,
+                        width: 162,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          // border: Border.all(color: appTheme.inputFieldsBorderColor)
+                          border: _reportEventController.sinkholeDamage["observed_damage"]["answer"]==_typeOfSinkholeDamage[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                        ),
+                        padding:const EdgeInsets.all(12),
+                        child: Row(
+                          children: [
+                            Image.asset(_typeOfSinkholeDamage[index]["icon_path"]!,),
+                            const SizedBox(width: 12,),
+                            Expanded(child: Text(_typeOfSinkholeDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
+                          ],
                         ),
                       ),
                     );
@@ -215,29 +214,28 @@ class Sinkhole extends StatelessWidget {
                 ),
 
                 Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
                   children: List.generate(_typeOfInfrastructure.length, (index) {
-                    return Padding(
-                      padding:  EdgeInsets.only(bottom: 12.0,right: index%2==0?12:0),
-                      child: GestureDetector(
-                        onTap: (){
-                          _reportEventController.selectInfrastructureDamageForSinkhole(value: _typeOfInfrastructure[index]["type_of_damage"]!);
-                        },
-                        child: Container(
-                          height: 77,
-                          width: 162,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                            border: _reportEventController.sinkholeDamage["affected_infrastructure"]["answer"].contains(_typeOfInfrastructure[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
-                          ),
-                          padding:const EdgeInsets.all(12),
-                          child: Row(
-                            children: [
-                              Image.asset(_typeOfInfrastructure[index]["icon_path"]!,),
-                              const SizedBox(width: 12,),
-                              Expanded(child: Text(_typeOfInfrastructure[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
-                            ],
-                          ),
+                    return GestureDetector(
+                      onTap: (){
+                        _reportEventController.selectInfrastructureDamageForSinkhole(value: _typeOfInfrastructure[index]["type_of_damage"]!);
+                      },
+                      child: Container(
+                        height: 77,
+                        width: 162,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          // border: Border.all(color: appTheme.inputFieldsBorderColor)
+                          border: _reportEventController.sinkholeDamage["affected_infrastructure"]["answer"].contains(_typeOfInfrastructure[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                        ),
+                        padding:const EdgeInsets.all(12),
+                        child: Row(
+                          children: [
+                            Image.asset(_typeOfInfrastructure[index]["icon_path"]!,),
+                            const SizedBox(width: 12,),
+                            Expanded(child: Text(_typeOfInfrastructure[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
+                          ],
                         ),
                       ),
                     );

@@ -28,6 +28,7 @@ class _QuickReportEventState extends State<QuickReportEvent> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 10),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,31 +38,30 @@ class _QuickReportEventState extends State<QuickReportEvent> {
                     child: Text("common_question_page.upload_or_capture",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
                   ),
                   Wrap(
+                    spacing: 12,
+                    runSpacing: 12,
                     children: List.generate(3, (index) {
                       if(_reportEventController.uploadedImageList.length>index){
-                        return Padding(
-                          padding: EdgeInsets.only(top:12.0,left: index%2==0?0:12),
-                          child: SizedBox(
-                            height: 162,
-                            width: 162,
-                            child: Stack(
-                              alignment: Alignment.topRight,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: Image.file(File(_reportEventController.uploadedImageList[index].path),fit: BoxFit.fill,height: 165, width: 165,),
+                        return SizedBox(
+                          height: 162,
+                          width: 162,
+                          child: Stack(
+                            alignment: Alignment.topRight,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Image.file(File(_reportEventController.uploadedImageList[index].path),fit: BoxFit.fill,height: 165, width: 165,),
+                              ),
+                              GestureDetector(
+                                onTap: (){
+                                  _reportEventController.deleteImage(image: _reportEventController.uploadedImageList[index]);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset("assets/images/report_event/close_ic.png",height: 24,),
                                 ),
-                                GestureDetector(
-                                  onTap: (){
-                                    _reportEventController.deleteImage(image: _reportEventController.uploadedImageList[index]);
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset("assets/images/report_event/close_ic.png",height: 24,),
-                                  ),
-                                )
-                              ],
-                            ),
+                              )
+                            ],
                           ),
                         );
                       }else{

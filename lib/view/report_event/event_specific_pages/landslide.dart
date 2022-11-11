@@ -96,29 +96,28 @@ class Landslide extends StatelessWidget {
                 ),
 
                 Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
                   children: List.generate(_typeOfFloodDamage.length, (index) {
-                    return Padding(
-                      padding:  EdgeInsets.only(bottom: 12.0,right: index%2==0?12:0),
-                      child: GestureDetector(
-                        onTap: (){
-                          _reportEventController.selectObservedDamageForLandslide(value: _typeOfFloodDamage[index]["type_of_damage"]!);
-                        },
-                        child: Container(
-                          height: 77,
-                          width: 162,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                            border: _reportEventController.landslideDamage["observed_damage"]["answer"].contains(_typeOfFloodDamage[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
-                          ),
-                          padding:const EdgeInsets.all(12),
-                          child: Row(
-                            children: [
-                              Image.asset(_typeOfFloodDamage[index]["icon_path"]!,),
-                              const SizedBox(width: 12,),
-                              Expanded(child: Text(_typeOfFloodDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
-                            ],
-                          ),
+                    return GestureDetector(
+                      onTap: (){
+                        _reportEventController.selectObservedDamageForLandslide(value: _typeOfFloodDamage[index]["type_of_damage"]!);
+                      },
+                      child: Container(
+                        height: 77,
+                        width: 162,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          // border: Border.all(color: appTheme.inputFieldsBorderColor)
+                          border: _reportEventController.landslideDamage["observed_damage"]["answer"].contains(_typeOfFloodDamage[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                        ),
+                        padding:const EdgeInsets.all(12),
+                        child: Row(
+                          children: [
+                            Image.asset(_typeOfFloodDamage[index]["icon_path"]!,),
+                            const SizedBox(width: 12,),
+                            Expanded(child: Text(_typeOfFloodDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
+                          ],
                         ),
                       ),
                     );

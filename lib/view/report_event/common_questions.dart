@@ -197,20 +197,22 @@ class CommonQuestions extends StatelessWidget {
                   ),
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("common_question_page.upload_or_capture",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
-                  ),
-                  GetBuilder<ReportEventController>(
-                    builder:(_)=> Wrap(
-                      children: List.generate(3, (index) {
-                        if(_reportEventController.uploadedImageList.length>index){
-                          return Padding(
-                            padding: EdgeInsets.only(top:12.0,left: index%2==0?0:12),
-                            child: SizedBox(
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("common_question_page.upload_or_capture",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
+                    ),
+                    GetBuilder<ReportEventController>(
+                      builder:(_)=> Wrap(
+                        spacing: 12,
+                        runSpacing: 12,
+                        children: List.generate(3, (index) {
+                          if(_reportEventController.uploadedImageList.length>index){
+                            return SizedBox(
                               height: 162,
                               width: 162,
                               child: Stack(
@@ -231,37 +233,37 @@ class CommonQuestions extends StatelessWidget {
                                   )
                                 ],
                               ),
-                            ),
-                          );
-                        }else{
-                          return Padding(
-                            padding: EdgeInsets.only(top:12.0,left: index%2==0?0:12),
-                            child: GestureDetector(
-                              onTap: ()async{
-                                XFile? image=await showDialog(context: context, builder: (BuildContext context){
-                                  return ImageSelector();
-                                });
-                                if(image!=null){
-                                  _reportEventController.addImage(image: image);
-                                }
-                              },
-                              child: Container(
-                                height: 162,
-                                width: 162,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(color: appTheme.inputFieldsBorderColor)
+                            );
+                          }else{
+                            return Padding(
+                              padding: EdgeInsets.only(top:12.0,left: index%2==0?0:12),
+                              child: GestureDetector(
+                                onTap: ()async{
+                                  XFile? image=await showDialog(context: context, builder: (BuildContext context){
+                                    return ImageSelector();
+                                  });
+                                  if(image!=null){
+                                    _reportEventController.addImage(image: image);
+                                  }
+                                },
+                                child: Container(
+                                  height: 162,
+                                  width: 162,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(color: appTheme.inputFieldsBorderColor)
+                                  ),
+                                  child: Image.asset("assets/images/report_event/camera_ic.png",color: appTheme.primaryActionColor,width: 30,),
                                 ),
-                                child: Image.asset("assets/images/report_event/camera_ic.png",color: appTheme.primaryActionColor,width: 30,),
                               ),
-                            ),
-                          );
-                        }
-                      }),
+                            );
+                          }
+                        }),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),

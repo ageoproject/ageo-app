@@ -21,29 +21,28 @@ class EventTypeList extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Wrap(
+                spacing: 12,
+                runSpacing: 12,
               children: List<Widget>.generate(_reportEventController.eventDetailList.length, (index) {
-                return Padding(
-                  padding: index % 2 ==0 ? const EdgeInsets.only(right: 12.0,bottom: 12.0):const EdgeInsets.only(bottom: 12),
-                  child: GestureDetector(
-                    onTap: (){
-                      _reportEventController.changeSelectedEventType(value: _reportEventController.eventDetailList[index]["event_type"]);
-                    },
-                    child: Container(
-                      padding:const EdgeInsets.symmetric(horizontal: 26,vertical: 16),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          // border: Border.all(color: appTheme.primaryActionColor)
-                          border: Border.all(color: _reportEventController.eventDetailList[index]["event_type"]==_reportEventController.selectedEventType? appTheme.primaryActionColor : appTheme.inputFieldsBorderColor)
-                      ),
-                      child: Column(
-                        children: [
-                          Image.asset("${_reportEventController.filePath}${_reportEventController.eventDetailList[index]["icon_name"]}.png",width: 100,),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16),
-                            child: Text("${_reportEventController.eventDetailList[index]["event_name"]}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: appTheme.primaryTextColor),textAlign: TextAlign.center,).tr(),
-                          ),
-                        ],
-                      ),
+                return GestureDetector(
+                  onTap: (){
+                    _reportEventController.changeSelectedEventType(value: _reportEventController.eventDetailList[index]["event_type"]);
+                  },
+                  child: Container(
+                    padding:const EdgeInsets.symmetric(horizontal: 26,vertical: 16),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        // border: Border.all(color: appTheme.primaryActionColor)
+                        border: _reportEventController.eventDetailList[index]["event_type"]==_reportEventController.selectedEventType? Border.all(color:  appTheme.primaryActionColor,width: 2):Border.all(color: appTheme.inputFieldsBorderColor)
+                    ),
+                    child: Column(
+                      children: [
+                        Image.asset("${_reportEventController.filePath}${_reportEventController.eventDetailList[index]["icon_name"]}.png",width: 110,),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16),
+                          child: Text("${_reportEventController.eventDetailList[index]["event_name"]}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: appTheme.primaryTextColor),textAlign: TextAlign.center,).tr(),
+                        ),
+                      ],
                     ),
                   ),
                 );

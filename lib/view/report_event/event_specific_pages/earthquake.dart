@@ -116,29 +116,28 @@ class Earthquake extends StatelessWidget {
                               ),
                             ),
                             Wrap(
+                              spacing: 12,
+                              runSpacing: 12,
                               children: List<Widget>.generate(_typeOfEarthquakeDamage.length, (index) {
-                                return Padding(
-                                  padding:  EdgeInsets.only(bottom: 12.0,right: index%2==0?12:0),
-                                  child: GestureDetector(
-                                    onTap: (){
-                                      _reportEventController.selectObservedDamageForEarthquake(index: buildingIndex, answer: _typeOfEarthquakeDamage[index]["type_of_damage"]!);
-                                    },
-                                    child: Container(
-                                      height: 77,
-                                      width: 162,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
-                                        // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                                        border: _reportEventController.earthquakeDamage[buildingIndex]["observed_damage"]["answer"]== _typeOfEarthquakeDamage[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
-                                      ),
-                                      padding:const EdgeInsets.all(12),
-                                      child: Row(
-                                        children: [
-                                          Image.asset(_typeOfEarthquakeDamage[index]["icon_path"]!,),
-                                          const SizedBox(width: 12,),
-                                          Expanded(child: Text(_typeOfEarthquakeDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
-                                        ],
-                                      ),
+                                return GestureDetector(
+                                  onTap: (){
+                                    _reportEventController.selectObservedDamageForEarthquake(index: buildingIndex, answer: _typeOfEarthquakeDamage[index]["type_of_damage"]!);
+                                  },
+                                  child: Container(
+                                    height: 77,
+                                    width: 162,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      // border: Border.all(color: appTheme.inputFieldsBorderColor)
+                                      border: _reportEventController.earthquakeDamage[buildingIndex]["observed_damage"]["answer"]== _typeOfEarthquakeDamage[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                                    ),
+                                    padding:const EdgeInsets.all(12),
+                                    child: Row(
+                                      children: [
+                                        Image.asset(_typeOfEarthquakeDamage[index]["icon_path"]!,),
+                                        const SizedBox(width: 12,),
+                                        Expanded(child: Text(_typeOfEarthquakeDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
+                                      ],
                                     ),
                                   ),
                                 );
@@ -159,7 +158,7 @@ class Earthquake extends StatelessWidget {
                   },
                   child: Container(
                     height: 60,
-                    width: 132,
+                    width: 145,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(color: appTheme.inputFieldsBorderColor),
