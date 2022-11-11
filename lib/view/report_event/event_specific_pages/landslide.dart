@@ -134,7 +134,7 @@ class Landslide extends StatelessWidget {
                         child: Text("common_key.other",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
                       ),
                       TextFormField(
-                        // initialValue:_studentProfile.user?.dob==null?"": _component.formatDateMonthYearInWords.format(DateTime.parse("${_studentProfile.user!.dob}")),
+                        initialValue: _reportEventController.landslideDamage["observed_damage"]["other"],
                         textInputAction: TextInputAction.next,
                         minLines: 4,
                         keyboardType: TextInputType.multiline,

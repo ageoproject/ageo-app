@@ -275,6 +275,7 @@ class CommonQuestions extends StatelessWidget {
                       child: Text("common_question_page.add_comments",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
                     ),
                     TextFormField(
+                      initialValue: _reportEventController.comment,
                       // initialValue:_studentProfile.user?.dob==null?"": _component.formatDateMonthYearInWords.format(DateTime.parse("${_studentProfile.user!.dob}")),
                       textInputAction: TextInputAction.next,
                       minLines: 6,

@@ -3,6 +3,7 @@ import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/imagehelper.dart';
 import 'package:ageo/view/app_bar.dart';
+import 'package:ageo/view/app_drawer.dart';
 import 'package:ageo/view/report_event/event_type.dart';
 import 'package:ageo/view/report_event/map_view.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -103,6 +104,7 @@ class _QuickReportEventState extends State<QuickReportEvent> {
                       child: Text("common_question_page.add_comments",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
                     ),
                     TextFormField(
+                      initialValue: _reportEventController.comment,
                       // initialValue:_studentProfile.user?.dob==null?"": _component.formatDateMonthYearInWords.format(DateTime.parse("${_studentProfile.user!.dob}")),
                       textInputAction: TextInputAction.next,
                       minLines: 6,
@@ -189,6 +191,7 @@ class _QuickReportEventState extends State<QuickReportEvent> {
         }
       },
       child: Scaffold(
+        drawer: CustomAppDrawer(),
         body: Column(
           children: [
             CustomAppBar(title: "Quick Monitor Event",),

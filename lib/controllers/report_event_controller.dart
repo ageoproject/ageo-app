@@ -195,6 +195,7 @@ class ReportEventController extends GetxController{
 
   RxString get eventDate=>_eventDate;
   RxString get eventTime=>_eventTime;
+  String? get comment=>_comment;
   List<Map<String,String>> get commonQuestion=>_commonQuestions;
   List<XFile> get uploadedImageList=>_uploadedImageList;
   // List<String> get commonQuestionLocalizationKeys=>_commonQuestionLocalizationKeys;

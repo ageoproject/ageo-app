@@ -20,6 +20,8 @@ class _CameraPageState extends State<CameraPage> {
   late CameraController _cameraController;
   late Future<void> _initializeControllerFuture;
   int _activeCameraId=0;
+  late CustomThemeData appTheme;
+  FlashMode _flashMode=FlashMode.auto;
   late StreamSubscription<MagnetometerEvent> streamSubscriptionMagnetometer;
   late StreamSubscription<GyroscopeEvent> streamSubscriptionGyroscopeEvent;
   late StreamSubscription<AccelerometerEvent> streamSubscriptionAccelerometerEvent;
@@ -28,6 +30,7 @@ class _CameraPageState extends State<CameraPage> {
   void initState() {
     super.initState();
     _cameraController = CameraController(widget.cameraList[_activeCameraId], ResolutionPreset.max,enableAudio: false);
+    _cameraController.setFlashMode(_flashMode);
     _initializeControllerFuture = _cameraController.initialize().then((_) {
       if (!mounted) {
         return;
@@ -45,6 +48,23 @@ class _CameraPageState extends State<CameraPage> {
         }
       }
     });
+  }
+
+  Widget buildFlashButton(){
+    switch(_flashMode){
+      case FlashMode.auto:{
+        return Icon(Icons.flash_auto,color: appTheme.iconColor,);
+      }
+      case FlashMode.off:{
+        return Icon(Icons.flash_off,color: appTheme.iconColor,);
+      }
+      case FlashMode.always:{
+        return Icon(Icons.flash_on,color: appTheme.iconColor,);
+      }
+      default:{
+        return Container();
+      }
+    }
   }
 
   void closeStreamSubscriptionMagnetometer(){
@@ -69,7 +89,7 @@ class _CameraPageState extends State<CameraPage> {
 
   @override
   Widget build(BuildContext context) {
-    CustomThemeData appTheme=Theme.of(context).customTheme;
+    appTheme=Theme.of(context).customTheme;
     return Scaffold(
         body: FutureBuilder<void>(
           future: _initializeControllerFuture,
@@ -149,8 +169,18 @@ class _CameraPageState extends State<CameraPage> {
                 },
               ),
               IconButton(
-                icon: Image.asset("assets/images/report_event/media_ic.png",height: 20,),
-                onPressed: (){},
+                icon: buildFlashButton(),
+                onPressed: ()async{
+                  if(_flashMode==FlashMode.auto){
+                    _flashMode=FlashMode.always;
+                  }else if(_flashMode==FlashMode.always){
+                    _flashMode=FlashMode.off;
+                  }else{
+                    _flashMode=FlashMode.auto;
+                  }
+                  await _cameraController.setFlashMode(_flashMode);
+                  setState(() {});
+                },
               ),
             ],
           ),

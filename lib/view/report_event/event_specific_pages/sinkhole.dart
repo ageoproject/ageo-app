@@ -163,6 +163,7 @@ class Sinkhole extends StatelessWidget {
                         child: Text("common_key.other",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
                       ),
                       TextFormField(
+                        initialValue: _reportEventController.sinkholeDamage["observed_damage"]["other"],
                         textInputAction: TextInputAction.next,
                         minLines: 4,
                         keyboardType: TextInputType.multiline,
@@ -252,6 +253,7 @@ class Sinkhole extends StatelessWidget {
                         child: Text("monitor_event.sinkhole.other",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
                       ),
                       TextFormField(
+                        initialValue: _reportEventController.sinkholeDamage["affected_infrastructure"]["other"],
                         textInputAction: TextInputAction.next,
                         minLines: 4,
                         keyboardType: TextInputType.multiline,
