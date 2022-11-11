@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
 
 class CommonComponent{
+  final GlobalKey _globalKey = GlobalKey();
   late CustomThemeData _appTheme;
   final CustomToastMessage _toastMessage=CustomToastMessage();
   final CustomUrlLauncher _customUrlLauncher=CustomUrlLauncher();
@@ -124,6 +125,7 @@ class CommonComponent{
                     width: 150,
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextButton(
+                      key: _globalKey,
                       style: TextButton.styleFrom(
                         backgroundColor: _appTheme.primaryActionColor,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
@@ -139,7 +141,9 @@ class CommonComponent{
                         ],
                       ),
                       onPressed: (){
-                        Share.share(eventLink);
+                        RenderBox box = _globalKey.currentContext?.findRenderObject() as RenderBox;
+                        Offset position = box.localToGlobal(Offset.zero); //this is global p
+                        Share.share(eventLink,sharePositionOrigin: Rect.fromCenter(center: Offset(position.dx+60,position.dy+24),width: 1,height: 1));
                       },
                     ),
                   ),
