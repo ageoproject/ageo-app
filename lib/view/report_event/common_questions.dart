@@ -15,6 +15,7 @@ class CommonQuestions extends StatelessWidget {
   final double _checkBoxBorderRadius=2;
   final TextEditingController _dateTextEditingController=TextEditingController();
   final TextEditingController _timeTextEditingController=TextEditingController();
+  final _timeFormat12Hour = DateFormat('hh:mm a');
 
   Future<DateTime?> openDateCalender({required BuildContext context,required String initialDate})async{
     // TimeOfDay? timeOfDay=await showTimePicker(context: context, initialTime: TimeOfDay.now());
@@ -28,16 +29,21 @@ class CommonQuestions extends StatelessWidget {
   }
 
 
+  String formatTime({required String time}){
+    return _timeFormat12Hour.format(DateTime.parse(time));
+  }
+
   @override
   Widget build(BuildContext context) {
+    bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     CustomThemeData appTheme=Theme.of(context).customTheme;
     _reportEventController.changeEventDateAndTime();
     _dateTextEditingController.text=_reportEventController.eventDate.value;
-    _timeTextEditingController.text=_reportEventController.eventTime.value;
+    _timeTextEditingController.text=formatTime(time:_reportEventController.eventDetail.time!);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 8),
           child: Column(
             children: [
               Row(
@@ -143,9 +149,9 @@ class CommonQuestions extends StatelessWidget {
                       onTap: ()async{
                         TimeOfDay? selectedTime= await openTimeCalender(context: context, initialDateTime: "${_reportEventController.eventDate.padLeft(2,"0")} ${_reportEventController.eventTime.value.padLeft(2,"0")}");
                         if(selectedTime!=null){
-                          String eventTime="${selectedTime.hour.toString().padLeft(2,"0")}:${selectedTime.minute}";
+                          String eventTime="${selectedTime.hour.toString().padLeft(2,"0")}:${selectedTime.minute.toString().padLeft(2,"0")}";
                           _reportEventController.changeEventTime(date: eventTime);
-                          _timeTextEditingController.text=eventTime;
+                          _timeTextEditingController.text=formatTime(time:_reportEventController.eventDetail.time!);
                         }
                         // await _showCalendar(selectedDate: DateTime.parse("${_studentProfile.user!.dob}"));
 
@@ -211,10 +217,11 @@ class CommonQuestions extends StatelessWidget {
                         spacing: 12,
                         runSpacing: 12,
                         children: List.generate(3, (index) {
+                          double cardWidthAndHeight=(MediaQuery.of(context).size.width/2)-24;
                           if(_reportEventController.uploadedImageList.length>index){
                             return SizedBox(
-                              height: 162,
-                              width: 162,
+                              height: isMobile?cardWidthAndHeight:162,
+                              width: isMobile?cardWidthAndHeight:162,
                               child: Stack(
                                 alignment: Alignment.topRight,
                                 children: [
@@ -235,27 +242,24 @@ class CommonQuestions extends StatelessWidget {
                               ),
                             );
                           }else{
-                            return Padding(
-                              padding: EdgeInsets.only(top:12.0,left: index%2==0?0:12),
-                              child: GestureDetector(
-                                onTap: ()async{
-                                  XFile? image=await showDialog(context: context, builder: (BuildContext context){
-                                    return ImageSelector();
-                                  });
-                                  if(image!=null){
-                                    _reportEventController.addImage(image: image);
-                                  }
-                                },
-                                child: Container(
-                                  height: 162,
-                                  width: 162,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      border: Border.all(color: appTheme.inputFieldsBorderColor)
-                                  ),
-                                  child: Image.asset("assets/images/report_event/camera_ic.png",color: appTheme.primaryActionColor,width: 30,),
+                            return GestureDetector(
+                              onTap: ()async{
+                                XFile? image=await showDialog(context: context, builder: (BuildContext context){
+                                  return ImageSelector();
+                                });
+                                if(image!=null){
+                                  _reportEventController.addImage(image: image);
+                                }
+                              },
+                              child: Container(
+                                height: isMobile?cardWidthAndHeight:162,
+                                width: isMobile?cardWidthAndHeight:162,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(color: appTheme.inputFieldsBorderColor)
                                 ),
+                                child: Image.asset("assets/images/report_event/camera_ic.png",color: appTheme.primaryActionColor,width: 30,),
                               ),
                             );
                           }
@@ -281,6 +285,7 @@ class CommonQuestions extends StatelessWidget {
                       minLines: 6,
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
+                      maxLength: 1500,
                       style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
                       decoration: InputDecoration(
                         hintText: tr("common_question_page.comment_hint"),

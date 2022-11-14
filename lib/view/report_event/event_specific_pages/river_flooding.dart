@@ -36,6 +36,7 @@ class RiverFlooding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
+    bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     return GetBuilder<ReportEventController>(
         builder: (_)=>Scaffold(
           body: SingleChildScrollView(
@@ -45,6 +46,7 @@ class RiverFlooding extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
@@ -57,11 +59,13 @@ class RiverFlooding extends StatelessWidget {
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
                           ],
+                          maxLength: 4,
                           textInputAction: TextInputAction.next,
                           style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
+                            counterText: "",
                             errorMaxLines: 2,
                             contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),
                             enabledBorder: OutlineInputBorder(
@@ -106,13 +110,14 @@ class RiverFlooding extends StatelessWidget {
                     spacing: 12,
                     runSpacing: 12,
                     children: List.generate(_typeOfFloodDamage.length, (index) {
+                      double cardWidth=(MediaQuery.of(context).size.width/2)-34;
                       return GestureDetector(
                         onTap: (){
                           _reportEventController.selectObservedDamageForFlood(value: _typeOfFloodDamage[index]["type_of_damage"]!);
                         },
                         child: Container(
                           height: 77,
-                          width: 162,
+                          width: isMobile? cardWidth :162,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             // border: Border.all(color: appTheme.inputFieldsBorderColor)
@@ -121,7 +126,7 @@ class RiverFlooding extends StatelessWidget {
                           padding:const EdgeInsets.all(12),
                           child: Row(
                             children: [
-                              Image.asset(_typeOfFloodDamage[index]["icon_path"]!,),
+                              isMobile? Image.asset(_typeOfFloodDamage[index]["icon_path"]!, width: cardWidth/3,):Image.asset(_typeOfFloodDamage[index]["icon_path"]!),
                               const SizedBox(width: 12,),
                               Expanded(child: Text(_typeOfFloodDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
                             ],
@@ -144,6 +149,7 @@ class RiverFlooding extends StatelessWidget {
                           initialValue: _reportEventController.riverFloodingDamage["observed_damage"]["other"],
                           textInputAction: TextInputAction.next,
                           minLines: 4,
+                          maxLength: 1500,
                           keyboardType: TextInputType.multiline,
                           maxLines: null,
                           style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),

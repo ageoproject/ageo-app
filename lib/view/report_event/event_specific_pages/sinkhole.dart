@@ -58,6 +58,8 @@ class Sinkhole extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
+    bool isMobile=MediaQuery.of(context).size.shortestSide<600;
+    double cardWidth=(MediaQuery.of(context).size.width/2)-34;
     return GetBuilder<ReportEventController>(
       builder: (_)=>Scaffold(
         body: SingleChildScrollView(
@@ -79,11 +81,13 @@ class Sinkhole extends StatelessWidget {
                         inputFormatters: [
                           FilteringTextInputFormatter.digitsOnly
                         ],
+                        maxLength: 4,
                         textInputAction: TextInputAction.next,
                         style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
+                          counterText: "",
                           errorMaxLines: 2,
                           contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),
                           enabledBorder: OutlineInputBorder(
@@ -134,7 +138,7 @@ class Sinkhole extends StatelessWidget {
                       },
                       child: Container(
                         height: 77,
-                        width: 162,
+                        width: isMobile ?cardWidth:162,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           // border: Border.all(color: appTheme.inputFieldsBorderColor)
@@ -143,7 +147,7 @@ class Sinkhole extends StatelessWidget {
                         padding:const EdgeInsets.all(12),
                         child: Row(
                           children: [
-                            Image.asset(_typeOfSinkholeDamage[index]["icon_path"]!,),
+                            isMobile ?Image.asset(_typeOfSinkholeDamage[index]["icon_path"]!,width: cardWidth/3,):Image.asset(_typeOfSinkholeDamage[index]["icon_path"]!,),
                             const SizedBox(width: 12,),
                             Expanded(child: Text(_typeOfSinkholeDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
                           ],
@@ -166,6 +170,7 @@ class Sinkhole extends StatelessWidget {
                         initialValue: _reportEventController.sinkholeDamage["observed_damage"]["other"],
                         textInputAction: TextInputAction.next,
                         minLines: 4,
+                        maxLength: 1500,
                         keyboardType: TextInputType.multiline,
                         maxLines: null,
                         style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
@@ -224,7 +229,7 @@ class Sinkhole extends StatelessWidget {
                       },
                       child: Container(
                         height: 77,
-                        width: 162,
+                        width: isMobile ? cardWidth : 162,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           // border: Border.all(color: appTheme.inputFieldsBorderColor)
@@ -233,7 +238,7 @@ class Sinkhole extends StatelessWidget {
                         padding:const EdgeInsets.all(12),
                         child: Row(
                           children: [
-                            Image.asset(_typeOfInfrastructure[index]["icon_path"]!,),
+                            isMobile ? Image.asset(_typeOfInfrastructure[index]["icon_path"]!,width: cardWidth/4,) : Image.asset(_typeOfInfrastructure[index]["icon_path"]!,),
                             const SizedBox(width: 12,),
                             Expanded(child: Text(_typeOfInfrastructure[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
                           ],
@@ -256,6 +261,7 @@ class Sinkhole extends StatelessWidget {
                         initialValue: _reportEventController.sinkholeDamage["affected_infrastructure"]["other"],
                         textInputAction: TextInputAction.next,
                         minLines: 4,
+                        maxLength: 1500,
                         keyboardType: TextInputType.multiline,
                         maxLines: null,
                         style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),

@@ -200,10 +200,12 @@ class BuildingSettlement extends StatelessWidget {
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
                           ],
+                          maxLength: 4,
                           textInputAction: TextInputAction.next,
                           style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
                           decoration: InputDecoration(
                             filled: true,
+                            counterText: "",
                             fillColor: Colors.white,
                             errorMaxLines: 2,
                             contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),

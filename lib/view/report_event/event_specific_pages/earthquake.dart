@@ -27,13 +27,14 @@ class Earthquake extends StatelessWidget {
     {
       "localization_ref":"monitor_event.earthquake.total_damage",
       "type_of_damage":"Partial/Total collapse",
-      "icon_path":"assets/images/report_event/event_specific_images/earthquake/falling_object_ic.png"
+      "icon_path":"assets/images/report_event/event_specific_images/earthquake/total_damage_ic.png"
     }
   ];
 
   @override
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
+    bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     return GetBuilder<ReportEventController>(
       builder:(_)=> Scaffold(
         body: SingleChildScrollView(
@@ -119,13 +120,14 @@ class Earthquake extends StatelessWidget {
                               spacing: 12,
                               runSpacing: 12,
                               children: List<Widget>.generate(_typeOfEarthquakeDamage.length, (index) {
+                                double cardWidth=(MediaQuery.of(context).size.width/2)-34;
                                 return GestureDetector(
                                   onTap: (){
                                     _reportEventController.selectObservedDamageForEarthquake(index: buildingIndex, answer: _typeOfEarthquakeDamage[index]["type_of_damage"]!);
                                   },
                                   child: Container(
                                     height: 77,
-                                    width: 162,
+                                    width: isMobile ? cardWidth : 162,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),
                                       // border: Border.all(color: appTheme.inputFieldsBorderColor)
@@ -134,7 +136,7 @@ class Earthquake extends StatelessWidget {
                                     padding:const EdgeInsets.all(12),
                                     child: Row(
                                       children: [
-                                        Image.asset(_typeOfEarthquakeDamage[index]["icon_path"]!,),
+                                        isMobile ?Image.asset(_typeOfEarthquakeDamage[index]["icon_path"]!,width: cardWidth/4,):Image.asset(_typeOfEarthquakeDamage[index]["icon_path"]!,),
                                         const SizedBox(width: 12,),
                                         Expanded(child: Text(_typeOfEarthquakeDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
                                       ],
@@ -151,7 +153,7 @@ class Earthquake extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top:18.0),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 child: GestureDetector(
                   onTap: (){
                     _reportEventController.addNewBuilding();

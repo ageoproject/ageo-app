@@ -104,6 +104,8 @@ class ReportEventController extends GetxController{
   MapType get mapType=>_mapType;
   RxBool get enableTrafficMode=>_enableTrafficMode;
   Marker? get currentLocationMarker=>_currentLocationMarker;
+  Marker? get markedLocationMarker=>_markedLocationMarker;
+
 
   void markLocation({required Marker marker,required LatLng locationCoordinate}){
     try{

@@ -9,7 +9,7 @@ class Landslide extends StatelessWidget {
   Landslide({Key? key}) : super(key: key);
   final ReportEventController _reportEventController=Get.find();
   final double _inputFieldBorderRadius = 4;
-  final List<Map<String,String>> _typeOfFloodDamage=[
+  final List<Map<String,String>> _typeOfLandslideDamage=[
     {
       "localization_ref":"monitor_event.landslide.building",
       "type_of_damage":"Building",
@@ -40,6 +40,7 @@ class Landslide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
+    bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     return GetBuilder<ReportEventController>(
       builder:(_)=> Scaffold(
         body:SingleChildScrollView(
@@ -52,39 +53,41 @@ class Landslide extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
-                      child: Text("${tr("monitor_event.landslide.displaced_land")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                      child: Text("${tr("monitor_event.landslide.displaced_land")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
                     ),
-                    Container(
-                      width:80,
-                      decoration:BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: appTheme.inputFieldsBorderColor),
-                          borderRadius: BorderRadius.circular(4)
-                      ),
-                      padding:const EdgeInsets.only(left: 4),
-                      child: ButtonTheme(
-                        alignedDropdown: true,
-                        child: DropdownButton<String>(
-                          value: _reportEventController.landslideDamage["volume_of_displacement"],
-                          underline:const SizedBox(),
-                          isExpanded: true,
-                          items: ["10%","20%","30%","40%","50%","60%","70%","80%","90%","100%"].map((String value) {
-                            return DropdownMenuItem<String>(
-                              key: Key(value),
-                              value: value,
-                              //child: new Text(value),
-                              child: Padding(
-                                padding: const EdgeInsets.all(0.0),
-                                child: Text(value,style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)),
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            if(value!=null) {
-                              _reportEventController.changeVolumeOfDisplacedLand(value: value);
-                              // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
-                            }
-                          },
+                    Expanded(
+                      child: Container(
+                        width:80,
+                        decoration:BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: appTheme.inputFieldsBorderColor),
+                            borderRadius: BorderRadius.circular(4)
+                        ),
+                        padding:const EdgeInsets.only(left: 4),
+                        child: ButtonTheme(
+                          alignedDropdown: true,
+                          child: DropdownButton<String>(
+                            value: _reportEventController.landslideDamage["volume_of_displacement"],
+                            underline:const SizedBox(),
+                            isExpanded: true,
+                            items: ["10%","20%","30%","40%","50%","60%","70%","80%","90%","100%"].map((String value) {
+                              return DropdownMenuItem<String>(
+                                key: Key(value),
+                                value: value,
+                                //child: new Text(value),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(0.0),
+                                  child: Text(value,style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              if(value!=null) {
+                                _reportEventController.changeVolumeOfDisplacedLand(value: value);
+                                // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
+                              }
+                            },
+                          ),
                         ),
                       ),
                     ),
@@ -98,25 +101,26 @@ class Landslide extends StatelessWidget {
                 Wrap(
                   spacing: 12,
                   runSpacing: 12,
-                  children: List.generate(_typeOfFloodDamage.length, (index) {
+                  children: List.generate(_typeOfLandslideDamage.length, (index) {
+                    double cardWidth=(MediaQuery.of(context).size.width/2)-34;
                     return GestureDetector(
                       onTap: (){
-                        _reportEventController.selectObservedDamageForLandslide(value: _typeOfFloodDamage[index]["type_of_damage"]!);
+                        _reportEventController.selectObservedDamageForLandslide(value: _typeOfLandslideDamage[index]["type_of_damage"]!);
                       },
                       child: Container(
                         height: 77,
-                        width: 162,
+                        width: isMobile? cardWidth :162,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                          border: _reportEventController.landslideDamage["observed_damage"]["answer"].contains(_typeOfFloodDamage[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                          border: _reportEventController.landslideDamage["observed_damage"]["answer"].contains(_typeOfLandslideDamage[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
                         ),
                         padding:const EdgeInsets.all(12),
                         child: Row(
                           children: [
-                            Image.asset(_typeOfFloodDamage[index]["icon_path"]!,),
+                            isMobile? Image.asset(_typeOfLandslideDamage[index]["icon_path"]!, width: cardWidth/3,):Image.asset(_typeOfLandslideDamage[index]["icon_path"]!),
                             const SizedBox(width: 12,),
-                            Expanded(child: Text(_typeOfFloodDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
+                            Expanded(child: Text(_typeOfLandslideDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
                           ],
                         ),
                       ),
@@ -139,6 +143,7 @@ class Landslide extends StatelessWidget {
                         minLines: 4,
                         keyboardType: TextInputType.multiline,
                         maxLines: null,
+                        maxLength: 1500,
                         style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
                         decoration: InputDecoration(
                           hintText: tr("common_question_page.comment_hint"),

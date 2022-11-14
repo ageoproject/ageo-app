@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/common_component.dart';
@@ -59,11 +58,16 @@ class _MapViewState extends State<MapView> {
    }
 
    Future<void> getCurrentLocation()async{
-     Position currentLocation=await _locationHelper.getLocation();
-     LatLng currentLatLan=LatLng(currentLocation.latitude, currentLocation.longitude);
+     LatLng currentLatLan;
+     if(_reportEventController.markedLocationMarker!=null){
+       currentLatLan=_reportEventController.markedLocationMarker!.position;
+     }else{
+       Position currentLocation=await _locationHelper.getLocation();
+       currentLatLan=LatLng(currentLocation.latitude, currentLocation.longitude);
+       markCurrentLocation(latLng: currentLatLan);
+     }
      cameraPosition=CameraPosition(target: currentLatLan,zoom: _reportEventController.mapZoomLevel.value,);
      googleMapController.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-     markCurrentLocation(latLng: currentLatLan);
    }
 
    Future<void> initializeLocation()async{
@@ -177,7 +181,7 @@ class _MapViewState extends State<MapView> {
                     padding: const EdgeInsets.only(top: 8.0,bottom: 4.0),
                     child: GestureDetector(
                       onTap: (){
-                        changeZoomLevel(zoomLevel: -25);
+                        changeZoomLevel(zoomLevel: -100);
                       },
                       child: Container(
                         height: 38,
@@ -194,7 +198,7 @@ class _MapViewState extends State<MapView> {
                   ),
                   GestureDetector(
                     onTap: ()async{
-                      changeZoomLevel(zoomLevel: 25);
+                      changeZoomLevel(zoomLevel: 150);
                     },
                     child: Container(
                       height: 38,
@@ -359,11 +363,11 @@ class _MapViewState extends State<MapView> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: Platform.isIOS? 18:0,),
+                // padding: EdgeInsets.only(bottom: Platform.isIOS? 18:0,),
+                padding: EdgeInsets.zero,
                 child: TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor: appTheme.primaryActionColor,
-                    padding: EdgeInsets.zero,
                     fixedSize: Size(MediaQuery.of(context).size.width, 40)
                   ),
                   onPressed: ()async{

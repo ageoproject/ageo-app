@@ -24,6 +24,7 @@ class _QuickReportEventState extends State<QuickReportEvent> {
   final double _inputFieldBorderRadius = 4;
 
   Widget buildImageAndCommentView(){
+    bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     return GetBuilder<ReportEventController>(
       builder:(_)=> SingleChildScrollView(
         child: Padding(
@@ -42,10 +43,11 @@ class _QuickReportEventState extends State<QuickReportEvent> {
                     spacing: 12,
                     runSpacing: 12,
                     children: List.generate(3, (index) {
+                      double cardWidthAndHeight=(MediaQuery.of(context).size.width/2)-24;
                       if(_reportEventController.uploadedImageList.length>index){
                         return SizedBox(
-                          height: 162,
-                          width: 162,
+                          height: isMobile?cardWidthAndHeight:162,
+                          width: isMobile?cardWidthAndHeight:162,
                           child: Stack(
                             alignment: Alignment.topRight,
                             children: [
@@ -66,27 +68,24 @@ class _QuickReportEventState extends State<QuickReportEvent> {
                           ),
                         );
                       }else{
-                        return Padding(
-                          padding: EdgeInsets.only(top:12.0,left: index%2==0?0:12),
-                          child: GestureDetector(
-                            onTap: ()async{
-                              XFile? image=await showDialog(context: context, builder: (BuildContext context){
-                                return ImageSelector();
-                              });
-                              if(image!=null){
-                                _reportEventController.addImage(image: image);
-                              }
-                            },
-                            child: Container(
-                              height: 162,
-                              width: 162,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: appTheme.inputFieldsBorderColor)
-                              ),
-                              child: Image.asset("assets/images/report_event/camera_ic.png",color: appTheme.primaryActionColor,width: 30,),
+                        return GestureDetector(
+                          onTap: ()async{
+                            XFile? image=await showDialog(context: context, builder: (BuildContext context){
+                              return ImageSelector();
+                            });
+                            if(image!=null){
+                              _reportEventController.addImage(image: image);
+                            }
+                          },
+                          child: Container(
+                            height: isMobile?cardWidthAndHeight:162,
+                            width: isMobile?cardWidthAndHeight:162,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(color: appTheme.inputFieldsBorderColor)
                             ),
+                            child: Image.asset("assets/images/report_event/camera_ic.png",color: appTheme.primaryActionColor,width: 30,),
                           ),
                         );
                       }
@@ -108,6 +107,7 @@ class _QuickReportEventState extends State<QuickReportEvent> {
                       // initialValue:_studentProfile.user?.dob==null?"": _component.formatDateMonthYearInWords.format(DateTime.parse("${_studentProfile.user!.dob}")),
                       textInputAction: TextInputAction.next,
                       minLines: 6,
+                      maxLength: 1500,
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
@@ -194,7 +194,7 @@ class _QuickReportEventState extends State<QuickReportEvent> {
         drawer: CustomAppDrawer(),
         body: Column(
           children: [
-            CustomAppBar(title: "Quick Monitor Event",),
+            CustomAppBar(title: "Quick Monitor",),
             Expanded(
               child: Obx(()=> selectScreen()),
               // child: MapView(),

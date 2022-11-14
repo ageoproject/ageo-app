@@ -14,6 +14,7 @@ class EventTypeList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
+    bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     return GetBuilder<ReportEventController>(
       builder:(controller)=> Scaffold(
         body: SingleChildScrollView(
@@ -24,11 +25,13 @@ class EventTypeList extends StatelessWidget {
                 spacing: 12,
                 runSpacing: 12,
               children: List<Widget>.generate(_reportEventController.eventDetailList.length, (index) {
+                double cardWidth=(MediaQuery.of(context).size.width/2)-34;
                 return GestureDetector(
                   onTap: (){
                     _reportEventController.changeSelectedEventType(value: _reportEventController.eventDetailList[index]["event_type"]);
                   },
                   child: Container(
+                    width:isMobile? cardWidth: 162,
                     padding:const EdgeInsets.symmetric(horizontal: 26,vertical: 16),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
@@ -37,7 +40,7 @@ class EventTypeList extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        Image.asset("${_reportEventController.filePath}${_reportEventController.eventDetailList[index]["icon_name"]}.png",width: 110,),
+                        Image.asset("${_reportEventController.filePath}${_reportEventController.eventDetailList[index]["icon_name"]}.png",),
                         Padding(
                           padding: const EdgeInsets.only(top: 16),
                           child: Text("${_reportEventController.eventDetailList[index]["event_name"]}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: appTheme.primaryTextColor),textAlign: TextAlign.center,).tr(),
