@@ -4,7 +4,6 @@ import 'package:ageo/helpers/common_component.dart';
 import 'package:ageo/helpers/locationHelper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoder2/geocoder2.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -45,8 +44,7 @@ class _MapViewState extends State<MapView> {
          latLng: latLng,
        );
        // print(latLng);
-       GeoData locationDetail=await _locationHelper.getCoordinateDetails(latitude: latLng.latitude, longitude: latLng.longitude);
-       _reportEventController.changeAddress(locationDetail: locationDetail);
+
      }catch(_){
        // print("This is map error => $e");
      }
@@ -147,8 +145,6 @@ class _MapViewState extends State<MapView> {
                     ),
                     locationCoordinate: latLng
                 );
-                GeoData locationDetail=await _locationHelper.getCoordinateDetails(latitude: latLng.latitude, longitude: latLng.longitude);
-                _reportEventController.changeAddress(locationDetail: locationDetail);
                 }catch(_){}
               },
               onMapCreated: (GoogleMapController controller)async {
@@ -345,23 +341,6 @@ class _MapViewState extends State<MapView> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Visibility(
-                visible: _reportEventController.locationAddress!=null,
-                child: Padding(
-                  padding:const EdgeInsets.symmetric(horizontal: 16,vertical: 16),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12.0,),
-                        child: Image.asset("assets/images/report_event/map_view/location_pin_ic.png",height: 20,),
-                      ),
-                      Expanded(
-                        child: Text(_reportEventController.locationAddress??"",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: appTheme.primaryActionColor),),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
               Padding(
                 // padding: EdgeInsets.only(bottom: Platform.isIOS? 18:0,),
                 padding: EdgeInsets.zero,

@@ -169,6 +169,52 @@ class UserApi {
     }
   }
 
+  /// Refresh API key for user
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> refreshApiKeyWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/user/refresh_apikey';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['Token'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Refresh API key for user
+  Future<LoginResponse?> refreshApiKey() async {
+    final response = await refreshApiKeyWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'LoginResponse',) as LoginResponse?;
+    
+    }
+    return Future<LoginResponse>.value();
+  }
+
   /// Update Status of Reported Events
   ///
   /// Note: This method returns the HTTP [Response].

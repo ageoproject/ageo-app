@@ -76,7 +76,7 @@ class Sinkhole extends StatelessWidget {
                     ),
                     Expanded(
                       child: TextFormField(
-                        initialValue:_reportEventController.sinkholeDamage["dimension_of_sinkhole"],
+                        initialValue:_reportEventController.sinkholeDamage["sinkhole_dimension"].toString(),
                         keyboardType: TextInputType.number,
                         inputFormatters: [
                           FilteringTextInputFormatter.digitsOnly
@@ -116,7 +116,11 @@ class Sinkhole extends StatelessWidget {
                           ),
                         ),
                         onChanged: (value)async{
-                          _reportEventController.changeDimensionOfSinkhole(value: value);
+                          if(value!=""){
+                            _reportEventController.changeDimensionOfSinkhole(value: value);
+                          }else{
+                            _reportEventController.changeDimensionOfSinkhole(value: "0");
+                          }
                           // await _showCalendar(selectedDate: DateTime.parse("${_studentProfile.user!.dob}"));
                         },
                       ),
@@ -142,7 +146,7 @@ class Sinkhole extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                          border: _reportEventController.sinkholeDamage["observed_damage"]["answer"]==_typeOfSinkholeDamage[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                          border: _reportEventController.sinkholeDamage["sinkhole_observed_damage"]==_typeOfSinkholeDamage[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
                         ),
                         padding:const EdgeInsets.all(12),
                         child: Row(
@@ -167,7 +171,7 @@ class Sinkhole extends StatelessWidget {
                         child: Text("common_key.other",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
                       ),
                       TextFormField(
-                        initialValue: _reportEventController.sinkholeDamage["observed_damage"]["other"],
+                        initialValue: _reportEventController.sinkholeDamage["sinkhole_other_observed_damage"],
                         textInputAction: TextInputAction.next,
                         minLines: 4,
                         maxLength: 1500,
@@ -233,7 +237,7 @@ class Sinkhole extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                          border: _reportEventController.sinkholeDamage["affected_infrastructure"]["answer"].contains(_typeOfInfrastructure[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                          border: _reportEventController.sinkholeDamage["sinkhole_affected_infrastructure"].contains(_typeOfInfrastructure[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
                         ),
                         padding:const EdgeInsets.all(12),
                         child: Row(
@@ -258,7 +262,7 @@ class Sinkhole extends StatelessWidget {
                         child: Text("monitor_event.sinkhole.other",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
                       ),
                       TextFormField(
-                        initialValue: _reportEventController.sinkholeDamage["affected_infrastructure"]["other"],
+                        initialValue: _reportEventController.sinkholeDamage["sinkhole_other_affected_infrastructure"],
                         textInputAction: TextInputAction.next,
                         minLines: 4,
                         maxLength: 1500,
@@ -309,8 +313,8 @@ class Sinkhole extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: Visibility(
-          // visible: (_reportEventController.sinkholeDamage["observed_damage"]["answer"]!="" || _reportEventController.sinkholeDamage["observed_damage"]["other"]!="") &&
-          //     (_reportEventController.sinkholeDamage["affected_infrastructure"]["answer"].isNotEmpty || _reportEventController.sinkholeDamage["affected_infrastructure"]["other"]!=""),
+          // visible: (_reportEventController.sinkholeDamage["sinkhole_observed_damage"]!="" || _reportEventController.sinkholeDamage["sinkhole_other_observed_damage"]!="") &&
+          //     (_reportEventController.sinkholeDamage["sinkhole_affected_infrastructure"].isNotEmpty || _reportEventController.sinkholeDamage["sinkhole_other_affected_infrastructure"]!=""),
           child: SubmitButton(),
         ),
       ),

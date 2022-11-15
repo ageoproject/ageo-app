@@ -13,6 +13,7 @@ part of openapi.api;
 class InlineObject6 {
   /// Returns a new [InlineObject6] instance.
   InlineObject6({
+    this.downloadType,
     this.eventType,
     this.eventStatus,
     this.fromDate,
@@ -20,6 +21,8 @@ class InlineObject6 {
     this.eventIdList = const [],
     this.polygon = const [],
   });
+
+  String? downloadType;
 
   String? eventType;
 
@@ -35,6 +38,7 @@ class InlineObject6 {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is InlineObject6 &&
+     other.downloadType == downloadType &&
      other.eventType == eventType &&
      other.eventStatus == eventStatus &&
      other.fromDate == fromDate &&
@@ -45,6 +49,7 @@ class InlineObject6 {
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (downloadType == null ? 0 : downloadType.hashCode) +
     (eventType == null ? 0 : eventType.hashCode) +
     (eventStatus == null ? 0 : eventStatus.hashCode) +
     (fromDate == null ? 0 : fromDate.hashCode) +
@@ -53,10 +58,13 @@ class InlineObject6 {
     (polygon == null ? 0 : polygon.hashCode);
 
   @override
-  String toString() => 'InlineObject6[eventType=$eventType, eventStatus=$eventStatus, fromDate=$fromDate, toDate=$toDate, eventIdList=$eventIdList, polygon=$polygon]';
+  String toString() => 'InlineObject6[downloadType=$downloadType, eventType=$eventType, eventStatus=$eventStatus, fromDate=$fromDate, toDate=$toDate, eventIdList=$eventIdList, polygon=$polygon]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (downloadType != null) {
+      json[r'downloadType'] = downloadType;
+    }
     if (eventType != null) {
       json[r'eventType'] = eventType;
     }
@@ -85,6 +93,7 @@ class InlineObject6 {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return InlineObject6(
+        downloadType: mapValueOfType<String>(json, r'downloadType'),
         eventType: mapValueOfType<String>(json, r'eventType'),
         eventStatus: mapValueOfType<String>(json, r'eventStatus'),
         fromDate: json[r'fromDate'] == null

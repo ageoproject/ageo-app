@@ -8,6 +8,7 @@ import 'package:ageoClient/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**downloadType** | **String** |  | [optional] 
 **eventType** | **String** |  | [optional] 
 **eventStatus** | **String** |  | [optional] 
 **fromDate** | **num** |  | [optional] 

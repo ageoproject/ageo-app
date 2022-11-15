@@ -54,7 +54,7 @@ class RiverFlooding extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
-                          initialValue:_reportEventController.riverFloodingDamage["water_level"],
+                          initialValue:_reportEventController.riverFloodingDamage["river_flooding_water_level"].toString(),
                           keyboardType: TextInputType.number,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
@@ -94,7 +94,11 @@ class RiverFlooding extends StatelessWidget {
                             ),
                           ),
                           onChanged: (value)async{
-                            _reportEventController.changeWaterLevelOfFlood(value: value);
+                            if(value!=""){
+                              _reportEventController.changeWaterLevelOfFlood(value: value);
+                            }else{
+                              _reportEventController.changeWaterLevelOfFlood(value: "0.0");
+                            }
                             // await _showCalendar(selectedDate: DateTime.parse("${_studentProfile.user!.dob}"));
                           },
                         ),
@@ -121,7 +125,7 @@ class RiverFlooding extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                            border: _reportEventController.riverFloodingDamage["observed_damage"]["answer"].contains(_typeOfFloodDamage[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                            border: _reportEventController.riverFloodingDamage["river_flooding_observed_damage"].contains(_typeOfFloodDamage[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
                           ),
                           padding:const EdgeInsets.all(12),
                           child: Row(
@@ -146,7 +150,7 @@ class RiverFlooding extends StatelessWidget {
                           child: Text("common_key.other",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
                         ),
                         TextFormField(
-                          initialValue: _reportEventController.riverFloodingDamage["observed_damage"]["other"],
+                          initialValue: _reportEventController.riverFloodingDamage["river_flooding_other_observed_damage"],
                           textInputAction: TextInputAction.next,
                           minLines: 4,
                           maxLength: 1500,

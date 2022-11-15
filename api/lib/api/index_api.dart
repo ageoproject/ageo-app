@@ -22,8 +22,16 @@ class IndexApi {
   ///
   /// Parameters:
   ///
+  /// * [String] eventType:
+  ///
+  /// * [String] eventStatus:
+  ///
+  /// * [num] fromDate:
+  ///
+  /// * [num] toDate:
+  ///
   /// * [Object] datatableoptions:
-  Future<Response> getDatatableEventListWithHttpInfo({ Object? datatableoptions, }) async {
+  Future<Response> getDatatableEventListWithHttpInfo({ String? eventType, String? eventStatus, num? fromDate, num? toDate, Object? datatableoptions, }) async {
     // Verify required params are set.
 
     // ignore: prefer_const_declarations
@@ -35,6 +43,19 @@ class IndexApi {
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
+
+    if (eventType != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'eventType', eventType));
+    }
+    if (eventStatus != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'eventStatus', eventStatus));
+    }
+    if (fromDate != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'fromDate', fromDate));
+    }
+    if (toDate != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'toDate', toDate));
+    }
 
     const authNames = <String>[];
     const contentTypes = <String>['application/json'];
@@ -56,9 +77,17 @@ class IndexApi {
   ///
   /// Parameters:
   ///
+  /// * [String] eventType:
+  ///
+  /// * [String] eventStatus:
+  ///
+  /// * [num] fromDate:
+  ///
+  /// * [num] toDate:
+  ///
   /// * [Object] datatableoptions:
-  Future<InlineResponse200?> getDatatableEventList({ Object? datatableoptions, }) async {
-    final response = await getDatatableEventListWithHttpInfo( datatableoptions: datatableoptions, );
+  Future<InlineResponse200?> getDatatableEventList({ String? eventType, String? eventStatus, num? fromDate, num? toDate, Object? datatableoptions, }) async {
+    final response = await getDatatableEventListWithHttpInfo( eventType: eventType, eventStatus: eventStatus, fromDate: fromDate, toDate: toDate, datatableoptions: datatableoptions, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -70,6 +99,67 @@ class IndexApi {
     
     }
     return Future<InlineResponse200>.value();
+  }
+
+  /// Get details of an event
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] eventId (required):
+  Future<Response> getEventDetailsWithHttpInfo(String eventId,) async {
+    // Verify required params are set.
+    if (eventId == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: eventId');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/anonymous/get_event_details';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'eventId', eventId));
+
+    const authNames = <String>[];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Get details of an event
+  ///
+  /// Parameters:
+  ///
+  /// * [String] eventId (required):
+  Future<Event?> getEventDetails(String eventId,) async {
+    final response = await getEventDetailsWithHttpInfo(eventId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Event',) as Event?;
+    
+    }
+    return Future<Event>.value();
   }
 
   /// Get list of events for map view
@@ -158,6 +248,52 @@ class IndexApi {
 
     }
     return Future<List<Event>>.value();
+  }
+
+  /// Get master list of event questions
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> questionMasterListWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/anonymous/question_master_list';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>[];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Get master list of event questions
+  Future<Object?> questionMasterList() async {
+    final response = await questionMasterListWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object?;
+    
+    }
+    return Future<Object>.value();
   }
 
   /// Report events

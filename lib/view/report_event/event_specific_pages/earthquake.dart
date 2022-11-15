@@ -43,7 +43,7 @@ class Earthquake extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 8),
                 child: Column(
-                  children: List.generate(_reportEventController.earthquakeDamage.length, (buildingIndex) {
+                  children: List.generate(_reportEventController.earthquakeDamage["earthquake_observed_damage"].length, (buildingIndex) {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 18.0),
                       child: Container(
@@ -74,7 +74,7 @@ class Earthquake extends StatelessWidget {
                                       child: ButtonTheme(
                                         alignedDropdown: true,
                                         child: DropdownButton<String>(
-                                          value: _reportEventController.earthquakeDamage[buildingIndex]["number_of_floors"],
+                                          value: _reportEventController.earthquakeDamage["earthquake_observed_damage"][buildingIndex]["number_of_floors_in_building"],
                                           underline:const SizedBox(),
                                           isExpanded: true,
                                           items: _reportEventController.numberOfBuilding.map((String value) {
@@ -131,7 +131,7 @@ class Earthquake extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),
                                       // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                                      border: _reportEventController.earthquakeDamage[buildingIndex]["observed_damage"]["answer"]== _typeOfEarthquakeDamage[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                                      border: _reportEventController.earthquakeDamage["earthquake_observed_damage"][buildingIndex]["observed_building_damage"]== _typeOfEarthquakeDamage[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
                                     ),
                                     padding:const EdgeInsets.all(12),
                                     child: Row(

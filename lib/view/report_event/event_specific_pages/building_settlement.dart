@@ -101,7 +101,7 @@ class BuildingSettlement extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(_imageContainerBorderRadius),
                             // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                            border: _reportEventController.buildingSettlementDamage["type_of_settlement"]["answer"]==_settlementTypeList[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                            border: _reportEventController.buildingSettlementDamage["building_settlement_type"]==_settlementTypeList[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
                           ),
                           padding:const EdgeInsets.all(12),
                           child: Image.asset(_settlementTypeList[index]["icon_path"]),
@@ -132,7 +132,7 @@ class BuildingSettlement extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(_imageContainerBorderRadius),
                             // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                            border: _reportEventController.buildingSettlementDamage["other_structure"]["answer"]==_otherStructureList[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                            border: _reportEventController.buildingSettlementDamage["building_settlement_other_structures"]==_otherStructureList[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
                           ),
                           padding:const EdgeInsets.all(12),
                           child: Column(
@@ -169,7 +169,7 @@ class BuildingSettlement extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(_imageContainerBorderRadius),
                             // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                            border: _reportEventController.buildingSettlementDamage["direction_of_cracks"]["answer"].contains(_cracksDirectionList[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                            border: _reportEventController.buildingSettlementDamage["building_settlement_crack_direction"].contains(_cracksDirectionList[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
                           ),
                           padding:const EdgeInsets.all(12),
                           child: Column(
@@ -195,7 +195,7 @@ class BuildingSettlement extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
-                          initialValue:_reportEventController.buildingSettlementDamage["direction_of_cracks"]["dimension_of_crack"],
+                          initialValue:_reportEventController.buildingSettlementDamage["building_settlement_crack_dimension"].toString(),
                           keyboardType: TextInputType.number,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
@@ -235,7 +235,11 @@ class BuildingSettlement extends StatelessWidget {
                             ),
                           ),
                           onChanged: (value)async{
-                            _reportEventController.changeDimensionOfCrackForBuildingSettlement(value: value);
+                            if(value!=""){
+                              _reportEventController.changeDimensionOfCrackForBuildingSettlement(value: value);
+                            }else{
+                              _reportEventController.changeDimensionOfCrackForBuildingSettlement(value: "0");
+                            }
                             // await _showCalendar(selectedDate: DateTime.parse("${_studentProfile.user!.dob}"));
                           },
                         ),

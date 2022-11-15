@@ -25,8 +25,8 @@ class Event {
     this.state,
     this.country,
     this.sensorData,
-    this.commonEventDetails = const [],
-    this.customEventDetails = const [],
+    this.commonEventDetails,
+    this.customEventDetails,
     this.verifyBy,
   });
 
@@ -54,9 +54,9 @@ class Event {
 
   Object? sensorData;
 
-  List<Object>? commonEventDetails;
+  Object? commonEventDetails;
 
-  List<Object>? customEventDetails;
+  Object? customEventDetails;
 
   User? verifyBy;
 
@@ -171,12 +171,8 @@ class Event {
         state: mapValueOfType<String>(json, r'state'),
         country: mapValueOfType<String>(json, r'country'),
         sensorData: mapValueOfType<Object>(json, r'sensorData'),
-        commonEventDetails: json[r'commonEventDetails'] is List
-            ? (json[r'commonEventDetails'] as List).cast<Object>()
-            : null,
-        customEventDetails: json[r'customEventDetails'] is List
-            ? (json[r'customEventDetails'] as List).cast<Object>()
-            : null,
+        commonEventDetails: mapValueOfType<Object>(json, r'commonEventDetails'),
+        customEventDetails: mapValueOfType<Object>(json, r'customEventDetails'),
         verifyBy: User.fromJson(json[r'verifyBy']),
       );
     }
@@ -231,25 +227,29 @@ class EventEventTypeEnum {
 
   static const LANDSLIDE = EventEventTypeEnum._(r'LANDSLIDE');
   static const ROCKFALL = EventEventTypeEnum._(r'ROCKFALL');
-  static const FLOODED = EventEventTypeEnum._(r'FLOODED');
+  static const RIVER_FLOODING = EventEventTypeEnum._(r'RIVER_FLOODING');
   static const TSUNAMI = EventEventTypeEnum._(r'TSUNAMI');
   static const EARTHQUAKE = EventEventTypeEnum._(r'EARTHQUAKE');
   static const BUILDING_SETTLEMENT = EventEventTypeEnum._(r'BUILDING_SETTLEMENT');
   static const SINKHOLE = EventEventTypeEnum._(r'SINKHOLE');
   static const ERUPTION = EventEventTypeEnum._(r'ERUPTION');
   static const FOREST_FIRE = EventEventTypeEnum._(r'FOREST_FIRE');
+  static const COASTAL_EROSION = EventEventTypeEnum._(r'COASTAL_EROSION');
+  static const MARINE_FLOODING = EventEventTypeEnum._(r'MARINE_FLOODING');
 
   /// List of all possible values in this [enum][EventEventTypeEnum].
   static const values = <EventEventTypeEnum>[
     LANDSLIDE,
     ROCKFALL,
-    FLOODED,
+    RIVER_FLOODING,
     TSUNAMI,
     EARTHQUAKE,
     BUILDING_SETTLEMENT,
     SINKHOLE,
     ERUPTION,
     FOREST_FIRE,
+    COASTAL_EROSION,
+    MARINE_FLOODING,
   ];
 
   static EventEventTypeEnum? fromJson(dynamic value) =>
@@ -283,13 +283,15 @@ class EventEventTypeEnumTypeTransformer {
       switch (data.toString()) {
         case r'LANDSLIDE': return EventEventTypeEnum.LANDSLIDE;
         case r'ROCKFALL': return EventEventTypeEnum.ROCKFALL;
-        case r'FLOODED': return EventEventTypeEnum.FLOODED;
+        case r'RIVER_FLOODING': return EventEventTypeEnum.RIVER_FLOODING;
         case r'TSUNAMI': return EventEventTypeEnum.TSUNAMI;
         case r'EARTHQUAKE': return EventEventTypeEnum.EARTHQUAKE;
         case r'BUILDING_SETTLEMENT': return EventEventTypeEnum.BUILDING_SETTLEMENT;
         case r'SINKHOLE': return EventEventTypeEnum.SINKHOLE;
         case r'ERUPTION': return EventEventTypeEnum.ERUPTION;
         case r'FOREST_FIRE': return EventEventTypeEnum.FOREST_FIRE;
+        case r'COASTAL_EROSION': return EventEventTypeEnum.COASTAL_EROSION;
+        case r'MARINE_FLOODING': return EventEventTypeEnum.MARINE_FLOODING;
         default:
           if (allowNull == false) {
             throw ArgumentError('Unknown enum value to decode: $data');

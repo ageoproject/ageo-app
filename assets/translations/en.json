@@ -36,6 +36,7 @@
     }
   },
   "monitor_event": {
+    "report_error": "Something went wrong. Please try again...",
     "linked_copied": "Link copied successfully",
     "send_ageo": "The event information is sent to AGEO",
     "please_wait": "Please wait..",

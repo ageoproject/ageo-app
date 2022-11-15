@@ -165,7 +165,9 @@ class _CameraPageState extends State<CameraPage> {
                       _reportEventController.updateSensorData(accelerometerEvent: accelerometerEvent, gyroscopeEvent: gyroscopeEvent, magnetometerEvent: magnetometerEvent);
                       Navigator.pop(context,image);
                     }
-                  } catch (_) {}
+                  } catch (e) {
+                    print(e);
+                  }
                 },
               ),
               IconButton(

@@ -54,7 +54,7 @@ class _ReportEventState extends State<ReportEvent> {
       case EventEventTypeEnum.LANDSLIDE:{
         return Landslide();
       }
-      case EventEventTypeEnum.FLOODED:{
+      case EventEventTypeEnum.RIVER_FLOODING:{
         return RiverFlooding();
       }
       case EventEventTypeEnum.SINKHOLE:{

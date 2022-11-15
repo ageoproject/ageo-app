@@ -2,7 +2,9 @@ import 'dart:io';
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/common_component.dart';
+import 'package:ageo/helpers/toast_message.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +12,7 @@ class SubmitButton extends StatelessWidget {
   SubmitButton({Key? key}) : super(key: key);
   final ReportEventController _reportEventController=Get.find();
   final CommonComponent _commonComponent=CommonComponent();
+  final CustomToastMessage _customToastMessage=CustomToastMessage();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,12 @@ class SubmitButton extends StatelessWidget {
             Get.back();
             _commonComponent.showEventShareDialog(context: context, message: eventId);
           }catch(e){
-            // print(e);
+            if (kReleaseMode) {
+              _customToastMessage.showErrorToastMessage(message: tr("monitor_event.report_error"), duration: 1, context: context);
+            }else{
+              _customToastMessage.showErrorToastMessage(message: e.toString(), duration: 1, context: context);
+              print(e);
+            }
             Get.back();
           }
         },

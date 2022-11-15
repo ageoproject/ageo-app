@@ -64,13 +64,20 @@ Class | Method | HTTP request | Description
 *AuthApi* | [**resetPassword**](doc//AuthApi.md#resetpassword) | **POST** /auth/reset_password | Reset Password Request
 *AuthApi* | [**signup**](doc//AuthApi.md#signup) | **POST** /auth/signup | Sign up
 *IndexApi* | [**getDatatableEventList**](doc//IndexApi.md#getdatatableeventlist) | **POST** /anonymous/get_datatable_event_list | Get paginated list of events
+*IndexApi* | [**getEventDetails**](doc//IndexApi.md#geteventdetails) | **GET** /anonymous/get_event_details | Get details of an event
 *IndexApi* | [**getMapEventList**](doc//IndexApi.md#getmapeventlist) | **POST** /anonymous/get_map_event_list | Get list of events for map view
+*IndexApi* | [**questionMasterList**](doc//IndexApi.md#questionmasterlist) | **GET** /anonymous/question_master_list | Get master list of event questions
 *IndexApi* | [**reportEvent**](doc//IndexApi.md#reportevent) | **POST** /anonymous/report_event | Report events
-*ManagerApi* | [**downloadExcel**](doc//ManagerApi.md#downloadexcel) | **POST** /manager/download_excel | Download Excel file of events
+*ManagerApi* | [**changeEventStatus**](doc//ManagerApi.md#changeeventstatus) | **PUT** /manager/change_event_status | 
+*ManagerApi* | [**changeUserStatus**](doc//ManagerApi.md#changeuserstatus) | **POST** /manager/change_user_status | 
+*ManagerApi* | [**downloadEventList**](doc//ManagerApi.md#downloadeventlist) | **POST** /manager/download_event_list | Download Excel file of events
+*ManagerApi* | [**getDatatableApiuserList**](doc//ManagerApi.md#getdatatableapiuserlist) | **POST** /manager/get_datatable_apiuser_list | 
+*ManagerApi* | [**getDatatableManagerList**](doc//ManagerApi.md#getdatatablemanagerlist) | **POST** /manager/get_datatable_manager_list | 
 *SuperAdminApi* | [**createUser**](doc//SuperAdminApi.md#createuser) | **POST** /create_user | Admin creates manager
 *UserApi* | [**changePassword**](doc//UserApi.md#changepassword) | **PUT** /user/change_password | Change login user password
 *UserApi* | [**changePreferredLanguage**](doc//UserApi.md#changepreferredlanguage) | **PUT** /user/change_preferred_language | Change user's preferred language
 *UserApi* | [**changeUserStatus**](doc//UserApi.md#changeuserstatus) | **PUT** /user/change_user_status | Change user's Status eg. ACTIVE or INACTIVE
+*UserApi* | [**refreshApiKey**](doc//UserApi.md#refreshapikey) | **PUT** /user/refresh_apikey | Refresh API key for user
 *UserApi* | [**updateEvent**](doc//UserApi.md#updateevent) | **PUT** /user/update_event | Update Status of Reported Events
 
 

@@ -67,7 +67,7 @@ class Landslide extends StatelessWidget {
                         child: ButtonTheme(
                           alignedDropdown: true,
                           child: DropdownButton<String>(
-                            value: _reportEventController.landslideDamage["volume_of_displacement"],
+                            value: _reportEventController.landslideDamage["landslide_displaced_land_volume"],
                             underline:const SizedBox(),
                             isExpanded: true,
                             items: ["10%","20%","30%","40%","50%","60%","70%","80%","90%","100%"].map((String value) {
@@ -113,7 +113,7 @@ class Landslide extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                          border: _reportEventController.landslideDamage["observed_damage"]["answer"].contains(_typeOfLandslideDamage[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                          border: _reportEventController.landslideDamage["landslide_observed_damage"].contains(_typeOfLandslideDamage[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
                         ),
                         padding:const EdgeInsets.all(12),
                         child: Row(
@@ -138,7 +138,7 @@ class Landslide extends StatelessWidget {
                         child: Text("common_key.other",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
                       ),
                       TextFormField(
-                        initialValue: _reportEventController.landslideDamage["observed_damage"]["other"],
+                        initialValue: _reportEventController.landslideDamage["landslide_other_observed_damage"],
                         textInputAction: TextInputAction.next,
                         minLines: 4,
                         keyboardType: TextInputType.multiline,
@@ -191,7 +191,7 @@ class Landslide extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: Visibility(
-          // visible: _reportEventController.landslideDamage["observed_damage"]["answer"].isNotEmpty || _reportEventController.landslideDamage["observed_damage"]["other"]!="",
+          // visible: _reportEventController.landslideDamage["landslide_observed_damage"].isNotEmpty || _reportEventController.landslideDamage["landslide_other_observed_damage"]!="",
           child: SubmitButton(),
         ),
       ),

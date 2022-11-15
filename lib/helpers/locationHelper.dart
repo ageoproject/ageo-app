@@ -1,7 +1,6 @@
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoder2/geocoder2.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -74,14 +73,14 @@ class LocationHelper{
     return true;
   }
 
-  Future<GeoData> getCoordinateDetails({required double latitude,required double longitude})async{
-    // print("#################### Calling Geocoder2 ############################");
-    GeoData data = await Geocoder2.getDataFromCoordinates(
-        latitude: latitude,
-        longitude: longitude,
-        googleMapApiKey: "AIzaSyBNr1H9xOYypZMoB2rTtVTAbe-B6_n8zwM");
-    return data;
-  }
+  // Future<GeoData> getCoordinateDetails({required double latitude,required double longitude})async{
+  //   // print("#################### Calling Geocoder2 ############################");
+  //   GeoData data = await Geocoder2.getDataFromCoordinates(
+  //       latitude: latitude,
+  //       longitude: longitude,
+  //       googleMapApiKey: "AIzaSyBNr1H9xOYypZMoB2rTtVTAbe-B6_n8zwM");
+  //   return data;
+  // }
   
   Future<void> showLocationPermissionError({required BuildContext context,required String errorMessage,required String actionType})async{
     CustomThemeData appTheme=Theme.of(context).customTheme;

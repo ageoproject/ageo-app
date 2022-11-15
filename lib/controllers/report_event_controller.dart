@@ -1,6 +1,5 @@
 import 'package:ageo/ageoConfig.dart';
 import 'package:ageoClient/api.dart';
-import 'package:geocoder2/geocoder2.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,7 +10,7 @@ class ReportEventController extends GetxController{
   final RxString _activeTab="event_type".obs;
   final AgeoConfig _ageoConfig=AgeoConfig();
   final Event _eventDetail= Event();
-  final List<EventEventTypeEnum> _hasSpecificDamagePage=[EventEventTypeEnum.EARTHQUAKE,EventEventTypeEnum.LANDSLIDE,EventEventTypeEnum.FLOODED,EventEventTypeEnum.SINKHOLE,EventEventTypeEnum.BUILDING_SETTLEMENT];
+  final List<EventEventTypeEnum> _hasSpecificDamagePage=[EventEventTypeEnum.EARTHQUAKE,EventEventTypeEnum.LANDSLIDE,EventEventTypeEnum.RIVER_FLOODING,EventEventTypeEnum.SINKHOLE,EventEventTypeEnum.BUILDING_SETTLEMENT];
 
   RxString get activeTab=> _activeTab;
   Event get eventDetail=>_eventDetail;
@@ -54,7 +53,7 @@ class ReportEventController extends GetxController{
     {
       "event_name": "monitor_event.event_type_tab.flood",
       "icon_name": "flood_ic",
-      "event_type": EventEventTypeEnum.FLOODED
+      "event_type": EventEventTypeEnum.RIVER_FLOODING
     },
     {
       "event_name": "monitor_event.event_type_tab.sinkhole",
@@ -91,7 +90,6 @@ class ReportEventController extends GetxController{
   final RxBool _hideMapModeOption=true.obs;
   final Set<Marker> _locationMarker={};
   final RxDouble _mapZoomLevel=14.4746.obs;
-  String? _locationAddress;
   MapType _mapType=MapType.normal;
   final RxBool _enableTrafficMode=false.obs;
   Marker? _currentLocationMarker;
@@ -99,7 +97,6 @@ class ReportEventController extends GetxController{
 
   Set<Marker> get locationMarker=>_locationMarker;
   RxDouble get mapZoomLevel=>_mapZoomLevel;
-  String? get locationAddress=>_locationAddress;
   RxBool get hideMapModeOption=>_hideMapModeOption;
   MapType get mapType=>_mapType;
   RxBool get enableTrafficMode=>_enableTrafficMode;
@@ -131,14 +128,6 @@ class ReportEventController extends GetxController{
     update();
   }
 
-  void changeAddress({required GeoData locationDetail}){
-    _locationAddress=locationDetail.address;
-    _eventDetail.city=locationDetail.city;
-    _eventDetail.country=locationDetail.country;
-    _eventDetail.state=locationDetail.state;
-    update();
-  }
-
   void changeMapOptionState(){
     _hideMapModeOption.value=!_hideMapModeOption.value;
     update();
@@ -159,35 +148,39 @@ class ReportEventController extends GetxController{
   // final List<String> _commonQuestionLocalizationKeys=["common_question_page.was_raining","common_question_page.people_at_risk","common_question_page.animals_at_risk","common_question_page.assets_at_risk","common_question_page.i_am_safe"];
   final List<Map<String,String>> _commonQuestions=[
     {
-    "question":"People at risk ?",
-    "answer":"NO"
+      "question":"People at risk ?",
+      "answer":"NO",
+      "slug": "people_at_risk"
   },{
-    "question":"Animals at risk ?",
-    "answer":"NO"
+      "question":"Animals at risk ?",
+      "answer":"NO",
+      "slug": "animals_at_risk"
   },{
-    "question":"Assets at risk ?",
-    "answer":"NO"
+      "question":"Assets at risk ?",
+      "answer":"NO",
+      "slug": "assets_at_risk"
   },{
-    "question":"I am safe",
-    "answer":"NO"
+      "question":"I am safe",
+      "answer":"NO",
+      "slug": "i_am_safe"
   }
   ];
 
   final Map<String,dynamic> _sensorData={
     "accelerometer":{
-      "x":"0.0",
-      "y":"0.0",
-      "z":"0.0",
+      "x":0.0,
+      "y":0.0,
+      "z":0.0,
     },
     "gyroscope":{
-      "x":"0.0",
-      "y":"0.0",
-      "z":"0.0",
+      "x":0.0,
+      "y":0.0,
+      "z":0.0,
     },
     "magnetometer":{
-      "x":"0.0",
-      "y":"0.0",
-      "z":"0.0",
+      "x":0.0,
+      "y":0.0,
+      "z":0.0,
     }
   };
 
@@ -240,55 +233,53 @@ class ReportEventController extends GetxController{
     update();
   }
   void updateSensorData({required AccelerometerEvent accelerometerEvent,required GyroscopeEvent gyroscopeEvent,required MagnetometerEvent magnetometerEvent}){
-    _sensorData["accelerometer"]["x"]=accelerometerEvent.x.toString();
-    _sensorData["accelerometer"]["y"]=accelerometerEvent.y.toString();
-    _sensorData["accelerometer"]["x"]=accelerometerEvent.z.toString();
-    _sensorData["gyroscope"]["x"]=gyroscopeEvent.x.toString();
-    _sensorData["gyroscope"]["y"]=gyroscopeEvent.y.toString();
-    _sensorData["gyroscope"]["x"]=gyroscopeEvent.z.toString();
-    _sensorData["magnetometer"]["x"]=magnetometerEvent.x.toString();
-    _sensorData["magnetometer"]["y"]=magnetometerEvent.y.toString();
-    _sensorData["magnetometer"]["x"]=magnetometerEvent.z.toString();
+    _sensorData["accelerometer"]["x"]=accelerometerEvent.x;
+    _sensorData["accelerometer"]["y"]=accelerometerEvent.y;
+    _sensorData["accelerometer"]["x"]=accelerometerEvent.z;
+    _sensorData["gyroscope"]["x"]=gyroscopeEvent.x;
+    _sensorData["gyroscope"]["y"]=gyroscopeEvent.y;
+    _sensorData["gyroscope"]["x"]=gyroscopeEvent.z;
+    _sensorData["magnetometer"]["x"]=magnetometerEvent.x;
+    _sensorData["magnetometer"]["y"]=magnetometerEvent.y;
+    _sensorData["magnetometer"]["x"]=magnetometerEvent.z;
   }
 
   ///  Earthquake Page
 
   final List<String> _numberOfBuilding=["1","2","3","4","5","6+"];
-  final List<Map<String,dynamic>> _earthquakeDamage=[{
-    "number_of_floors": "1",
-    "observed_damage": {
-      "question": "What is the observed_damage",
-      "answer": null
-    }
-  }];
+  final Map<String,dynamic> _earthquakeDamage={
+    "earthquake_observed_damage": [
+      {
+        "number_of_floors_in_building": "1",
+        "observed_building_damage": "Falling Object"
+      }
+    ]
+  };
 
 
   List<String> get numberOfBuilding=> _numberOfBuilding;
-  List<Map<String,dynamic>> get earthquakeDamage=>_earthquakeDamage;
+  Map<String,dynamic> get earthquakeDamage=>_earthquakeDamage;
 
   void addNewBuilding(){
-    _earthquakeDamage.add({
-      "number_of_floors": "1",
-      "observed_damage": {
-        "question": "What is the observed damage",
-        "answer": "Falling Object"
-      }
+    _earthquakeDamage["earthquake_observed_damage"].add({
+      "number_of_floors_in_building": "1",
+      "observed_building_damage": "Falling Object"
     });
     update();
   }
 
   void deleteBuilding({required int index}){
-    _earthquakeDamage.removeAt(index);
+    _earthquakeDamage["earthquake_observed_damage"].removeAt(index);
     update();
   }
 
   void changeNumberOfBuilding({required int index,required String numberOfBuilding}){
-    _earthquakeDamage[index]["number_of_floors"]=numberOfBuilding;
+    _earthquakeDamage["earthquake_observed_damage"][index]["number_of_floors_in_building"]=numberOfBuilding;
     update();
   }
 
   void selectObservedDamageForEarthquake({required int index,required String answer}){
-    _earthquakeDamage[index]["observed_damage"]["answer"]=answer;
+    _earthquakeDamage["earthquake_observed_damage"][index]["observed_building_damage"]=answer;
     update();
   }
 
@@ -296,31 +287,28 @@ class ReportEventController extends GetxController{
   /// Landslide
 
   final Map<String,dynamic> _landslideDamage={
-    "volume_of_displacement": "10%",
-    "observed_damage": {
-      "question": "what infrastructure was affected ?",
-      "answer": [],
-      "other":""
-    }
+    "landslide_displaced_land_volume": "10%",
+    "landslide_observed_damage": [],
+    "landslide_other_observed_damage":"",
   };
 
   Map<String,dynamic> get landslideDamage=>_landslideDamage;
 
   void changeVolumeOfDisplacedLand({required String value}){
-    _landslideDamage["volume_of_displacement"]=value;
+    _landslideDamage["landslide_displaced_land_volume"]=value;
     update();
   }
 
   void selectObservedDamageForLandslide({required String value}){
-    if(_landslideDamage["observed_damage"]["answer"].contains(value)){
-      _landslideDamage["observed_damage"]["answer"].remove(value);
+    if(_landslideDamage["landslide_observed_damage"].contains(value)){
+      _landslideDamage["landslide_observed_damage"].remove(value);
     }else{
-      _landslideDamage["observed_damage"]["answer"].add(value);
+      _landslideDamage["landslide_observed_damage"].add(value);
     }
     update();
   }
   void updateLandslideComment({required String comment}){
-    _landslideDamage["observed_damage"]["other"]=comment;
+    _landslideDamage["landslide_other_observed_damage"]=comment;
     // update();
   }
 
@@ -328,132 +316,115 @@ class ReportEventController extends GetxController{
   /// Flood
 
   final Map<String,dynamic> _riverFloodingDamage={
-    "water_level": "10",
-    "observed_damage": {
-      "question": "what infrastructure was affected ?",
-      "answer": [],
-      "other":""
-    }
+    "river_flooding_water_level": 10.0,
+    "river_flooding_observed_damage": [],
+    "river_flooding_other_observed_damage": ""
   };
 
   Map<String,dynamic> get riverFloodingDamage=>_riverFloodingDamage;
 
   void changeWaterLevelOfFlood({required String value}){
-    _riverFloodingDamage["water_level"]=value;
+    _riverFloodingDamage["river_flooding_water_level"]=double.parse(value);
   }
 
   void selectObservedDamageForFlood({required String value}){
-    if(_riverFloodingDamage["observed_damage"]["answer"].contains(value)){
-      _riverFloodingDamage["observed_damage"]["answer"].remove(value);
+    if(_riverFloodingDamage["river_flooding_observed_damage"].contains(value)){
+      _riverFloodingDamage["river_flooding_observed_damage"].remove(value);
     }else{
-      _riverFloodingDamage["observed_damage"]["answer"].add(value);
+      _riverFloodingDamage["river_flooding_observed_damage"].add(value);
     }
     update();
   }
 
   void updateFloodComment({required String comment}){
-    _riverFloodingDamage["observed_damage"]["other"]=comment;
+    _riverFloodingDamage["river_flooding_other_observed_damage"]=comment;
     // update();
   }
 
   /// Sinkhole
 
   final Map<String,dynamic> _sinkholeDamage={
-    "dimension_of_sinkhole": "10",
-    "observed_damage": {
-      "question": "what infrastructure was affected ?",
-      "answer": "",
-      "other":""
-    },
-    "affected_infrastructure": {
-      "question": "what infrastructure was affected ?",
-      "answer": [],
-      "other":""
-    }
+    "sinkhole_dimension": 10,
+    "sinkhole_observed_damage": "",
+    "sinkhole_other_observed_damage": "",
+    "sinkhole_affected_infrastructure": [],
+    "sinkhole_other_affected_infrastructure": ""
   };
 
   Map<String,dynamic> get sinkholeDamage=>_sinkholeDamage;
 
   void changeDimensionOfSinkhole({required String value}){
-    _sinkholeDamage["dimension_of_sinkhole"]=value;
+    _sinkholeDamage["sinkhole_dimension"]=int.parse(value);
   }
 
   void selectObservedDamageForSinkhole({required String value}){
-    if(_sinkholeDamage["observed_damage"]["answer"]!=value){
-    _sinkholeDamage["observed_damage"]["answer"]=value;
+    if(_sinkholeDamage["sinkhole_observed_damage"]!=value){
+    _sinkholeDamage["sinkhole_observed_damage"]=value;
     }else{
-      _sinkholeDamage["observed_damage"]["answer"]="";
+      _sinkholeDamage["sinkhole_observed_damage"]="";
     }
     update();
   }
 
   void addOtherObserveDamageForSinkhole({required String comment}){
-    _sinkholeDamage["observed_damage"]["other"]=comment;
+    _sinkholeDamage["sinkhole_other_observed_damage"]=comment;
     // update();
   }
 
   void selectInfrastructureDamageForSinkhole({required String value}){
-    if(_sinkholeDamage["affected_infrastructure"]["answer"].contains(value)){
-      _sinkholeDamage["affected_infrastructure"]["answer"].remove(value);
+    if(_sinkholeDamage["sinkhole_affected_infrastructure"].contains(value)){
+      _sinkholeDamage["sinkhole_affected_infrastructure"].remove(value);
     }else{
-      _sinkholeDamage["affected_infrastructure"]["answer"].add(value);
+      _sinkholeDamage["sinkhole_affected_infrastructure"].add(value);
     }
     update();
   }
 
   void addOtherInfrastructureDamageForSinkhole({required String comment}){
-    _sinkholeDamage["affected_infrastructure"]["other"]=comment;
+    _sinkholeDamage["sinkhole_other_affected_infrastructure"]=comment;
     // update();
   }
 
+  //// Building Settlement
 
   final Map<String,dynamic> _buildingSettlementDamage={
-    "type_of_settlement": {
-      "question": "how infrastructure was affected ?",
-      "answer": ""
-    },
-    "other_structure": {
-      "question": "what other infrastructure was affected ?",
-      "answer": ""
-    },
-    "direction_of_cracks": {
-      "dimension_of_crack": "10",
-      "question": "what was the direction of cracks?",
-      "answer": []
-    }
+    "building_settlement_type": "",
+    "building_settlement_other_structures": "",
+    "building_settlement_crack_direction": [],
+    "building_settlement_crack_dimension": 10,
   };
 
   Map<String,dynamic> get buildingSettlementDamage=>_buildingSettlementDamage;
 
   void selectTypeOfSettlementForBuildingSettlement({required String value}){
-    if(_buildingSettlementDamage["type_of_settlement"]["answer"]!=value){
-      _buildingSettlementDamage["type_of_settlement"]["answer"]=value;
+    if(_buildingSettlementDamage["building_settlement_type"]!=value){
+      _buildingSettlementDamage["building_settlement_type"]=value;
     }else{
-      _buildingSettlementDamage["type_of_settlement"]["answer"]="";
+      _buildingSettlementDamage["building_settlement_type"]="";
     }
     update();
   }
 
   void selectOtherStructureForBuildingSettlement({required String value}){
-    if(_buildingSettlementDamage["other_structure"]["answer"]!=value){
-      _buildingSettlementDamage["other_structure"]["answer"]=value;
+    if(_buildingSettlementDamage["building_settlement_other_structures"]!=value){
+      _buildingSettlementDamage["building_settlement_other_structures"]=value;
     }else{
-      _buildingSettlementDamage["other_structure"]["answer"]="";
+      _buildingSettlementDamage["building_settlement_other_structures"]="";
     }
     update();
   }
 
   void selectDirectionOfCrackForBuildingSettlement({required String value}){
-    if(_buildingSettlementDamage["direction_of_cracks"]["answer"].contains(value)){
-      _buildingSettlementDamage["direction_of_cracks"]["answer"].remove(value);
+    if(_buildingSettlementDamage["building_settlement_crack_direction"].contains(value)){
+      _buildingSettlementDamage["building_settlement_crack_direction"].remove(value);
     }else{
-      _buildingSettlementDamage["direction_of_cracks"]["answer"].add(value);
+      _buildingSettlementDamage["building_settlement_crack_direction"].add(value);
     }
     update();
   }
 
   void changeDimensionOfCrackForBuildingSettlement({required String value}){
-    _buildingSettlementDamage["direction_of_cracks"]["dimension_of_crack"]=value;
+    _buildingSettlementDamage["building_settlement_crack_dimension"]=int.parse(value);
     // update();
   }
 
@@ -474,24 +445,24 @@ class ReportEventController extends GetxController{
     _quickReportingIsActive.value=!_quickReportingIsActive.value;
     update();
   }
-  /// Report Event
 
-  List<Object> selectCustomEventDetail(){
+  /// Report Event
+  Object selectCustomEventDetail(){
     switch(selectedEventType){
       case EventEventTypeEnum.EARTHQUAKE:{
         return _earthquakeDamage;
       }
       case EventEventTypeEnum.LANDSLIDE:{
-        return [_landslideDamage];
+        return _landslideDamage;
       }
-      case EventEventTypeEnum.FLOODED:{
-        return [_riverFloodingDamage];
+      case EventEventTypeEnum.RIVER_FLOODING:{
+        return _riverFloodingDamage;
       }
       case EventEventTypeEnum.SINKHOLE:{
         return [_sinkholeDamage];
       }
       case EventEventTypeEnum.BUILDING_SETTLEMENT:{
-        return [_buildingSettlementDamage];
+        return _buildingSettlementDamage;
       }
       default:{
         return [{}];
@@ -499,9 +470,20 @@ class ReportEventController extends GetxController{
     }
   }
 
+  Object createCommonQuestionObject(){
+    final Map<String,bool> eventsCommonQuestion={};
+    for( Map<String, String> value in _commonQuestions){
+      eventsCommonQuestion[value["slug"]!]=value["answer"]=="YES"?true:false;
+    }
+    return eventsCommonQuestion;
+  }
+
   Future<String> reportEvent()async{
     _eventDetail.sensorData=_sensorData;
-    _eventDetail.commonEventDetails=_commonQuestions;
+    _eventDetail.commonEventDetails=createCommonQuestionObject();
+    _eventDetail.city="Mumbai";
+    _eventDetail.country="India";
+    _eventDetail.state="Maharashtra";
     _eventDetail.customEventDetails=selectCustomEventDetail();
     String eventId= await _ageoConfig.reportEvent(eventDetail: _eventDetail)??"";
     return eventId;
