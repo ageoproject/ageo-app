@@ -98,34 +98,36 @@ class Landslide extends StatelessWidget {
                   child: Text("common_key.select_observe_damage",style: TextStyle(fontSize:14,color:appTheme.primaryActionColor,fontWeight: FontWeight.w600 ),).tr(),
                 ),
 
-                Wrap(
-                  spacing: 12,
-                  runSpacing: 12,
-                  children: List.generate(_typeOfLandslideDamage.length, (index) {
-                    double cardWidth=(MediaQuery.of(context).size.width/2)-34;
-                    return GestureDetector(
-                      onTap: (){
-                        _reportEventController.selectObservedDamageForLandslide(value: _typeOfLandslideDamage[index]["type_of_damage"]!);
-                      },
-                      child: Container(
-                        height: 77,
-                        width: isMobile? cardWidth :162,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                          border: _reportEventController.landslideDamage["landslide_observed_damage"].contains(_typeOfLandslideDamage[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                Align(
+                  alignment: Alignment.center,
+                  child: Wrap(
+                    spacing: 12,
+                    runSpacing: 12,
+                    children: List.generate(_typeOfLandslideDamage.length, (index) {
+                      return GestureDetector(
+                        onTap: (){
+                          _reportEventController.selectObservedDamageForLandslide(value: _typeOfLandslideDamage[index]["type_of_damage"]!);
+                        },
+                        child: Container(
+                          height: 86,
+                          width: isMobile? (MediaQuery.of(context).size.width-40) : (MediaQuery.of(context).size.width/2)-40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            // border: Border.all(color: appTheme.inputFieldsBorderColor)
+                            border: _reportEventController.landslideDamage["landslide_observed_damage"].contains(_typeOfLandslideDamage[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                          ),
+                          padding:const EdgeInsets.all(12),
+                          child: Row(
+                            children: [
+                              Image.asset(_typeOfLandslideDamage[index]["icon_path"]!),
+                              const SizedBox(width: 12,),
+                              Expanded(child: Text(_typeOfLandslideDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
+                            ],
+                          ),
                         ),
-                        padding:const EdgeInsets.all(12),
-                        child: Row(
-                          children: [
-                            isMobile? Image.asset(_typeOfLandslideDamage[index]["icon_path"]!, width: cardWidth/3,):Image.asset(_typeOfLandslideDamage[index]["icon_path"]!),
-                            const SizedBox(width: 12,),
-                            Expanded(child: Text(_typeOfLandslideDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
-                          ],
-                        ),
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+                  ),
                 ),
 
                 Padding(

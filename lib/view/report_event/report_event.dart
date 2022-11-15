@@ -13,6 +13,7 @@ import 'package:ageoClient/api.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'event_specific_pages/marine_flooding.dart';
 import 'event_specific_pages/river_flooding.dart';
 
 class ReportEvent extends StatefulWidget {
@@ -38,6 +39,7 @@ class _ReportEventState extends State<ReportEvent> {
       }
       case "damage":{
         // return BuildingSettlement();
+        print("Calling ##############");
         return selectEventSpecificDamagePage();
       }
       default:{
@@ -47,6 +49,7 @@ class _ReportEventState extends State<ReportEvent> {
   }
 
   Widget selectEventSpecificDamagePage(){
+    print("Calling1 ##############");
     switch(_reportEventController.selectedEventType){
       case EventEventTypeEnum.EARTHQUAKE:{
         return Earthquake();
@@ -62,6 +65,9 @@ class _ReportEventState extends State<ReportEvent> {
       }
       case EventEventTypeEnum.BUILDING_SETTLEMENT:{
         return BuildingSettlement();
+      }
+      case EventEventTypeEnum.MARINE_FLOODING:{
+        return MarineFlooding();
       }
       default:{
         return Container();

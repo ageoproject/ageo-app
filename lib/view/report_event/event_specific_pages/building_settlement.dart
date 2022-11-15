@@ -127,18 +127,18 @@ class BuildingSettlement extends StatelessWidget {
                           _reportEventController.selectOtherStructureForBuildingSettlement(value: _otherStructureList[index]["type_of_damage"]);
                         },
                         child: Container(
-                          height: 162,
-                          width: 162,
+                          height: 86,
+                          width: isMobile? (MediaQuery.of(context).size.width-40) : (MediaQuery.of(context).size.width/2)-40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(_imageContainerBorderRadius),
                             // border: Border.all(color: appTheme.inputFieldsBorderColor)
                             border: _reportEventController.buildingSettlementDamage["building_settlement_other_structures"]==_otherStructureList[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
                           ),
                           padding:const EdgeInsets.all(12),
-                          child: Column(
+                          child: Row(
                             children: [
-                              Image.asset(_otherStructureList[index]["icon_path"],height: 110,),
-                              const SizedBox(height: 12,),
+                              Image.asset(_otherStructureList[index]["icon_path"]),
+                              const SizedBox(width: 12,),
                               Expanded(child: Text(_otherStructureList[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
                             ],
                           ),
@@ -164,18 +164,18 @@ class BuildingSettlement extends StatelessWidget {
                           _reportEventController.selectDirectionOfCrackForBuildingSettlement(value: _cracksDirectionList[index]["type_of_damage"]);
                         },
                         child: Container(
-                          height: 162,
-                          width: 162,
+                          height: 86,
+                          width: isMobile? (MediaQuery.of(context).size.width-40) : (MediaQuery.of(context).size.width/2)-40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(_imageContainerBorderRadius),
                             // border: Border.all(color: appTheme.inputFieldsBorderColor)
                             border: _reportEventController.buildingSettlementDamage["building_settlement_crack_direction"].contains(_cracksDirectionList[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
                           ),
                           padding:const EdgeInsets.all(12),
-                          child: Column(
+                          child: Row(
                             children: [
-                              Image.asset(_cracksDirectionList[index]["icon_path"],height: 110,),
-                              const SizedBox(height: 12,),
+                              Image.asset(_cracksDirectionList[index]["icon_path"],),
+                              const SizedBox(width: 12,),
                               Expanded(child: Text(_cracksDirectionList[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
                             ],
                           ),
@@ -186,7 +186,7 @@ class BuildingSettlement extends StatelessWidget {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 18.0),
+                  padding: const EdgeInsets.symmetric(vertical: 18.0),
                   child: Row(
                     children: [
                       Padding(

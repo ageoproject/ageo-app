@@ -10,7 +10,7 @@ class ReportEventController extends GetxController{
   final RxString _activeTab="event_type".obs;
   final AgeoConfig _ageoConfig=AgeoConfig();
   final Event _eventDetail= Event();
-  final List<EventEventTypeEnum> _hasSpecificDamagePage=[EventEventTypeEnum.EARTHQUAKE,EventEventTypeEnum.LANDSLIDE,EventEventTypeEnum.RIVER_FLOODING,EventEventTypeEnum.SINKHOLE,EventEventTypeEnum.BUILDING_SETTLEMENT];
+  final List<EventEventTypeEnum> _hasSpecificDamagePage=[EventEventTypeEnum.EARTHQUAKE,EventEventTypeEnum.LANDSLIDE,EventEventTypeEnum.RIVER_FLOODING,EventEventTypeEnum.SINKHOLE,EventEventTypeEnum.BUILDING_SETTLEMENT,EventEventTypeEnum.MARINE_FLOODING];
 
   RxString get activeTab=> _activeTab;
   Event get eventDetail=>_eventDetail;
@@ -46,6 +46,16 @@ class ReportEventController extends GetxController{
       "event_type": EventEventTypeEnum.ROCKFALL
     },
     {
+      "event_name": "monitor_event.event_type_tab.sinkhole",
+      "icon_name": "sinkhole_ic",
+      "event_type": EventEventTypeEnum.SINKHOLE
+    },
+    {
+      "event_name": "monitor_event.event_type_tab.eruption",
+      "icon_name": "eruption_ic",
+      "event_type": EventEventTypeEnum.ERUPTION
+    },
+    {
       "event_name": "monitor_event.event_type_tab.land_slide",
       "icon_name": "landslide_ic",
       "event_type": EventEventTypeEnum.LANDSLIDE
@@ -56,20 +66,20 @@ class ReportEventController extends GetxController{
       "event_type": EventEventTypeEnum.RIVER_FLOODING
     },
     {
-      "event_name": "monitor_event.event_type_tab.sinkhole",
-      "icon_name": "sinkhole_ic",
-      "event_type": EventEventTypeEnum.SINKHOLE
+      "event_name": "monitor_event.event_type_tab.marineFlooding",
+      "icon_name": "marineFlooding_ic",
+      "event_type": EventEventTypeEnum.MARINE_FLOODING
     },
     {
-      "event_name": "monitor_event.event_type_tab.eruption",
-      "icon_name": "eruption_ic",
-      "event_type": EventEventTypeEnum.ERUPTION
-    },{
+      "event_name": "monitor_event.event_type_tab.coastalErosion",
+      "icon_name": "coastalErosion_ic",
+      "event_type": EventEventTypeEnum.COASTAL_EROSION
+    },
+    {
       "event_name": "monitor_event.event_type_tab.building_settlement",
       "icon_name": "buildingSettlement_ic",
       "event_type": EventEventTypeEnum.BUILDING_SETTLEMENT
     },
-
   ];
   EventEventTypeEnum? _selectedEventType;
 
@@ -316,7 +326,7 @@ class ReportEventController extends GetxController{
   /// Flood
 
   final Map<String,dynamic> _riverFloodingDamage={
-    "river_flooding_water_level": 10.0,
+    "river_flooding_water_level": 10,
     "river_flooding_observed_damage": [],
     "river_flooding_other_observed_damage": ""
   };
@@ -324,7 +334,7 @@ class ReportEventController extends GetxController{
   Map<String,dynamic> get riverFloodingDamage=>_riverFloodingDamage;
 
   void changeWaterLevelOfFlood({required String value}){
-    _riverFloodingDamage["river_flooding_water_level"]=double.parse(value);
+    _riverFloodingDamage["river_flooding_water_level"]=int.parse(value);
   }
 
   void selectObservedDamageForFlood({required String value}){
@@ -426,6 +436,50 @@ class ReportEventController extends GetxController{
   void changeDimensionOfCrackForBuildingSettlement({required String value}){
     _buildingSettlementDamage["building_settlement_crack_dimension"]=int.parse(value);
     // update();
+  }
+
+  /// MARINE FLOODING
+
+  final Map<String,dynamic> _marineFloodingDamage={
+    "marine_flooding_submersion_type": "",
+    "marine_flooding_water_level": 10,
+    "marine_flooding_environment_type": [],
+    "marine_flooding_visit_frequency": "1st time",
+    "marine_flooding_free_comments": "",
+  };
+
+  Map<String,dynamic> get marineFloodingDamage=>_marineFloodingDamage;
+
+  void changeMarineFloodingSubmersionType({required String value}){
+    if(_marineFloodingDamage["marine_flooding_submersion_type"]!=value){
+      _marineFloodingDamage["marine_flooding_submersion_type"]=value;
+    }else{
+      _marineFloodingDamage["marine_flooding_submersion_type"]="";
+    }
+    update();
+  }
+
+  void changeMarineFloodingWaterLevel({required String value}){
+    _marineFloodingDamage["marine_flooding_water_level"]=int.parse(value);
+  }
+
+  void changeMarineFloodingEnvironmentType({required String value}){
+    if(_marineFloodingDamage["marine_flooding_environment_type"].contains(value)){
+      _marineFloodingDamage["marine_flooding_environment_type"].remove(value);
+    }else{
+      _marineFloodingDamage["marine_flooding_environment_type"].add(value);
+    }
+    print(_marineFloodingDamage);
+    update();
+  }
+
+  void changeMarineFloodingVisitFrequency({required String value}){
+    _marineFloodingDamage["marine_flooding_visit_frequency"]=value;
+    update();
+  }
+  void changeMarineFloodingComment({required String value}){
+    _marineFloodingDamage["marine_flooding_free_comments"]=value;
+    update();
   }
 
   ////  Quick Report Event

@@ -10,24 +10,24 @@ class RiverFlooding extends StatelessWidget {
   RiverFlooding({Key? key}) : super(key: key);
   final ReportEventController _reportEventController=Get.find();
   final double _inputFieldBorderRadius = 4;
-  final List<Map<String,String>> _typeOfFloodDamage=[
+  final List<Map<String,String>> _typeOfRiverFloodingDamage=[
     {
-      "localization_ref":"monitor_event.flood.building",
+      "localization_ref":"monitor_event.river_flood.building",
       "type_of_damage":"Building",
       "icon_path":"assets/images/report_event/event_specific_images/flood/building_ic.png"
     },
     {
-      "localization_ref":"monitor_event.flood.green_area",
+      "localization_ref":"monitor_event.river_flood.green_area",
       "type_of_damage":"Green area",
       "icon_path":"assets/images/report_event/event_specific_images/flood/green_area_ic.png"
     },
     {
-      "localization_ref":"monitor_event.flood.road",
+      "localization_ref":"monitor_event.river_flood.road",
       "type_of_damage":"Road",
       "icon_path":"assets/images/report_event/event_specific_images/flood/road_ic.png"
     },
     {
-      "localization_ref":"monitor_event.flood.railway",
+      "localization_ref":"monitor_event.river_flood.railway",
       "type_of_damage":"Railway",
       "icon_path":"assets/images/report_event/event_specific_images/flood/railways_ic.png"
     },
@@ -50,7 +50,7 @@ class RiverFlooding extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: Text("${tr("monitor_event.flood.water_level")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                        child: Text("${tr("monitor_event.river_flood.water_level")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
                       ),
                       Expanded(
                         child: TextFormField(
@@ -110,34 +110,36 @@ class RiverFlooding extends StatelessWidget {
                     child: Text("common_key.select_observe_damage",style: TextStyle(fontSize:14,color:appTheme.primaryActionColor,fontWeight: FontWeight.w600 ),).tr(),
                   ),
 
-                  Wrap(
-                    spacing: 12,
-                    runSpacing: 12,
-                    children: List.generate(_typeOfFloodDamage.length, (index) {
-                      double cardWidth=(MediaQuery.of(context).size.width/2)-34;
-                      return GestureDetector(
-                        onTap: (){
-                          _reportEventController.selectObservedDamageForFlood(value: _typeOfFloodDamage[index]["type_of_damage"]!);
-                        },
-                        child: Container(
-                          height: 77,
-                          width: isMobile? cardWidth :162,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                            border: _reportEventController.riverFloodingDamage["river_flooding_observed_damage"].contains(_typeOfFloodDamage[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: List.generate(_typeOfRiverFloodingDamage.length, (index) {
+                        return GestureDetector(
+                          onTap: (){
+                            _reportEventController.selectObservedDamageForFlood(value: _typeOfRiverFloodingDamage[index]["type_of_damage"]!);
+                          },
+                          child: Container(
+                            height: 86,
+                            width: isMobile? (MediaQuery.of(context).size.width-40) : (MediaQuery.of(context).size.width/2)-40,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              // border: Border.all(color: appTheme.inputFieldsBorderColor)
+                              border: _reportEventController.riverFloodingDamage["river_flooding_observed_damage"].contains(_typeOfRiverFloodingDamage[index]["type_of_damage"]) ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                            ),
+                            padding:const EdgeInsets.all(12),
+                            child: Row(
+                              children: [
+                                Image.asset(_typeOfRiverFloodingDamage[index]["icon_path"]!),
+                                const SizedBox(width: 12,),
+                                Expanded(child: Text(_typeOfRiverFloodingDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
+                              ],
+                            ),
                           ),
-                          padding:const EdgeInsets.all(12),
-                          child: Row(
-                            children: [
-                              isMobile? Image.asset(_typeOfFloodDamage[index]["icon_path"]!, width: cardWidth/3,):Image.asset(_typeOfFloodDamage[index]["icon_path"]!),
-                              const SizedBox(width: 12,),
-                              Expanded(child: Text(_typeOfFloodDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
-                            ],
-                          ),
-                        ),
-                      );
-                    }),
+                        );
+                      }),
+                    ),
                   ),
 
                   Padding(

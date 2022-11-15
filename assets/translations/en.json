@@ -3,7 +3,8 @@
     "next_btn": "Next",
     "submit_btn": "Submit",
     "select_observe_damage": "Select observed damage",
-    "other": "Add other observed damage"
+    "other": "Add other observed damage",
+    "new_add_comment": "Any precision that could be of interest: \ndate of last storm, date of the damage if known, etc.\nName, e-mail address (optional)"
   },
   "home_page": {
     "monitor_event": "Monitor an event",
@@ -56,8 +57,10 @@
       "land_slide": "Land Slide",
       "flood": "River Flooding",
       "sinkhole": "Sinkhole",
-      "building_settlement": "Building\nSettlement",
-      "eruption": "Eruption"
+      "building_settlement": "Building Settlement",
+      "eruption": "Eruption",
+      "marineFlooding": "Marine Flooding",
+      "coastalErosion": "Coastal Erosion"
     },
     "toast_message": {
       "select_event_type": "Please select event type",
@@ -81,13 +84,37 @@
       "railway": "Railway",
       "water_lines": "Water Lines"
     },
-    "flood": {
+    "river_flood": {
       "water_level": "Water level (in ft)",
       "building": "Building",
       "green_area": "Green area",
       "road": "Road",
       "railway": "Railway",
       "coastal": "Coastal"
+    },
+    "marine_flood": {
+      "type_of_submersion": "Type of submersion",
+      "type_of_environment": "Type of environment",
+      "wave_overtopping": "Wave overtopping",
+      "wave_overflow": "Wave overflow",
+      "breach": "Breach",
+      "cobbles_and_thrown": "Cobbles / sand thrown by waves",
+      "water_level": "Water level (in ft):",
+      "natural_area": "Natural area",
+      "natural_area_with_coastal_defence": "Natural area with coastal defence",
+      "low_lying": "Low - lying area onshore",
+      "coastal_path": "Coastal path",
+      "roads_and_parking": "Roads and parking",
+      "harbour": "Harbour",
+      "residential_area":"Residential area",
+      "urbanized_artificialized_area": "Other urbanized / artificialized area",
+      "Daily": "Daily",
+      "1st time": "1st time",
+      "Yearly": "Yearly",
+      "Monthly": "Monthly",
+      "Weekly": "Weekly",
+      "frequency_of_visits": "Frequency of visits to the site",
+      "frequency_of_visits_hint": "for us to get an approximate date of the event"
     },
     "sinkhole": {
       "sinkhole_dimension": "Dimension of Sinkhole (in foot steps)",
