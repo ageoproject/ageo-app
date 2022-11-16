@@ -43,6 +43,15 @@
     "please_wait": "Please wait..",
     "share": "Share",
     "app_bar_tittle": "Select Event Type",
+    "frequency_of_visits":{
+      "text": "Frequency of visits to the sites",
+      "text_hint": "(for us, to get an approximate date of the event)",
+      "Daily": "Daily",
+      "1st time": "1st time",
+      "Yearly": "Yearly",
+      "Monthly": "Monthly",
+      "Weekly": "Weekly"
+    },
     "tab_view": {
       "event_type": "Event type",
       "map": "Map",
@@ -107,14 +116,7 @@
       "roads_and_parking": "Roads and parking",
       "harbour": "Harbour",
       "residential_area":"Residential area",
-      "urbanized_artificialized_area": "Other urbanized / artificialized area",
-      "Daily": "Daily",
-      "1st time": "1st time",
-      "Yearly": "Yearly",
-      "Monthly": "Monthly",
-      "Weekly": "Weekly",
-      "frequency_of_visits": "Frequency of visits to the site",
-      "frequency_of_visits_hint": "for us to get an approximate date of the event"
+      "urbanized_artificialized_area": "Other urbanized / artificialized area"
     },
     "sinkhole": {
       "sinkhole_dimension": "Dimension of Sinkhole (in foot steps)",
@@ -141,6 +143,73 @@
       "starry": "Starry",
       "none": "None",
       "crack_direction": "Dimension of crack (in millimeters)"
+    },
+    "coastal_erosion": {
+      "object_subject_to_erosion": "Object subject to erosion",
+      "cliff": "Cliff",
+      "beach": "Beach",
+      "dune": "Dune or strip of pebbles",
+      "coastal_defences": "Coastal defences or buildings",
+      "cliff_detail": {
+        "presence_of_debris": "Presence of debris at the cliff foot ",
+        "volume_of_debris": "Volume of debris (in %)",
+        "Don't know": "Don't know",
+        "Cycle": "Cycle",
+        "Car": "Car",
+        "Truck": "Truck",
+        "yes": "Yes",
+        "no": "No",
+        "eroded_part": "Eroded part of the cliff",
+        "cliff_top": "Cliff top",
+        "cliff_foot": "Cliff foot",
+        "all_cliff": "All cliff face",
+        "small_blocks": "Small blocks"
+      },
+      "beach_details": {
+        "type_of_sediments": "Type of sediments",
+        "silt": "Silt",
+        "fine_sand": "Fine sand",
+        "coarse_sand": "Coarse sand",
+        "gravels": "Gravels",
+        "pebbles": "Pebbles",
+        "height_of_sand_lost": "Height of sand lost (in cm)",
+        "Don't know": "Don't know",
+        "20cm": "20cm",
+        "50cm": "50cm",
+        "1m": "1m",
+        ">1m": ">1m"
+      },
+      "dune_detail": {
+        "eroded_part": "Eroded part of the dune or strip of pebbles",
+        "dune_top": "Dune top",
+        "dune_foot": "Dune foot",
+        "all_dune": "All the dune",
+        "dune_migration": "Dune migration",
+        "dune_features": "Features on the dune",
+        "vegetation":"Vegetation",
+        "granville_slats": "Granville slats",
+        "foot_path": "Foot path"
+      },
+      "coastal_defences_detail": {
+        "type_of_building": "Type of building",
+        "housing": "Housing",
+        "harbour_facilities": "Harbour facilities, boat",
+        "parking": "Roads & parking",
+        "agriculture": "Agriculture & industry",
+        "tourism": "Tourism & leisure facilities",
+        "foot_path": "Foot path",
+        "coastal_defence": "Coastal defence",
+        "damage_cause": "Possible causes of the damage",
+        "don't_know": "I don't know",
+        "storm": "Storm",
+        "strong_wind": "Strong wind",
+        "heavy_rain": "Heavy rain",
+        "high_tide": "High tide",
+        "human_caused": "Human - caused",
+        "level_of_damage": "Level of damage",
+        "response_confident": "How confident are you in your response",
+        "response_confident_hint": "(on the scale of 5)"
+      }
     }
   },
 

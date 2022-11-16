@@ -126,6 +126,7 @@ class _MapViewState extends State<MapView> {
      });
     return GetBuilder<ReportEventController>(
       builder:(controller)=> Scaffold(
+        backgroundColor: Colors.white,
         body: Stack(
           children: [
             GoogleMap(

@@ -191,6 +191,7 @@ class _QuickReportEventState extends State<QuickReportEvent> {
         }
       },
       child: Scaffold(
+        backgroundColor: Colors.white,
         drawer: CustomAppDrawer(),
         body: Column(
           children: [

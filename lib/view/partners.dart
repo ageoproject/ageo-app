@@ -74,6 +74,7 @@ class Partners extends StatelessWidget {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     return Scaffold(
+      backgroundColor: Colors.white,
       drawer: CustomAppDrawer(),
       body: WillPopScope(
         onWillPop: ()async{

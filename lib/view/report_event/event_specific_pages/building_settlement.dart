@@ -73,6 +73,7 @@ class BuildingSettlement extends StatelessWidget {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: GetBuilder<ReportEventController>(
           builder: (_)=>Padding(

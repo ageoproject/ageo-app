@@ -37,6 +37,7 @@ class Earthquake extends StatelessWidget {
     bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     return GetBuilder<ReportEventController>(
       builder:(_)=> Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -122,7 +123,6 @@ class Earthquake extends StatelessWidget {
                                 spacing: 12,
                                 runSpacing: 12,
                                 children: List<Widget>.generate(_typeOfEarthquakeDamage.length, (index) {
-                                  double cardWidth=(MediaQuery.of(context).size.width/2)-34;
                                   return GestureDetector(
                                     onTap: (){
                                       _reportEventController.selectObservedDamageForEarthquake(index: buildingIndex, answer: _typeOfEarthquakeDamage[index]["type_of_damage"]!);

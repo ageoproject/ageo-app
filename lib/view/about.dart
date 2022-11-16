@@ -14,6 +14,7 @@ class AboutUS extends StatelessWidget {
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     return Scaffold(
+      backgroundColor: Colors.white,
       drawer: CustomAppDrawer(),
       body: WillPopScope(
         onWillPop: ()async{

@@ -230,7 +230,7 @@ class MarineFlooding extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
-                      child: Text("${tr("monitor_event.marine_flood.frequency_of_visits")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                      child: Text("${tr("monitor_event.frequency_of_visits.text")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
                     ),
                     Expanded(
                       child: Container(
@@ -254,7 +254,7 @@ class MarineFlooding extends StatelessWidget {
                                 //child: new Text(value),
                                 child: Padding(
                                   padding: const EdgeInsets.all(0.0),
-                                  child: Text("monitor_event.marine_flood.$value",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)).tr(),
+                                  child: Text("monitor_event.frequency_of_visits.$value",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)).tr(),
                                 ),
                               );
                             }).toList(),

@@ -41,6 +41,7 @@ class CommonQuestions extends StatelessWidget {
     _dateTextEditingController.text=_reportEventController.eventDate.value;
     _timeTextEditingController.text=formatTime(time:_reportEventController.eventDetail.time!);
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 8),

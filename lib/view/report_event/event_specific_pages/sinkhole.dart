@@ -61,6 +61,7 @@ class Sinkhole extends StatelessWidget {
     bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     return GetBuilder<ReportEventController>(
       builder: (_)=>Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 8),

@@ -91,6 +91,7 @@ flutter:
     - assets/images/report_event/event_specific_images/sinkhole/
     - assets/images/report_event/event_specific_images/building_settlement/
     - assets/images/report_event/event_specific_images/marine_flooding/
+    - assets/images/report_event/event_specific_images/coastal_erosion/
     - assets/images/contact/
     - assets/images/partners/
 

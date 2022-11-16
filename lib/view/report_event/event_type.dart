@@ -17,6 +17,7 @@ class EventTypeList extends StatelessWidget {
     bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     return GetBuilder<ReportEventController>(
       builder:(controller)=> Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Container(
             alignment: Alignment.center,

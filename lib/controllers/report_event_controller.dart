@@ -10,7 +10,7 @@ class ReportEventController extends GetxController{
   final RxString _activeTab="event_type".obs;
   final AgeoConfig _ageoConfig=AgeoConfig();
   final Event _eventDetail= Event();
-  final List<EventEventTypeEnum> _hasSpecificDamagePage=[EventEventTypeEnum.EARTHQUAKE,EventEventTypeEnum.LANDSLIDE,EventEventTypeEnum.RIVER_FLOODING,EventEventTypeEnum.SINKHOLE,EventEventTypeEnum.BUILDING_SETTLEMENT,EventEventTypeEnum.MARINE_FLOODING];
+  final List<EventEventTypeEnum> _hasSpecificDamagePage=[EventEventTypeEnum.EARTHQUAKE,EventEventTypeEnum.LANDSLIDE,EventEventTypeEnum.RIVER_FLOODING,EventEventTypeEnum.SINKHOLE,EventEventTypeEnum.BUILDING_SETTLEMENT,EventEventTypeEnum.MARINE_FLOODING,EventEventTypeEnum.COASTAL_EROSION];
 
   RxString get activeTab=> _activeTab;
   Event get eventDetail=>_eventDetail;
@@ -469,7 +469,7 @@ class ReportEventController extends GetxController{
     }else{
       _marineFloodingDamage["marine_flooding_environment_type"].add(value);
     }
-    print(_marineFloodingDamage);
+    // print(_marineFloodingDamage);
     update();
   }
 
@@ -481,6 +481,123 @@ class ReportEventController extends GetxController{
     _marineFloodingDamage["marine_flooding_free_comments"]=value;
     update();
   }
+
+  //// Coastal Erosion
+
+  final Map<String,dynamic> _coastalErosionDamage={
+    "coastal_erosion_eroded_object":"",
+    "coastal_erosion_visit_frequency":"Daily",
+    "coastal_erosion_free_comment":"",
+    "Cliff":{
+      "coastal_erosion_debris_presence":"No",
+      "coastal_erosion_debris_volume":"Don't know",
+      "coastal_erosion_eroded_part":""
+    },
+    "Beach":{
+      "coastal_erosion_sediment_types":[],
+      "coastal_erosion_sand_height_lost":"Don't know"
+    },
+    "Dune or strip of pebbles":{
+      "coastal_erosion_dune_part_eroded":"",
+      "coastal_erosion_features_on_dune":[]
+    },
+    "Coastal defences or buildings":{
+      "coastal_erosion_building_type":"",
+      "coastal_erosion_damage_level":1.0,
+      "coastal_erosion_damage_causes":[],
+      "coastal_erosion_response_confidence":1
+    }
+  };
+
+  Map<String,dynamic> get coastalErosionDamage=>_coastalErosionDamage;
+
+  void changeCoastalErosionErodedObject({required String value}){
+    if(_coastalErosionDamage["coastal_erosion_eroded_object"]!=value){
+      _coastalErosionDamage["coastal_erosion_eroded_object"]=value;
+    }else{
+      _coastalErosionDamage["coastal_erosion_eroded_object"]="";
+    }
+    update();
+  }
+
+  void changeCoastalErosionVisitFrequency({required String value}){
+    _coastalErosionDamage["coastal_erosion_visit_frequency"]=value;
+    update();
+  }
+
+  void changeCoastalErosionComment({required String value}){
+    _coastalErosionDamage["coastal_erosion_free_comment"]=value;
+  }
+
+  void changeCoastalErosionCliffDebrisPresence({required String value}){
+    _coastalErosionDamage["Cliff"]["coastal_erosion_debris_presence"]=value;
+    update();
+  }
+  void changeCoastalErosionCliffDebrisVolume({required String value}){
+    _coastalErosionDamage["Cliff"]["coastal_erosion_debris_volume"]=value;
+    update();
+  }
+  void changeCoastalErosionCliffErodedPart({required String value}){
+    if(_coastalErosionDamage["Cliff"]["coastal_erosion_eroded_part"]!=value){
+      _coastalErosionDamage["Cliff"]["coastal_erosion_eroded_part"]=value;
+    }else{
+      _coastalErosionDamage["Cliff"]["coastal_erosion_eroded_part"]="";
+    }
+    update();
+  }
+  void changeCoastalErosionBeachSedimentType({required String value}){
+    if(_coastalErosionDamage["Beach"]["coastal_erosion_sediment_types"].contains(value)){
+      _coastalErosionDamage["Beach"]["coastal_erosion_sediment_types"].remove(value);
+    }else{
+      _coastalErosionDamage["Beach"]["coastal_erosion_sediment_types"].add(value);
+    }
+    update();
+  }
+  void changeCoastalErosionBeachSandHeightLost({required String value}){
+    _coastalErosionDamage["Beach"]["coastal_erosion_sand_height_lost"]=value;
+    update();
+  }
+  void changeCoastalErosionDuneErodedPart({required String value}){
+    if(_coastalErosionDamage["Dune or strip of pebbles"]["coastal_erosion_dune_part_eroded"]!=value){
+      _coastalErosionDamage["Dune or strip of pebbles"]["coastal_erosion_dune_part_eroded"]=value;
+    }else{
+      _coastalErosionDamage["Dune or strip of pebbles"]["coastal_erosion_dune_part_eroded"]="";
+    }
+    update();
+  }
+  void changeCoastalErosionDuneFeature({required String value}){
+    if(_coastalErosionDamage["Dune or strip of pebbles"]["coastal_erosion_features_on_dune"].contains(value)){
+      _coastalErosionDamage["Dune or strip of pebbles"]["coastal_erosion_features_on_dune"].remove(value);
+    }else{
+      _coastalErosionDamage["Dune or strip of pebbles"]["coastal_erosion_features_on_dune"].add(value);
+    }
+    update();
+  }
+  void changeCoastalErosionCoastalDefencesErodedBuildingType({required String value}){
+    if(_coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_building_type"]!=value){
+      _coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_building_type"]=value;
+    }else{
+      _coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_building_type"]="";
+    }
+    update();
+  }
+  void changeCoastalErosionCoastalDefencesDamageLevel({required String value}){
+    _coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_level"]=double.parse(value);
+    update();
+  }
+  void changeCoastalErosionCoastalDefencesDamageCauses({required String value}){
+    if(_coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_causes"].contains(value)){
+      _coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_causes"].remove(value);
+    }else{
+      _coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_causes"].add(value);
+    }
+    update();
+  }
+  void changeCoastalErosionCoastalDefencesResponseConfidence({required String value}){
+    _coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_response_confidence"]=int.parse(value);
+    update();
+  }
+
 
   ////  Quick Report Event
 
@@ -518,8 +635,19 @@ class ReportEventController extends GetxController{
       case EventEventTypeEnum.BUILDING_SETTLEMENT:{
         return _buildingSettlementDamage;
       }
+      case EventEventTypeEnum.MARINE_FLOODING:{
+        return _marineFloodingDamage;
+      }
+      case EventEventTypeEnum.COASTAL_EROSION:{
+        Map<String,dynamic> coastalErosion={};
+        coastalErosion["coastal_erosion_eroded_object"]=_coastalErosionDamage["coastal_erosion_eroded_object"];
+        coastalErosion["coastal_erosion_visit_frequency"]=_coastalErosionDamage["coastal_erosion_visit_frequency"];
+        coastalErosion["coastal_erosion_free_comment"]=_coastalErosionDamage["coastal_erosion_free_comment"];
+        coastalErosion.addAll(_coastalErosionDamage[_coastalErosionDamage["coastal_erosion_eroded_object"]]);
+        return coastalErosion;
+      }
       default:{
-        return [{}];
+        return {};
       }
     }
   }

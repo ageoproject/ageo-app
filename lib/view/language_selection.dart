@@ -18,6 +18,7 @@ class LanguageSelection extends StatelessWidget {
     final CustomThemeData appTheme=Theme.of(context).customTheme;
     _appLanguage=_mainController.appLanguage.value;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Positioned(

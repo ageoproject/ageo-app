@@ -4,6 +4,7 @@ import 'package:ageo/view/app_bar.dart';
 import 'package:ageo/view/report_event/common_questions.dart';
 import 'package:ageo/view/report_event/custom_tab_view.dart';
 import 'package:ageo/view/report_event/event_specific_pages/building_settlement.dart';
+import 'package:ageo/view/report_event/event_specific_pages/coastal_erosion.dart';
 import 'package:ageo/view/report_event/event_specific_pages/earthquake.dart';
 import 'package:ageo/view/report_event/event_specific_pages/landslide.dart';
 import 'package:ageo/view/report_event/event_specific_pages/sinkhole.dart';
@@ -38,8 +39,6 @@ class _ReportEventState extends State<ReportEvent> {
         return CommonQuestions();
       }
       case "damage":{
-        // return BuildingSettlement();
-        print("Calling ##############");
         return selectEventSpecificDamagePage();
       }
       default:{
@@ -49,7 +48,6 @@ class _ReportEventState extends State<ReportEvent> {
   }
 
   Widget selectEventSpecificDamagePage(){
-    print("Calling1 ##############");
     switch(_reportEventController.selectedEventType){
       case EventEventTypeEnum.EARTHQUAKE:{
         return Earthquake();
@@ -69,6 +67,9 @@ class _ReportEventState extends State<ReportEvent> {
       case EventEventTypeEnum.MARINE_FLOODING:{
         return MarineFlooding();
       }
+      case EventEventTypeEnum.COASTAL_EROSION:{
+        return CoastalErosion();
+      }
       default:{
         return Container();
       }
@@ -84,6 +85,7 @@ class _ReportEventState extends State<ReportEvent> {
   Widget build(BuildContext context) {
     // CustomThemeData appTheme=Theme.of(context).customTheme;
     return Scaffold(
+      backgroundColor: Colors.white,
       drawer: CustomAppDrawer(),
       body: Column(
         children: [
