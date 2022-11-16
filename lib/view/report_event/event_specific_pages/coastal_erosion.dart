@@ -890,7 +890,7 @@ class _CoastalErosionState extends State<CoastalErosion> {
           ),
         ),
       ),
-      // bottomNavigationBar: SubmitButton(),
+      bottomNavigationBar: SubmitButton(),
     );
   }
 }
