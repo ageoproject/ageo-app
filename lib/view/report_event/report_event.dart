@@ -68,7 +68,7 @@ class _ReportEventState extends State<ReportEvent> {
         return MarineFlooding();
       }
       case EventEventTypeEnum.COASTAL_EROSION:{
-        return CoastalErosion();
+        return const CoastalErosion();
       }
       default:{
         return Container();

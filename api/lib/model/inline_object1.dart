@@ -13,27 +13,27 @@ part of openapi.api;
 class InlineObject1 {
   /// Returns a new [InlineObject1] instance.
   InlineObject1({
-    this.prefLang,
+    this.status,
   });
 
-  String? prefLang;
+  String? status;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is InlineObject1 &&
-     other.prefLang == prefLang;
+     other.status == status;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (prefLang == null ? 0 : prefLang.hashCode);
+    (status == null ? 0 : status.hashCode);
 
   @override
-  String toString() => 'InlineObject1[prefLang=$prefLang]';
+  String toString() => 'InlineObject1[status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (prefLang != null) {
-      json[r'prefLang'] = prefLang;
+    if (status != null) {
+      json[r'status'] = status;
     }
     return json;
   }
@@ -45,7 +45,7 @@ class InlineObject1 {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return InlineObject1(
-        prefLang: mapValueOfType<String>(json, r'prefLang'),
+        status: mapValueOfType<String>(json, r'status'),
       );
     }
     return null;

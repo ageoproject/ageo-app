@@ -46,35 +46,39 @@ class CustomAppBar extends StatelessWidget {
               ],
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(right: 16.0),
-              child: Container(
-                decoration:BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: appTheme.inputFieldsBorderColor),
-                    borderRadius: BorderRadius.circular(4)
-                ),
-                child: ButtonTheme(
-                  alignedDropdown: true,
-                  child: DropdownButton<String>(
-                    value: _mainController.appLanguage.value,
-                    underline:const SizedBox(),
-                    items: _languageHelper.languageNameList.map((String value) {
-                      return DropdownMenuItem<String>(
-                        key: Key(value),
-                        value: value,
-                        //child: new Text(value),
-                        child: Padding(
-                          padding: const EdgeInsets.all(0.0),
-                          child: Text(value,style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)),
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (language) {
-                      if(language!=null) {
-                        _mainController.changeAppLanguage(language: language,context: context);
-                      }
-                    },
+            Flexible(
+              fit:FlexFit.loose,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 16.0),
+                child: Container(
+
+                  decoration:BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: appTheme.inputFieldsBorderColor),
+                      borderRadius: BorderRadius.circular(4)
+                  ),
+                  child: ButtonTheme(
+                    alignedDropdown: true,
+                    child: DropdownButton<String>(
+                      value: _mainController.appLanguage.value,
+                      underline:const SizedBox(),
+                      items: _languageHelper.languageNameList.map((String value) {
+                        return DropdownMenuItem<String>(
+                          key: Key(value),
+                          value: value,
+                          //child: new Text(value),
+                          child: Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: Text(value,style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (language) {
+                        if(language!=null) {
+                          _mainController.changeAppLanguage(language: language,context: context);
+                        }
+                      },
+                    ),
                   ),
                 ),
               ),

@@ -72,70 +72,14 @@ class ManagerApi {
     }
   }
 
-  /// Performs an HTTP 'POST /manager/change_user_status' operation and returns the [Response].
-  /// Parameters:
-  ///
-  /// * [String] userId (required):
-  ///
-  /// * [String] newStatus (required):
-  Future<Response> changeUserStatusWithHttpInfo(String userId, String newStatus,) async {
-    // Verify required params are set.
-    if (userId == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: userId');
-    }
-    if (newStatus == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: newStatus');
-    }
-
-    // ignore: prefer_const_declarations
-    final path = r'/manager/change_user_status';
-
-    // ignore: prefer_final_locals
-    Object? postBody;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'userId', userId));
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'newStatus', newStatus));
-
-    const authNames = <String>['Token'];
-    const contentTypes = <String>[];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
-    );
-  }
-
-  /// Parameters:
-  ///
-  /// * [String] userId (required):
-  ///
-  /// * [String] newStatus (required):
-  Future<void> changeUserStatus(String userId, String newStatus,) async {
-    final response = await changeUserStatusWithHttpInfo(userId, newStatus,);
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-  }
-
   /// Download Excel file of events
   ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
   ///
-  /// * [InlineObject6] filters:
-  Future<Response> downloadEventListWithHttpInfo({ InlineObject6? filters, }) async {
+  /// * [InlineObject5] filters:
+  Future<Response> downloadEventListWithHttpInfo({ InlineObject5? filters, }) async {
     // Verify required params are set.
 
     // ignore: prefer_const_declarations
@@ -168,8 +112,8 @@ class ManagerApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject6] filters:
-  Future<MultipartFile?> downloadEventList({ InlineObject6? filters, }) async {
+  /// * [InlineObject5] filters:
+  Future<MultipartFile?> downloadEventList({ InlineObject5? filters, }) async {
     final response = await downloadEventListWithHttpInfo( filters: filters, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -182,91 +126,5 @@ class ManagerApi {
     
     }
     return Future<MultipartFile>.value();
-  }
-
-  /// Performs an HTTP 'POST /manager/get_datatable_apiuser_list' operation and returns the [Response].
-  /// Parameters:
-  ///
-  /// * [Object] datatableoptions:
-  Future<Response> getDatatableApiuserListWithHttpInfo({ Object? datatableoptions, }) async {
-    // Verify required params are set.
-
-    // ignore: prefer_const_declarations
-    final path = r'/manager/get_datatable_apiuser_list';
-
-    // ignore: prefer_final_locals
-    Object? postBody = datatableoptions;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    const authNames = <String>['Token'];
-    const contentTypes = <String>['application/json'];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
-    );
-  }
-
-  /// Parameters:
-  ///
-  /// * [Object] datatableoptions:
-  Future<void> getDatatableApiuserList({ Object? datatableoptions, }) async {
-    final response = await getDatatableApiuserListWithHttpInfo( datatableoptions: datatableoptions, );
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-  }
-
-  /// Performs an HTTP 'POST /manager/get_datatable_manager_list' operation and returns the [Response].
-  /// Parameters:
-  ///
-  /// * [Object] datatableoptions:
-  Future<Response> getDatatableManagerListWithHttpInfo({ Object? datatableoptions, }) async {
-    // Verify required params are set.
-
-    // ignore: prefer_const_declarations
-    final path = r'/manager/get_datatable_manager_list';
-
-    // ignore: prefer_final_locals
-    Object? postBody = datatableoptions;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    const authNames = <String>['Token'];
-    const contentTypes = <String>['application/json'];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
-    );
-  }
-
-  /// Parameters:
-  ///
-  /// * [Object] datatableoptions:
-  Future<void> getDatatableManagerList({ Object? datatableoptions, }) async {
-    final response = await getDatatableManagerListWithHttpInfo( datatableoptions: datatableoptions, );
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
   }
 }

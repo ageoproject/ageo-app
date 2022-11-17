@@ -17,10 +17,15 @@ void main() {
   final instance = ManagerApi();
 
   group('tests for ManagerApi', () {
+    //Future changeEventStatus(String newStatus, String eventId) async
+    test('test changeEventStatus', () async {
+      // TODO
+    });
+
     // Download Excel file of events
     //
-    //Future<MultipartFile> downloadExcel({ InlineObject6 filters }) async
-    test('test downloadExcel', () async {
+    //Future<MultipartFile> downloadEventList({ InlineObject5 filters }) async
+    test('test downloadEventList', () async {
       // TODO
     });
 

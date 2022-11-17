@@ -67,7 +67,7 @@ Login
 import 'package:ageoClient/api.dart';
 
 final api_instance = AuthApi();
-final loginRequest = InlineObject3(); // InlineObject3 | 
+final loginRequest = InlineObject2(); // InlineObject2 | 
 
 try {
     final result = api_instance.login(loginRequest);
@@ -81,7 +81,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **loginRequest** | [**InlineObject3**](InlineObject3.md)|  | [optional] 
+ **loginRequest** | [**InlineObject2**](InlineObject2.md)|  | [optional] 
 
 ### Return type
 
@@ -144,7 +144,7 @@ Reset Password Request
 import 'package:ageoClient/api.dart';
 
 final api_instance = AuthApi();
-final signupRequest = InlineObject5(); // InlineObject5 | 
+final signupRequest = InlineObject4(); // InlineObject4 | 
 
 try {
     final result = api_instance.resetPassword(signupRequest);
@@ -158,7 +158,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **signupRequest** | [**InlineObject5**](InlineObject5.md)|  | [optional] 
+ **signupRequest** | [**InlineObject4**](InlineObject4.md)|  | [optional] 
 
 ### Return type
 
@@ -185,7 +185,7 @@ Sign up
 import 'package:ageoClient/api.dart';
 
 final api_instance = AuthApi();
-final signupRequest = InlineObject4(); // InlineObject4 | 
+final signupRequest = InlineObject3(); // InlineObject3 | 
 
 try {
     final result = api_instance.signup(signupRequest);
@@ -199,7 +199,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **signupRequest** | [**InlineObject4**](InlineObject4.md)|  | [optional] 
+ **signupRequest** | [**InlineObject3**](InlineObject3.md)|  | [optional] 
 
 ### Return type
 

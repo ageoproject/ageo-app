@@ -13,43 +13,27 @@ part of openapi.api;
 class InlineObject {
   /// Returns a new [InlineObject] instance.
   InlineObject({
-    this.name,
-    this.password,
-    this.email,
+    this.prefLang,
   });
 
-  String? name;
-
-  String? password;
-
-  String? email;
+  String? prefLang;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is InlineObject &&
-     other.name == name &&
-     other.password == password &&
-     other.email == email;
+     other.prefLang == prefLang;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (name == null ? 0 : name.hashCode) +
-    (password == null ? 0 : password.hashCode) +
-    (email == null ? 0 : email.hashCode);
+    (prefLang == null ? 0 : prefLang.hashCode);
 
   @override
-  String toString() => 'InlineObject[name=$name, password=$password, email=$email]';
+  String toString() => 'InlineObject[prefLang=$prefLang]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (name != null) {
-      json[r'name'] = name;
-    }
-    if (password != null) {
-      json[r'password'] = password;
-    }
-    if (email != null) {
-      json[r'email'] = email;
+    if (prefLang != null) {
+      json[r'prefLang'] = prefLang;
     }
     return json;
   }
@@ -61,9 +45,7 @@ class InlineObject {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return InlineObject(
-        name: mapValueOfType<String>(json, r'name'),
-        password: mapValueOfType<String>(json, r'password'),
-        email: mapValueOfType<String>(json, r'email'),
+        prefLang: mapValueOfType<String>(json, r'prefLang'),
       );
     }
     return null;

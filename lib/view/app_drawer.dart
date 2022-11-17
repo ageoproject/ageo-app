@@ -5,6 +5,7 @@ import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/url_launcher.dart';
 import 'package:ageo/view/about.dart';
 import 'package:ageo/view/contact.dart';
+import 'package:ageo/view/educational_content.dart';
 import 'package:ageo/view/partners.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +69,7 @@ class CustomAppDrawer extends StatelessWidget {
       }
       case "educational":{
         _appDrawerController.changeActiveButton(value: "educational");
-        // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>Partners()), (route)=> route.isFirst);
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>EducationalContent()), (route)=> route.isFirst);
         break;
       }
       case "partners":{

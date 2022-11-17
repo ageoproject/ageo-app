@@ -78,7 +78,7 @@ class CustomTabView extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.fromLTRB(16.0,0,16.0,8),
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [

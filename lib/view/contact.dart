@@ -63,7 +63,9 @@ class ContactUs extends StatelessWidget {
                               ),
                               child: IconButton(
                                 icon: Image.asset("assets/images/contact/facebook_ic.png"),
-                                onPressed: (){},
+                                onPressed: (){
+                                  _customUrlLauncher.openInBrowser(url: "https://www.facebook.com/100057332564486/");
+                                },
                               ),
                             ),
                             const SizedBox(width: 20),
@@ -74,7 +76,11 @@ class ContactUs extends StatelessWidget {
                               ),
                               child: IconButton(
                                 icon: Image.asset("assets/images/contact/twitter_ic.png"),
-                                onPressed: (){},
+                                onPressed: (){
+                                  // String link="fb://profile/100057332564486";
+                                  // _customUrlLauncher.openInBrowser(url: link);
+                                  _customUrlLauncher.openInBrowser(url: "https://twitter.com/AgeoAtlantic/");
+                                },
                               ),
                             ),
                           ],

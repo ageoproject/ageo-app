@@ -15,8 +15,6 @@ class CoastalErosion extends StatefulWidget {
 class _CoastalErosionState extends State<CoastalErosion> {
   final ReportEventController _reportEventController=Get.find();
 
-  final double _imageContainerBorderRadius=12.0;
-
   final double _inputFieldBorderRadius = 4;
 
   late bool isMobile;
@@ -225,50 +223,48 @@ class _CoastalErosionState extends State<CoastalErosion> {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0),
-          child: Row(
+          child: Wrap(
             children: [
               Padding(
                 padding: const EdgeInsets.only(right: 4.0),
                 child: Text("${tr("monitor_event.coastal_erosion.cliff_detail.presence_of_debris")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
               ),
-              Expanded(
-                  child: Row(
-                    children: [
-                      Flexible(
-                        fit: FlexFit.loose,
-                        child: RadioListTile(
-                          value: "Yes",
-                          visualDensity: const VisualDensity(
-                              horizontal: VisualDensity.minimumDensity,
-                              vertical: VisualDensity.minimumDensity),
-                          activeColor:const Color(0xff7AD559),
-                          title: Text("monitor_event.coastal_erosion.cliff_detail.yes",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr() ,
-                          contentPadding: EdgeInsets.zero,
-                          groupValue: _reportEventController.coastalErosionDamage["Cliff"]["coastal_erosion_debris_presence"],
-                          onChanged: (value){
-                            _reportEventController.changeCoastalErosionCliffDebrisPresence(value: value.toString());
-                          },
-                        ),
-                      ),
-                      Flexible(
-                        fit: FlexFit.loose,
-                        child: RadioListTile(
-                          value: "No",
-                          visualDensity: const VisualDensity(
-                              horizontal: VisualDensity.minimumDensity,
-                              vertical: VisualDensity.minimumDensity),
-                          contentPadding: EdgeInsets.zero,
-                          activeColor:const Color(0xffEA3E3E),
-                          // shape:const RoundedRectangleBorder(side: BorderSide(color: Color(0xffEA3E3E) )),
-                          title: Text("monitor_event.coastal_erosion.cliff_detail.no",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor)).tr() ,
-                          groupValue: _reportEventController.coastalErosionDamage["Cliff"]["coastal_erosion_debris_presence"],
-                          onChanged: (value){
-                            _reportEventController.changeCoastalErosionCliffDebrisPresence(value: value.toString());
-                          },
-                        ),
-                      ),
-                    ],
+              Row(
+                children: [
+                  Flexible(
+                    fit: FlexFit.loose,
+                    child: RadioListTile(
+                      value: "Yes",
+                      visualDensity: const VisualDensity(
+                          horizontal: VisualDensity.minimumDensity,
+                          vertical: VisualDensity.minimumDensity),
+                      activeColor:const Color(0xff7AD559),
+                      title: Text("monitor_event.coastal_erosion.cliff_detail.yes",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr() ,
+                      contentPadding: EdgeInsets.zero,
+                      groupValue: _reportEventController.coastalErosionDamage["Cliff"]["coastal_erosion_debris_presence"],
+                      onChanged: (value){
+                        _reportEventController.changeCoastalErosionCliffDebrisPresence(value: value.toString());
+                      },
+                    ),
                   ),
+                  Flexible(
+                    fit: FlexFit.loose,
+                    child: RadioListTile(
+                      value: "No",
+                      visualDensity: const VisualDensity(
+                          horizontal: VisualDensity.minimumDensity,
+                          vertical: VisualDensity.minimumDensity),
+                      contentPadding: EdgeInsets.zero,
+                      activeColor:const Color(0xffEA3E3E),
+                      // shape:const RoundedRectangleBorder(side: BorderSide(color: Color(0xffEA3E3E) )),
+                      title: Text("monitor_event.coastal_erosion.cliff_detail.no",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor)).tr() ,
+                      groupValue: _reportEventController.coastalErosionDamage["Cliff"]["coastal_erosion_debris_presence"],
+                      onChanged: (value){
+                        _reportEventController.changeCoastalErosionCliffDebrisPresence(value: value.toString());
+                      },
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -547,6 +543,7 @@ class _CoastalErosionState extends State<CoastalErosion> {
       ],
     );
   }
+
   Widget coastalDefenceDetailPage(){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -599,15 +596,15 @@ class _CoastalErosionState extends State<CoastalErosion> {
                 return Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(right: 12.0),
-                    child: Image.asset("assets/images/report_event/event_specific_images/coastal_erosion/${_levelOfDamageImageList[index]}",height: 40,alignment: Alignment.bottomCenter,),
+                    child: Image.asset("assets/images/report_event/event_specific_images/coastal_erosion/${_levelOfDamageImageList[index]}",height: 40,alignment: Alignment.bottomCenter,width: 55,),
                   ),
                 );
               })
             ),
             Slider(
               value: double.parse(_reportEventController.coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_level"].toString()),
-              max: 4,
-              divisions: 4,
+              max: 3,
+              divisions: 3,
               activeColor: appTheme.primaryActionColor,
               inactiveColor: appTheme.toggleSelectionColor,
               onChanged: (value){

@@ -39,15 +39,19 @@ Please follow the [installation procedure](#installation--usage) and then run th
 ```dart
 import 'package:ageoClient/api.dart';
 
+// TODO Configure API key authorization: Token
+//defaultApiClient.getAuthentication<ApiKeyAuth>('Token').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('Token').apiKeyPrefix = 'Bearer';
 
-final api_instance = AuthApi();
-final email = email_example; // String | 
+final api_instance = AdminApi();
+final managerDetails = User(); // User | 
 
 try {
-    final result = api_instance.forgotPassword(email);
+    final result = api_instance.addManager(managerDetails);
     print(result);
 } catch (e) {
-    print('Exception when calling AuthApi->forgotPassword: $e\n');
+    print('Exception when calling AdminApi->addManager: $e\n');
 }
 
 ```
@@ -58,6 +62,14 @@ All URIs are relative to *http://localhost:3000*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AdminApi* | [**addManager**](doc//AdminApi.md#addmanager) | **POST** /admin/manager | 
+*AdminApi* | [**changeApiuserStatus**](doc//AdminApi.md#changeapiuserstatus) | **PUT** /admin/change_apiuser_status | 
+*AdminApi* | [**downloadApiuserList**](doc//AdminApi.md#downloadapiuserlist) | **POST** /admin/download_apiuser_list | Download Excel file of api users
+*AdminApi* | [**downloadManagerList**](doc//AdminApi.md#downloadmanagerlist) | **POST** /admin/download_manager_list | Download Excel file of managers
+*AdminApi* | [**getDatatableApiuserList**](doc//AdminApi.md#getdatatableapiuserlist) | **POST** /admin/get_datatable_apiuser_list | 
+*AdminApi* | [**getDatatableManagerList**](doc//AdminApi.md#getdatatablemanagerlist) | **POST** /admin/get_datatable_manager_list | 
+*AdminApi* | [**getManager**](doc//AdminApi.md#getmanager) | **GET** /admin/manager | 
+*AdminApi* | [**updateManager**](doc//AdminApi.md#updatemanager) | **PUT** /admin/manager | 
 *AuthApi* | [**forgotPassword**](doc//AuthApi.md#forgotpassword) | **POST** /auth/forgot_password | Initiating forget password
 *AuthApi* | [**login**](doc//AuthApi.md#login) | **POST** /auth/login | Login
 *AuthApi* | [**recoverPasswordRequest**](doc//AuthApi.md#recoverpasswordrequest) | **POST** /auth/recover_password_request | Reset Password
@@ -69,11 +81,7 @@ Class | Method | HTTP request | Description
 *IndexApi* | [**questionMasterList**](doc//IndexApi.md#questionmasterlist) | **GET** /anonymous/question_master_list | Get master list of event questions
 *IndexApi* | [**reportEvent**](doc//IndexApi.md#reportevent) | **POST** /anonymous/report_event | Report events
 *ManagerApi* | [**changeEventStatus**](doc//ManagerApi.md#changeeventstatus) | **PUT** /manager/change_event_status | 
-*ManagerApi* | [**changeUserStatus**](doc//ManagerApi.md#changeuserstatus) | **POST** /manager/change_user_status | 
 *ManagerApi* | [**downloadEventList**](doc//ManagerApi.md#downloadeventlist) | **POST** /manager/download_event_list | Download Excel file of events
-*ManagerApi* | [**getDatatableApiuserList**](doc//ManagerApi.md#getdatatableapiuserlist) | **POST** /manager/get_datatable_apiuser_list | 
-*ManagerApi* | [**getDatatableManagerList**](doc//ManagerApi.md#getdatatablemanagerlist) | **POST** /manager/get_datatable_manager_list | 
-*SuperAdminApi* | [**createUser**](doc//SuperAdminApi.md#createuser) | **POST** /create_user | Admin creates manager
 *UserApi* | [**changePassword**](doc//UserApi.md#changepassword) | **PUT** /user/change_password | Change login user password
 *UserApi* | [**changePreferredLanguage**](doc//UserApi.md#changepreferredlanguage) | **PUT** /user/change_preferred_language | Change user's preferred language
 *UserApi* | [**changeUserStatus**](doc//UserApi.md#changeuserstatus) | **PUT** /user/change_user_status | Change user's Status eg. ACTIVE or INACTIVE
@@ -93,6 +101,7 @@ Class | Method | HTTP request | Description
  - [InlineObject4](doc//InlineObject4.md)
  - [InlineObject5](doc//InlineObject5.md)
  - [InlineObject6](doc//InlineObject6.md)
+ - [InlineObject7](doc//InlineObject7.md)
  - [InlineResponse200](doc//InlineResponse200.md)
  - [LoginResponse](doc//LoginResponse.md)
  - [UpdateEventRequest](doc//UpdateEventRequest.md)

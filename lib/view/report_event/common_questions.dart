@@ -20,8 +20,18 @@ class CommonQuestions extends StatelessWidget {
   Future<DateTime?> openDateCalender({required BuildContext context,required String initialDate})async{
     // TimeOfDay? timeOfDay=await showTimePicker(context: context, initialTime: TimeOfDay.now());
     // DateTime? selectedDate = await showDatePicker(context: context, initialDate: DateTime.parse(initialDate), firstDate: DateTime(2020,1), lastDate: DateTime(DateTime.now().year+1));
-    return await showDatePicker(context: context, initialDate: DateTime.parse(initialDate), firstDate: DateTime(2020,1), lastDate: DateTime(DateTime.now().year+1));
-
+    return await showDatePicker(context: context, initialDate: DateTime.parse(initialDate), firstDate: DateTime(1970,1), lastDate: DateTime.now());
+    // showModalBottomSheet(context: context, builder: (context){
+    //   return CupertinoDatePicker(
+    //     initialDateTime: DateTime.now(),
+    //     maximumDate: DateTime.now(),
+    //     mode: CupertinoDatePickerMode.date,
+    //     onDateTimeChanged: (DateTime date){
+    //       print(date);
+    //     },
+    //   );
+    // });
+    // return null;
   }
 
   Future<TimeOfDay?> openTimeCalender({required BuildContext context,required String initialDateTime})async{

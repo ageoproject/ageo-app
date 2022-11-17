@@ -130,10 +130,11 @@ class ReportEventController extends GetxController{
   void markCurrentLocation({required LatLng latLng,required Marker marker}){
     if(_currentLocationMarker==null){
       _eventDetail.location=EventLocation(coordinates: [latLng.longitude,latLng.latitude]);
-    }else{
-      _locationMarker.remove(_currentLocationMarker);
     }
-    _locationMarker.add(marker);
+    // else{
+      // _locationMarker.remove(_currentLocationMarker);
+    // }
+    // _locationMarker.add(marker);
     _currentLocationMarker=marker;
     update();
   }
@@ -630,7 +631,7 @@ class ReportEventController extends GetxController{
         return _riverFloodingDamage;
       }
       case EventEventTypeEnum.SINKHOLE:{
-        return [_sinkholeDamage];
+        return _sinkholeDamage;
       }
       case EventEventTypeEnum.BUILDING_SETTLEMENT:{
         return _buildingSettlementDamage;

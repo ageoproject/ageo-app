@@ -16,8 +16,13 @@ void main() {
   final instance = InlineObject2();
 
   group('test InlineObject2', () {
-    // String status
-    test('to test the property `status`', () async {
+    // String email
+    test('to test the property `email`', () async {
+      // TODO
+    });
+
+    // String password
+    test('to test the property `password`', () async {
       // TODO
     });
 

@@ -28,9 +28,9 @@ class _MapViewState extends State<MapView> {
 
   final CommonComponent _commonComponent=CommonComponent();
 
-  final currentLocationBitmapDescriptor=  BitmapDescriptor.fromAssetImage(const ImageConfiguration(size: Size(18, 18)), 'assets/images/report_event/map_view/current_location_ic.png',);
-
-  final markedLocationBitmapDescriptor=  BitmapDescriptor.fromAssetImage(const ImageConfiguration(size: Size(18, 18)), 'assets/images/report_event/map_view/location_pin_ic.png',);
+  // final currentLocationBitmapDescriptor=  BitmapDescriptor.fromAssetImage(const ImageConfiguration(size: Size(18, 18)), 'assets/images/report_event/map_view/current_location_ic.png',);
+  //
+  // final markedLocationBitmapDescriptor=  BitmapDescriptor.fromAssetImage(const ImageConfiguration(size: Size(18, 18)), 'assets/images/report_event/map_view/location_pin_ic.png',);
 
   // void testFunction()async{
    void markCurrentLocation({required LatLng latLng})async{
@@ -39,7 +39,7 @@ class _MapViewState extends State<MapView> {
          marker: Marker(
            markerId:const MarkerId("My Location"),
            position:latLng,
-           icon: await currentLocationBitmapDescriptor,
+           // icon: await currentLocationBitmapDescriptor,
          ),
          latLng: latLng,
        );
@@ -134,6 +134,8 @@ class _MapViewState extends State<MapView> {
               mapType: controller.mapType,
               zoomControlsEnabled: false,
               mapToolbarEnabled: false,
+              myLocationButtonEnabled: false,
+              myLocationEnabled: true,
               markers: controller.locationMarker,
               trafficEnabled: controller.enableTrafficMode.value,
               onTap: (LatLng latLng)async{
@@ -142,7 +144,7 @@ class _MapViewState extends State<MapView> {
                     marker:Marker(
                       markerId:const MarkerId("Selected Location"),
                       position:latLng,
-                      icon: await markedLocationBitmapDescriptor,
+                      // icon: await markedLocationBitmapDescriptor,
                     ),
                     locationCoordinate: latLng
                 );

@@ -76,12 +76,12 @@ void main() {
       // TODO
     });
 
-    // List<Object> commonEventDetails (default value: const [])
+    // Object commonEventDetails
     test('to test the property `commonEventDetails`', () async {
       // TODO
     });
 
-    // List<Object> customEventDetails (default value: const [])
+    // Object customEventDetails
     test('to test the property `customEventDetails`', () async {
       // TODO
     });

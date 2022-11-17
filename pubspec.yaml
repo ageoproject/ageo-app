@@ -49,6 +49,7 @@ dependencies:
   camera: ^0.10.0+4
   share_plus: ^6.2.0
   package_info_plus: ^3.0.1
+  flutter_inappwebview: ^5.7.1+1
 
   ageoClient:
     path: ./api/

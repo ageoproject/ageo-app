@@ -95,9 +95,10 @@ class _CameraPageState extends State<CameraPage> {
           future: _initializeControllerFuture,
           builder: (context,snapshot){
             if(snapshot.connectionState == ConnectionState.done){
+              // print(1/(_cameraController.value.aspectRatio  * MediaQuery.of(context).size.aspectRatio));
               return Transform.scale(
-                scale: 1/(_cameraController.value.aspectRatio  * MediaQuery.of(context).size.aspectRatio),
-                child: CameraPreview(_cameraController),
+                scale: 1.2270833333333335,
+                child: Center(child: CameraPreview(_cameraController)),
               );
             }else{
               return Center(child: CircularProgressIndicator(color: appTheme.primaryActionColor,));
@@ -105,6 +106,7 @@ class _CameraPageState extends State<CameraPage> {
           }
         ),
         bottomNavigationBar: Container(
+          color: Colors.white,
           padding: const EdgeInsets.fromLTRB(18.0,8,18,18),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -166,7 +168,7 @@ class _CameraPageState extends State<CameraPage> {
                       Navigator.pop(context,image);
                     }
                   } catch (e) {
-                    print(e);
+                    // print(e);
                   }
                 },
               ),

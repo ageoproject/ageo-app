@@ -26,15 +26,22 @@ void main() {
 
     // Change user's preferred language
     //
-    //Future changePreferredLanguage(InlineObject1 changePreferredLanguage) async
+    //Future changePreferredLanguage(InlineObject changePreferredLanguage) async
     test('test changePreferredLanguage', () async {
       // TODO
     });
 
     // Change user's Status eg. ACTIVE or INACTIVE
     //
-    //Future changeUserStatus(InlineObject2 changeUserStatus) async
+    //Future changeUserStatus(InlineObject1 changeUserStatus) async
     test('test changeUserStatus', () async {
+      // TODO
+    });
+
+    // Refresh API key for user
+    //
+    //Future<LoginResponse> refreshApiKey() async
+    test('test refreshApiKey', () async {
       // TODO
     });
 

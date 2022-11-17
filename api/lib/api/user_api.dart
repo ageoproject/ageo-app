@@ -73,8 +73,8 @@ class UserApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject1] changePreferredLanguage (required):
-  Future<Response> changePreferredLanguageWithHttpInfo(InlineObject1 changePreferredLanguage,) async {
+  /// * [InlineObject] changePreferredLanguage (required):
+  Future<Response> changePreferredLanguageWithHttpInfo(InlineObject changePreferredLanguage,) async {
     // Verify required params are set.
     if (changePreferredLanguage == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: changePreferredLanguage');
@@ -110,8 +110,8 @@ class UserApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject1] changePreferredLanguage (required):
-  Future<void> changePreferredLanguage(InlineObject1 changePreferredLanguage,) async {
+  /// * [InlineObject] changePreferredLanguage (required):
+  Future<void> changePreferredLanguage(InlineObject changePreferredLanguage,) async {
     final response = await changePreferredLanguageWithHttpInfo(changePreferredLanguage,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -124,8 +124,8 @@ class UserApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject2] changeUserStatus (required):
-  Future<Response> changeUserStatusWithHttpInfo(InlineObject2 changeUserStatus,) async {
+  /// * [InlineObject1] changeUserStatus (required):
+  Future<Response> changeUserStatusWithHttpInfo(InlineObject1 changeUserStatus,) async {
     // Verify required params are set.
     if (changeUserStatus == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: changeUserStatus');
@@ -161,8 +161,8 @@ class UserApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject2] changeUserStatus (required):
-  Future<void> changeUserStatus(InlineObject2 changeUserStatus,) async {
+  /// * [InlineObject1] changeUserStatus (required):
+  Future<void> changeUserStatus(InlineObject1 changeUserStatus,) async {
     final response = await changeUserStatusWithHttpInfo(changeUserStatus,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));

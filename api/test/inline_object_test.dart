@@ -16,18 +16,8 @@ void main() {
   final instance = InlineObject();
 
   group('test InlineObject', () {
-    // String name
-    test('to test the property `name`', () async {
-      // TODO
-    });
-
-    // String password
-    test('to test the property `password`', () async {
-      // TODO
-    });
-
-    // String email
-    test('to test the property `email`', () async {
+    // String prefLang
+    test('to test the property `prefLang`', () async {
       // TODO
     });
 

@@ -19,8 +19,15 @@ void main() {
   group('tests for IndexApi', () {
     // Get paginated list of events
     //
-    //Future<InlineResponse200> getDatatableEventList({ Object datatableoptions }) async
+    //Future<InlineResponse200> getDatatableEventList({ String eventType, String eventStatus, num fromDate, num toDate, Object datatableoptions }) async
     test('test getDatatableEventList', () async {
+      // TODO
+    });
+
+    // Get details of an event
+    //
+    //Future<Event> getEventDetails(String eventId) async
+    test('test getEventDetails', () async {
       // TODO
     });
 
@@ -28,6 +35,13 @@ void main() {
     //
     //Future<List<Event>> getMapEventList({ String eventType, String eventStatus, num fromDate, num toDate, List<List<num>> polygon }) async
     test('test getMapEventList', () async {
+      // TODO
+    });
+
+    // Get master list of event questions
+    //
+    //Future<Object> questionMasterList() async
+    test('test questionMasterList', () async {
       // TODO
     });
 

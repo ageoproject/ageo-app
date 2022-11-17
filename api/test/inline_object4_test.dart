@@ -16,18 +16,13 @@ void main() {
   final instance = InlineObject4();
 
   group('test InlineObject4', () {
-    // String name
-    test('to test the property `name`', () async {
+    // String token
+    test('to test the property `token`', () async {
       // TODO
     });
 
-    // String email
-    test('to test the property `email`', () async {
-      // TODO
-    });
-
-    // String password
-    test('to test the property `password`', () async {
+    // String newPassword
+    test('to test the property `newPassword`', () async {
       // TODO
     });
 

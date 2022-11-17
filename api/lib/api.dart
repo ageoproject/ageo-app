@@ -27,10 +27,10 @@ part 'auth/oauth.dart';
 part 'auth/http_basic_auth.dart';
 part 'auth/http_bearer_auth.dart';
 
+part 'api/admin_api.dart';
 part 'api/auth_api.dart';
 part 'api/index_api.dart';
 part 'api/manager_api.dart';
-part 'api/super_admin_api.dart';
 part 'api/user_api.dart';
 
 part 'model/change_password.dart';
@@ -43,6 +43,7 @@ part 'model/inline_object3.dart';
 part 'model/inline_object4.dart';
 part 'model/inline_object5.dart';
 part 'model/inline_object6.dart';
+part 'model/inline_object7.dart';
 part 'model/inline_response200.dart';
 part 'model/login_response.dart';
 part 'model/update_event_request.dart';

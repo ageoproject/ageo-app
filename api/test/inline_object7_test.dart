@@ -11,18 +11,22 @@
 import 'package:ageoClient/api.dart';
 import 'package:test/test.dart';
 
-
-/// tests for SuperAdminApi
+// tests for InlineObject7
 void main() {
-  final instance = SuperAdminApi();
+  final instance = InlineObject7();
 
-  group('tests for SuperAdminApi', () {
-    // Admin creates manager
-    //
-    //Future<User> createUser({ InlineObject userDetails }) async
-    test('test createUser', () async {
+  group('test InlineObject7', () {
+    // String downloadType
+    test('to test the property `downloadType`', () async {
       // TODO
     });
 
+    // List<String> userIdList (default value: const [])
+    test('to test the property `userIdList`', () async {
+      // TODO
+    });
+
+
   });
+
 }

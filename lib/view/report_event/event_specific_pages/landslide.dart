@@ -52,43 +52,43 @@ class Landslide extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: Text("${tr("monitor_event.landslide.displaced_land")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-                    ),
                     Expanded(
-                      child: Container(
-                        width:80,
-                        decoration:BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: appTheme.inputFieldsBorderColor),
-                            borderRadius: BorderRadius.circular(4)
-                        ),
-                        padding:const EdgeInsets.only(left: 4),
-                        child: ButtonTheme(
-                          alignedDropdown: true,
-                          child: DropdownButton<String>(
-                            value: _reportEventController.landslideDamage["landslide_displaced_land_volume"],
-                            underline:const SizedBox(),
-                            isExpanded: true,
-                            items: ["10%","20%","30%","40%","50%","60%","70%","80%","90%","100%"].map((String value) {
-                              return DropdownMenuItem<String>(
-                                key: Key(value),
-                                value: value,
-                                //child: new Text(value),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(0.0),
-                                  child: Text(value,style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (value) {
-                              if(value!=null) {
-                                _reportEventController.changeVolumeOfDisplacedLand(value: value);
-                                // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
-                              }
-                            },
-                          ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Text("${tr("monitor_event.landslide.displaced_land")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                      ),
+                    ),
+                    Container(
+                      width:90,
+                      decoration:BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: appTheme.inputFieldsBorderColor),
+                          borderRadius: BorderRadius.circular(4)
+                      ),
+                      padding:const EdgeInsets.only(left: 4),
+                      child: ButtonTheme(
+                        alignedDropdown: true,
+                        child: DropdownButton<String>(
+                          value: _reportEventController.landslideDamage["landslide_displaced_land_volume"],
+                          underline:const SizedBox(),
+                          isExpanded: true,
+                          items: ["10%","20%","30%","40%","50%","60%","70%","80%","90%","100%"].map((String value) {
+                            return DropdownMenuItem<String>(
+                              key: Key(value),
+                              value: value,
+                              //child: new Text(value),
+                              child: Padding(
+                                padding: const EdgeInsets.all(0.0),
+                                child: Text(value,style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            if(value!=null) {
+                              _reportEventController.changeVolumeOfDisplacedLand(value: value);
+                              // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
+                            }
+                          },
                         ),
                       ),
                     ),

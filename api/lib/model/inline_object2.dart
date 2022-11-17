@@ -13,27 +13,35 @@ part of openapi.api;
 class InlineObject2 {
   /// Returns a new [InlineObject2] instance.
   InlineObject2({
-    this.status,
+    this.email,
+    this.password,
   });
 
-  String? status;
+  String? email;
+
+  String? password;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is InlineObject2 &&
-     other.status == status;
+     other.email == email &&
+     other.password == password;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (status == null ? 0 : status.hashCode);
+    (email == null ? 0 : email.hashCode) +
+    (password == null ? 0 : password.hashCode);
 
   @override
-  String toString() => 'InlineObject2[status=$status]';
+  String toString() => 'InlineObject2[email=$email, password=$password]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (status != null) {
-      json[r'status'] = status;
+    if (email != null) {
+      json[r'email'] = email;
+    }
+    if (password != null) {
+      json[r'password'] = password;
     }
     return json;
   }
@@ -45,7 +53,8 @@ class InlineObject2 {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return InlineObject2(
-        status: mapValueOfType<String>(json, r'status'),
+        email: mapValueOfType<String>(json, r'email'),
+        password: mapValueOfType<String>(json, r'password'),
       );
     }
     return null;

@@ -13,9 +13,12 @@ part of openapi.api;
 class InlineObject3 {
   /// Returns a new [InlineObject3] instance.
   InlineObject3({
+    this.name,
     this.email,
     this.password,
   });
+
+  String? name;
 
   String? email;
 
@@ -23,20 +26,25 @@ class InlineObject3 {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is InlineObject3 &&
+     other.name == name &&
      other.email == email &&
      other.password == password;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
+    (name == null ? 0 : name.hashCode) +
     (email == null ? 0 : email.hashCode) +
     (password == null ? 0 : password.hashCode);
 
   @override
-  String toString() => 'InlineObject3[email=$email, password=$password]';
+  String toString() => 'InlineObject3[name=$name, email=$email, password=$password]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (name != null) {
+      json[r'name'] = name;
+    }
     if (email != null) {
       json[r'email'] = email;
     }
@@ -53,6 +61,7 @@ class InlineObject3 {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return InlineObject3(
+        name: mapValueOfType<String>(json, r'name'),
         email: mapValueOfType<String>(json, r'email'),
         password: mapValueOfType<String>(json, r'password'),
       );

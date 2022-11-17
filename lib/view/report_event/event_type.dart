@@ -23,8 +23,8 @@ class EventTypeList extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
             child: Wrap(
-                spacing: 12,
-                runSpacing: 12,
+              spacing: 12,
+              runSpacing: 12,
               children: List<Widget>.generate(_reportEventController.eventDetailList.length, (index) {
                 String eventName=tr("${_reportEventController.eventDetailList[index]["event_name"]}");
                 return GestureDetector(
@@ -32,7 +32,7 @@ class EventTypeList extends StatelessWidget {
                     _reportEventController.changeSelectedEventType(value: _reportEventController.eventDetailList[index]["event_type"]);
                   },
                   child: Container(
-                    width:isMobile? (MediaQuery.of(context).size.width/2)-34: (MediaQuery.of(context).size.width/4)-34,
+                    width:isMobile? (MediaQuery.of(context).size.width/2)-36: (MediaQuery.of(context).size.width/4)-34,
                     padding:const EdgeInsets.symmetric(horizontal: 26,vertical: 16),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
