@@ -10,10 +10,12 @@ class ReportEventController extends GetxController{
   final RxString _activeTab="event_type".obs;
   final AgeoConfig _ageoConfig=AgeoConfig();
   final Event _eventDetail= Event();
+  final double _screenBottomPadding=50;
   final List<EventEventTypeEnum> _hasSpecificDamagePage=[EventEventTypeEnum.EARTHQUAKE,EventEventTypeEnum.LANDSLIDE,EventEventTypeEnum.RIVER_FLOODING,EventEventTypeEnum.SINKHOLE,EventEventTypeEnum.BUILDING_SETTLEMENT,EventEventTypeEnum.MARINE_FLOODING,EventEventTypeEnum.COASTAL_EROSION];
 
   RxString get activeTab=> _activeTab;
   Event get eventDetail=>_eventDetail;
+  double get screenBottomPadding=>_screenBottomPadding;
   List<EventEventTypeEnum> get hasSpecificDamagePage=>_hasSpecificDamagePage;
 
   void changeActiveTab({required String value}){
@@ -171,7 +173,7 @@ class ReportEventController extends GetxController{
       "answer":"NO",
       "slug": "assets_at_risk"
   },{
-      "question":"I am safe",
+      "question":"I am safe ?",
       "answer":"NO",
       "slug": "i_am_safe"
   }
@@ -613,8 +615,8 @@ class ReportEventController extends GetxController{
     update();
   }
 
-  void toggleQuickReportingState(){
-    _quickReportingIsActive.value=!_quickReportingIsActive.value;
+  void toggleQuickReportingState({required bool value}){
+    _quickReportingIsActive.value=value;
     update();
   }
 
@@ -644,7 +646,9 @@ class ReportEventController extends GetxController{
         coastalErosion["coastal_erosion_eroded_object"]=_coastalErosionDamage["coastal_erosion_eroded_object"];
         coastalErosion["coastal_erosion_visit_frequency"]=_coastalErosionDamage["coastal_erosion_visit_frequency"];
         coastalErosion["coastal_erosion_free_comment"]=_coastalErosionDamage["coastal_erosion_free_comment"];
-        coastalErosion.addAll(_coastalErosionDamage[_coastalErosionDamage["coastal_erosion_eroded_object"]]);
+        if(_coastalErosionDamage["coastal_erosion_eroded_object"]!=""){
+          coastalErosion.addAll(_coastalErosionDamage[_coastalErosionDamage["coastal_erosion_eroded_object"]]);
+        }
         return coastalErosion;
       }
       default:{
@@ -663,11 +667,12 @@ class ReportEventController extends GetxController{
 
   Future<String> reportEvent()async{
     _eventDetail.sensorData=_sensorData;
-    _eventDetail.commonEventDetails=createCommonQuestionObject();
+    _eventDetail.commonEventDetails=_quickReportingIsActive.value?{}:createCommonQuestionObject();
     _eventDetail.city="Mumbai";
     _eventDetail.country="India";
     _eventDetail.state="Maharashtra";
-    _eventDetail.customEventDetails=selectCustomEventDetail();
+    _eventDetail.customEventDetails=_quickReportingIsActive.value?{}:selectCustomEventDetail();
+    // print(_eventDetail);
     String eventId= await _ageoConfig.reportEvent(eventDetail: _eventDetail)??"";
     return eventId;
   }

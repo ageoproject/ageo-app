@@ -32,7 +32,7 @@ class AgeoConfig{
   }
 
   Future<String?> reportEvent({required Event eventDetail})async{
-    // print("Reporting=> $eventDetail");
+    print("Reporting=> $eventDetail");
     Event? eventReportResponse= await _indexApi.reportEvent(eventDetail);
     // print(eventReportResponse);
     return eventReportResponse?.eventId;

@@ -45,10 +45,6 @@ class Partners extends StatelessWidget {
       "icon_name":"university_college_dublin_ic.png",
       "web_link":"https://www.ucd.ie/"
     },{
-      "name":"Centre d’Etudes et d’Expertise sur les Risques Environnement Mobilité et Aménagement",
-      "icon_name":"centre_d’Etudes_ic.png",
-      "web_link":"https://www.cerema.fr/fr"
-    },{
       "name":"Laboratório Nacional de Energia e Geologia",
       "icon_name":"laboratório_nacional_de_ic.png",
       "web_link":"https://www.lneg.pt/"
@@ -65,7 +61,11 @@ class Partners extends StatelessWidget {
       "name":"Câmara Municipal de Lisboa",
       "icon_name":"câmara_municipal_ic.png",
       "web_link":"https://www.lisboa.pt/"
-    },
+    },{
+      "name":"Centre d’Etudes et d’Expertise sur les Risques Environnement Mobilité et Aménagement",
+      "icon_name":"centre_d’Etudes_ic.png",
+      "web_link":"https://www.cerema.fr/fr"
+    }
   ];
   final CustomUrlLauncher _customUrlLauncher=CustomUrlLauncher();
 
@@ -98,7 +98,7 @@ class Partners extends StatelessWidget {
                           _customUrlLauncher.openInBrowser(url: _partnersDetailList[index]["web_link"]??"");
                         },
                         child: Container(
-                          height: 162,
+                          height: 180,
                           width: 162,
                           decoration: BoxDecoration(
                               border: Border.all(color: appTheme.inputFieldsBorderColor),
@@ -106,6 +106,7 @@ class Partners extends StatelessWidget {
                           ),
                           padding:const EdgeInsets.all(10),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset("assets/images/partners/${_partnersDetailList[index]["icon_name"]!}",height: isMobile? 80:60,),
                               Padding(

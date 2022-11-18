@@ -27,7 +27,7 @@ class EducationalContent extends StatelessWidget {
         },
         child: Column(
           children: [
-            CustomAppBar(title: "Contact AGEO",),
+            CustomAppBar(title: "Educational Content",),
             Expanded(
               child: InAppWebView(
                 initialUrlRequest: URLRequest(url: Uri.parse("https://ageo-web.web.app/education-mobile-view")),

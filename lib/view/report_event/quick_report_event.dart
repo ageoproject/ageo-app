@@ -3,7 +3,6 @@ import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/imagehelper.dart';
 import 'package:ageo/view/app_bar.dart';
-import 'package:ageo/view/app_drawer.dart';
 import 'package:ageo/view/report_event/event_type.dart';
 import 'package:ageo/view/report_event/map_view.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -26,133 +25,161 @@ class _QuickReportEventState extends State<QuickReportEvent> {
   Widget buildImageAndCommentView(){
     bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     return GetBuilder<ReportEventController>(
-      builder:(_)=> SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("common_question_page.upload_or_capture",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
-                  ),
-                  Wrap(
-                    spacing: 12,
-                    runSpacing: 12,
-                    children: List.generate(3, (index) {
-                      double cardWidthAndHeight=(MediaQuery.of(context).size.width/2)-24;
-                      if(_reportEventController.uploadedImageList.length>index){
-                        return SizedBox(
-                          height: isMobile?cardWidthAndHeight:162,
-                          width: isMobile?cardWidthAndHeight:162,
-                          child: Stack(
-                            alignment: Alignment.topRight,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.file(File(_reportEventController.uploadedImageList[index].path),fit: BoxFit.fill,height: 165, width: 165,),
-                              ),
-                              GestureDetector(
-                                onTap: (){
-                                  _reportEventController.deleteImage(image: _reportEventController.uploadedImageList[index]);
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.asset("assets/images/report_event/close_ic.png",height: 24,),
-                                ),
-                              )
-                            ],
-                          ),
-                        );
-                      }else{
-                        return GestureDetector(
-                          onTap: ()async{
-                            XFile? image=await showDialog(context: context, builder: (BuildContext context){
-                              return ImageSelector();
-                            });
-                            if(image!=null){
-                              _reportEventController.addImage(image: image);
-                            }
-                          },
-                          child: Container(
-                            height: isMobile?cardWidthAndHeight:162,
-                            width: isMobile?cardWidthAndHeight:162,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(color: appTheme.inputFieldsBorderColor)
-                            ),
-                            child: Image.asset("assets/images/report_event/camera_ic.png",color: appTheme.primaryActionColor,width: 30,),
-                          ),
-                        );
-                      }
-                    }),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
+      builder:(_)=> Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(bottom: _reportEventController.screenBottomPadding),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text("common_question_page.add_comments",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("common_question_page.upload_or_capture",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
+                        ),
+                        Wrap(
+                          spacing: 12,
+                          runSpacing: 12,
+                          children: List.generate(3, (index) {
+                            double cardWidthAndHeight=(MediaQuery.of(context).size.width/2)-24;
+                            if(_reportEventController.uploadedImageList.length>index){
+                              return SizedBox(
+                                height: isMobile?cardWidthAndHeight:162,
+                                width: isMobile?cardWidthAndHeight:162,
+                                child: Stack(
+                                  alignment: Alignment.topRight,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Image.file(File(_reportEventController.uploadedImageList[index].path),fit: BoxFit.fill,height: isMobile?cardWidthAndHeight:162, width: isMobile?cardWidthAndHeight:162,),
+                                    ),
+                                    GestureDetector(
+                                      onTap: (){
+                                        _reportEventController.deleteImage(image: _reportEventController.uploadedImageList[index]);
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Image.asset("assets/images/report_event/close_ic.png",height: 24,),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              );
+                            }else{
+                              return GestureDetector(
+                                onTap: ()async{
+                                  XFile? image=await showDialog(context: context, builder: (BuildContext context){
+                                    return ImageSelector();
+                                  });
+                                  if(image!=null){
+                                    _reportEventController.addImage(image: image);
+                                  }
+                                },
+                                child: Container(
+                                  height: isMobile?cardWidthAndHeight:162,
+                                  width: isMobile?cardWidthAndHeight:162,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(color: appTheme.inputFieldsBorderColor)
+                                  ),
+                                  child: Image.asset("assets/images/report_event/camera_ic.png",color: appTheme.primaryActionColor,width: 30,),
+                                ),
+                              );
+                            }
+                          }),
+                        ),
+                      ],
                     ),
-                    TextFormField(
-                      initialValue: _reportEventController.comment,
-                      // initialValue:_studentProfile.user?.dob==null?"": _component.formatDateMonthYearInWords.format(DateTime.parse("${_studentProfile.user!.dob}")),
-                      textInputAction: TextInputAction.next,
-                      minLines: 6,
-                      maxLength: 1500,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: null,
-                      style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
-                      decoration: InputDecoration(
-                        hintText: tr("common_question_page.comment_hint"),
-                        hintStyle: TextStyle(fontSize: 14,color: appTheme.placeHolderTextColor),
-                        filled: true,
-                        fillColor: Colors.white,
-                        errorMaxLines: 2,
-                        contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(_inputFieldBorderRadius),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("common_question_page.add_comments",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
                           ),
-                        ),
-                        disabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(_inputFieldBorderRadius),
+                          TextFormField(
+                            initialValue: _reportEventController.comment,
+                            // initialValue:_studentProfile.user?.dob==null?"": _component.formatDateMonthYearInWords.format(DateTime.parse("${_studentProfile.user!.dob}")),
+                            textInputAction: TextInputAction.next,
+                            minLines: 6,
+                            maxLength: 1500,
+                            keyboardType: TextInputType.multiline,
+                            maxLines: null,
+                            style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
+                            decoration: InputDecoration(
+                              hintText: tr("common_question_page.comment_hint"),
+                              hintStyle: TextStyle(fontSize: 14,color: appTheme.placeHolderTextColor),
+                              filled: true,
+                              fillColor: Colors.white,
+                              errorMaxLines: 2,
+                              contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(_inputFieldBorderRadius),
+                                ),
+                              ),
+                              disabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(_inputFieldBorderRadius),
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(_inputFieldBorderRadius),
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(_inputFieldBorderRadius),
+                                ),
+                              ),
+                            ),
+                            onChanged: (value){
+                              _reportEventController.updateComment(comment: value);
+                            },
                           ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(_inputFieldBorderRadius),
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(_inputFieldBorderRadius),
-                          ),
-                        ),
+                        ],
                       ),
-                      onChanged: (value){
-                        _reportEventController.updateComment(comment: value);
-                      },
                     ),
                   ],
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Visibility(
+              visible: _reportEventController.uploadedImageList.isNotEmpty,
+              child: SizedBox(
+                height: Platform.isIOS? 50:40,
+                width: MediaQuery.of(context).size.width,
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: appTheme.primaryActionColor,
+                  ),
+                  onPressed: (){
+                    _reportEventController.toggleQuickReportingState(value: true);
+                    _reportEventController.changeActiveScreen(value: "map_view");
+                  },
+                  child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -174,50 +201,30 @@ class _QuickReportEventState extends State<QuickReportEvent> {
     }
   }
 
+  /* Will Pop condition =>
+  if(_reportEventController.activeScreen.value=="event_type"){
+      _reportEventController.changeActiveScreen(value: "map_view");
+      return false;
+    }else if(_reportEventController.activeScreen.value=="map_view"){
+      _reportEventController.changeActiveScreen(value: "image_upload");
+      return false;
+    }else{
+      return true;
+  }
+   */
   @override
   Widget build(BuildContext context) {
     appTheme=Theme.of(context).customTheme;
     _reportEventController.changeEventDateAndTime();
-    return WillPopScope(
-      onWillPop:()async{
-        if(_reportEventController.activeScreen.value=="event_type"){
-          _reportEventController.changeActiveScreen(value: "map_view");
-          return false;
-        }else if(_reportEventController.activeScreen.value=="map_view"){
-          _reportEventController.changeActiveScreen(value: "image_upload");
-          return false;
-        }else{
-          return true;
-        }
-      },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        drawer: CustomAppDrawer(),
-        body: Column(
-          children: [
-            CustomAppBar(title: "Quick Monitor",),
-            Expanded(
-              child: Obx(()=> selectScreen()),
-              // child: MapView(),
-            ),
-          ],
-        ),
-        bottomNavigationBar: GetBuilder<ReportEventController>(builder:(_) => _reportEventController.activeScreen.value=="image_upload"?Visibility(
-          visible: _reportEventController.uploadedImageList.isNotEmpty,
-          child: SizedBox(
-            height: Platform.isIOS? 66:40,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: appTheme.primaryActionColor,
-              ),
-              onPressed: (){
-                _reportEventController.toggleQuickReportingState();
-                _reportEventController.changeActiveScreen(value: "map_view");
-              },
-              child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
-            ),
+    return Scaffold(
+      body: Column(
+        children: [
+          CustomAppBar(title: "Quick Monitor",),
+          Expanded(
+            child: Obx(()=> selectScreen()),
+            // child: MapView(),
           ),
-        ):const SizedBox()),
+        ],
       ),
     );
   }

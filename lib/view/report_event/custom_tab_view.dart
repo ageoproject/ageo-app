@@ -29,9 +29,9 @@ class CustomTabView extends StatelessWidget {
   }
 
   bool allowToChangeTab({required BuildContext context,required String actionType}){
-    // if(kDebugMode){
-    //   return true;
-    // }
+    if(kDebugMode){
+      return true;
+    }
     switch(actionType){
       case "event_type":{
         return true;
@@ -104,7 +104,9 @@ class CustomTabView extends StatelessWidget {
                           onPressed: ()async{
                             // Navigator.popUntil(context, (route) => route.isFirst);
                             // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>QuickReportEvent()), (route) => route.isFirst);
+                            _reportEventController.toggleQuickReportingState(value: true);
                             await Navigator.push(context, MaterialPageRoute(builder: (context)=>const QuickReportEvent()));
+                            _reportEventController.toggleQuickReportingState(value: false);
                           },
                         ),
                         Container(

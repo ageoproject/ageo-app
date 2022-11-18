@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/common_component.dart';
@@ -125,21 +127,19 @@ class _MapViewState extends State<MapView> {
        initializeLocation();
      });
     return GetBuilder<ReportEventController>(
-      builder:(controller)=> Scaffold(
-        backgroundColor: Colors.white,
-        body: Stack(
-          children: [
-            GoogleMap(
-              initialCameraPosition: cameraPosition,
-              mapType: controller.mapType,
-              zoomControlsEnabled: false,
-              mapToolbarEnabled: false,
-              myLocationButtonEnabled: false,
-              myLocationEnabled: true,
-              markers: controller.locationMarker,
-              trafficEnabled: controller.enableTrafficMode.value,
-              onTap: (LatLng latLng)async{
-                try{
+      builder:(controller)=> Stack(
+        children: [
+          GoogleMap(
+            initialCameraPosition: cameraPosition,
+            mapType: controller.mapType,
+            zoomControlsEnabled: false,
+            mapToolbarEnabled: false,
+            myLocationButtonEnabled: false,
+            myLocationEnabled: true,
+            markers: controller.locationMarker,
+            trafficEnabled: controller.enableTrafficMode.value,
+            onTap: (LatLng latLng)async{
+              try{
                 _reportEventController.markLocation(
                     marker:Marker(
                       markerId:const MarkerId("Selected Location"),
@@ -148,111 +148,78 @@ class _MapViewState extends State<MapView> {
                     ),
                     locationCoordinate: latLng
                 );
-                }catch(_){}
-              },
-              onMapCreated: (GoogleMapController controller)async {
-                googleMapController =controller;
-              },
-            ),
+              }catch(_){}
+            },
+            onMapCreated: (GoogleMapController controller)async {
+              googleMapController =controller;
+            },
+          ),
 
-            Positioned(
-              bottom: 10,
-              right: 12,
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding:const EdgeInsets.only(top: 12.0,right:12),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   GestureDetector(
-                    child: Container(
-                      height: 38,
-                      width: 38,
-                      padding:const EdgeInsets.all(12),
+                    child:Container(
+                      height:45,
+                      width: 45,
+                      alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      // height and width of this widget is controller by padding of parent container
-                      child: Image.asset("assets/images/report_event/map_view/my_location_ic.png",color: appTheme.iconColor,width: 15,),
-                    ),
-                    onTap: ()async{
-                      getCurrentLocation();
-                    },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0,bottom: 4.0),
-                    child: GestureDetector(
-                      onTap: (){
-                        changeZoomLevel(zoomLevel: -100);
-                      },
-                      child: Container(
-                        height: 38,
-                        width: 38,
-                        padding:const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        // height and width of this widget is controller by padding of parent container
-                        child: Image.asset("assets/images/report_event/map_view/zoom_in_ic.png",color: appTheme.iconColor,),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: ()async{
-                      changeZoomLevel(zoomLevel: 150);
-                    },
-                    child: Container(
-                      height: 38,
-                      width: 38,
-                      padding:const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      // height and width of this widget is controller by padding of parent container
-                      child: Image.asset("assets/images/report_event/map_view/zoom_out_ic.png",color: appTheme.iconColor,),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding:const EdgeInsets.only(top: 12.0,right:12),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    GestureDetector(
-                      child:Container(
-                        height:45,
-                        width: 45,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
                           color: Colors.transparent,
                           borderRadius: BorderRadius.circular(4),
                           border: Border.all(color: Colors.white,width: 5),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.16),
-                              offset: const Offset(0, 3),
-                              blurRadius: 6
+                                color: Colors.black.withOpacity(0.16),
+                                offset: const Offset(0, 3),
+                                blurRadius: 6
                             )
                           ]
-                        ),
-                        child: const Icon(Icons.layers,color: Colors.white,),
                       ),
-                      onTap: (){
-                        controller.changeMapOptionState();
-                      },
+                      child: const Icon(Icons.layers,color: Colors.white,),
                     ),
+                    onTap: (){
+                      controller.changeMapOptionState();
+                    },
+                  ),
 
-                    Visibility(
-                      visible: !controller.hideMapModeOption.value,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Column(
-                          children: [
-                            GestureDetector(
+                  Visibility(
+                    visible: !controller.hideMapModeOption.value,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 4.0),
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            child:Container(
+                              height:45,
+                              width: 45,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(color: Colors.white,width: 5),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black.withOpacity(0.16),
+                                        offset: const Offset(0, 3),
+                                        blurRadius: 6
+                                    )
+                                  ]
+                              ),
+                              child: Image.asset("assets/images/report_event/map_view/traffic_view_ic.png"),
+                            ),
+                            onTap: (){
+                              controller.toggleTrafficMode();
+                              controller.changeMapOptionState();
+                            },
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 2.0),
+                            child: GestureDetector(
                               child:Container(
                                 height:45,
                                 width: 45,
@@ -269,88 +236,117 @@ class _MapViewState extends State<MapView> {
                                       )
                                     ]
                                 ),
-                                child: Image.asset("assets/images/report_event/map_view/traffic_view_ic.png"),
+                                child: Image.asset("assets/images/report_event/map_view/satellite_view_ic.png"),
                               ),
                               onTap: (){
-                                controller.toggleTrafficMode();
+                                controller.changeMapType(value: MapType.satellite);
                                 controller.changeMapOptionState();
                               },
                             ),
-
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 2.0),
-                              child: GestureDetector(
-                                child:Container(
-                                  height:45,
-                                  width: 45,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                      borderRadius: BorderRadius.circular(4),
-                                      border: Border.all(color: Colors.white,width: 5),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.black.withOpacity(0.16),
-                                            offset: const Offset(0, 3),
-                                            blurRadius: 6
-                                        )
-                                      ]
-                                  ),
-                                  child: Image.asset("assets/images/report_event/map_view/satellite_view_ic.png"),
-                                ),
-                                onTap: (){
-                                  controller.changeMapType(value: MapType.satellite);
-                                  controller.changeMapOptionState();
-                                },
+                          ),
+                          GestureDetector(
+                            child:Container(
+                              height:45,
+                              width: 45,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(color: Colors.white,width: 5),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black.withOpacity(0.16),
+                                        offset: const Offset(0, 3),
+                                        blurRadius: 6
+                                    )
+                                  ]
                               ),
+                              child: Image.asset("assets/images/report_event/map_view/default_view_ic.png"),
                             ),
-                            GestureDetector(
-                              child:Container(
-                                height:45,
-                                width: 45,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    color: Colors.transparent,
-                                    borderRadius: BorderRadius.circular(4),
-                                    border: Border.all(color: Colors.white,width: 5),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.black.withOpacity(0.16),
-                                          offset: const Offset(0, 3),
-                                          blurRadius: 6
-                                      )
-                                    ]
-                                ),
-                                child: Image.asset("assets/images/report_event/map_view/default_view_ic.png"),
-                              ),
-                              onTap: (){
-                                controller.changeMapType(value: MapType.normal);
-                                controller.changeMapOptionState();
-                              },
-                            ),
-                          ],
-                        ),
+                            onTap: (){
+                              controller.changeMapType(value: MapType.normal);
+                              controller.changeMapOptionState();
+                            },
+                          ),
+                        ],
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
             ),
+          ),
 
-          ],
-        ),
-        bottomNavigationBar: Visibility(
-          visible: _reportEventController.eventDetail.location!=null,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                // padding: EdgeInsets.only(bottom: Platform.isIOS? 18:0,),
-                padding: EdgeInsets.zero,
+          Positioned(
+            bottom: 100,
+            right: 12,
+            child: Column(
+              children: [
+                GestureDetector(
+                  child: Container(
+                    height: 38,
+                    width: 38,
+                    padding:const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    // height and width of this widget is controller by padding of parent container
+                    child: Image.asset("assets/images/report_event/map_view/my_location_ic.png",color: appTheme.iconColor,width: 15,),
+                  ),
+                  onTap: ()async{
+                    getCurrentLocation();
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0,bottom: 4.0),
+                  child: GestureDetector(
+                    onTap: (){
+                      changeZoomLevel(zoomLevel: -100);
+                    },
+                    child: Container(
+                      height: 38,
+                      width: 38,
+                      padding:const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      // height and width of this widget is controller by padding of parent container
+                      child: Image.asset("assets/images/report_event/map_view/zoom_in_ic.png",color: appTheme.iconColor,),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: ()async{
+                    changeZoomLevel(zoomLevel: 150);
+                  },
+                  child: Container(
+                    height: 38,
+                    width: 38,
+                    padding:const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    // height and width of this widget is controller by padding of parent container
+                    child: Image.asset("assets/images/report_event/map_view/zoom_out_ic.png",color: appTheme.iconColor,),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Visibility(
+              visible: _reportEventController.eventDetail.location!=null,
+              child: SizedBox(
+                height: Platform.isIOS? 50:40,
+                width: MediaQuery.of(context).size.width,
                 child: TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: appTheme.primaryActionColor,
-                    fixedSize: Size(MediaQuery.of(context).size.width, 40)
+                      backgroundColor: appTheme.primaryActionColor,
                   ),
                   onPressed: ()async{
                     if(_reportEventController.quickReportingIsActive.value){
@@ -361,10 +357,10 @@ class _MapViewState extends State<MapView> {
                   },
                   child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
                 ),
-              )
-            ],
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

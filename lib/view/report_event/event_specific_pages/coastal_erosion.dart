@@ -195,6 +195,7 @@ class _CoastalErosionState extends State<CoastalErosion> {
       "type_of_damage":"Human - caused"
     },
   ];
+
   final List<String> _levelOfDamageImageList=["minor_damage_ic.png","moderate_damage_ic.png","partial_collapse_ic.png","total_collapse_ic.png"];
 
   Widget selectDetailScreen(){
@@ -722,172 +723,180 @@ class _CoastalErosionState extends State<CoastalErosion> {
   Widget build(BuildContext context) {
     appTheme=Theme.of(context).customTheme;
     isMobile=MediaQuery.of(context).size.shortestSide<600;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: GetBuilder<ReportEventController>(
-        builder: (_)=>Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 8),
-          child: SingleChildScrollView(
-            child:Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top:18.0,bottom: 12),
-                  child: Text("monitor_event.coastal_erosion.object_subject_to_erosion",style: TextStyle(fontSize:14,color:appTheme.primaryActionColor,fontWeight: FontWeight.w600 ),).tr(),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Wrap(
-                    spacing: 12,
-                    runSpacing: 12,
-                    children: List<Widget>.generate(_objectSubjectToErosion.length, (index) {
-                      return GestureDetector(
-                        onTap: (){
-                          _reportEventController.changeCoastalErosionErodedObject(value: _objectSubjectToErosion[index]["type_of_damage"]!);
-                        },
-                        child: Container(
-                          height: 86,
-                          width: isMobile? (MediaQuery.of(context).size.width-40) : (MediaQuery.of(context).size.width/2)-40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            // border: Border.all(color: appTheme.inputFieldsBorderColor)
-                            border: _reportEventController.coastalErosionDamage["coastal_erosion_eroded_object"]== _objectSubjectToErosion[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
-                          ),
-                          padding:const EdgeInsets.all(12),
-                          child: Row(
-                            children: [
-                              Image.asset(_objectSubjectToErosion[index]["icon_path"]!,),
-                              const SizedBox(width: 12,),
-                              Expanded(child: Text(_objectSubjectToErosion[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
-                            ],
-                          ),
-                        ),
-                      );
-                    }),
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 12.0),
-                  child: selectDetailScreen(),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 4.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("${tr("monitor_event.frequency_of_visits.text")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-                              Text(tr("monitor_event.frequency_of_visits.text_hint"),style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-                            ],
-                          ),
-                        ),
+    return Stack(
+      children: [
+        GetBuilder<ReportEventController>(
+          builder: (_)=>Padding(
+            padding: EdgeInsets.only(bottom: _reportEventController.screenBottomPadding),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 8),
+                child:Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top:18.0,bottom: 12),
+                      child: Text("monitor_event.coastal_erosion.object_subject_to_erosion",style: TextStyle(fontSize:14,color:appTheme.primaryActionColor,fontWeight: FontWeight.w600 ),).tr(),
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Wrap(
+                        spacing: 12,
+                        runSpacing: 12,
+                        children: List<Widget>.generate(_objectSubjectToErosion.length, (index) {
+                          return GestureDetector(
+                            onTap: (){
+                              _reportEventController.changeCoastalErosionErodedObject(value: _objectSubjectToErosion[index]["type_of_damage"]!);
+                            },
+                            child: Container(
+                              height: 86,
+                              width: isMobile? (MediaQuery.of(context).size.width-40) : (MediaQuery.of(context).size.width/2)-40,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                // border: Border.all(color: appTheme.inputFieldsBorderColor)
+                                border: _reportEventController.coastalErosionDamage["coastal_erosion_eroded_object"]== _objectSubjectToErosion[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
+                              ),
+                              padding:const EdgeInsets.all(12),
+                              child: Row(
+                                children: [
+                                  Image.asset(_objectSubjectToErosion[index]["icon_path"]!,),
+                                  const SizedBox(width: 12,),
+                                  Expanded(child: Text(_objectSubjectToErosion[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
                       ),
-                      Container(
-                        width:110,
-                        decoration:BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: appTheme.inputFieldsBorderColor),
-                            borderRadius: BorderRadius.circular(4)
-                        ),
-                        padding:const EdgeInsets.only(left: 4),
-                        child: ButtonTheme(
-                          alignedDropdown: true,
-                          child: DropdownButton<String>(
-                            value: _reportEventController.coastalErosionDamage["coastal_erosion_visit_frequency"],
-                            underline:const SizedBox(),
-                            isExpanded: true,
-                            items: ["Daily","1st time","Yearly","Monthly","Weekly"].map((String value) {
-                              return DropdownMenuItem<String>(
-                                key: Key(value),
-                                value: value,
-                                //child: new Text(value),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(0.0),
-                                  child: Text("monitor_event.frequency_of_visits.$value",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)).tr(),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12.0),
+                      child: selectDetailScreen(),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("${tr("monitor_event.frequency_of_visits.text")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                                  Text(tr("monitor_event.frequency_of_visits.text_hint"),style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width:110,
+                            decoration:BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(color: appTheme.inputFieldsBorderColor),
+                                borderRadius: BorderRadius.circular(4)
+                            ),
+                            padding:const EdgeInsets.only(left: 4),
+                            child: ButtonTheme(
+                              alignedDropdown: true,
+                              child: DropdownButton<String>(
+                                value: _reportEventController.coastalErosionDamage["coastal_erosion_visit_frequency"],
+                                underline:const SizedBox(),
+                                isExpanded: true,
+                                items: ["Daily","1st time","Yearly","Monthly","Weekly"].map((String value) {
+                                  return DropdownMenuItem<String>(
+                                    key: Key(value),
+                                    value: value,
+                                    //child: new Text(value),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(0.0),
+                                      child: Text("monitor_event.frequency_of_visits.$value",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)).tr(),
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+                                  if(value!=null) {
+                                    _reportEventController.changeCoastalErosionVisitFrequency(value: value);
+                                    // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
+                                  }
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("common_key.other",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
+                          ),
+                          TextFormField(
+                            initialValue: _reportEventController.coastalErosionDamage["coastal_erosion_free_comment"],
+                            textInputAction: TextInputAction.next,
+                            minLines: 4,
+                            keyboardType: TextInputType.multiline,
+                            maxLines: null,
+                            maxLength: 1500,
+                            style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
+                            decoration: InputDecoration(
+                              hintText: tr("common_key.new_add_comment"),
+                              hintStyle: TextStyle(fontSize: 14,color: appTheme.placeHolderTextColor),
+                              filled: true,
+                              fillColor: Colors.white,
+                              errorMaxLines: 2,
+                              contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(_inputFieldBorderRadius),
                                 ),
-                              );
-                            }).toList(),
-                            onChanged: (value) {
-                              if(value!=null) {
-                                _reportEventController.changeCoastalErosionVisitFrequency(value: value);
-                                // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
-                              }
+                              ),
+                              disabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(_inputFieldBorderRadius),
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(_inputFieldBorderRadius),
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(_inputFieldBorderRadius),
+                                ),
+                              ),
+                            ),
+                            onChanged: (value){
+                              _reportEventController.changeCoastalErosionComment(value: value);
                             },
                           ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("common_key.other",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
-                      ),
-                      TextFormField(
-                        initialValue: _reportEventController.coastalErosionDamage["coastal_erosion_free_comment"],
-                        textInputAction: TextInputAction.next,
-                        minLines: 4,
-                        keyboardType: TextInputType.multiline,
-                        maxLines: null,
-                        maxLength: 1500,
-                        style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
-                        decoration: InputDecoration(
-                          hintText: tr("common_key.new_add_comment"),
-                          hintStyle: TextStyle(fontSize: 14,color: appTheme.placeHolderTextColor),
-                          filled: true,
-                          fillColor: Colors.white,
-                          errorMaxLines: 2,
-                          contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(_inputFieldBorderRadius),
-                            ),
-                          ),
-                          disabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(_inputFieldBorderRadius),
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(_inputFieldBorderRadius),
-                            ),
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(color:appTheme.inputFieldsBorderColor),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(_inputFieldBorderRadius),
-                            ),
-                          ),
-                        ),
-                        onChanged: (value){
-                          _reportEventController.changeCoastalErosionComment(value: value);
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         ),
-      ),
-      bottomNavigationBar: SubmitButton(),
+
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: SubmitButton(),
+        ),
+      ],
     );
   }
 }

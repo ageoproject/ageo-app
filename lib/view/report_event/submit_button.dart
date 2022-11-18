@@ -18,7 +18,8 @@ class SubmitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     return SizedBox(
-      height: Platform.isIOS? 66:40,
+      height: Platform.isIOS? _reportEventController.screenBottomPadding:40,
+      width: MediaQuery.of(context).size.width,
       child: TextButton(
         style: TextButton.styleFrom(
           backgroundColor: appTheme.primaryActionColor,
