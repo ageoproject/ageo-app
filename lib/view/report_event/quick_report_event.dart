@@ -212,19 +212,37 @@ class _QuickReportEventState extends State<QuickReportEvent> {
       return true;
   }
    */
+
+  void onBackButtonPress(){
+    if(_reportEventController.activeScreen.value=="event_type"){
+      _reportEventController.changeActiveScreen(value: "map_view");
+    }else if(_reportEventController.activeScreen.value=="map_view"){
+      _reportEventController.changeActiveScreen(value: "image_upload");
+    }else{
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     appTheme=Theme.of(context).customTheme;
     _reportEventController.changeEventDateAndTime();
-    return Scaffold(
-      body: Column(
-        children: [
-          CustomAppBar(title: "Quick Monitor",),
-          Expanded(
-            child: Obx(()=> selectScreen()),
-            // child: MapView(),
-          ),
-        ],
+    return WillPopScope(
+      onWillPop: ()async{
+        onBackButtonPress();
+        return false;
+      },
+      child: Scaffold(
+        drawerEnableOpenDragGesture: false,
+        body: Column(
+          children: [
+            CustomAppBar(title: "Quick Monitor",showBackButton: true,onBackButtonClick: onBackButtonPress,),
+            Expanded(
+              child: Obx(()=> selectScreen()),
+              // child: MapView(),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -6,7 +6,9 @@ import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String? title;
-  CustomAppBar({Key? key,this.title}) : super(key: key);
+  final bool showBackButton;
+  Function? onBackButtonClick=(){};
+  CustomAppBar({Key? key,this.title,this.showBackButton=false,this.onBackButtonClick}) : super(key: key);
   final MainController _mainController=Get.find();
   final LanguageHelper _languageHelper=LanguageHelper();
 
@@ -31,9 +33,13 @@ class CustomAppBar extends StatelessWidget {
                         return MaterialButton(
                           padding: EdgeInsets.zero,
                           onPressed: (){
-                            Scaffold.of(context).openDrawer();
+                            if(showBackButton){
+                              onBackButtonClick!();
+                            }else{
+                              Scaffold.of(context).openDrawer();
+                            }
                           },
-                          child: Image.asset("assets/images/home_page/hamburger_menu.png",height: 67,width: 67,fit:BoxFit.fill),
+                          child: Image.asset(showBackButton?"assets/images/report_event/back_button_ic.png":"assets/images/home_page/hamburger_menu.png",height: 67,width: 67,fit:BoxFit.fill),
                         );
                       }
                   ),
