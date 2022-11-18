@@ -11,6 +11,7 @@ class BuildingSettlement extends StatelessWidget {
   final ReportEventController _reportEventController=Get.find();
   final double _imageContainerBorderRadius=12.0;
   final double _inputFieldBorderRadius = 4;
+  final GlobalKey<FormState> _crackDimensionKey = GlobalKey<FormState>();
   final List<Map<String,dynamic>> _settlementTypeList=[
     {
       "type_of_damage":"Outer Center Settlement",
@@ -72,13 +73,14 @@ class BuildingSettlement extends StatelessWidget {
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     bool isMobile=MediaQuery.of(context).size.shortestSide<600;
-    return Stack(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(bottom: _reportEventController.screenBottomPadding),
-          child: SingleChildScrollView(
-            child: GetBuilder<ReportEventController>(
-              builder: (_)=>Padding(
+    bool showSubmitButton =true;
+    return GetBuilder<ReportEventController>(
+      builder: (_)=> Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(bottom: _reportEventController.screenBottomPadding),
+            child: SingleChildScrollView(
+              child: Padding(
                 padding:const EdgeInsets.symmetric(horizontal: 18,vertical: 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -194,57 +196,71 @@ class BuildingSettlement extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right: 8.0),
-                            child: Text("${tr("monitor_event.building_settlement.crack_direction")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                            child: Text("${tr("monitor_event.building_settlement.crack_dimension")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
                           ),
                           Expanded(
-                            child: TextFormField(
-                              initialValue:_reportEventController.buildingSettlementDamage["building_settlement_crack_dimension"].toString(),
-                              keyboardType: TextInputType.number,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                              maxLength: 4,
-                              textInputAction: TextInputAction.next,
-                              style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
-                              decoration: InputDecoration(
-                                filled: true,
-                                counterText: "",
-                                fillColor: Colors.white,
-                                errorMaxLines: 2,
-                                contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(_inputFieldBorderRadius),
+                            child: Form(
+                              key: _crackDimensionKey,
+                              child: TextFormField(
+                                initialValue:_reportEventController.buildingSettlementDamage["building_settlement_crack_dimension"].toString(),
+                                keyboardType:const TextInputType.numberWithOptions(signed: true, decimal: false),
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
+                                maxLength: 4,
+                                textInputAction: TextInputAction.done,
+                                style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  counterText: "",
+                                  fillColor: Colors.white,
+                                  errorMaxLines: 2,
+                                  contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(_inputFieldBorderRadius),
+                                    ),
+                                  ),
+                                  disabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(_inputFieldBorderRadius),
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(_inputFieldBorderRadius),
+                                    ),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(_inputFieldBorderRadius),
+                                    ),
                                   ),
                                 ),
-                                disabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(_inputFieldBorderRadius),
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(_inputFieldBorderRadius),
-                                  ),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(_inputFieldBorderRadius),
-                                  ),
-                                ),
+                                validator: (value){
+                                  if(value!.isEmpty){
+                                    return tr("monitor_event.building_settlement.empty_crack_dimension_error");
+                                  }else if(int.parse(value)<=0){
+                                    return tr("monitor_event.building_settlement.invalid_crack_dimension_error");
+                                  }else{
+                                    return null;
+                                  }
+                                },
+                                onChanged: (value)async{
+                                  if(_crackDimensionKey.currentState!.validate()){
+                                    _reportEventController.changeDimensionOfCrackForBuildingSettlement(value: value);
+                                    showSubmitButton=true;
+                                  }else{
+                                    showSubmitButton=false;
+                                  }
+                                  _reportEventController.update();
+                                  // await _showCalendar(selectedDate: DateTime.parse("${_studentProfile.user!.dob}"));
+                                },
                               ),
-                              onChanged: (value)async{
-                                if(value!=""){
-                                  _reportEventController.changeDimensionOfCrackForBuildingSettlement(value: value);
-                                }else{
-                                  _reportEventController.changeDimensionOfCrackForBuildingSettlement(value: "0");
-                                }
-                                // await _showCalendar(selectedDate: DateTime.parse("${_studentProfile.user!.dob}"));
-                              },
                             ),
                           ),
                         ],
@@ -255,15 +271,16 @@ class BuildingSettlement extends StatelessWidget {
               ),
             ),
           ),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Visibility(
-            // visible: _reportEventController.buildingSettlementDamage["type_of_settlement"]["answer"]!="" && _reportEventController.buildingSettlementDamage["other_structure"]["answer"]!="" && _reportEventController.buildingSettlementDamage["direction_of_cracks"]["answer"].isNotEmpty,
-            child: SubmitButton(),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Visibility(
+              // visible: _reportEventController.buildingSettlementDamage["type_of_settlement"]["answer"]!="" && _reportEventController.buildingSettlementDamage["other_structure"]["answer"]!="" && _reportEventController.buildingSettlementDamage["direction_of_cracks"]["answer"].isNotEmpty,
+              visible: showSubmitButton,
+              child: SubmitButton(),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

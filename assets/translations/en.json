@@ -99,7 +99,9 @@
       "green_area": "Green area",
       "road": "Road",
       "railway": "Railway",
-      "coastal": "Coastal"
+      "coastal": "Coastal",
+      "empty_water_level_error": "you need to enter water level",
+      "invalid_water_level_error": "you need to enter valid water level"
     },
     "marine_flood": {
       "type_of_submersion": "Type of submersion",
@@ -116,7 +118,9 @@
       "roads_and_parking": "Roads and parking",
       "harbour": "Harbour",
       "residential_area":"Residential area",
-      "urbanized_artificialized_area": "Other urbanized / artificialized area"
+      "urbanized_artificialized_area": "Other urbanized / artificialized area",
+      "empty_water_level_error": "you need to enter water level",
+      "invalid_water_level_error": "you need to enter valid water level"
     },
     "sinkhole": {
       "sinkhole_dimension": "Dimension of Sinkhole (in foot steps)",
@@ -129,7 +133,9 @@
       "gas": "Gas",
       "comm_line": "Communication lines",
       "other": "Add other affected infrastructure",
-      "affected_infrastructure": "Select affected infrastructure"
+      "affected_infrastructure": "Select affected infrastructure",
+      "empty_sinkhole_dimension_error": "you need to enter your sinkhole Dimension",
+      "invalid_sinkhole_dimension_error": "you need to enter valid sinkhole Dimension"
     },
     "building_settlement": {
       "type_of_settlement": "Type of Settlement",
@@ -142,7 +148,9 @@
       "oblique": "Oblique",
       "starry": "Starry",
       "none": "None",
-      "crack_direction": "Dimension of crack (in millimeters)"
+      "crack_dimension": "Dimension of crack (in millimeters)",
+      "empty_crack_dimension_error": "you need to enter your crack Dimension",
+      "invalid_crack_dimension_error": "you need to enter valid crack Dimension"
     },
     "coastal_erosion": {
       "object_subject_to_erosion": "Object subject to erosion",
@@ -223,7 +231,8 @@
     "I am safe ?": "I am safe ?",
     "upload_or_capture": "Upload or capture (min 1 and max 3)",
     "add_comments": "Add comments",
-    "comment_hint": "Type here..."
+    "comment_hint": "Type here...",
+    "time_error": "You cannot report event in future time"
   },
   "upload_image_alert": {
     "capture_with_camera": "Capture with camera",

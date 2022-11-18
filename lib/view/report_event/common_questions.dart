@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/imagehelper.dart';
+import 'package:ageo/helpers/toast_message.dart';
 import 'package:ageo/view/report_event/submit_button.dart';
 import 'package:camera/camera.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -13,6 +14,7 @@ class CommonQuestions extends StatelessWidget {
   final ReportEventController _reportEventController=Get.find();
   final double _inputFieldBorderRadius = 4;
   final double _checkBoxBorderRadius=2;
+  final CustomToastMessage _customToastMessage=CustomToastMessage();
   final TextEditingController _dateTextEditingController=TextEditingController();
   final TextEditingController _timeTextEditingController=TextEditingController();
   final _timeFormat12Hour = DateFormat('hh:mm a');
@@ -34,10 +36,23 @@ class CommonQuestions extends StatelessWidget {
     // return null;
   }
 
-  Future<TimeOfDay?> openTimeCalender({required BuildContext context,required String initialDateTime})async{
-    return await showTimePicker(context: context, initialTime: TimeOfDay.fromDateTime(DateTime.parse(initialDateTime)),);
+  Future<TimeOfDay?> openTimeCalender({required BuildContext context,required String initialTime})async{
+    List<String> time=initialTime.split(":");
+    TimeOfDay? selectedTime = await showTimePicker(context: context, initialTime: TimeOfDay(hour: int.parse(time[0]),minute: int.parse(time[1])));
+      // man=toDouble(initialSelectedTime) => DateTime.now().hour + DateTime.now().minute/60.0;
+      // print("${DateTime.now().hour + DateTime.now().minute/60.0} => ${selectedTime!=null?selectedTime.hour + selectedTime.minute/60.0:"null"}");
+    if(selectedTime!=null){
+      if((DateTime.now().hour + DateTime.now().minute/60.0)>=(selectedTime.hour + selectedTime.minute/60.0)){
+        // This means selected time is less then current time and user can report past event
+        return selectedTime;
+      }else{
+        // This means selected time is greater then current time and user cannot report future event
+        _customToastMessage.showErrorToastMessage(message: tr("common_question_page.time_error"), duration: 2, context: context);
+        return null;
+      }
+    }
+    return null;
   }
-
 
   String formatTime({required String time}){
     return _timeFormat12Hour.format(DateTime.parse(time));
@@ -160,7 +175,7 @@ class CommonQuestions extends StatelessWidget {
                             ),
                           ),
                           onTap: ()async{
-                            TimeOfDay? selectedTime= await openTimeCalender(context: context, initialDateTime: "${_reportEventController.eventDate.padLeft(2,"0")} ${_reportEventController.eventTime.value.padLeft(2,"0")}");
+                            TimeOfDay? selectedTime= await openTimeCalender(context: context, initialTime: _reportEventController.eventTime.value);
                             if(selectedTime!=null){
                               String eventTime="${selectedTime.hour.toString().padLeft(2,"0")}:${selectedTime.minute.toString().padLeft(2,"0")}";
                               _reportEventController.changeEventTime(date: eventTime);

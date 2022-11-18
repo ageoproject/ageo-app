@@ -10,6 +10,7 @@ class Sinkhole extends StatelessWidget {
   Sinkhole({Key? key}) : super(key: key);
   final ReportEventController _reportEventController=Get.find();
   final double _inputFieldBorderRadius = 4;
+  final GlobalKey<FormState> _sinkholeDimensionKey = GlobalKey<FormState>();
   final List<Map<String,String>> _typeOfSinkholeDamage=[
     {
       "localization_ref":"monitor_event.sinkhole.green_area",
@@ -59,6 +60,7 @@ class Sinkhole extends StatelessWidget {
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     bool isMobile=MediaQuery.of(context).size.shortestSide<600;
+    bool showSubmitButton =true;
     return GetBuilder<ReportEventController>(
       builder: (_)=>Stack(
         children: [
@@ -77,54 +79,68 @@ class Sinkhole extends StatelessWidget {
                           child: Text("${tr("monitor_event.sinkhole.sinkhole_dimension")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
                         ),
                         Expanded(
-                          child: TextFormField(
-                            initialValue:_reportEventController.sinkholeDamage["sinkhole_dimension"].toString(),
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
-                            maxLength: 4,
-                            textInputAction: TextInputAction.next,
-                            style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              counterText: "",
-                              errorMaxLines: 2,
-                              contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(_inputFieldBorderRadius),
+                          child: Form(
+                            key: _sinkholeDimensionKey,
+                            child: TextFormField(
+                              initialValue:_reportEventController.sinkholeDamage["sinkhole_dimension"].toString(),
+                              keyboardType:const TextInputType.numberWithOptions(signed: true, decimal: false),
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
+                              maxLength: 4,
+                              textInputAction: TextInputAction.done,
+                              style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                counterText: "",
+                                errorMaxLines: 2,
+                                contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(_inputFieldBorderRadius),
+                                  ),
+                                ),
+                                disabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(_inputFieldBorderRadius),
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(_inputFieldBorderRadius),
+                                  ),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(_inputFieldBorderRadius),
+                                  ),
                                 ),
                               ),
-                              disabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(_inputFieldBorderRadius),
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(_inputFieldBorderRadius),
-                                ),
-                              ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(_inputFieldBorderRadius),
-                                ),
-                              ),
+                              validator: (value){
+                                if(value!.isEmpty){
+                                  return tr("monitor_event.sinkhole.empty_sinkhole_dimension_error");
+                                }else if(int.parse(value)<=0){
+                                  return tr("monitor_event.sinkhole.invalid_sinkhole_dimension_error");
+                                }else{
+                                  return null;
+                                }
+                              },
+                              onChanged: (value)async{
+                                if(_sinkholeDimensionKey.currentState!.validate()){
+                                  _reportEventController.changeDimensionOfSinkhole(value: value);
+                                  showSubmitButton=true;
+                                }else{
+                                  showSubmitButton=false;
+                                }
+                                _reportEventController.update();
+                                // await _showCalendar(selectedDate: DateTime.parse("${_studentProfile.user!.dob}"));
+                              },
                             ),
-                            onChanged: (value)async{
-                              if(value!=""){
-                                _reportEventController.changeDimensionOfSinkhole(value: value);
-                              }else{
-                                _reportEventController.changeDimensionOfSinkhole(value: "0");
-                              }
-                              // await _showCalendar(selectedDate: DateTime.parse("${_studentProfile.user!.dob}"));
-                            },
                           ),
                         ),
                       ],
@@ -326,6 +342,7 @@ class Sinkhole extends StatelessWidget {
             child: Visibility(
               // visible: (_reportEventController.sinkholeDamage["sinkhole_observed_damage"]!="" || _reportEventController.sinkholeDamage["sinkhole_other_observed_damage"]!="") &&
               //     (_reportEventController.sinkholeDamage["sinkhole_affected_infrastructure"].isNotEmpty || _reportEventController.sinkholeDamage["sinkhole_other_affected_infrastructure"]!=""),
+              visible: showSubmitButton,
               child: SubmitButton(),
             ),
           ),
