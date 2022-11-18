@@ -603,13 +603,13 @@ class _CoastalErosionState extends State<CoastalErosion> {
               })
             ),
             Slider(
-              value: double.parse(_reportEventController.coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_level"].toString()),
+              value: _reportEventController.coastalErosionDamageLevelSlider,
               max: 3,
               divisions: 3,
               activeColor: appTheme.primaryActionColor,
               inactiveColor: appTheme.toggleSelectionColor,
               onChanged: (value){
-                _reportEventController.changeCoastalErosionCoastalDefencesDamageLevel(value: value.toString());
+                _reportEventController.changeCoastalErosionCoastalDefencesDamageLevel(value: double.parse(value.toString()));
               },
             ),
           ],

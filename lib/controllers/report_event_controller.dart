@@ -488,6 +488,7 @@ class ReportEventController extends GetxController{
 
   //// Coastal Erosion
 
+  double _coastalErosionDamageLevelSlider=0;
   final Map<String,dynamic> _coastalErosionDamage={
     "coastal_erosion_eroded_object":"",
     "coastal_erosion_visit_frequency":"Daily",
@@ -507,13 +508,14 @@ class ReportEventController extends GetxController{
     },
     "Coastal defences or buildings":{
       "coastal_erosion_building_type":"",
-      "coastal_erosion_damage_level":1.0,
+      "coastal_erosion_damage_level":"Minor Damage",
       "coastal_erosion_damage_causes":[],
       "coastal_erosion_response_confidence":1
     }
   };
 
   Map<String,dynamic> get coastalErosionDamage=>_coastalErosionDamage;
+  double get coastalErosionDamageLevelSlider=>_coastalErosionDamageLevelSlider;
 
   void changeCoastalErosionErodedObject({required String value}){
     if(_coastalErosionDamage["coastal_erosion_eroded_object"]!=value){
@@ -585,8 +587,28 @@ class ReportEventController extends GetxController{
     }
     update();
   }
-  void changeCoastalErosionCoastalDefencesDamageLevel({required String value}){
-    _coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_level"]=double.parse(value);
+  void changeCoastalErosionCoastalDefencesDamageLevel({required double value}){
+    _coastalErosionDamageLevelSlider=value;
+    switch(_coastalErosionDamageLevelSlider.toString()){
+      case "0.0":{
+        _coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_level"]="Minor Damage";
+        break;
+      }
+      case "1.0":{
+        _coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_level"]="Moderate Damage";
+        break;
+      }
+      case "2.0":{
+        _coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_level"]="Partial Collapse";
+        break;
+      }case "3.0":{
+        _coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_level"]="Total Collapse";
+        break;
+      }
+      default:{
+        break;
+      }
+    }
     update();
   }
   void changeCoastalErosionCoastalDefencesDamageCauses({required String value}){

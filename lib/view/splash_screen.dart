@@ -39,6 +39,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         alignment: Alignment.center,
         children: [

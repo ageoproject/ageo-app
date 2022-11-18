@@ -1,18 +1,17 @@
 import 'dart:ui';
-
 import 'package:ageo/ageoConfig.dart';
 import 'package:ageo/helpers/app_theme.dart';
-import 'package:ageo/helpers/toast_message.dart';
 import 'package:ageo/helpers/url_launcher.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
 class CommonComponent{
   final GlobalKey _globalKey = GlobalKey();
   late CustomThemeData _appTheme;
-  final CustomToastMessage _toastMessage=CustomToastMessage();
+  // final CustomToastMessage _toastMessage=CustomToastMessage();
   final CustomUrlLauncher _customUrlLauncher=CustomUrlLauncher();
 
   void initializeLoader({required BuildContext context,String? message}){
@@ -110,7 +109,15 @@ class CommonComponent{
                                         icon: Image.asset("assets/images/report_event/copy_ic.png",height: 20,),
                                         onPressed: ()async{
                                           await Clipboard.setData(ClipboardData(text: eventLink));
-                                          _toastMessage.showSuccessToastMessage(message: tr("monitor_event.linked_copied"), duration: 1, context: context);
+                                          // _toastMessage.showSuccessToastMessage(message: tr("monitor_event.linked_copied"), duration: 1, context: context);
+                                          Get.showSnackbar( GetSnackBar(
+                                            message: tr("monitor_event.linked_copied"),
+                                            duration:const Duration(seconds: 2),
+                                            icon:const Icon(Icons.done_all,color: Colors.white,),
+                                            backgroundColor: _appTheme.primaryActionColor,
+                                            margin:const EdgeInsets.all(12),
+                                            borderRadius: 12,
+                                          ));
                                         },
                                       )
                                     ],

@@ -15,6 +15,8 @@ class EventTypeList extends StatelessWidget {
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     bool isMobile=MediaQuery.of(context).size.shortestSide<600;
+    bool isPortrait=MediaQuery.of(context).orientation == Orientation.portrait;
+    print(isMobile);
     return GetBuilder<ReportEventController>(
       builder:(controller)=> Stack(
         children: [
@@ -34,7 +36,7 @@ class EventTypeList extends StatelessWidget {
                           _reportEventController.changeSelectedEventType(value: _reportEventController.eventDetailList[index]["event_type"]);
                         },
                         child: Container(
-                          width:isMobile? (MediaQuery.of(context).size.width/2)-36: (MediaQuery.of(context).size.width/4)-34,
+                          width:isMobile? isPortrait? (MediaQuery.of(context).size.width/2)-36:(MediaQuery.of(context).size.width/3)-34: (MediaQuery.of(context).size.width/4)-34,
                           padding:const EdgeInsets.symmetric(horizontal: 26,vertical: 16),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),

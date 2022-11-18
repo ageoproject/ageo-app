@@ -53,6 +53,7 @@ class HomePage extends StatelessWidget {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     return Scaffold(
       drawer: CustomAppDrawer(),
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Opacity(
@@ -60,78 +61,76 @@ class HomePage extends StatelessWidget {
             child: Image.asset("assets/images/splash_screen/splash_screen_bg.png",width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,fit: BoxFit.fill,),
           ),
 
-          Column(
-            children: [
-              CustomAppBar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: (MediaQuery.of(context).size.height/3.5)-120,),
-                        child: Image.asset("assets/images/splash_screen/ageo_logo.png",width: 265,),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.only(top: 200),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: Row(
-                                children: [
-                                  MaterialButton(
-                                    padding: EdgeInsets.zero,
-                                    onPressed: ()async{
-                                      await reportEvent(openPage:const QuickReportEvent(), context: context);
-                                      // await Navigator.push(context, MaterialPageRoute(builder: (context)=>const QuickReportEvent()));
-                                      Get.delete<ReportEventController>();
-                                    },
-                                    child: Image.asset("assets/images/home_page/circular_camera_ic.png",scale: 3,),
-                                  ),
-                                  const SizedBox(width: 16,),
-                                  Expanded(
-                                    child: Container(
-                                      height: 48,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(22),
-                                          color: appTheme.primaryActionColor,
-                                          boxShadow: [
-                                          BoxShadow(
-                                            offset:const Offset(0, 3),
-                                            blurRadius: 6,
-                                            color: appTheme.primaryActionColor.withOpacity(0.64)
-                                          ),
-                                        ],
-                                      ),
-                                      child: TextButton(
-                                        style: TextButton.styleFrom(
-                                          backgroundColor: Colors.transparent
-                                        ),
-                                        onPressed: ()async{
-                                          reportEvent(openPage:const ReportEvent(), context: context);
-                                        },
-                                        child:const Text("home_page.monitor_event",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color:Colors.white),).tr(),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 18,horizontal: 30),
-                              child: Text("home_page.description_txt",textAlign: TextAlign.center,style: TextStyle(fontSize: 16,color: appTheme.placeHolderTextColor),).tr(),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
+          Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    // padding: EdgeInsets.only(top: (MediaQuery.of(context).size.height/3.5)-120,),
+                    padding: EdgeInsets.zero,
+                    child: Image.asset("assets/images/splash_screen/ageo_logo.png",width: 265,),
                   ),
-                ),
-              )
-            ],
+
+                  Padding(
+                    padding: EdgeInsets.only(top: MediaQuery.of(context).orientation == Orientation.portrait?(MediaQuery.of(context).size.height/3.5)-120:50),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            children: [
+                              MaterialButton(
+                                padding: EdgeInsets.zero,
+                                onPressed: ()async{
+                                  await reportEvent(openPage:const QuickReportEvent(), context: context);
+                                  // await Navigator.push(context, MaterialPageRoute(builder: (context)=>const QuickReportEvent()));
+                                  Get.delete<ReportEventController>();
+                                },
+                                child: Image.asset("assets/images/home_page/circular_camera_ic.png",scale: 3,),
+                              ),
+                              const SizedBox(width: 16,),
+                              Expanded(
+                                child: Container(
+                                  height: 48,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(22),
+                                      color: appTheme.primaryActionColor,
+                                      boxShadow: [
+                                      BoxShadow(
+                                        offset:const Offset(0, 3),
+                                        blurRadius: 6,
+                                        color: appTheme.primaryActionColor.withOpacity(0.64)
+                                      ),
+                                    ],
+                                  ),
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: Colors.transparent
+                                    ),
+                                    onPressed: ()async{
+                                      reportEvent(openPage:const ReportEvent(), context: context);
+                                    },
+                                    child:const Text("home_page.monitor_event",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color:Colors.white),).tr(),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 18,horizontal: 30),
+                          child: Text("home_page.description_txt",textAlign: TextAlign.center,style: TextStyle(fontSize: 16,color: appTheme.placeHolderTextColor),).tr(),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
+
+          CustomAppBar(),
         ],
       ),
     );
