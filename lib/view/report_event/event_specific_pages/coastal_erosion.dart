@@ -280,7 +280,7 @@ class _CoastalErosionState extends State<CoastalErosion> {
               ),
             ),
             Container(
-              width:110,
+              width:130,
               decoration:BoxDecoration(
                   color: Colors.white,
                   border: Border.all(color: appTheme.inputFieldsBorderColor),
