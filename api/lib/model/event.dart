@@ -19,6 +19,7 @@ class Event {
     this.time,
     this.status = const EventStatusEnum._('PENDING'),
     this.image = const [],
+    this.quickReport = false,
     this.comment,
     this.location,
     this.city,
@@ -41,6 +42,8 @@ class Event {
   EventStatusEnum? status;
 
   List<String>? image;
+
+  bool? quickReport;
 
   String? comment;
 
@@ -68,6 +71,7 @@ class Event {
      other.time == time &&
      other.status == status &&
      other.image == image &&
+     other.quickReport == quickReport &&
      other.comment == comment &&
      other.location == location &&
      other.city == city &&
@@ -87,6 +91,7 @@ class Event {
     (time == null ? 0 : time.hashCode) +
     (status == null ? 0 : status.hashCode) +
     (image == null ? 0 : image.hashCode) +
+    (quickReport == null ? 0 : quickReport.hashCode) +
     (comment == null ? 0 : comment.hashCode) +
     (location == null ? 0 : location.hashCode) +
     (city == null ? 0 : city.hashCode) +
@@ -98,7 +103,7 @@ class Event {
     (verifyBy == null ? 0 : verifyBy.hashCode);
 
   @override
-  String toString() => 'Event[id=$id, eventId=$eventId, eventType=$eventType, time=$time, status=$status, image=$image, comment=$comment, location=$location, city=$city, state=$state, country=$country, sensorData=$sensorData, commonEventDetails=$commonEventDetails, customEventDetails=$customEventDetails, verifyBy=$verifyBy]';
+  String toString() => 'Event[id=$id, eventId=$eventId, eventType=$eventType, time=$time, status=$status, image=$image, quickReport=$quickReport, comment=$comment, location=$location, city=$city, state=$state, country=$country, sensorData=$sensorData, commonEventDetails=$commonEventDetails, customEventDetails=$customEventDetails, verifyBy=$verifyBy]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -119,6 +124,9 @@ class Event {
     }
     if (image != null) {
       json[r'image'] = image;
+    }
+    if (quickReport != null) {
+      json[r'quickReport'] = quickReport;
     }
     if (comment != null) {
       json[r'comment'] = comment;
@@ -165,6 +173,7 @@ class Event {
         image: json[r'image'] is List
           ? (json[r'image'] as List).cast<String>()
           : null,
+        quickReport: mapValueOfType<bool>(json, r'quickReport'),
         comment: mapValueOfType<String>(json, r'comment'),
         location: EventLocation.fromJson(json[r'location']),
         city: mapValueOfType<String>(json, r'city'),

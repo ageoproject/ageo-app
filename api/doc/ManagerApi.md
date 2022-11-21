@@ -73,7 +73,7 @@ import 'package:ageoClient/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('Token').apiKeyPrefix = 'Bearer';
 
 final api_instance = ManagerApi();
-final filters = InlineObject5(); // InlineObject5 | 
+final filters = InlineObject4(); // InlineObject4 | 
 
 try {
     final result = api_instance.downloadEventList(filters);
@@ -87,7 +87,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filters** | [**InlineObject5**](InlineObject5.md)|  | [optional] 
+ **filters** | [**InlineObject4**](InlineObject4.md)|  | [optional] 
 
 ### Return type
 

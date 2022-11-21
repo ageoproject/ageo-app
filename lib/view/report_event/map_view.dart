@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/common_component.dart';
@@ -126,6 +125,8 @@ class _MapViewState extends State<MapView> {
      Future.delayed(const Duration(milliseconds: 500),(){
        initializeLocation();
      });
+     bool isMobile=MediaQuery.of(context).size.shortestSide<600;
+     bool isPortrait=MediaQuery.of(context).orientation == Orientation.portrait;
     return GetBuilder<ReportEventController>(
       builder:(controller)=> Stack(
         children: [
@@ -156,9 +157,9 @@ class _MapViewState extends State<MapView> {
           ),
 
           Align(
-            alignment: Alignment.topRight,
+            alignment: isMobile? isPortrait? Alignment.topRight : Alignment.topLeft:Alignment.topRight,
             child: Padding(
-              padding:const EdgeInsets.only(top: 12.0,right:12),
+              padding:const EdgeInsets.only(top: 12.0,right:12,left: 12),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

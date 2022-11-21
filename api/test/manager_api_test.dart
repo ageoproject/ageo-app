@@ -24,7 +24,7 @@ void main() {
 
     // Download Excel file of events
     //
-    //Future<MultipartFile> downloadEventList({ InlineObject5 filters }) async
+    //Future<MultipartFile> downloadEventList({ InlineObject4 filters }) async
     test('test downloadEventList', () async {
       // TODO
     });

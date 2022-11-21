@@ -19,7 +19,7 @@ void main() {
   group('tests for UserApi', () {
     // Change login user password
     //
-    //Future changePassword(ChangePassword changePassword) async
+    //Future changePassword(String oldPassword, String newPassword) async
     test('test changePassword', () async {
       // TODO
     });
@@ -31,24 +31,10 @@ void main() {
       // TODO
     });
 
-    // Change user's Status eg. ACTIVE or INACTIVE
-    //
-    //Future changeUserStatus(InlineObject1 changeUserStatus) async
-    test('test changeUserStatus', () async {
-      // TODO
-    });
-
     // Refresh API key for user
     //
     //Future<LoginResponse> refreshApiKey() async
     test('test refreshApiKey', () async {
-      // TODO
-    });
-
-    // Update Status of Reported Events
-    //
-    //Future updateEvent(UpdateEventRequest updateEventRequest) async
-    test('test updateEvent', () async {
       // TODO
     });
 

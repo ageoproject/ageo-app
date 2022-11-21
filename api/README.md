@@ -84,14 +84,11 @@ Class | Method | HTTP request | Description
 *ManagerApi* | [**downloadEventList**](doc//ManagerApi.md#downloadeventlist) | **POST** /manager/download_event_list | Download Excel file of events
 *UserApi* | [**changePassword**](doc//UserApi.md#changepassword) | **PUT** /user/change_password | Change login user password
 *UserApi* | [**changePreferredLanguage**](doc//UserApi.md#changepreferredlanguage) | **PUT** /user/change_preferred_language | Change user's preferred language
-*UserApi* | [**changeUserStatus**](doc//UserApi.md#changeuserstatus) | **PUT** /user/change_user_status | Change user's Status eg. ACTIVE or INACTIVE
 *UserApi* | [**refreshApiKey**](doc//UserApi.md#refreshapikey) | **PUT** /user/refresh_apikey | Refresh API key for user
-*UserApi* | [**updateEvent**](doc//UserApi.md#updateevent) | **PUT** /user/update_event | Update Status of Reported Events
 
 
 ## Documentation For Models
 
- - [ChangePassword](doc//ChangePassword.md)
  - [Event](doc//Event.md)
  - [EventLocation](doc//EventLocation.md)
  - [InlineObject](doc//InlineObject.md)
@@ -101,10 +98,8 @@ Class | Method | HTTP request | Description
  - [InlineObject4](doc//InlineObject4.md)
  - [InlineObject5](doc//InlineObject5.md)
  - [InlineObject6](doc//InlineObject6.md)
- - [InlineObject7](doc//InlineObject7.md)
  - [InlineResponse200](doc//InlineResponse200.md)
  - [LoginResponse](doc//LoginResponse.md)
- - [UpdateEventRequest](doc//UpdateEventRequest.md)
  - [User](doc//User.md)
 
 

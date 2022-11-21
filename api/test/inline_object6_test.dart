@@ -21,8 +21,13 @@ void main() {
       // TODO
     });
 
-    // List<String> managerIdList (default value: const [])
-    test('to test the property `managerIdList`', () async {
+    // String searchKeyword
+    test('to test the property `searchKeyword`', () async {
+      // TODO
+    });
+
+    // List<String> userIdList (default value: const [])
+    test('to test the property `userIdList`', () async {
       // TODO
     });
 

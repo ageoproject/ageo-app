@@ -124,7 +124,7 @@ import 'package:ageoClient/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('Token').apiKeyPrefix = 'Bearer';
 
 final api_instance = AdminApi();
-final filters = InlineObject7(); // InlineObject7 | 
+final filters = InlineObject6(); // InlineObject6 | 
 
 try {
     final result = api_instance.downloadApiuserList(filters);
@@ -138,7 +138,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filters** | [**InlineObject7**](InlineObject7.md)|  | [optional] 
+ **filters** | [**InlineObject6**](InlineObject6.md)|  | [optional] 
 
 ### Return type
 
@@ -169,7 +169,7 @@ import 'package:ageoClient/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('Token').apiKeyPrefix = 'Bearer';
 
 final api_instance = AdminApi();
-final filters = InlineObject6(); // InlineObject6 | 
+final filters = InlineObject5(); // InlineObject5 | 
 
 try {
     final result = api_instance.downloadManagerList(filters);
@@ -183,7 +183,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filters** | [**InlineObject6**](InlineObject6.md)|  | [optional] 
+ **filters** | [**InlineObject5**](InlineObject5.md)|  | [optional] 
 
 ### Return type
 

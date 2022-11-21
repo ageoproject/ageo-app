@@ -14,74 +14,42 @@ class InlineObject5 {
   /// Returns a new [InlineObject5] instance.
   InlineObject5({
     this.downloadType,
-    this.eventType,
-    this.eventStatus,
-    this.fromDate,
-    this.toDate,
-    this.eventIdList = const [],
-    this.polygon = const [],
+    this.searchKeyword,
+    this.managerIdList = const [],
   });
 
   String? downloadType;
 
-  String? eventType;
+  String? searchKeyword;
 
-  String? eventStatus;
-
-  num? fromDate;
-
-  num? toDate;
-
-  List<String>? eventIdList;
-
-  List<List<num>?>? polygon;
+  List<String>? managerIdList;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is InlineObject5 &&
      other.downloadType == downloadType &&
-     other.eventType == eventType &&
-     other.eventStatus == eventStatus &&
-     other.fromDate == fromDate &&
-     other.toDate == toDate &&
-     other.eventIdList == eventIdList &&
-     other.polygon == polygon;
+     other.searchKeyword == searchKeyword &&
+     other.managerIdList == managerIdList;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (downloadType == null ? 0 : downloadType.hashCode) +
-    (eventType == null ? 0 : eventType.hashCode) +
-    (eventStatus == null ? 0 : eventStatus.hashCode) +
-    (fromDate == null ? 0 : fromDate.hashCode) +
-    (toDate == null ? 0 : toDate.hashCode) +
-    (eventIdList == null ? 0 : eventIdList.hashCode) +
-    (polygon == null ? 0 : polygon.hashCode);
+    (searchKeyword == null ? 0 : searchKeyword.hashCode) +
+    (managerIdList == null ? 0 : managerIdList.hashCode);
 
   @override
-  String toString() => 'InlineObject5[downloadType=$downloadType, eventType=$eventType, eventStatus=$eventStatus, fromDate=$fromDate, toDate=$toDate, eventIdList=$eventIdList, polygon=$polygon]';
+  String toString() => 'InlineObject5[downloadType=$downloadType, searchKeyword=$searchKeyword, managerIdList=$managerIdList]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (downloadType != null) {
       json[r'downloadType'] = downloadType;
     }
-    if (eventType != null) {
-      json[r'eventType'] = eventType;
+    if (searchKeyword != null) {
+      json[r'searchKeyword'] = searchKeyword;
     }
-    if (eventStatus != null) {
-      json[r'eventStatus'] = eventStatus;
-    }
-    if (fromDate != null) {
-      json[r'fromDate'] = fromDate;
-    }
-    if (toDate != null) {
-      json[r'toDate'] = toDate;
-    }
-    if (eventIdList != null) {
-      json[r'eventIdList'] = eventIdList;
-    }
-    if (polygon != null) {
-      json[r'polygon'] = polygon;
+    if (managerIdList != null) {
+      json[r'managerIdList'] = managerIdList;
     }
     return json;
   }
@@ -94,21 +62,9 @@ class InlineObject5 {
       final json = value.cast<String, dynamic>();
       return InlineObject5(
         downloadType: mapValueOfType<String>(json, r'downloadType'),
-        eventType: mapValueOfType<String>(json, r'eventType'),
-        eventStatus: mapValueOfType<String>(json, r'eventStatus'),
-        fromDate: json[r'fromDate'] == null
-          ? null
-          : num.parse(json[r'fromDate'].toString()),
-        toDate: json[r'toDate'] == null
-          ? null
-          : num.parse(json[r'toDate'].toString()),
-        eventIdList: json[r'eventIdList'] is List
-          ? (json[r'eventIdList'] as List).cast<String>()
-          : null,
-        polygon: json[r'polygon'] is List
-          ? (json[r'polygon'] as List).map(
-              (e) => e == null ? null : (e as List).cast<num>()
-            ).toList(growable: false)
+        searchKeyword: mapValueOfType<String>(json, r'searchKeyword'),
+        managerIdList: json[r'managerIdList'] is List
+          ? (json[r'managerIdList'] as List).cast<String>()
           : null,
       );
     }

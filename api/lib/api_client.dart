@@ -193,8 +193,6 @@ class ApiClient {
           }
           final valueString = '$value'.toLowerCase();
           return valueString == 'true' || valueString == '1';
-        case 'ChangePassword':
-          return ChangePassword.fromJson(value);
         case 'Event':
           return Event.fromJson(value);
         case 'EventLocation':
@@ -213,14 +211,10 @@ class ApiClient {
           return InlineObject5.fromJson(value);
         case 'InlineObject6':
           return InlineObject6.fromJson(value);
-        case 'InlineObject7':
-          return InlineObject7.fromJson(value);
         case 'InlineResponse200':
           return InlineResponse200.fromJson(value);
         case 'LoginResponse':
           return LoginResponse.fromJson(value);
-        case 'UpdateEventRequest':
-          return UpdateEventRequest.fromJson(value);
         case 'User':
           return User.fromJson(value);
         default:

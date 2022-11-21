@@ -54,7 +54,8 @@ class CommonQuestions extends StatelessWidget {
     return null;
   }
 
-  String formatTime({required String time}){
+  String formatTime(){
+    String time="${_reportEventController.eventDate.value} ${_reportEventController.eventTime.value}";
     return _timeFormat12Hour.format(DateTime.parse(time));
   }
 
@@ -64,7 +65,7 @@ class CommonQuestions extends StatelessWidget {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     _reportEventController.changeEventDateAndTime();
     _dateTextEditingController.text=_reportEventController.eventDate.value;
-    _timeTextEditingController.text=formatTime(time:_reportEventController.eventDetail.time!);
+    _timeTextEditingController.text=formatTime();
     return Stack(
       children: [
         Padding(
@@ -179,7 +180,7 @@ class CommonQuestions extends StatelessWidget {
                             if(selectedTime!=null){
                               String eventTime="${selectedTime.hour.toString().padLeft(2,"0")}:${selectedTime.minute.toString().padLeft(2,"0")}";
                               _reportEventController.changeEventTime(date: eventTime);
-                              _timeTextEditingController.text=formatTime(time:_reportEventController.eventDetail.time!);
+                              _timeTextEditingController.text=formatTime();
                             }
                             // await _showCalendar(selectedDate: DateTime.parse("${_studentProfile.user!.dob}"));
 

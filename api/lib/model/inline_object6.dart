@@ -14,34 +14,42 @@ class InlineObject6 {
   /// Returns a new [InlineObject6] instance.
   InlineObject6({
     this.downloadType,
-    this.managerIdList = const [],
+    this.searchKeyword,
+    this.userIdList = const [],
   });
 
   String? downloadType;
 
-  List<String>? managerIdList;
+  String? searchKeyword;
+
+  List<String>? userIdList;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is InlineObject6 &&
      other.downloadType == downloadType &&
-     other.managerIdList == managerIdList;
+     other.searchKeyword == searchKeyword &&
+     other.userIdList == userIdList;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (downloadType == null ? 0 : downloadType.hashCode) +
-    (managerIdList == null ? 0 : managerIdList.hashCode);
+    (searchKeyword == null ? 0 : searchKeyword.hashCode) +
+    (userIdList == null ? 0 : userIdList.hashCode);
 
   @override
-  String toString() => 'InlineObject6[downloadType=$downloadType, managerIdList=$managerIdList]';
+  String toString() => 'InlineObject6[downloadType=$downloadType, searchKeyword=$searchKeyword, userIdList=$userIdList]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (downloadType != null) {
       json[r'downloadType'] = downloadType;
     }
-    if (managerIdList != null) {
-      json[r'managerIdList'] = managerIdList;
+    if (searchKeyword != null) {
+      json[r'searchKeyword'] = searchKeyword;
+    }
+    if (userIdList != null) {
+      json[r'userIdList'] = userIdList;
     }
     return json;
   }
@@ -54,8 +62,9 @@ class InlineObject6 {
       final json = value.cast<String, dynamic>();
       return InlineObject6(
         downloadType: mapValueOfType<String>(json, r'downloadType'),
-        managerIdList: json[r'managerIdList'] is List
-          ? (json[r'managerIdList'] as List).cast<String>()
+        searchKeyword: mapValueOfType<String>(json, r'searchKeyword'),
+        userIdList: json[r'userIdList'] is List
+          ? (json[r'userIdList'] as List).cast<String>()
           : null,
       );
     }

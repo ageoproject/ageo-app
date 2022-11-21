@@ -46,6 +46,11 @@ void main() {
       // TODO
     });
 
+    // bool quickReport (default value: false)
+    test('to test the property `quickReport`', () async {
+      // TODO
+    });
+
     // String comment
     test('to test the property `comment`', () async {
       // TODO

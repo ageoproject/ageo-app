@@ -694,9 +694,10 @@ class ReportEventController extends GetxController{
     _eventDetail.city="Mumbai";
     _eventDetail.country="India";
     _eventDetail.state="Maharashtra";
+    _eventDetail.quickReport=_quickReportingIsActive.value;
     _eventDetail.customEventDetails=_quickReportingIsActive.value?{}:selectCustomEventDetail();
     // print(_eventDetail);
-    String eventId= await _ageoConfig.reportEvent(eventDetail: _eventDetail)??"";
+    String eventId= await _ageoConfig.reportEvent(eventDetail: _eventDetail,imagePathList: _uploadedImagePathList)??"";
     return eventId;
   }
 }

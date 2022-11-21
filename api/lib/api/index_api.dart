@@ -302,26 +302,104 @@ class IndexApi {
   ///
   /// Parameters:
   ///
-  /// * [Event] eventReport (required):
-  Future<Response> reportEventWithHttpInfo(Event eventReport,) async {
+  /// * [String] eventType (required):
+  ///
+  /// * [String] time (required):
+  ///
+  /// * [String] location (required):
+  ///
+  /// * [MultipartFile] image1:
+  ///
+  /// * [MultipartFile] image2:
+  ///
+  /// * [MultipartFile] image3:
+  ///
+  /// * [bool] quickReport:
+  ///
+  /// * [String] comment:
+  ///
+  /// * [String] sensorData:
+  ///
+  /// * [String] commonEventDetails:
+  ///
+  /// * [String] customEventDetails:
+  Future<Response> reportEventWithHttpInfo(String eventType, String time, String location, { MultipartFile? image1, MultipartFile? image2, MultipartFile? image3, bool? quickReport, String? comment, String? sensorData, String? commonEventDetails, String? customEventDetails, }) async {
     // Verify required params are set.
-    if (eventReport == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: eventReport');
+    if (eventType == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: eventType');
+    }
+    if (time == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: time');
+    }
+    if (location == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: location');
     }
 
     // ignore: prefer_const_declarations
     final path = r'/anonymous/report_event';
 
     // ignore: prefer_final_locals
-    Object postBody = eventReport;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
     const authNames = <String>[];
-    const contentTypes = <String>['application/json'];
+    const contentTypes = <String>['multipart/form-data'];
 
+    bool hasFields = false;
+    final mp = MultipartRequest('POST', Uri.parse(path));
+    if (eventType != null) {
+      hasFields = true;
+      mp.fields[r'eventType'] = parameterToString(eventType);
+    }
+    if (time != null) {
+      hasFields = true;
+      mp.fields[r'time'] = parameterToString(time);
+    }
+    if (location != null) {
+      hasFields = true;
+      mp.fields[r'location'] = parameterToString(location);
+    }
+    if (image1 != null) {
+      hasFields = true;
+      mp.fields[r'image1'] = image1.field;
+      mp.files.add(image1);
+    }
+    if (image2 != null) {
+      hasFields = true;
+      mp.fields[r'image2'] = image2.field;
+      mp.files.add(image2);
+    }
+    if (image3 != null) {
+      hasFields = true;
+      mp.fields[r'image3'] = image3.field;
+      mp.files.add(image3);
+    }
+    if (quickReport != null) {
+      hasFields = true;
+      mp.fields[r'quickReport'] = parameterToString(quickReport);
+    }
+    if (comment != null) {
+      hasFields = true;
+      mp.fields[r'comment'] = parameterToString(comment);
+    }
+    if (sensorData != null) {
+      hasFields = true;
+      mp.fields[r'sensorData'] = parameterToString(sensorData);
+    }
+    if (commonEventDetails != null) {
+      hasFields = true;
+      mp.fields[r'commonEventDetails'] = parameterToString(commonEventDetails);
+    }
+    if (customEventDetails != null) {
+      hasFields = true;
+      mp.fields[r'customEventDetails'] = parameterToString(customEventDetails);
+    }
+    if (hasFields) {
+      postBody = mp;
+    }
 
     return apiClient.invokeAPI(
       path,
@@ -339,9 +417,29 @@ class IndexApi {
   ///
   /// Parameters:
   ///
-  /// * [Event] eventReport (required):
-  Future<Event?> reportEvent(Event eventReport,) async {
-    final response = await reportEventWithHttpInfo(eventReport,);
+  /// * [String] eventType (required):
+  ///
+  /// * [String] time (required):
+  ///
+  /// * [String] location (required):
+  ///
+  /// * [MultipartFile] image1:
+  ///
+  /// * [MultipartFile] image2:
+  ///
+  /// * [MultipartFile] image3:
+  ///
+  /// * [bool] quickReport:
+  ///
+  /// * [String] comment:
+  ///
+  /// * [String] sensorData:
+  ///
+  /// * [String] commonEventDetails:
+  ///
+  /// * [String] customEventDetails:
+  Future<Event?> reportEvent(String eventType, String time, String location, { MultipartFile? image1, MultipartFile? image2, MultipartFile? image3, bool? quickReport, String? comment, String? sensorData, String? commonEventDetails, String? customEventDetails, }) async {
+    final response = await reportEventWithHttpInfo(eventType, time, location,  image1: image1, image2: image2, image3: image3, quickReport: quickReport, comment: comment, sensorData: sensorData, commonEventDetails: commonEventDetails, customEventDetails: customEventDetails, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

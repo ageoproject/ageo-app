@@ -193,7 +193,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **reportEvent**
-> Event reportEvent(eventReport)
+> Event reportEvent(eventType, time, location, image1, image2, image3, quickReport, comment, sensorData, commonEventDetails, customEventDetails)
 
 Report events
 
@@ -202,10 +202,20 @@ Report events
 import 'package:ageoClient/api.dart';
 
 final api_instance = IndexApi();
-final eventReport = Event(); // Event | 
+final eventType = eventType_example; // String | 
+final time = time_example; // String | 
+final location = location_example; // String | 
+final image1 = BINARY_DATA_HERE; // MultipartFile | 
+final image2 = BINARY_DATA_HERE; // MultipartFile | 
+final image3 = BINARY_DATA_HERE; // MultipartFile | 
+final quickReport = true; // bool | 
+final comment = comment_example; // String | 
+final sensorData = sensorData_example; // String | 
+final commonEventDetails = commonEventDetails_example; // String | 
+final customEventDetails = customEventDetails_example; // String | 
 
 try {
-    final result = api_instance.reportEvent(eventReport);
+    final result = api_instance.reportEvent(eventType, time, location, image1, image2, image3, quickReport, comment, sensorData, commonEventDetails, customEventDetails);
     print(result);
 } catch (e) {
     print('Exception when calling IndexApi->reportEvent: $e\n');
@@ -216,7 +226,17 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **eventReport** | [**Event**](Event.md)|  | 
+ **eventType** | **String**|  | 
+ **time** | **String**|  | 
+ **location** | **String**|  | 
+ **image1** | **MultipartFile**|  | [optional] 
+ **image2** | **MultipartFile**|  | [optional] 
+ **image3** | **MultipartFile**|  | [optional] 
+ **quickReport** | **bool**|  | [optional] 
+ **comment** | **String**|  | [optional] 
+ **sensorData** | **String**|  | [optional] 
+ **commonEventDetails** | **String**|  | [optional] 
+ **customEventDetails** | **String**|  | [optional] 
 
 ### Return type
 
@@ -228,7 +248,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

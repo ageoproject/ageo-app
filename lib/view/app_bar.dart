@@ -19,37 +19,42 @@ class CustomAppBar extends StatelessWidget {
       padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+10),
       child: SizedBox(
         height: 70,
+        // width: MediaQuery.of(context).size.width,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
 
-            Row(
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Builder(
-                      builder: (context) {
-                        return MaterialButton(
-                          padding: EdgeInsets.zero,
-                          onPressed: (){
-                            if(showBackButton){
-                              onBackButtonClick!();
-                            }else{
-                              Scaffold.of(context).openDrawer();
-                            }
-                          },
-                          child: Image.asset(showBackButton?"assets/images/report_event/back_button_ic.png":"assets/images/home_page/hamburger_menu.png",height: 67,width: 67,fit:BoxFit.fill),
-                        );
-                      }
+            Expanded(
+              child: Row(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Builder(
+                        builder: (context) {
+                          return MaterialButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: (){
+                              if(showBackButton){
+                                onBackButtonClick!();
+                              }else{
+                                Scaffold.of(context).openDrawer();
+                              }
+                            },
+                            child: Image.asset(showBackButton?"assets/images/report_event/back_button_ic.png":"assets/images/home_page/hamburger_menu.png",height: 67,width: 67,fit:BoxFit.fill),
+                          );
+                        }
+                    ),
                   ),
-                ),
 
-                Visibility(
-                  visible: title != null,
-                  child: Text("$title ",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: appTheme.primaryActionColor),),
-                ),
-              ],
+                  Expanded(
+                    child: Visibility(
+                      visible: title != null,
+                      child: Text("$title ",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: appTheme.primaryActionColor),),
+                    ),
+                  ),
+                ],
+              ),
             ),
 
             Flexible(

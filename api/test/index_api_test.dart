@@ -47,7 +47,7 @@ void main() {
 
     // Report events
     //
-    //Future<Event> reportEvent(Event eventReport) async
+    //Future<Event> reportEvent(String eventType, num time, String location, { MultipartFile image1, MultipartFile image2, MultipartFile image3, bool quickReport, String comment, String sensorData, String commonEventDetails, String customEventDetails }) async
     test('test reportEvent', () async {
       // TODO
     });

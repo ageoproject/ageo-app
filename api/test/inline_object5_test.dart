@@ -21,33 +21,13 @@ void main() {
       // TODO
     });
 
-    // String eventType
-    test('to test the property `eventType`', () async {
+    // String searchKeyword
+    test('to test the property `searchKeyword`', () async {
       // TODO
     });
 
-    // String eventStatus
-    test('to test the property `eventStatus`', () async {
-      // TODO
-    });
-
-    // num fromDate
-    test('to test the property `fromDate`', () async {
-      // TODO
-    });
-
-    // num toDate
-    test('to test the property `toDate`', () async {
-      // TODO
-    });
-
-    // List<String> eventIdList (default value: const [])
-    test('to test the property `eventIdList`', () async {
-      // TODO
-    });
-
-    // List<List<num>> polygon (default value: const [])
-    test('to test the property `polygon`', () async {
+    // List<String> managerIdList (default value: const [])
+    test('to test the property `managerIdList`', () async {
       // TODO
     });
 

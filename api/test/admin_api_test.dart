@@ -29,14 +29,14 @@ void main() {
 
     // Download Excel file of api users
     //
-    //Future<MultipartFile> downloadApiuserList({ InlineObject7 filters }) async
+    //Future<MultipartFile> downloadApiuserList({ InlineObject6 filters }) async
     test('test downloadApiuserList', () async {
       // TODO
     });
 
     // Download Excel file of managers
     //
-    //Future<MultipartFile> downloadManagerList({ InlineObject6 filters }) async
+    //Future<MultipartFile> downloadManagerList({ InlineObject5 filters }) async
     test('test downloadManagerList', () async {
       // TODO
     });

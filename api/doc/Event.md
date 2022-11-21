@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **time** | **String** |  | [optional] 
 **status** | **String** |  | [optional] [default to 'PENDING']
 **image** | **List<String>** |  | [optional] [default to const []]
+**quickReport** | **bool** |  | [optional] [default to false]
 **comment** | **String** |  | [optional] 
 **location** | [**EventLocation**](EventLocation.md) |  | [optional] 
 **city** | **String** |  | [optional] 

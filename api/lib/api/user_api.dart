@@ -22,25 +22,33 @@ class UserApi {
   ///
   /// Parameters:
   ///
-  /// * [ChangePassword] changePassword (required):
-  Future<Response> changePasswordWithHttpInfo(ChangePassword changePassword,) async {
+  /// * [String] oldPassword (required):
+  ///
+  /// * [String] newPassword (required):
+  Future<Response> changePasswordWithHttpInfo(String oldPassword, String newPassword,) async {
     // Verify required params are set.
-    if (changePassword == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: changePassword');
+    if (oldPassword == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: oldPassword');
+    }
+    if (newPassword == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: newPassword');
     }
 
     // ignore: prefer_const_declarations
     final path = r'/user/change_password';
 
     // ignore: prefer_final_locals
-    Object postBody = changePassword;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'oldPassword', oldPassword));
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'newPassword', newPassword));
+
     const authNames = <String>['Token'];
-    const contentTypes = <String>['application/json'];
+    const contentTypes = <String>[];
 
 
     return apiClient.invokeAPI(
@@ -59,9 +67,11 @@ class UserApi {
   ///
   /// Parameters:
   ///
-  /// * [ChangePassword] changePassword (required):
-  Future<void> changePassword(ChangePassword changePassword,) async {
-    final response = await changePasswordWithHttpInfo(changePassword,);
+  /// * [String] oldPassword (required):
+  ///
+  /// * [String] newPassword (required):
+  Future<void> changePassword(String oldPassword, String newPassword,) async {
+    final response = await changePasswordWithHttpInfo(oldPassword, newPassword,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -118,57 +128,6 @@ class UserApi {
     }
   }
 
-  /// Change user's Status eg. ACTIVE or INACTIVE
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [InlineObject1] changeUserStatus (required):
-  Future<Response> changeUserStatusWithHttpInfo(InlineObject1 changeUserStatus,) async {
-    // Verify required params are set.
-    if (changeUserStatus == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: changeUserStatus');
-    }
-
-    // ignore: prefer_const_declarations
-    final path = r'/user/change_user_status';
-
-    // ignore: prefer_final_locals
-    Object postBody = changeUserStatus;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    const authNames = <String>['Token'];
-    const contentTypes = <String>['application/json'];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'PUT',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
-    );
-  }
-
-  /// Change user's Status eg. ACTIVE or INACTIVE
-  ///
-  /// Parameters:
-  ///
-  /// * [InlineObject1] changeUserStatus (required):
-  Future<void> changeUserStatus(InlineObject1 changeUserStatus,) async {
-    final response = await changeUserStatusWithHttpInfo(changeUserStatus,);
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-  }
-
   /// Refresh API key for user
   ///
   /// Note: This method returns the HTTP [Response].
@@ -213,56 +172,5 @@ class UserApi {
     
     }
     return Future<LoginResponse>.value();
-  }
-
-  /// Update Status of Reported Events
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [UpdateEventRequest] updateEventRequest (required):
-  Future<Response> updateEventWithHttpInfo(UpdateEventRequest updateEventRequest,) async {
-    // Verify required params are set.
-    if (updateEventRequest == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: updateEventRequest');
-    }
-
-    // ignore: prefer_const_declarations
-    final path = r'/user/update_event';
-
-    // ignore: prefer_final_locals
-    Object postBody = updateEventRequest;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    const authNames = <String>['Token'];
-    const contentTypes = <String>['application/json'];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'PUT',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
-    );
-  }
-
-  /// Update Status of Reported Events
-  ///
-  /// Parameters:
-  ///
-  /// * [UpdateEventRequest] updateEventRequest (required):
-  Future<void> updateEvent(UpdateEventRequest updateEventRequest,) async {
-    final response = await updateEventWithHttpInfo(updateEventRequest,);
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
   }
 }
