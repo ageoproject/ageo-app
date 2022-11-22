@@ -194,11 +194,14 @@ class BuildingSettlement extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 18.0),
                       child: Row(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Text("${tr("monitor_event.building_settlement.crack_dimension")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-                          ),
                           Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Text("${tr("monitor_event.building_settlement.crack_dimension")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 75,
                             child: Form(
                               key: _crackDimensionKey,
                               child: TextFormField(

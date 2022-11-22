@@ -90,7 +90,11 @@ class CommonQuestions extends StatelessWidget {
                           decoration: InputDecoration(
                             labelText: tr("common_question_page.event_date"),
                             labelStyle: TextStyle(fontSize: 14,color: appTheme.placeHolderTextColor),
-                            suffixIcon: Icon(Icons.calendar_today_outlined,color: appTheme.iconColor,size: 20,),
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.only(right: 10.0),
+                              child: Icon(Icons.calendar_today_outlined,color: appTheme.iconColor,size: 20,),
+                            ),
+                            suffixIconConstraints:const BoxConstraints(),
                             filled: true,
                             fillColor: Colors.white,
                             errorMaxLines: 2,
@@ -145,7 +149,11 @@ class CommonQuestions extends StatelessWidget {
                           decoration: InputDecoration(
                             labelText: tr("common_question_page.event_time"),
                             labelStyle: TextStyle(fontSize: 14,color: appTheme.placeHolderTextColor),
-                            suffixIcon: Icon(Icons.watch_later_outlined,color: appTheme.iconColor,size: 20,),
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.only(right: 10.0),
+                              child: Icon(Icons.watch_later_outlined,color: appTheme.iconColor,size: 20,),
+                            ),
+                            suffixIconConstraints:const BoxConstraints(),
                             filled: true,
                             fillColor: Colors.white,
                             errorMaxLines: 2,

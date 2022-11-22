@@ -74,11 +74,14 @@ class Sinkhole extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Text("${tr("monitor_event.sinkhole.sinkhole_dimension")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-                        ),
                         Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Text("${tr("monitor_event.sinkhole.sinkhole_dimension")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 75,
                           child: Form(
                             key: _sinkholeDimensionKey,
                             child: TextFormField(

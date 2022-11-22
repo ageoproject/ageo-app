@@ -65,102 +65,110 @@ class CommonComponent{
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
           child: Center(
-            child:Container(
-              height: 200,
-              padding:const EdgeInsets.symmetric(horizontal: 20),
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: SizedBox(
-                      height: 180,
-                      child: Card(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            IconButton(
-                              icon: Image.asset("assets/images/report_event/close_ic.png",width: 28,),
-                              onPressed: (){
-                                Navigator.popUntil(context, (route) => route.isFirst);
-                              },
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: Column(
-                                children: [
-                                  Icon(Icons.check,color: _appTheme.primaryActionColor,),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                    child: Text("monitor_event.send_ageo",style: TextStyle(color:_appTheme.primaryTextColor,fontSize: 14),).tr(),
-                                  ),
-                                  Row(
+            child:Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  // height: 200,
+                  padding:const EdgeInsets.symmetric(horizontal: 20),
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Padding(
+                          // height: 180,
+                          padding:const EdgeInsets.only(bottom: 20),
+                          child: Card(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                IconButton(
+                                  icon: Image.asset("assets/images/report_event/close_ic.png",width: 28,),
+                                  onPressed: (){
+                                    Navigator.popUntil(context, (route) => route.isFirst);
+                                    // Navigator.pop(context);
+                                  },
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                  child: Column(
                                     children: [
-                                      Expanded(
-                                        child: TextButton(
-                                          onPressed: (){
-                                            _customUrlLauncher.openInBrowser(url: eventLink);
-                                          },
-                                          child: Text(eventLink,style: TextStyle(color: _appTheme.primaryActionColor,fontSize: 14,decoration: TextDecoration.underline),),
-                                        ),
+                                      Icon(Icons.check,color: _appTheme.primaryActionColor,),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                        child: Text("monitor_event.send_ageo",style: TextStyle(color:_appTheme.primaryTextColor,fontSize: 14),).tr(),
                                       ),
-                                      IconButton(
-                                        icon: Image.asset("assets/images/report_event/copy_ic.png",height: 20,),
-                                        onPressed: ()async{
-                                          await Clipboard.setData(ClipboardData(text: eventLink));
-                                          // _toastMessage.showSuccessToastMessage(message: tr("monitor_event.linked_copied"), duration: 1, context: context);
-                                          Get.showSnackbar( GetSnackBar(
-                                            message: tr("monitor_event.linked_copied"),
-                                            duration:const Duration(seconds: 2),
-                                            icon:const Icon(Icons.done_all,color: Colors.white,),
-                                            backgroundColor: _appTheme.primaryActionColor,
-                                            margin:const EdgeInsets.all(12),
-                                            borderRadius: 12,
-                                          ));
-                                        },
-                                      )
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(bottom: 16.0),
+                                              child: TextButton(
+                                                onPressed: (){
+                                                  _customUrlLauncher.openInBrowser(url: eventLink);
+                                                },
+                                                child: Text(eventLink,style: TextStyle(color: _appTheme.primaryActionColor,fontSize: 14,decoration: TextDecoration.underline),),
+                                              ),
+                                            ),
+                                          ),
+                                          IconButton(
+                                            icon: Image.asset("assets/images/report_event/copy_ic.png",height: 20,),
+                                            onPressed: ()async{
+                                              await Clipboard.setData(ClipboardData(text: eventLink));
+                                              // _toastMessage.showSuccessToastMessage(message: tr("monitor_event.linked_copied"), duration: 1, context: context);
+                                              Get.showSnackbar( GetSnackBar(
+                                                message: tr("monitor_event.linked_copied"),
+                                                duration:const Duration(seconds: 2),
+                                                icon:const Icon(Icons.done_all,color: Colors.white,),
+                                                backgroundColor: _appTheme.primaryActionColor,
+                                                margin:const EdgeInsets.all(12),
+                                                borderRadius: 12,
+                                              ));
+                                            },
+                                          )
+                                        ],
+                                      ),
                                     ],
                                   ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      width: 150,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: TextButton(
-                        key: _globalKey,
-                        style: TextButton.styleFrom(
-                          backgroundColor: _appTheme.primaryActionColor,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: Image.asset("assets/images/report_event/share_ic.png",height: 15,),
+                                )
+                              ],
                             ),
-                            const Text("monitor_event.share",style: TextStyle(color: Colors.white,fontSize: 14),).tr(),
-                          ],
+                          ),
                         ),
-                        onPressed: (){
-                          RenderBox box = _globalKey.currentContext?.findRenderObject() as RenderBox;
-                          Offset position = box.localToGlobal(Offset.zero); //this is global p
-                          Share.share(eventLink,sharePositionOrigin: Rect.fromCenter(center: Offset(position.dx+60,position.dy+24),width: 1,height: 1));
-                        },
                       ),
-                    ),
-                  )
-                ],
-              ),
+                      Container(
+                        width: 150,
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: TextButton(
+                          key: _globalKey,
+                          style: TextButton.styleFrom(
+                            backgroundColor: _appTheme.primaryActionColor,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: Image.asset("assets/images/report_event/share_ic.png",height: 15,),
+                              ),
+                              const Text("monitor_event.share",style: TextStyle(color: Colors.white,fontSize: 14),).tr(),
+                            ],
+                          ),
+                          onPressed: (){
+                            RenderBox box = _globalKey.currentContext?.findRenderObject() as RenderBox;
+                            Offset position = box.localToGlobal(Offset.zero); //this is global p
+                            Share.share(eventLink,sharePositionOrigin: Rect.fromCenter(center: Offset(position.dx+60,position.dy+24),width: 1,height: 1));
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ),
