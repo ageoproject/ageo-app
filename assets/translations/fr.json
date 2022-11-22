@@ -1,16 +1,242 @@
 {
   "common_key": {
-    "next_btn": " french Next"
+    "next_btn": "Nid",
+    "submit_btn": "Submit",
+    "select_observe_damage": "Select observed damage",
+    "other": "Add other observed damage",
+    "new_add_comment": "Any precision that could be of interest: \ndate of last storm, date of the damage if known, etc.\nName, e-mail address (optional)"
   },
   "home_page": {
-    "monitor_event": "Monitor an event",
+    "monitor_event": "Surveiller un événement",
     "description_txt": "Inform AGEO about geo - hazards and other incidents"
   },
   "app_drawer": {
     "home": "Home",
-    "education": "Education Content",
+    "educational": "Contenu éducatif",
     "partners": "Partners",
     "contact": "Contact Us",
     "about": "About Us"
-  }
+  },
+  "permission_page": {
+    "ok": "OK!",
+    "we_need_some_access": "We need some access!",
+    "allow_button": "Allow permissions",
+    "permission_denied_permanently": "Permission denied permanently...Please open app setting and allow",
+    "location_permissions_denied": "Location permissions are denied",
+    "location_permissions_denied_permanently": "Location permissions are permanently denied, we cannot request permissions.",
+    "location_services_disabled": "Location services are disabled.",
+    "enable_location": "Enable Location",
+    "open _setting": "Open Setting",
+    "permission_type": {
+      "location": "Location",
+      "location_description": "Need location access to\ncapture event location",
+      "camera": "Camera",
+      "camera_description": "Need camera access to\ncapture event photo's",
+      "media": "Media",
+      "media_description": "Need media access to\nupload event photo's\nfrom gallery"
+    }
+  },
+  "monitor_event": {
+    "report_error": "Something went wrong. Please try again...",
+    "linked_copied": "Link copied successfully",
+    "send_ageo": "The event information is sent to AGEO",
+    "please_wait": "Please wait..",
+    "share": "Share",
+    "app_bar_tittle": "Select Event Type",
+    "frequency_of_visits":{
+      "text": "Frequency of visits to the sites",
+      "text_hint": "(for us, to get an approximate date of the event)",
+      "Daily": "Daily",
+      "1st time": "1st time",
+      "Yearly": "Yearly",
+      "Monthly": "Monthly",
+      "Weekly": "Weekly"
+    },
+    "tab_view": {
+      "event_type": "Event type",
+      "map": "Map",
+      "questions": "Questions",
+      "damage": "Damage"
+    },
+    "event_type_tab": {
+      "forest_fire": "Feu de forêt",
+      "tsunami": "Tsunami",
+      "earthquake": "Earthquake",
+      "rockfall": "Rockfall",
+      "land_slide": "Land Slide",
+      "flood": "River Flooding",
+      "sinkhole": "Sinkhole",
+      "building_settlement": "Building Settlement",
+      "eruption": "Eruption",
+      "marineFlooding": "Marine Flooding",
+      "coastalErosion": "Coastal Erosion"
+    },
+    "toast_message": {
+      "select_event_type": "Please select event type",
+      "select_location": "Please mark event location on map",
+      "select_event_date_time": "Please capture and upload event image"
+    },
+    "earthquake": {
+      "number_of_floors": "Number of floors",
+      "select_observe_damage": "Select observed damage",
+      "falling_object": "Falling Object",
+      "minor_damage": "Minor Damage",
+      "moderate_damage": "Moderate Damage",
+      "total_damage": "Partial/Total collapse",
+      "add_building": "Add building"
+    },
+    "landslide": {
+      "displaced_land": "Volume of displaced land (in %)",
+      "building": "Building",
+      "green_area": "Green area",
+      "road": "Road",
+      "railway": "Railway",
+      "water_lines": "Water Lines"
+    },
+    "river_flood": {
+      "water_level": "Water level (in ft)",
+      "building": "Building",
+      "green_area": "Green area",
+      "road": "Road",
+      "railway": "Railway",
+      "coastal": "Coastal",
+      "empty_water_level_error": "you need to enter water level",
+      "invalid_water_level_error": "you need to enter valid water level"
+    },
+    "marine_flood": {
+      "type_of_submersion": "Type of submersion",
+      "type_of_environment": "Type of environment",
+      "wave_overtopping": "Wave overtopping",
+      "wave_overflow": "Wave overflow",
+      "breach": "Breach",
+      "cobbles_and_thrown": "Cobbles / sand thrown by waves",
+      "water_level": "Water level (in ft):",
+      "natural_area": "Natural area",
+      "natural_area_with_coastal_defence": "Natural area with coastal defence",
+      "low_lying": "Low - lying area onshore",
+      "coastal_path": "Coastal path",
+      "roads_and_parking": "Roads and parking",
+      "harbour": "Harbour",
+      "residential_area":"Residential area",
+      "urbanized_artificialized_area": "Other urbanized / artificialized area",
+      "empty_water_level_error": "you need to enter water level",
+      "invalid_water_level_error": "you need to enter valid water level"
+    },
+    "sinkhole": {
+      "sinkhole_dimension": "Dimension of Sinkhole (in foot steps)",
+      "green_area": "Green area",
+      "road": "Road",
+      "urban": "Urban",
+      "water": "Water",
+      "sanitation": "Sanitation",
+      "electricity": "Electricity",
+      "gas": "Gas",
+      "comm_line": "Communication lines",
+      "other": "Add other affected infrastructure",
+      "affected_infrastructure": "Select affected infrastructure",
+      "empty_sinkhole_dimension_error": "you need to enter your sinkhole Dimension",
+      "invalid_sinkhole_dimension_error": "you need to enter valid sinkhole Dimension"
+    },
+    "building_settlement": {
+      "type_of_settlement": "Type of Settlement",
+      "other_structures": "Other Structures",
+      "cracks_direction": "Direction of Cracks",
+      "walls": "Walls",
+      "stairs": "Stairs",
+      "vertical": "Vertical",
+      "horizontal": "Horizontal",
+      "oblique": "Oblique",
+      "starry": "Starry",
+      "none": "None",
+      "crack_dimension": "Dimension of crack (in millimeters)",
+      "empty_crack_dimension_error": "you need to enter your crack Dimension",
+      "invalid_crack_dimension_error": "you need to enter valid crack Dimension"
+    },
+    "coastal_erosion": {
+      "object_subject_to_erosion": "Object subject to erosion",
+      "cliff": "Cliff",
+      "beach": "Beach",
+      "dune": "Dune or strip of pebbles",
+      "coastal_defences": "Coastal defences or buildings",
+      "cliff_detail": {
+        "presence_of_debris": "Presence of debris at the cliff foot ",
+        "volume_of_debris": "Volume of debris (in %)",
+        "Don't know": "Don't know",
+        "Cycle": "Cycle",
+        "Car": "Car",
+        "Truck": "Truck",
+        "yes": "Yes",
+        "no": "No",
+        "eroded_part": "Eroded part of the cliff",
+        "cliff_top": "Cliff top",
+        "cliff_foot": "Cliff foot",
+        "all_cliff": "All cliff face",
+        "small_blocks": "Small blocks"
+      },
+      "beach_details": {
+        "type_of_sediments": "Type of sediments",
+        "silt": "Silt",
+        "fine_sand": "Fine sand",
+        "coarse_sand": "Coarse sand",
+        "gravels": "Gravels",
+        "pebbles": "Pebbles",
+        "height_of_sand_lost": "Height of sand lost (in cm)",
+        "Don't know": "Don't know",
+        "20cm": "20cm",
+        "50cm": "50cm",
+        "1m": "1m",
+        ">1m": ">1m"
+      },
+      "dune_detail": {
+        "eroded_part": "Eroded part of the dune or strip of pebbles",
+        "dune_top": "Dune top",
+        "dune_foot": "Dune foot",
+        "all_dune": "All the dune",
+        "dune_migration": "Dune migration",
+        "dune_features": "Features on the dune",
+        "vegetation":"Vegetation",
+        "granville_slats": "Granville slats",
+        "foot_path": "Foot path"
+      },
+      "coastal_defences_detail": {
+        "type_of_building": "Type of building",
+        "housing": "Housing",
+        "harbour_facilities": "Harbour facilities, boat",
+        "parking": "Roads & parking",
+        "agriculture": "Agriculture & industry",
+        "tourism": "Tourism & leisure facilities",
+        "foot_path": "Foot path",
+        "coastal_defence": "Coastal defence",
+        "damage_cause": "Possible causes of the damage",
+        "don't_know": "I don't know",
+        "storm": "Storm",
+        "strong_wind": "Strong wind",
+        "heavy_rain": "Heavy rain",
+        "high_tide": "High tide",
+        "human_caused": "Human - caused",
+        "level_of_damage": "Level of damage",
+        "response_confident": "How confident are you in your response",
+        "response_confident_hint": "(on the scale of 5)"
+      }
+    }
+  },
+
+  "common_question_page": {
+    "event_date": "Event Date",
+    "event_time": "Event Time",
+    "Is / Was it raining ?": "Is / Was it raining ?",
+    "People at risk ?": "People at risk ?",
+    "Animals at risk ?": "Animals at risk ?",
+    "Assets at risk ?": "Assets at risk ?",
+    "I am safe ?": "I am safe ?",
+    "upload_or_capture": "Télécharger ou capturer (min 1 et max 3)",
+    "add_comments": "Add comments",
+    "comment_hint": "Type here...",
+    "time_error": "You cannot report event in future time"
+  },
+  "upload_image_alert": {
+    "capture_with_camera": "Capture with camera",
+    "select_from_gallery": "Select from gallery"
+  },
+  "contact_us": "To contact us or make us aware of\nAGEO related information, please\nfind us on"
 }

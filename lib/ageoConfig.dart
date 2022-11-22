@@ -17,9 +17,9 @@ class AgeoConfig{
 
   AgeoConfig._constructor(){
     if(kReleaseMode){
-      _basePath="https://ageo-web.herokuapp.com";
+      _basePath="https://api.staging.ageo.blackcurrantapps.com";
     }else{
-      _basePath="https://ageo-web.herokuapp.com";
+      _basePath="https://api.staging.ageo.blackcurrantapps.com";
       // _basePath="http://192.168.1.22:3000";
       // _basePath="https://8cd7-110-226-182-4.in.ngrok.io";
     }

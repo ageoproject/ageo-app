@@ -3,7 +3,6 @@ import 'package:ageo/helpers/local_Storage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MainController extends GetxController {
   final LanguageHelper _languageHelper=LanguageHelper();
@@ -47,6 +46,7 @@ class MainController extends GetxController {
     if(languageCode!=null){
       _appLanguage.value=language;
       context.setLocale(Locale(languageCode));
+      Get.updateLocale(Locale(languageCode));
     }
   }
 
@@ -57,6 +57,7 @@ class MainController extends GetxController {
         _appLanguage.value = language;
         _appLanguageCode = languageCode;
         context.setLocale(Locale(languageCode));
+        Get.updateLocale(Locale(languageCode));
         _localStorage.storeStringValue(key: _languageHelper.languageKey, value: languageCode);
       }
     }catch(_){}
