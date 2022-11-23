@@ -222,6 +222,7 @@ class ReportEventController extends GetxController{
   void changeEventDateAndTime(){
     String dateTime="${_eventDate.value} ${_eventTime.value}";
     _eventDetail.time=DateTime.parse(dateTime).toUtc().toString();
+    _eventDetail.comment="";
   }
 
   void updateAnswers({required int index}){
