@@ -204,35 +204,40 @@ class CommonQuestions extends StatelessWidget {
                         children: List.generate(_reportEventController.commonQuestion.length, (index) {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: _reportEventController.commonQuestion[index]["answer"]=="YES"?appTheme.toggleSelectionColor:Colors.white,
-                                borderRadius: BorderRadius.circular(_inputFieldBorderRadius),
-                                border: Border.all(color: appTheme.inputFieldsBorderColor),
-                              ),
-                              padding:const EdgeInsets.symmetric(vertical: 12,horizontal: 14),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height:18,
-                                    padding: const EdgeInsets.only(right: 25),
-                                    child: Checkbox(
-                                      value: _reportEventController.commonQuestion[index]["answer"]=="YES"?true:false,
-                                      checkColor: appTheme.primaryActionColor,
-                                      side: BorderSide(color: appTheme.inputFieldsBorderColor),
-                                      fillColor: MaterialStateProperty.all(Colors.white),
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(_checkBoxBorderRadius)),
-                                      onChanged: (value){
-                                        if(value!=null){
-                                          _reportEventController.updateAnswers(index: index, value: value?"YES":"NO");
-                                        }
-                                      },
+                            child: GestureDetector(
+                              onTap: (){
+                                _reportEventController.updateAnswers(index: index);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: _reportEventController.commonQuestion[index]["answer"]=="YES"?appTheme.toggleSelectionColor:Colors.white,
+                                  borderRadius: BorderRadius.circular(_inputFieldBorderRadius),
+                                  border: Border.all(color: appTheme.inputFieldsBorderColor),
+                                ),
+                                padding:const EdgeInsets.symmetric(vertical: 12,horizontal: 14),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height:18,
+                                      padding: const EdgeInsets.only(right: 25),
+                                      child: Checkbox(
+                                        value: _reportEventController.commonQuestion[index]["answer"]=="YES"?true:false,
+                                        checkColor: appTheme.primaryActionColor,
+                                        side: BorderSide(color: appTheme.inputFieldsBorderColor),
+                                        fillColor: MaterialStateProperty.all(Colors.white),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(_checkBoxBorderRadius)),
+                                        onChanged: (value){
+                                          if(value!=null){
+                                            _reportEventController.updateAnswers(index: index);
+                                          }
+                                        },
+                                      ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: Text("common_question_page.${_reportEventController.commonQuestion[index]["question"]}",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr(),
-                                  )
-                                ],
+                                    Expanded(
+                                      child: Text("common_question_page.${_reportEventController.commonQuestion[index]["question"]}",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr(),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           );

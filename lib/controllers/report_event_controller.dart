@@ -224,8 +224,8 @@ class ReportEventController extends GetxController{
     _eventDetail.time=DateTime.parse(dateTime).toUtc().toString();
   }
 
-  void updateAnswers({required int index,required String value}){
-    _commonQuestions[index]["answer"]=value;
+  void updateAnswers({required int index}){
+    _commonQuestions[index]["answer"]=_commonQuestions[index]["answer"]=="NO"?"YES":"NO";
     update();
   }
 
