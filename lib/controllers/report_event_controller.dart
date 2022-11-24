@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:ageo/ageoConfig.dart';
 import 'package:ageoClient/api.dart';
 import 'package:get/get.dart';
@@ -179,7 +180,7 @@ class ReportEventController extends GetxController{
   }
   ];
 
-  final Map<String,dynamic> _sensorData={
+  final Map<String,dynamic> _sensorDataReferenceObject={
     "accelerometer":{
       "x":0.0,
       "y":0.0,
@@ -196,6 +197,7 @@ class ReportEventController extends GetxController{
       "z":0.0,
     }
   };
+  final List<Map<String,dynamic>> _sensorDataList=[];
 
   String? _comment;
   final List<XFile> _uploadedImageList=[];
@@ -239,24 +241,34 @@ class ReportEventController extends GetxController{
     _uploadedImageList.add(image);
     _uploadedImagePathList.add(image.path);
     _eventDetail.image =_uploadedImagePathList;
+    // print(_sensorDataList);
     update();
   }
   void deleteImage({required XFile image}){
+    int index=_uploadedImageList.indexOf(image);
     _uploadedImageList.remove(image);
     _uploadedImagePathList.remove(image.path);
     _eventDetail.image =_uploadedImagePathList;
+    _sensorDataList.removeAt(index);
     update();
   }
-  void updateSensorData({required AccelerometerEvent accelerometerEvent,required GyroscopeEvent gyroscopeEvent,required MagnetometerEvent magnetometerEvent}){
-    _sensorData["accelerometer"]["x"]=accelerometerEvent.x;
-    _sensorData["accelerometer"]["y"]=accelerometerEvent.y;
-    _sensorData["accelerometer"]["x"]=accelerometerEvent.z;
-    _sensorData["gyroscope"]["x"]=gyroscopeEvent.x;
-    _sensorData["gyroscope"]["y"]=gyroscopeEvent.y;
-    _sensorData["gyroscope"]["x"]=gyroscopeEvent.z;
-    _sensorData["magnetometer"]["x"]=magnetometerEvent.x;
-    _sensorData["magnetometer"]["y"]=magnetometerEvent.y;
-    _sensorData["magnetometer"]["x"]=magnetometerEvent.z;
+  void updateSensorDataForCameraClick({required AccelerometerEvent accelerometerEvent,required GyroscopeEvent gyroscopeEvent,required MagnetometerEvent magnetometerEvent}){
+    Map<String,dynamic> sensorData=json.decode(json.encode(_sensorDataReferenceObject));
+    sensorData["accelerometer"]["x"]=accelerometerEvent.x;
+    sensorData["accelerometer"]["y"]=accelerometerEvent.y;
+    sensorData["accelerometer"]["x"]=accelerometerEvent.z;
+    sensorData["gyroscope"]["x"]=gyroscopeEvent.x;
+    sensorData["gyroscope"]["y"]=gyroscopeEvent.y;
+    sensorData["gyroscope"]["x"]=gyroscopeEvent.z;
+    sensorData["magnetometer"]["x"]=magnetometerEvent.x;
+    sensorData["magnetometer"]["y"]=magnetometerEvent.y;
+    sensorData["magnetometer"]["x"]=magnetometerEvent.z;
+    _sensorDataList.add(sensorData);
+  }
+
+  void updateSensorDataForGalleryUpload(){
+    Map<String,dynamic> sensorData=json.decode(json.encode(_sensorDataReferenceObject));
+    _sensorDataList.add(sensorData);
   }
 
   ///  Earthquake Page
@@ -690,7 +702,7 @@ class ReportEventController extends GetxController{
   }
 
   Future<String> reportEvent()async{
-    _eventDetail.sensorData=_sensorData;
+    _eventDetail.sensorData=_sensorDataList.last;
     _eventDetail.commonEventDetails=_quickReportingIsActive.value?{}:createCommonQuestionObject();
     _eventDetail.city="Mumbai";
     _eventDetail.country="India";

@@ -1,16 +1,19 @@
 import 'dart:io';
 import 'dart:math';
+import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/custom_camera.dart';
 import 'package:camera/camera.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageSelector extends StatelessWidget {
    ImageSelector({Key? key}) : super(key: key);
 
   final ImagePicker _picker = ImagePicker();
+  final ReportEventController _reportEventController=Get.find();
 
    Future<String> getFileSize(String filepath, int decimals) async {
      var file = File(filepath);
@@ -42,39 +45,52 @@ class ImageSelector extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset("assets/images/report_event/camera_ic.png",color:appTheme.primaryTextColor,width: 26,),
-                      TextButton(
-                        child: Text("upload_image_alert.capture_with_camera",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr(),
-                        onPressed: ()async{
-                          // XFile? cameraImage = await _picker.pickImage(source: ImageSource.camera);
-                          // if(cameraImage!=null){
-                          //   Navigator.pop(context,cameraImage);
-                          // }
-                          List<CameraDescription> cameraList = await availableCameras();
-                          XFile? image=await Navigator.push(context, MaterialPageRoute(builder: (context)=>CameraPage(cameraList: cameraList)));
-                          Navigator.pop(context,image);
-                        },
-                      ),
-                    ],
+                  TextButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 12.0),
+                          child: Image.asset("assets/images/report_event/camera_ic.png",color:appTheme.primaryTextColor,width: 26,),
+                        ),
+                        Text("upload_image_alert.capture_with_camera",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),softWrap: true,overflow: TextOverflow.ellipsis,).tr(),
+                      ],
+                    ),
+                    onPressed: ()async{
+                      // XFile? cameraImage = await _picker.pickImage(source: ImageSource.camera);
+                      // if(cameraImage!=null){
+                      //   Navigator.pop(context,cameraImage);
+                      // }
+                      List<CameraDescription> cameraList = await availableCameras();
+                      XFile? image=await Navigator.push(context, MaterialPageRoute(builder: (context)=>CameraPage(cameraList: cameraList)));
+                      if(image!=null){
+                        _reportEventController.addImage(image: image);
+                      }
+                      Navigator.pop(context);
+                    },
                   ),
 
                   Divider(color: appTheme.inputFieldsBorderColor,thickness: 1.5,),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset("assets/images/report_event/media_ic.png",color:appTheme.primaryTextColor,width: 24),
-                      TextButton(
-                        child: Text("upload_image_alert.select_from_gallery",style:TextStyle(fontSize: 14,color: appTheme.primaryTextColor)).tr(),
-                        onPressed: ()async{
-                          XFile? galleryImage = await _picker.pickImage(source: ImageSource.gallery);
-                          Navigator.pop(context,galleryImage);
-                        },
-                      ),
-                    ],
+                  TextButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 12.0),
+                          child: Image.asset("assets/images/report_event/media_ic.png",color:appTheme.primaryTextColor,width: 24),
+                        ),
+                        Text("upload_image_alert.select_from_gallery",style:TextStyle(fontSize: 14,color: appTheme.primaryTextColor),softWrap: true,overflow: TextOverflow.ellipsis,).tr(),
+                      ],
+                    ),
+                    onPressed: ()async{
+                      XFile? galleryImage = await _picker.pickImage(source: ImageSource.gallery);
+                      if(galleryImage!=null){
+                        _reportEventController.updateSensorDataForGalleryUpload();
+                        _reportEventController.addImage(image: galleryImage);
+                      }
+                      Navigator.pop(context);
+                    },
                   ),
               ],
             ),

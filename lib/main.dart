@@ -22,17 +22,19 @@ void main() async{
   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
   localStorage.initSharedPreferences(sharedPreferences: sharedPreferences);
   // await localStorage.deleteValue(key: languageHelper.languageKey);
-  String? languageCode=localStorage.readStringValue(key: languageHelper.languageKey);
-  Locale defaultLanguage=Locale(languageHelper.englishLanguageCode,);
+  String? languageCode=localStorage.readStringValue(key: languageHelper.languageKey); // to check if user has selected any preferred language or not.
+  Locale defaultLanguage=Locale(languageHelper.englishLanguageCode,);// it will select default language to english
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    // this function set status bar color
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
   ));
   runApp(
     EasyLocalization(
+      // this is list of all supported language
       supportedLocales: [Locale(languageHelper.englishLanguageCode),Locale(languageHelper.frenchLanguageCode),Locale(languageHelper.portugueseLanguageCode),Locale(languageHelper.spanishLanguageCode)],
-      path: "assets/translations",
-      fallbackLocale: languageCode != null ? languageHelper.languageCodeList.contains(languageCode) ? Locale(languageCode) : defaultLanguage : defaultLanguage,
+      path: "assets/translations",  // this is location where all localization file are store
+      fallbackLocale: languageCode != null ? languageHelper.languageCodeList.contains(languageCode) ? Locale(languageCode) : defaultLanguage : defaultLanguage, // this is to set initial language when app opens
       child: MyApp(),
     ),
   );

@@ -164,7 +164,7 @@ class _CameraPageState extends State<CameraPage> {
 
                     bool approved =await Navigator.of(context).push(MaterialPageRoute(builder: (context) => OpenImagePreview(imagePath: image.path,)),);
                     if(approved){
-                      _reportEventController.updateSensorData(accelerometerEvent: accelerometerEvent, gyroscopeEvent: gyroscopeEvent, magnetometerEvent: magnetometerEvent);
+                      _reportEventController.updateSensorDataForCameraClick(accelerometerEvent: accelerometerEvent, gyroscopeEvent: gyroscopeEvent, magnetometerEvent: magnetometerEvent);
                       Navigator.pop(context,image);
                     }
                   } catch (e) {

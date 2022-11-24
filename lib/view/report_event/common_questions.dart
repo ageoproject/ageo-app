@@ -286,12 +286,9 @@ class CommonQuestions extends StatelessWidget {
                               }else{
                                 return GestureDetector(
                                   onTap: ()async{
-                                    XFile? image=await showDialog(context: context, builder: (BuildContext context){
+                                    await showDialog(context: context, builder: (BuildContext context){
                                       return ImageSelector();
                                     });
-                                    if(image!=null){
-                                      _reportEventController.addImage(image: image);
-                                    }
                                   },
                                   child: Container(
                                     height: isMobile?cardWidthAndHeight:162,
