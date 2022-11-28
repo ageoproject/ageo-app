@@ -24,30 +24,30 @@ class LocalStorage{
     return value;
   }
 
-  Future<void> storeBoolValue({required String key, required var object})async{
-    await _sharedPreferences.setBool(key, object);
+  Future<void> storeBoolValue({required String key, required bool value})async{
+    await _sharedPreferences.setBool(key, value);
   }
 
-  dynamic readBoolValue({required var object}){
-    var value= _sharedPreferences.getBool(object);
+  bool? readBoolValue({required String key}){
+    var value= _sharedPreferences.getBool(key);
     return value;
   }
 
-  Future<void> storeIntValue({required String key, required var object})async{
-    await _sharedPreferences.setInt(key, object);
+  Future<void> storeIntValue({required String key, required int value})async{
+    await _sharedPreferences.setInt(key, value);
   }
 
-  dynamic readIntValue({required var object}){
-    var value= _sharedPreferences.getInt(object);
+  dynamic readIntValue({required String key}){
+    var value= _sharedPreferences.getInt(key);
     return value;
   }
 
-  Future<void> storeDoubleValue({required String key, required var object})async{
-    await _sharedPreferences.setDouble(key, object);
+  Future<void> storeDoubleValue({required String key, required double value})async{
+    await _sharedPreferences.setDouble(key, value);
   }
 
-  dynamic readDoubleValue({required var object}){
-    var value= _sharedPreferences.getDouble(object);
+  dynamic readDoubleValue({required String key}){
+    var value= _sharedPreferences.getDouble(key);
     return value;
   }
 

@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'dart:ui';
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
+import 'package:ageo/helpers/local_Storage.dart';
 import 'package:ageo/view/app_bar.dart';
 import 'package:ageo/view/app_drawer.dart';
 import 'package:ageo/view/report_event/permission.dart';
@@ -13,9 +15,11 @@ import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
   // final MainController _mainController=Get.find();
   // final LanguageHelper _languageHelper=LanguageHelper();
+  final LocalStorage _localStorage=LocalStorage();
+  late CustomThemeData appTheme;
 
 
   Future<bool> checkPermissions()async{
@@ -35,22 +39,97 @@ class HomePage extends StatelessWidget {
   }
 
   Future<void> reportEvent({required Widget openPage,required BuildContext context})async{
-    if(await checkPermissions()){
-      await Navigator.push(context, MaterialPageRoute(builder: (context)=>openPage));
-    }else{
-      bool permissionGranted = await showDialog(context: context, builder: (BuildContext context){
-        return const DevicePermissionsHandler();
-      });
-      if(permissionGranted){
-        // ignore: use_build_context_synchronously
-        await Navigator.push(context, MaterialPageRoute(builder: (context)=> openPage));
+    if(await _dataCollectionConcent(context: context)){
+      if (await checkPermissions()) {
+        await Navigator.push(
+            context, MaterialPageRoute(builder: (context) => openPage));
+      } else {
+        bool permissionGranted = await showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return const DevicePermissionsHandler();
+            });
+        if (permissionGranted) {
+          // ignore: use_build_context_synchronously
+          await Navigator.push(
+              context, MaterialPageRoute(builder: (context) => openPage));
+        }
       }
     }
   }
 
+  Future<bool> _dataCollectionConcent({required BuildContext context})async{
+    bool userConcent=_localStorage.readBoolValue(key: "DataCollectionConcent")??false;
+    if(!userConcent){
+      userConcent =await showDialog(context: context, barrierDismissible: false, builder: (BuildContext context){
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text("home_page.concent_title",style: TextStyle(fontSize: 16,color: appTheme.primaryTextColor,fontWeight: FontWeight.w600),textAlign: TextAlign.center,).tr(),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: Text("home_page.concent_text",style: TextStyle(fontSize: 12,color: appTheme.primaryTextColor,fontWeight: FontWeight.w400),textAlign: TextAlign.center,).tr(),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ElevatedButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: appTheme.declineActionColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              onPressed: (){
+                                Navigator.pop(context,false);
+                              },
+                              child:const Text("home_page.cancel",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400),).tr(),
+                            ),
+                            const SizedBox(width: 18,),
+                            ElevatedButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: appTheme.primaryActionColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              onPressed: (){
+                                Navigator.pop(context,true);
+                              },
+                              child: const Text("home_page.confirm",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400),).tr(),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      })??false;
+      await _localStorage.storeBoolValue(key: "DataCollectionConcent", value: userConcent);
+    }
+    return userConcent;
+  }
+
   @override
   Widget build(BuildContext context) {
-    CustomThemeData appTheme=Theme.of(context).customTheme;
+    appTheme=Theme.of(context).customTheme;
     return Scaffold(
       drawer: CustomAppDrawer(),
       backgroundColor: Colors.white,

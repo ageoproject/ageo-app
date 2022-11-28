@@ -7,7 +7,7 @@
     <!-- -->
 
    <application
-        android:label="Ageo"
+        android:label="AGEO Observatory"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -378,7 +378,7 @@
 				ENABLE_BITCODE = NO;
 				GOOGEL_MAP_API_KEY = AIzaSyDruXBnI5sX9O1q1GDg1kUyL27h_A3AzIA;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Ageo;
+				INFOPLIST_KEY_CFBundleDisplayName = "AGEO Observatory";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -512,7 +512,7 @@
 				ENABLE_BITCODE = NO;
 				GOOGEL_MAP_API_KEY = AIzaSyDruXBnI5sX9O1q1GDg1kUyL27h_A3AzIA;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Ageo;
+				INFOPLIST_KEY_CFBundleDisplayName = "AGEO Observatory";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -538,7 +538,7 @@
 				ENABLE_BITCODE = NO;
 				GOOGEL_MAP_API_KEY = AIzaSyDruXBnI5sX9O1q1GDg1kUyL27h_A3AzIA;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Ageo;
+				INFOPLIST_KEY_CFBundleDisplayName = "AGEO Observatory";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

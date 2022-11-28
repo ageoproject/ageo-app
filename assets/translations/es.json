@@ -8,7 +8,11 @@
   },
   "home_page": {
     "monitor_event": "Supervisar un evento",
-    "description_txt": "Inform AGEO about geo - hazards and other incidents"
+    "description_txt": "Inform AGEO about geo - hazards and other incidents",
+    "concent_title": "AGEO does not collect any sensitive personal information.",
+    "concent_text": "The photos you captured and their related sensor data can be used by AGEO consortium for research purposes.\\nWould you like to confirm this message?",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
   },
   "app_drawer": {
     "home": "Home",

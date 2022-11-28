@@ -66,6 +66,9 @@ class EventTypeList extends StatelessWidget {
             ): Visibility(
               visible: _reportEventController.selectedEventType!=null,
               child: SizedBox(
+                // color:appTheme.primaryActionColor,
+                // height: Platform.isIOS?60:40,
+                // width: MediaQuery.of(context).size.width,
                 height: Platform.isIOS? 50:40,
                 width: MediaQuery.of(context).size.width,
                 child: TextButton(
