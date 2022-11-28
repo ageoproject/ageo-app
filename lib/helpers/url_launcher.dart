@@ -1,7 +1,7 @@
 import 'package:url_launcher/url_launcher.dart';
 
 class CustomUrlLauncher{
-
+  // this class allow to open any link in app default browser
   // final String ageoWebLink="https://ageo.com/";
 
   Future<bool> canOpenInBrowser({required String url})async{

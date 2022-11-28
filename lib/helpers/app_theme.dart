@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 
 class CustomThemeData{
+  // this class has all colors used in app
   late final Color primaryActionColor;
   late final Color approvedActionColor;
   late final Color declineActionColor;

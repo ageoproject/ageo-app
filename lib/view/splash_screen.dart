@@ -26,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   void initState() {
     super.initState();
     Future.delayed(const Duration(milliseconds: 800),()async{
+      // start splash screen animation after 800 millisecond
       _controller.forward();
     });
   }

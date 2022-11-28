@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
   final MainController _mainController=Get.put(MainController());
 
   Widget screenSelector({required String route}){
+    //  This function select screen when app open
     if(route=="home_screen"){
       return HomePage();
     }else{
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "WorkSans",
         brightness: Brightness.light,
       ),
+      // Obx is observer widget and listen to any changes in showSplashScreen variable
       home: Obx(() => _mainController.showSplashScreen.value?const SplashScreen() : screenSelector(route: _mainController.initialRoute.value)),
     );
   }

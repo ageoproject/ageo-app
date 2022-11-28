@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomToastMessage{
+  // this class will allow user to show custom message to user
   final Color _toastBackgroundColor=const Color(0xff105268);
   final Color _iconColor=const Color(0xffDDEEF2);
   final TextStyle _toastMessageStyle=const TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Color(0xffDDEEF2));

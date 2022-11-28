@@ -1,6 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorage{
+  // this class allow to store and read data on user device local storage.
   late final SharedPreferences _sharedPreferences;
 
   LocalStorage._constructor();

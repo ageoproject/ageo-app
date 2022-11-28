@@ -17,6 +17,7 @@ class MainController extends GetxController {
   RxString get initialRoute=> _initialRoute;
 
   void initAppLanguage()async{
+    // this check local storage if user has selected any preferred language or not.
     _appLanguageCode=_localStorage.readStringValue(key: _languageHelper.languageKey);
     Map<String,String> reverseLanguageMap=_languageHelper.languageMap.map((key, value) => MapEntry(value, key));
     String? appLanguage = reverseLanguageMap[_appLanguageCode];
@@ -27,6 +28,7 @@ class MainController extends GetxController {
   }
 
   void closeSplashScreen(){
+    // this function close splash screen after 3 second
     Future.delayed(const Duration(seconds: 3),(){
       _showSplashScreen.value=false;
     });
@@ -34,6 +36,7 @@ class MainController extends GetxController {
   }
 
   void setInitialRoute(){
+    // this function will show language page when user open app for first time
     if(_appLanguageCode==null){
       _initialRoute.value="language_selection_screen";
     }else {
@@ -41,16 +44,8 @@ class MainController extends GetxController {
     }
   }
 
-  void changeLanguage({required BuildContext context,required String language}){
-    String? languageCode=_languageHelper.languageMap[language];
-    if(languageCode!=null){
-      _appLanguage.value=language;
-      context.setLocale(Locale(languageCode));
-      Get.updateLocale(Locale(languageCode));
-    }
-  }
-
   void changeAppLanguage({required BuildContext context,required String language})async{
+    // this function change language dropdown value and also change app language and store user preferred language code in local storage
     try{
       String? languageCode=_languageHelper.languageMap[language];
       if(languageCode!=null) {

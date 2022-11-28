@@ -19,9 +19,11 @@ class EducationalContent extends StatelessWidget {
       body: WillPopScope(
         onWillPop: ()async{
           if(await _controller.canGoBack()){
+            // this check if in web view user can go back or not
             await _controller.goBack();
             return false;
           }else{
+            // when user press back button then this will mark home screen as active screen on ap drawer
             _appDrawerController.changeActiveButton(value: "home");
             return true;
           }

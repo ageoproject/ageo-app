@@ -8,6 +8,7 @@ class AppDrawerController extends GetxController{
 
 
   void changeActiveButton({required String value}){
+    // this function used to change active button on app drawer
     _activeButton.value=value;
   }
 }

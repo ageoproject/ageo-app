@@ -10,12 +10,14 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageSelector extends StatelessWidget {
+  // this class allow user to chose whether they want to upload photos from gallery or capture from camera.
    ImageSelector({Key? key}) : super(key: key);
 
   final ImagePicker _picker = ImagePicker();
   final ReportEventController _reportEventController=Get.find();
 
    Future<String> getFileSize(String filepath, int decimals) async {
+     // this function return file size.
      var file = File(filepath);
      int bytes = await file.length();
      if (bytes <= 0) return "0 B";

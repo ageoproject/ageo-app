@@ -1,6 +1,6 @@
 
 class LanguageHelper {
-
+  // this class content all supported language list and it's language code.
   final String languageKey="Language";
   final String englishLanguageCode="en";
   final String frenchLanguageCode="fr";

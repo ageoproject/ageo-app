@@ -29,8 +29,11 @@ class _CameraPageState extends State<CameraPage> {
   @override
   void initState() {
     super.initState();
+    // this set camera controller and provide which camera to use
     _cameraController = CameraController(widget.cameraList[_activeCameraId], ResolutionPreset.max,enableAudio: false);
+    // this st flesh mode to auto when user open initially
     _cameraController.setFlashMode(_flashMode);
+    // this initialized camera controller and which all user to see live camera feed.
     _initializeControllerFuture = _cameraController.initialize().then((_) {
       if (!mounted) {
         return;
@@ -51,6 +54,7 @@ class _CameraPageState extends State<CameraPage> {
   }
 
   Widget buildFlashButton(){
+    // this function return icon for flash based on Camera flesh mode
     switch(_flashMode){
       case FlashMode.auto:{
         return Icon(Icons.flash_auto,color: appTheme.iconColor,);
@@ -68,17 +72,21 @@ class _CameraPageState extends State<CameraPage> {
   }
 
   void closeStreamSubscriptionMagnetometer(){
+    // this function stop listening to Magnetometer sensor stream
     streamSubscriptionMagnetometer.cancel();
   }
   void cloeStreamSubscriptionGyroscopeEvent(){
+    // this function stop listening to Gyroscope sensor stream
     streamSubscriptionGyroscopeEvent.cancel();
   }
   void closeStreamSubscriptionAccelerometerEvent(){
+    // this function stop listening to Accelerometer sensor stream
     streamSubscriptionAccelerometerEvent.cancel();
   }
 
   @override
   void dispose() {
+    // this function destroy or release all controller and stream
     _cameraController.dispose();
     streamSubscriptionMagnetometer.cancel();
     streamSubscriptionGyroscopeEvent.cancel();
@@ -97,6 +105,7 @@ class _CameraPageState extends State<CameraPage> {
             if(snapshot.connectionState == ConnectionState.done){
               // print(1/(_cameraController.value.aspectRatio  * MediaQuery.of(context).size.aspectRatio));
               return Transform.scale(
+                // this widget is use to set camera preview size on app display
                 scale: 1.2270833333333335,
                 child: Center(child: CameraPreview(_cameraController)),
               );
@@ -114,6 +123,7 @@ class _CameraPageState extends State<CameraPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               IconButton(
+                // this button used to switch between camera's
                 icon:const Icon(Icons.cameraswitch_outlined),
                 onPressed: ()async{
                   // print("${widget.cameraList.length} $_activeCameraId");
@@ -135,11 +145,12 @@ class _CameraPageState extends State<CameraPage> {
                 },
               ),
               IconButton(
+                // this button used to capture image
                 icon: Icon(Icons.camera,color: appTheme.primaryActionColor,),
                 onPressed: ()async{
                   try {
                     await _initializeControllerFuture;
-
+                    // as soon as user capture capture image the sensor data must be capture
                     AccelerometerEvent accelerometerEvent=AccelerometerEvent(0.0, 0.0, 0.0);
                     GyroscopeEvent gyroscopeEvent=GyroscopeEvent(0.0, 0.0, 0.0);
                     MagnetometerEvent magnetometerEvent=MagnetometerEvent(0.0, 0.0, 0.0);
@@ -161,8 +172,9 @@ class _CameraPageState extends State<CameraPage> {
                     final XFile image = await _cameraController.takePicture();
 
                     if (!mounted) return;
-
-                    bool approved =await Navigator.of(context).push(MaterialPageRoute(builder: (context) => OpenImagePreview(imagePath: image.path,)),);
+                    // this will push to new screen to show preview of capture image and ask user to approve or reject image
+                    // if rejected then allow user to capture new image and if approved then save sensor date and go to previous page.
+                    bool approved =await Navigator.of(context).push(MaterialPageRoute(builder: (context) => OpenImagePreview(imagePath: image.path,)),)??false;
                     if(approved){
                       _reportEventController.updateSensorDataForCameraClick(accelerometerEvent: accelerometerEvent, gyroscopeEvent: gyroscopeEvent, magnetometerEvent: magnetometerEvent);
                       Navigator.pop(context,image);
@@ -173,6 +185,7 @@ class _CameraPageState extends State<CameraPage> {
                 },
               ),
               IconButton(
+                // this button is used to toggle between camera flesh mode's
                 icon: buildFlashButton(),
                 onPressed: ()async{
                   if(_flashMode==FlashMode.auto){

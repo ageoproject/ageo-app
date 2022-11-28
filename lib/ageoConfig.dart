@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:http/http.dart' as http;
 
+// AgeoConfig is singleton class
 class AgeoConfig{
   late ApiClient _apiClient;
   late IndexApi _indexApi;
@@ -17,6 +18,7 @@ class AgeoConfig{
   String get versionText=>"v$appVersion   |   ${tr("app_drawer.all_rights_reserved")}";
 
   AgeoConfig._constructor(){
+    // this constructor select correct basePath for debug and production env base on app build type
     if(kReleaseMode){
       _basePath="https://api.staging.ageo.blackcurrantapps.com";
     }else{
@@ -37,6 +39,7 @@ class AgeoConfig{
   }
 
   Future<String?> reportEvent({required Event eventDetail,required List<String> imagePathList})async{
+    // this function call backend Api to submit user report event
     if (kDebugMode) {
       print("Reporting=> $eventDetail");
     }
@@ -59,6 +62,7 @@ class AgeoConfig{
   }
 
   Future<void> checkAppVersion()async {
+    // this function read pubspec.yaml file and check app version
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     _appVersion=packageInfo.version;
     // String appName = packageInfo.appName;

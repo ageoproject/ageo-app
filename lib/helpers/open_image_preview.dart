@@ -3,6 +3,7 @@ import 'package:ageo/helpers/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class OpenImagePreview extends StatelessWidget {
+  // this class will allow to view image in app
   final String imagePath;
 
   const OpenImagePreview({super.key, required this.imagePath});

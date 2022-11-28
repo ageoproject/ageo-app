@@ -23,6 +23,7 @@ class HomePage extends StatelessWidget {
 
 
   Future<bool> checkPermissions()async{
+    // this function will check whether user has provided appropriate permission like camera location and gallery before proceeding further
     LocationPermission locationPermission= await Geolocator.checkPermission();
     PermissionStatus cameraPermission = await Permission.camera.status;
       if(locationPermission ==LocationPermission.denied || locationPermission ==LocationPermission.deniedForever || cameraPermission.isDenied || cameraPermission.isPermanentlyDenied){
@@ -39,11 +40,13 @@ class HomePage extends StatelessWidget {
   }
 
   Future<void> reportEvent({required Widget openPage,required BuildContext context})async{
+    // this function check all pre-requisite before allowing user to report event
     if(await _dataCollectionConcent(context: context)){
       if (await checkPermissions()) {
         await Navigator.push(
             context, MaterialPageRoute(builder: (context) => openPage));
       } else {
+        // if this is user's first time or user has not provided some access the this will open permission bottomSheet
         bool permissionGranted = await showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -59,6 +62,8 @@ class HomePage extends StatelessWidget {
   }
 
   Future<bool> _dataCollectionConcent({required BuildContext context})async{
+    // this function check whether user has given their concent for data collection like sensor data and image. And if not it shows popup and ask their concent and
+    // if user agree then only allowed to report event.
     bool userConcent=_localStorage.readBoolValue(key: "DataCollectionConcent")??false;
     if(!userConcent){
       userConcent =await showDialog(context: context, barrierDismissible: false, builder: (BuildContext context){

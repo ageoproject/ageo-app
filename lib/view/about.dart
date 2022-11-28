@@ -19,6 +19,7 @@ class AboutUS extends StatelessWidget {
       drawer: CustomAppDrawer(),
       body: WillPopScope(
         onWillPop: ()async{
+          // when user press back button then this will mark home screen as active screen on ap drawer
           _appDrawerController.changeActiveButton(value: "home");
           return true;
         },

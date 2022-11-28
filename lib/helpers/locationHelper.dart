@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class LocationHelper{
-
+  // this class has function to get user location and show popup message to user if permission not provided correctly
   Future<Position> getLocation() async {
     bool serviceEnabled;
     LocationPermission permission;

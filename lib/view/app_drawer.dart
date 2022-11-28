@@ -16,6 +16,7 @@ class CustomAppDrawer extends StatelessWidget {
   final AppDrawerController _appDrawerController=Get.put(AppDrawerController());
   final CustomUrlLauncher _customUrlLauncher=CustomUrlLauncher();
   final AgeoConfig _ageoConfig=AgeoConfig();
+  // this list contain localization language key, icon name and button id which allow to dynamically build multiple button of same type
   final List<Map<String,String>> _pagesList=[
     {
       "localization_ref":"app_drawer.home",
@@ -45,6 +46,7 @@ class CustomAppDrawer extends StatelessWidget {
   ];
 
   Color getButtonColor({required String buttonId,required CustomThemeData appTheme}){
+    // this function return color for app drawer button based on it's id
     if(_appDrawerController.activeButton.value==buttonId){
       return appTheme.primaryActionColor;
     }else{
@@ -53,6 +55,7 @@ class CustomAppDrawer extends StatelessWidget {
   }
 
   Color getIconAndTextColor({required String buttonId,required CustomThemeData appTheme}){
+    // this function return color for app drawer text based on it's id
     if(_appDrawerController.activeButton.value==buttonId){
       return Colors.white;
     }else{
@@ -61,6 +64,7 @@ class CustomAppDrawer extends StatelessWidget {
   }
 
   void clickTrigger({required String buttonId,required BuildContext context}){
+    // this function select page based on button id and open that page
     switch(buttonId){
       case "home":{
         _appDrawerController.changeActiveButton(value: "home");

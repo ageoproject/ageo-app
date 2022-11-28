@@ -9,6 +9,7 @@ class DashSeparator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // this is class to create dashSeparator line on screen
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         final boxWidth = constraints.constrainWidth();

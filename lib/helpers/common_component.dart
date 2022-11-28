@@ -15,6 +15,7 @@ class CommonComponent{
   final CustomUrlLauncher _customUrlLauncher=CustomUrlLauncher();
 
   void initializeLoader({required BuildContext context,String? message}){
+    // this popup loader screen with custom message
     _appTheme=Theme.of(context).customTheme;
     TextStyle inputStyle=const TextStyle(fontSize: 14,color: Colors.white);
     showDialog(context: context,barrierDismissible: false,useRootNavigator: false, builder: (BuildContext context){
@@ -54,6 +55,8 @@ class CommonComponent{
   }
 
   void  showEventShareDialog({required BuildContext context,required String message}){
+    // this show popup when user successfully submit event detail to backend
+    // this popup allow user to share event link and copy link on clipboard
     _appTheme=Theme.of(context).customTheme;
     AgeoConfig ageoConfig=AgeoConfig();
     String eventLink="${ageoConfig.frontendBasePath}/event-details/$message";
