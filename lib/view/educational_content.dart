@@ -1,6 +1,7 @@
 import 'package:ageo/controllers/app_drawer_controller.dart';
 import 'package:ageo/view/app_bar.dart';
 import 'package:ageo/view/app_drawer.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
@@ -27,7 +28,7 @@ class EducationalContent extends StatelessWidget {
         },
         child: Column(
           children: [
-            CustomAppBar(title: "Educational Content",),
+            CustomAppBar(title: tr("app_drawer.educational"),),
             Expanded(
               child: InAppWebView(
                 initialUrlRequest: URLRequest(url: Uri.parse("https://ageo-web.web.app/education-mobile-view")),

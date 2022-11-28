@@ -100,12 +100,12 @@ class _MapViewState extends State<MapView> {
              child: Column(
                mainAxisSize: MainAxisSize.min,
                children: [
-                 Text("Fail to fetch location detail",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),),
+                 Text("permission_page.fail_to_fetch_location",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr(),
                  TextButton(
                    style: TextButton.styleFrom(
                        backgroundColor: appTheme.primaryActionColor
                    ),
-                   child: const Text("Try Again",style: TextStyle(fontSize: 14,color: Colors.white),),
+                   child: const Text("permission_page.try_again",style: TextStyle(fontSize: 14,color: Colors.white),).tr(),
                    onPressed: ()async{
                      Get.back();
                      initializeLocation();

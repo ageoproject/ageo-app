@@ -31,7 +31,7 @@ class LanguageSelection extends StatelessWidget {
 
                 Padding(
                   padding: const EdgeInsets.only(top: 85,bottom: 25),
-                  child: Text("Select your preferred language",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 16,),),
+                  child: Text("common_key.select_preferred_language",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 16,),).tr(),
                 ),
                 Container(
                   decoration:BoxDecoration(

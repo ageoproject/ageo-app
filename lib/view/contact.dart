@@ -27,7 +27,7 @@ class ContactUs extends StatelessWidget {
         },
         child: Column(
           children: [
-            CustomAppBar(title: "Contact AGEO",),
+            CustomAppBar(title: tr("page_title.contact"),),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(18),

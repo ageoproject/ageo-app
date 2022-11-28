@@ -1,25 +1,32 @@
 {
   "common_key": {
-    "next_btn": "Nid",
+    "select_preferred_language": "Select your preferred language",
+    "next_btn": "Next",
     "submit_btn": "Submit",
     "select_observe_damage": "Select observed damage",
     "other": "Add other observed damage",
     "new_add_comment": "Any precision that could be of interest: \ndate of last storm, date of the damage if known, etc.\nName, e-mail address (optional)"
   },
   "home_page": {
-    "monitor_event": "Surveiller un événement",
+    "monitor_event": "Monitor an event",
     "description_txt": "Inform AGEO about geo - hazards and other incidents",
     "concent_title": "AGEO does not collect any sensitive personal information.",
     "concent_text": "The photos you captured and their related sensor data can be used by AGEO consortium for research purposes.\\nWould you like to confirm this message?",
     "confirm": "Confirm",
     "cancel": "Cancel"
   },
+  "page_title": {
+    "partners": "The AGEO Consortium",
+    "contact": "Contact AGEO",
+    "about": "About AGEO"
+  },
   "app_drawer": {
     "home": "Home",
-    "educational": "Contenu éducatif",
+    "educational": "Educational Content",
     "partners": "Partners",
     "contact": "Contact Us",
-    "about": "About Us"
+    "about": "About Us",
+    "all_rights_reserved": "All rights reserved"
   },
   "permission_page": {
     "ok": "OK!",
@@ -31,6 +38,8 @@
     "location_services_disabled": "Location services are disabled.",
     "enable_location": "Enable Location",
     "open _setting": "Open Setting",
+    "try_again": "Try Again",
+    "fail_to_fetch_location": "Fail to fetch location detail",
     "permission_type": {
       "location": "Location",
       "location_description": "Need location access to\ncapture event location",
@@ -63,7 +72,7 @@
       "damage": "Damage"
     },
     "event_type_tab": {
-      "forest_fire": "Feu de forêt",
+      "forest_fire": "Forest Fire",
       "tsunami": "Tsunami",
       "earthquake": "Earthquake",
       "rockfall": "Rockfall",
@@ -233,7 +242,7 @@
     "Animals at risk ?": "Animals at risk ?",
     "Assets at risk ?": "Assets at risk ?",
     "I am safe ?": "I am safe ?",
-    "upload_or_capture": "Télécharger ou capturer (min 1 et max 3)",
+    "upload_or_capture": "Upload or capture (min 1 and max 3)",
     "add_comments": "Add comments",
     "comment_hint": "Type here...",
     "time_error": "You cannot report event in future time"

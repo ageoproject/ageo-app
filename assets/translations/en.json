@@ -1,5 +1,6 @@
 {
   "common_key": {
+    "select_preferred_language": "Select your preferred language",
     "next_btn": "Next",
     "submit_btn": "Submit",
     "select_observe_damage": "Select observed damage",
@@ -14,12 +15,18 @@
     "confirm": "Confirm",
     "cancel": "Cancel"
   },
+  "page_title": {
+    "partners": "The AGEO Consortium",
+    "contact": "Contact AGEO",
+    "about": "About AGEO"
+  },
   "app_drawer": {
     "home": "Home",
     "educational": "Educational Content",
     "partners": "Partners",
     "contact": "Contact Us",
-    "about": "About Us"
+    "about": "About Us",
+    "all_rights_reserved": "All rights reserved"
   },
   "permission_page": {
     "ok": "OK!",
@@ -31,6 +38,8 @@
     "location_services_disabled": "Location services are disabled.",
     "enable_location": "Enable Location",
     "open _setting": "Open Setting",
+    "try_again": "Try Again",
+    "fail_to_fetch_location": "Fail to fetch location detail",
     "permission_type": {
       "location": "Location",
       "location_description": "Need location access to\ncapture event location",

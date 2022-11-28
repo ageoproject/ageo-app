@@ -2,6 +2,7 @@
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/view/app_bar.dart';
 import 'package:ageo/view/app_drawer.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/app_drawer_controller.dart';
@@ -23,7 +24,7 @@ class AboutUS extends StatelessWidget {
         },
         child: Column(
           children: [
-            CustomAppBar(title: "About AGEO",),
+            CustomAppBar(title: tr("page_title.about"),),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(18),
