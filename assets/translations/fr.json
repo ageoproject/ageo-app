@@ -11,7 +11,7 @@
     "monitor_event": "Monitor an event",
     "description_txt": "Inform AGEO about geo - hazards and other incidents",
     "concent_title": "AGEO does not collect any sensitive personal information.",
-    "concent_text": "The photos you captured and their related sensor data can be used by AGEO consortium for research purposes.\\nWould you like to confirm this message?",
+    "concent_text": "The photos you captured and their related sensor data can be used by AGEO consortium for research purposes.\nWould you like to confirm this message?",
     "confirm": "Confirm",
     "cancel": "Cancel"
   },

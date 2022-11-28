@@ -65,11 +65,10 @@ class EventTypeList extends StatelessWidget {
               child: SubmitButton(),
             ): Visibility(
               visible: _reportEventController.selectedEventType!=null,
-              child: SizedBox(
-                // color:appTheme.primaryActionColor,
-                // height: Platform.isIOS?60:40,
-                // width: MediaQuery.of(context).size.width,
-                height: Platform.isIOS? 50:40,
+              child: Container(
+                color:appTheme.primaryActionColor,
+                // padding: EdgeInsets.only(bottom: 14),
+                height: 50,
                 width: MediaQuery.of(context).size.width,
                 child: TextButton(
                   style: TextButton.styleFrom(
@@ -78,7 +77,10 @@ class EventTypeList extends StatelessWidget {
                   onPressed: (){
                     _reportEventController.changeActiveTab(value: "map");
                   },
-                  child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: Platform.isIOS?8.0:0),
+                    child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
+                  ),
                 ),
               ),
             ),
