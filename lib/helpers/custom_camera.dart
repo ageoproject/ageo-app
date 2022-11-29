@@ -174,7 +174,7 @@ class _CameraPageState extends State<CameraPage> {
                     if (!mounted) return;
                     // this will push to new screen to show preview of capture image and ask user to approve or reject image
                     // if rejected then allow user to capture new image and if approved then save sensor date and go to previous page.
-                    bool approved =await Navigator.of(context).push(MaterialPageRoute(builder: (context) => OpenImagePreview(imagePath: image.path,)),)??false;
+                    bool approved =await Navigator.of(context).push(MaterialPageRoute(builder: (context) => OpenImagePreview(imagePath: image.path,showActionButton: true,)),)??false;
                     if(approved){
                       _reportEventController.updateSensorDataForCameraClick(accelerometerEvent: accelerometerEvent, gyroscopeEvent: gyroscopeEvent, magnetometerEvent: magnetometerEvent);
                       Navigator.pop(context,image);

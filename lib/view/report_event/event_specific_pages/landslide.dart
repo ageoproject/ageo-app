@@ -45,7 +45,7 @@ class Landslide extends StatelessWidget {
       builder:(_)=> Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(bottom: _reportEventController.screenBottomPadding),
+            padding: EdgeInsets.only(bottom: _reportEventController.nextAndSubmitButtonHeight),
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 8),

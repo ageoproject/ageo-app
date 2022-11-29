@@ -39,7 +39,7 @@ class Earthquake extends StatelessWidget {
       builder:(_)=> Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(bottom: _reportEventController.screenBottomPadding),
+            padding: EdgeInsets.only(bottom: _reportEventController.nextAndSubmitButtonHeight),
             child: SingleChildScrollView(
               child: Column(
                 children: [

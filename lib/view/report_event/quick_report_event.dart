@@ -2,13 +2,13 @@ import 'dart:io';
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/imagehelper.dart';
+import 'package:ageo/helpers/open_image_preview.dart';
 import 'package:ageo/view/app_bar.dart';
 import 'package:ageo/view/report_event/event_type.dart';
 import 'package:ageo/view/report_event/map_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
 class QuickReportEvent extends StatefulWidget {
   const QuickReportEvent({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class _QuickReportEventState extends State<QuickReportEvent> {
       builder:(_)=> Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(bottom: _reportEventController.screenBottomPadding),
+            padding: EdgeInsets.only(bottom: _reportEventController.nextAndSubmitButtonHeight),
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 10),
@@ -51,23 +51,28 @@ class _QuickReportEventState extends State<QuickReportEvent> {
                               return SizedBox(
                                 height: isMobile?cardWidthAndHeight:162,
                                 width: isMobile?cardWidthAndHeight:162,
-                                child: Stack(
-                                  alignment: Alignment.topRight,
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
-                                      child: Image.file(File(_reportEventController.uploadedImageList[index].path),fit: BoxFit.fill,height: isMobile?cardWidthAndHeight:162, width: isMobile?cardWidthAndHeight:162,),
-                                    ),
-                                    GestureDetector(
-                                      onTap: (){
-                                        _reportEventController.deleteImage(image: _reportEventController.uploadedImageList[index]);
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Image.asset("assets/images/report_event/close_ic.png",height: 24,),
+                                child: GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => OpenImagePreview(imagePath: _reportEventController.uploadedImageList[index].path)),);
+                                  },
+                                  child: Stack(
+                                    alignment: Alignment.topRight,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image.file(File(_reportEventController.uploadedImageList[index].path),fit: BoxFit.fill,height: isMobile?cardWidthAndHeight:162, width: isMobile?cardWidthAndHeight:162,),
                                       ),
-                                    )
-                                  ],
+                                      GestureDetector(
+                                        onTap: (){
+                                          _reportEventController.deleteImage(image: _reportEventController.uploadedImageList[index]);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Image.asset("assets/images/report_event/close_ic.png",height: 24,),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               );
                             }else{
@@ -160,8 +165,10 @@ class _QuickReportEventState extends State<QuickReportEvent> {
             alignment: Alignment.bottomCenter,
             child: Visibility(
               visible: _reportEventController.uploadedImageList.isNotEmpty,
-              child: SizedBox(
-                height: Platform.isIOS? 50:40,
+              child: Container(
+                color:appTheme.primaryActionColor,
+                // padding: EdgeInsets.only(bottom: 14),
+                height: _reportEventController.nextAndSubmitButtonHeight,
                 width: MediaQuery.of(context).size.width,
                 child: TextButton(
                   style: TextButton.styleFrom(
@@ -171,7 +178,10 @@ class _QuickReportEventState extends State<QuickReportEvent> {
                     _reportEventController.toggleQuickReportingState(value: true);
                     _reportEventController.changeActiveScreen(value: "map_view");
                   },
-                  child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: Platform.isIOS?8.0:0),
+                    child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
+                  ),
                 ),
               ),
             ),
@@ -233,7 +243,7 @@ class _QuickReportEventState extends State<QuickReportEvent> {
         drawerEnableOpenDragGesture: false,
         body: Column(
           children: [
-            CustomAppBar(title: "Quick Monitor",showBackButton: true,onBackButtonClick: onBackButtonPress,),
+            CustomAppBar(title: tr("page_title.quick_monitor_event"),showBackButton: true,onBackButtonClick: onBackButtonPress,),
             Expanded(
               child: Obx(()=> selectScreen()),
               // child: MapView(),

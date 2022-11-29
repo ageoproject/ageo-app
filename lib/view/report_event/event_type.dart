@@ -20,7 +20,7 @@ class EventTypeList extends StatelessWidget {
       builder:(controller)=> Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(bottom: _reportEventController.screenBottomPadding),
+            padding: EdgeInsets.only(bottom: _reportEventController.nextAndSubmitButtonHeight),
             child: SingleChildScrollView(
               child: Container(
                 alignment: Alignment.center,
@@ -68,7 +68,7 @@ class EventTypeList extends StatelessWidget {
               child: Container(
                 color:appTheme.primaryActionColor,
                 // padding: EdgeInsets.only(bottom: 14),
-                height: 50,
+                height: _reportEventController.nextAndSubmitButtonHeight,
                 width: MediaQuery.of(context).size.width,
                 child: TextButton(
                   style: TextButton.styleFrom(

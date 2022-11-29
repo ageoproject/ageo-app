@@ -11,12 +11,12 @@ class ReportEventController extends GetxController{
   final RxString _activeTab="event_type".obs;
   final AgeoConfig _ageoConfig=AgeoConfig();
   final Event _eventDetail= Event();
-  final double _screenBottomPadding=50;
+  final double _nextAndSubmitButtonHeight=50;
   final List<EventEventTypeEnum> _hasSpecificDamagePage=[EventEventTypeEnum.EARTHQUAKE,EventEventTypeEnum.LANDSLIDE,EventEventTypeEnum.RIVER_FLOODING,EventEventTypeEnum.SINKHOLE,EventEventTypeEnum.BUILDING_SETTLEMENT,EventEventTypeEnum.MARINE_FLOODING,EventEventTypeEnum.COASTAL_EROSION];
 
   RxString get activeTab=> _activeTab;
   Event get eventDetail=>_eventDetail;
-  double get screenBottomPadding=>_screenBottomPadding;
+  double get nextAndSubmitButtonHeight=>_nextAndSubmitButtonHeight;
   List<EventEventTypeEnum> get hasSpecificDamagePage=>_hasSpecificDamagePage;
 
   void changeActiveTab({required String value}){

@@ -17,8 +17,10 @@ class SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
-    return SizedBox(
-      height: Platform.isIOS? _reportEventController.screenBottomPadding:40,
+    return Container(
+      color:appTheme.primaryActionColor,
+      // padding: EdgeInsets.only(bottom: 14),
+      height: _reportEventController.nextAndSubmitButtonHeight,
       width: MediaQuery.of(context).size.width,
       child: TextButton(
         style: TextButton.styleFrom(
@@ -40,7 +42,10 @@ class SubmitButton extends StatelessWidget {
             Get.back();
           }
         },
-        child: const Text("common_key.submit_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: Platform.isIOS?8.0:0),
+          child: const Text("common_key.submit_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
+        ),
       ),
     );
   }

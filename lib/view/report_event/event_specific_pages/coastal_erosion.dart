@@ -727,7 +727,7 @@ class _CoastalErosionState extends State<CoastalErosion> {
       children: [
         GetBuilder<ReportEventController>(
           builder: (_)=>Padding(
-            padding: EdgeInsets.only(bottom: _reportEventController.screenBottomPadding),
+            padding: EdgeInsets.only(bottom: _reportEventController.nextAndSubmitButtonHeight),
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 8),

@@ -8,6 +8,7 @@
     "new_add_comment": "Any precision that could be of interest: \ndate of last storm, date of the damage if known, etc.\nName, e-mail address (optional)"
   },
   "home_page": {
+    "quick_monitor_event": "Quick Monitor an event",
     "monitor_event": "Monitor an event",
     "description_txt": "Inform AGEO about geo - hazards and other incidents",
     "concent_title": "AGEO does not collect any sensitive personal information.",
@@ -18,7 +19,10 @@
   "page_title": {
     "partners": "The AGEO Consortium",
     "contact": "Contact AGEO",
-    "about": "About AGEO"
+    "about": "About AGEO",
+    "monitor_event": "Monitor Event",
+    "quick_monitor_event": "Quick Monitor",
+    "image_preview": "Image Preview"
   },
   "app_drawer": {
     "home": "Home",

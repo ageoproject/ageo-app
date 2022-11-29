@@ -11,6 +11,7 @@ import 'package:ageo/view/report_event/event_specific_pages/sinkhole.dart';
 import 'package:ageo/view/report_event/event_type.dart';
 import 'package:ageo/view/report_event/map_view.dart';
 import 'package:ageoClient/api.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -89,7 +90,7 @@ class _ReportEventState extends State<ReportEvent> {
       drawer: CustomAppDrawer(),
       body: Column(
         children: [
-          CustomAppBar(title: "Monitor Event",),
+          CustomAppBar(title: tr("page_title.monitor_event"),),
           CustomTabView(),
           Expanded(
             child: Obx(()=> pageSelector()),

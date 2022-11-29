@@ -342,8 +342,10 @@ class _MapViewState extends State<MapView> {
             alignment: Alignment.bottomCenter,
             child: Visibility(
               visible: _reportEventController.eventDetail.location!=null,
-              child: SizedBox(
-                height: Platform.isIOS? 50:40,
+              child: Container(
+                color:appTheme.primaryActionColor,
+                // padding: EdgeInsets.only(bottom: 14),
+                height: _reportEventController.nextAndSubmitButtonHeight,
                 width: MediaQuery.of(context).size.width,
                 child: TextButton(
                   style: TextButton.styleFrom(
@@ -356,7 +358,10 @@ class _MapViewState extends State<MapView> {
                       _reportEventController.changeActiveTab(value: "questions");
                     }
                   },
-                  child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: Platform.isIOS?8.0:0),
+                    child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
+                  ),
                 ),
               ),
             ),

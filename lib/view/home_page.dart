@@ -135,6 +135,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     appTheme=Theme.of(context).customTheme;
+    bool isMobile=MediaQuery.of(context).size.shortestSide<600;
+    double buttonWidth=isMobile?MediaQuery.of(context).size.width:(MediaQuery.of(context).size.width)/2;
     return Scaffold(
       drawer: CustomAppDrawer(),
       backgroundColor: Colors.white,
@@ -162,41 +164,60 @@ class HomePage extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Row(
+                          child: Column(
                             children: [
-                              MaterialButton(
-                                padding: EdgeInsets.zero,
-                                onPressed: ()async{
-                                  await reportEvent(openPage:const QuickReportEvent(), context: context);
-                                  // await Navigator.push(context, MaterialPageRoute(builder: (context)=>const QuickReportEvent()));
-                                  Get.delete<ReportEventController>();
-                                },
-                                child: Image.asset("assets/images/home_page/circular_camera_ic.png",scale: 3,),
-                              ),
-                              const SizedBox(width: 16,),
-                              Expanded(
-                                child: Container(
-                                  height: 48,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(22),
-                                      color: appTheme.primaryActionColor,
-                                      boxShadow: [
-                                      BoxShadow(
-                                        offset:const Offset(0, 3),
-                                        blurRadius: 6,
-                                        color: appTheme.primaryActionColor.withOpacity(0.64)
-                                      ),
+                              SizedBox(
+                                height: 48,
+                                width: buttonWidth,
+                                child: OutlinedButton(
+                                  onPressed: ()async{
+                                    await reportEvent(openPage:const QuickReportEvent(), context: context);
+                                    // await Navigator.push(context, MaterialPageRoute(builder: (context)=>const QuickReportEvent()));
+                                    Get.delete<ReportEventController>();
+                                  },
+                                  style: OutlinedButton.styleFrom(
+                                    backgroundColor: Colors.transparent,
+                                    shape:RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(24),
+                                    ),
+                                    side: BorderSide(color: appTheme.primaryActionColor,width: 1),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Image.asset("assets/images/report_event/camera_ic.png",scale: 3.5,color:appTheme.primaryActionColor),
+                                      const SizedBox(width: 16,),
+                                      Flexible(fit: FlexFit.loose,child: Text("home_page.quick_monitor_event",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color:appTheme.primaryActionColor),).tr(),
+                                      )
                                     ],
                                   ),
-                                  child: TextButton(
-                                    style: TextButton.styleFrom(
-                                      backgroundColor: Colors.transparent
+                                ),
+                              ),
+                              const SizedBox(height: 16,),
+                              Container(
+                                height: 48,
+                                width: buttonWidth,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(24),
+                                    color: appTheme.primaryActionColor,
+                                    boxShadow: [
+                                    BoxShadow(
+                                      offset:const Offset(0, 3),
+                                      blurRadius: 6,
+                                      color: appTheme.primaryActionColor.withOpacity(0.16)
                                     ),
-                                    onPressed: ()async{
-                                      reportEvent(openPage:const ReportEvent(), context: context);
-                                    },
-                                    child:const Text("home_page.monitor_event",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color:Colors.white),).tr(),
+                                  ],
+                                ),
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    backgroundColor: Colors.transparent,
                                   ),
+                                  onPressed: ()async{
+                                    reportEvent(openPage:const ReportEvent(), context: context);
+                                  },
+                                  child:const Text("home_page.monitor_event",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color:Colors.white),).tr(),
                                 ),
                               ),
                             ],

@@ -70,8 +70,11 @@ class LanguageSelection extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: SizedBox(
-        height: Platform.isIOS? 66:40,
+      bottomNavigationBar: Container(
+        color:appTheme.primaryActionColor,
+        // padding: EdgeInsets.only(bottom: 14),
+        height: 50,
+        width: MediaQuery.of(context).size.width,
         child: TextButton(
           style: TextButton.styleFrom(
             backgroundColor: appTheme.primaryActionColor,
@@ -80,7 +83,10 @@ class LanguageSelection extends StatelessWidget {
             // _mainController.changeAppLanguage(language: _appLanguage,context: context);
             _mainController.setInitialRoute();
           },
-          child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
+          child: Padding(
+            padding: EdgeInsets.only(bottom: Platform.isIOS?8.0:0),
+            child: const Text("common_key.next_btn",style: TextStyle(color: Colors.white,fontSize: 16),).tr(),
+          ),
         ),
       ),
     );

@@ -1,24 +1,33 @@
 import 'dart:io';
 import 'package:ageo/helpers/app_theme.dart';
+import 'package:ageo/view/app_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class OpenImagePreview extends StatelessWidget {
   // this class will allow to view image in app
   final String imagePath;
+  final bool showActionButton;
 
-  const OpenImagePreview({super.key, required this.imagePath});
+  const OpenImagePreview({super.key, required this.imagePath, this.showActionButton = false});
 
   @override
   Widget build(BuildContext context) {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white,elevation: 0,),
-      body: SafeArea(child: Container(
-          alignment: Alignment.center,
-          padding:const EdgeInsets.all(8),
-          child: Image.file(File(imagePath),
-          ))),
-      bottomNavigationBar: Padding(
+      body: SafeArea(child: Column(
+        children: [
+          CustomAppBar(title: tr("page_title.image_preview"),showBackButton: true,onBackButtonClick: (){Navigator.pop(context);},),
+          Expanded(
+            child: Container(
+                alignment: Alignment.center,
+                padding:const EdgeInsets.all(8),
+                child: Image.file(File(imagePath),
+                )),
+          ),
+        ],
+      )),
+      bottomNavigationBar: showActionButton? Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0,vertical: 18),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -52,7 +61,7 @@ class OpenImagePreview extends StatelessWidget {
             )
           ],
         ),
-      ),
+      ):const SizedBox(height: 0,),
     );
   }
 }
