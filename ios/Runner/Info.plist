@@ -2,10 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>GOOGEL_MAP_API_KEY</key>
-	<string>$(GOOGEL_MAP_API_KEY)</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app needs access to location to report event.</string>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Ageo</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>
@@ -13,24 +21,6 @@
 		<string>es</string>
 		<string>pt</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>Need Camera access to capture and upload images</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Need Photo Library acess to select and upload images</string>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>CFBundleDisplayName</key>
-	<string>Ageo</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs access to location to report event.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app needs access to location to report event.</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>ageo</string>
 	<key>CFBundlePackageType</key>
@@ -41,7 +31,21 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>GOOGEL_MAP_API_KEY</key>
+	<string>$(GOOGEL_MAP_API_KEY)</string>
 	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Need Camera access to capture and upload images</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app needs access to location to report event.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs access to location to report event.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access to location to report event.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Need Photo Library acess to select and upload images</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -61,10 +65,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<true/>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 </dict>
 </plist>
