@@ -44,6 +44,15 @@ class MainController extends GetxController {
     }
   }
 
+  void changeLanguage({required BuildContext context,required String language}){
+    String? languageCode=_languageHelper.languageMap[language];
+    if(languageCode!=null){
+      _appLanguage.value=language;
+      context.setLocale(Locale(languageCode));
+      Get.updateLocale(Locale(languageCode));
+    }
+  }
+
   void changeAppLanguage({required BuildContext context,required String language})async{
     // this function change language dropdown value and also change app language and store user preferred language code in local storage
     try{

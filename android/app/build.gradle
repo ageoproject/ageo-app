@@ -53,15 +53,22 @@ android {
         versionName flutterVersionName
     }
 
-//    signingConfigs {
-//        DebugSign {
-//            keyAlias 'androiddebugkey'
-//            keyPassword 'android'
-//            storeFile file('/Users/manish/.android/debug.keystore')
-//            //storeFile file('C:/Users/BLC-blackmagic/.android/debug.keystore')
-//            storePassword 'android'
-//        }
-//    }
+    signingConfigs {
+        DebugSign {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('/Users/manish/.android/debug.keystore')
+            //storeFile file('C:/Users/BLC-blackmagic/.android/debug.keystore')
+            storePassword 'android'
+        }
+        ProdSign {
+            keyAlias 'AGEO_Observatory'
+            keyPassword 'ageo@app'
+            storeFile file("/Users/manish/Workspace/Ageo/Ageo key/ageo.jks")
+            //storeFile file("C:/Users/BLC-blackmagic/AppData/BeyondSkool key/beyondskool.jks")
+            storePassword 'ageo@app'
+        }
+    }
     buildTypes {
         debug {
             manifestPlaceholders = [ mapApiKeyValue:"AIzaSyBjH9cpklkD16Mm5mldcoZ68uoK-bF0xYs"]
@@ -73,7 +80,7 @@ android {
             manifestPlaceholders = [ mapApiKeyValue:"AIzaSyBjH9cpklkD16Mm5mldcoZ68uoK-bF0xYs"]
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.ProdSign
         }
     }
 }

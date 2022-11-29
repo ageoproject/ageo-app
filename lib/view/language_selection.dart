@@ -59,7 +59,7 @@ class LanguageSelection extends StatelessWidget {
                       onChanged: (language) {
                         if(language!=null) {
                           _appLanguage = language;
-                          _mainController.changeAppLanguage(language: language,context: context);
+                          _mainController.changeLanguage(language: language,context: context);
                         }
                       },
                     ),
@@ -80,7 +80,7 @@ class LanguageSelection extends StatelessWidget {
             backgroundColor: appTheme.primaryActionColor,
           ),
           onPressed: (){
-            // _mainController.changeAppLanguage(language: _appLanguage,context: context);
+            _mainController.changeAppLanguage(language: _appLanguage,context: context);
             _mainController.setInitialRoute();
           },
           child: Padding(
