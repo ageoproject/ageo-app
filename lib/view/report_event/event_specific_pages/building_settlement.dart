@@ -11,7 +11,6 @@ class BuildingSettlement extends StatelessWidget {
   final ReportEventController _reportEventController=Get.find();
   final double _imageContainerBorderRadius=12.0;
   final double _inputFieldBorderRadius = 4;
-  final GlobalKey<FormState> _crackDimensionKey = GlobalKey<FormState>();
   final List<Map<String,dynamic>> _settlementTypeList=[
     {
       "type_of_damage":"Outer Center Settlement",
@@ -54,9 +53,14 @@ class BuildingSettlement extends StatelessWidget {
       "icon_path":"assets/images/report_event/event_specific_images/building_settlement/horizontal_ic.png"
     },
     {
-      "localization_ref":"monitor_event.building_settlement.oblique",
-      "type_of_damage":"Oblique",
-      "icon_path":"assets/images/report_event/event_specific_images/building_settlement/oblique_ic.png"
+      "localization_ref":"monitor_event.building_settlement.left_oblique",
+      "type_of_damage":"Left Oblique",
+      "icon_path":"assets/images/report_event/event_specific_images/building_settlement/left_oblique_ic.png"
+    },
+    {
+      "localization_ref":"monitor_event.building_settlement.right_oblique",
+      "type_of_damage":"Right Oblique",
+      "icon_path":"assets/images/report_event/event_specific_images/building_settlement/right_oblique_ic.png"
     },
     {
       "localization_ref":"monitor_event.building_settlement.starry",
@@ -192,83 +196,111 @@ class BuildingSettlement extends StatelessWidget {
 
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 18.0),
-                      child: Row(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: Text("${tr("monitor_event.building_settlement.crack_dimension")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-                            ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Text("${tr("monitor_event.building_settlement.crack_dimension")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
                           ),
-                          SizedBox(
-                            width: 75,
-                            child: Form(
-                              key: _crackDimensionKey,
-                              child: TextFormField(
-                                initialValue:_reportEventController.buildingSettlementDamage["building_settlement_crack_dimension"].toString(),
-                                keyboardType:const TextInputType.numberWithOptions(signed: true, decimal: false),
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly
-                                ],
-                                maxLength: 4,
-                                textInputAction: TextInputAction.done,
-                                style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  counterText: "",
-                                  fillColor: Colors.white,
-                                  errorMaxLines: 2,
-                                  contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(_inputFieldBorderRadius),
-                                    ),
-                                  ),
-                                  disabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(_inputFieldBorderRadius),
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(_inputFieldBorderRadius),
-                                    ),
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(_inputFieldBorderRadius),
-                                    ),
-                                  ),
-                                ),
-                                validator: (value){
-                                  if(value!.isEmpty){
-                                    return tr("monitor_event.building_settlement.empty_crack_dimension_error");
-                                  }else if(int.parse(value)<=0){
-                                    return tr("monitor_event.building_settlement.invalid_crack_dimension_error");
-                                  }else{
-                                    return null;
-                                  }
-                                },
-                                onChanged: (value)async{
-                                  if(_crackDimensionKey.currentState!.validate()){
-                                    _reportEventController.changeDimensionOfCrackForBuildingSettlement(value: value);
-                                    showSubmitButton=true;
-                                  }else{
-                                    showSubmitButton=false;
-                                  }
-                                  _reportEventController.update();
-                                  // await _showCalendar(selectedDate: DateTime.parse("${_studentProfile.user!.dob}"));
-                                },
-                              ),
-                            ),
+                          Slider(
+                            value: _reportEventController.buildingSettlementCrackDimensionSlider,
+                            max: 15.5,
+                            divisions: 31,
+                            activeColor: appTheme.primaryActionColor,
+                            inactiveColor: appTheme.toggleSelectionColor,
+                            label: _reportEventController.buildingSettlementDamage["building_settlement_crack_dimension"],
+                            onChanged: (value){
+                              if(value>0.3){
+                                _reportEventController.changeDimensionOfCrackForBuildingSettlement(value: value);
+                              }else{
+                                _reportEventController.changeDimensionOfCrackForBuildingSettlement(value: 0.3);
+                              }
+                            },
                           ),
+                          Align(alignment: Alignment.center,child: Text("${_reportEventController.buildingSettlementDamage["building_settlement_crack_dimension"]}",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,))),
                         ],
                       ),
                     ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(vertical: 18.0),
+                    //   child: Row(
+                    //     children: [
+                    //       Expanded(
+                    //         child: Padding(
+                    //           padding: const EdgeInsets.only(right: 8.0),
+                    //           child: Text("${tr("monitor_event.building_settlement.crack_dimension")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                    //         ),
+                    //       ),
+                    //       SizedBox(
+                    //         width: 75,
+                    //         child: Form(
+                    //           key: _crackDimensionKey,
+                    //           child: TextFormField(
+                    //             initialValue:_reportEventController.buildingSettlementDamage["building_settlement_crack_dimension"].toString(),
+                    //             keyboardType:const TextInputType.numberWithOptions(signed: true, decimal: false),
+                    //             inputFormatters: [
+                    //               FilteringTextInputFormatter.digitsOnly
+                    //             ],
+                    //             maxLength: 4,
+                    //             textInputAction: TextInputAction.done,
+                    //             style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
+                    //             decoration: InputDecoration(
+                    //               filled: true,
+                    //               counterText: "",
+                    //               fillColor: Colors.white,
+                    //               errorMaxLines: 2,
+                    //               contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                    //               enabledBorder: OutlineInputBorder(
+                    //                 borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                    //                 borderRadius: BorderRadius.all(
+                    //                   Radius.circular(_inputFieldBorderRadius),
+                    //                 ),
+                    //               ),
+                    //               disabledBorder: OutlineInputBorder(
+                    //                 borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                    //                 borderRadius: BorderRadius.all(
+                    //                   Radius.circular(_inputFieldBorderRadius),
+                    //                 ),
+                    //               ),
+                    //               focusedBorder: OutlineInputBorder(
+                    //                 borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                    //                 borderRadius: BorderRadius.all(
+                    //                   Radius.circular(_inputFieldBorderRadius),
+                    //                 ),
+                    //               ),
+                    //               border: OutlineInputBorder(
+                    //                 borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                    //                 borderRadius: BorderRadius.all(
+                    //                   Radius.circular(_inputFieldBorderRadius),
+                    //                 ),
+                    //               ),
+                    //             ),
+                    //             validator: (value){
+                    //               if(value!.isEmpty){
+                    //                 return tr("monitor_event.building_settlement.empty_crack_dimension_error");
+                    //               }else if(int.parse(value)<=0){
+                    //                 return tr("monitor_event.building_settlement.invalid_crack_dimension_error");
+                    //               }else{
+                    //                 return null;
+                    //               }
+                    //             },
+                    //             onChanged: (value)async{
+                    //               if(_crackDimensionKey.currentState!.validate()){
+                    //                 _reportEventController.changeDimensionOfCrackForBuildingSettlement(value: value);
+                    //                 showSubmitButton=true;
+                    //               }else{
+                    //                 showSubmitButton=false;
+                    //               }
+                    //               _reportEventController.update();
+                    //               // await _showCalendar(selectedDate: DateTime.parse("${_studentProfile.user!.dob}"));
+                    //             },
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

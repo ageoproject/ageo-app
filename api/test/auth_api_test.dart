@@ -26,7 +26,7 @@ void main() {
 
     // Login
     //
-    //Future<LoginResponse> login({ InlineObject1 loginRequest }) async
+    //Future<LoginResponse> login({ InlineObject2 loginRequest }) async
     test('test login', () async {
       // TODO
     });
@@ -40,14 +40,14 @@ void main() {
 
     // Reset Password Request
     //
-    //Future<String> resetPassword({ InlineObject3 signupRequest }) async
+    //Future<String> resetPassword({ InlineObject4 signupRequest }) async
     test('test resetPassword', () async {
       // TODO
     });
 
     // Sign up
     //
-    //Future<LoginResponse> signup({ InlineObject2 signupRequest }) async
+    //Future<LoginResponse> signup({ InlineObject3 signupRequest }) async
     test('test signup', () async {
       // TODO
     });

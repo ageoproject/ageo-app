@@ -51,6 +51,12 @@ class ContactUs extends StatelessWidget {
                           _customUrlLauncher.openInBrowser(url: _ageoContactLink);
                         },
                       ),
+                      TextButton(
+                        child: Text("pageo@ucd.ie",style: TextStyle(fontSize: 16,color: appTheme.primaryActionColor,decoration: TextDecoration.underline)),
+                        onPressed: (){
+                          _customUrlLauncher.openInBrowser(url: "mailto:pageo@ucd.ie");
+                        },
+                      ),
 
                       Padding(
                         padding:const EdgeInsets.symmetric(vertical: 26),

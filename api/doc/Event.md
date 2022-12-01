@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **city** | **String** |  | [optional] 
 **state** | **String** |  | [optional] 
 **country** | **String** |  | [optional] 
-**sensorData** | [**Object**](.md) |  | [optional] 
+**sensorData** | [**List<Object>**](Object.md) |  | [optional] [default to const []]
 **commonEventDetails** | [**Object**](.md) |  | [optional] 
 **customEventDetails** | [**Object**](.md) |  | [optional] 
 **verifyBy** | [**User**](User.md) |  | [optional] 

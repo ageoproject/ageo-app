@@ -78,8 +78,8 @@ class ManagerApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject4] filters:
-  Future<Response> downloadEventListWithHttpInfo({ InlineObject4? filters, }) async {
+  /// * [InlineObject5] filters:
+  Future<Response> downloadEventListWithHttpInfo({ InlineObject5? filters, }) async {
     // Verify required params are set.
 
     // ignore: prefer_const_declarations
@@ -112,8 +112,8 @@ class ManagerApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject4] filters:
-  Future<MultipartFile?> downloadEventList({ InlineObject4? filters, }) async {
+  /// * [InlineObject5] filters:
+  Future<MultipartFile?> downloadEventList({ InlineObject5? filters, }) async {
     final response = await downloadEventListWithHttpInfo( filters: filters, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));

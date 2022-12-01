@@ -26,7 +26,7 @@ void main() {
 
     // Change user's preferred language
     //
-    //Future changePreferredLanguage(InlineObject changePreferredLanguage) async
+    //Future changePreferredLanguage(InlineObject1 changePreferredLanguage) async
     test('test changePreferredLanguage', () async {
       // TODO
     });

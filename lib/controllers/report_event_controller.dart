@@ -318,16 +318,35 @@ class ReportEventController extends GetxController{
 
   /// Landslide
 
+  double _landslideDisplacedLandSlider=0;
   final Map<String,dynamic> _landslideDamage={
-    "landslide_displaced_land_volume": "10%",
+    "landslide_displaced_land_volume": "Level 1",
     "landslide_observed_damage": [],
     "landslide_other_observed_damage":"",
   };
 
   Map<String,dynamic> get landslideDamage=>_landslideDamage;
+  double get landslideDisplacedLandSlider=>_landslideDisplacedLandSlider;
 
-  void changeVolumeOfDisplacedLand({required String value}){
-    _landslideDamage["landslide_displaced_land_volume"]=value;
+  void changeVolumeOfDisplacedLand({required double value}){
+    _landslideDisplacedLandSlider=value;
+    String displacedLand="Level 1";
+    switch(value.toInt()){
+      case 0:{
+        displacedLand="Level 1";
+        break;
+      }case 1:{
+        displacedLand="Level 2";
+        break;
+      }case 2:{
+        displacedLand="Level 3";
+        break;
+      }case 3:{
+        displacedLand="Level 4";
+        break;
+      }
+    }
+    _landslideDamage["landslide_displaced_land_volume"]=displacedLand;
     update();
   }
 
@@ -347,16 +366,42 @@ class ReportEventController extends GetxController{
 
   /// Flood
 
+  double _riverFloodingWaterLevelSlider=0;
   final Map<String,dynamic> _riverFloodingDamage={
-    "river_flooding_water_level": 10,
+    "river_flooding_water_level": "Level 1",
     "river_flooding_observed_damage": [],
     "river_flooding_other_observed_damage": ""
   };
 
   Map<String,dynamic> get riverFloodingDamage=>_riverFloodingDamage;
+  double get riverFloodingWaterLevelSlider=>_riverFloodingWaterLevelSlider;
 
-  void changeWaterLevelOfFlood({required String value}){
-    _riverFloodingDamage["river_flooding_water_level"]=int.parse(value);
+  void changeWaterLevelOfFlood({required double value}){
+    _riverFloodingWaterLevelSlider=value;
+    String waterLevel="Level 1";
+    switch(value.toInt()){
+      case 0:{
+        waterLevel="Level 1";
+        break;
+      }case 1:{
+        waterLevel="Level 2";
+        break;
+      }case 2:{
+        waterLevel="Level 3";
+        break;
+      }case 3:{
+        waterLevel="Level 4";
+        break;
+      }case 4:{
+        waterLevel="Level 5";
+        break;
+      }case 5:{
+        waterLevel="Level 6";
+        break;
+      }
+    }
+    _riverFloodingDamage["river_flooding_water_level"]=waterLevel;
+    update();
   }
 
   void selectObservedDamageForFlood({required String value}){
@@ -375,6 +420,8 @@ class ReportEventController extends GetxController{
 
   /// Sinkhole
 
+  double _sinkholeDimensionSlider=0;
+  final List<String> _sinkholeDimensionList=["1","2","3","4","5","6+"];
   final Map<String,dynamic> _sinkholeDamage={
     "sinkhole_dimension": 10,
     "sinkhole_observed_damage": "",
@@ -384,9 +431,13 @@ class ReportEventController extends GetxController{
   };
 
   Map<String,dynamic> get sinkholeDamage=>_sinkholeDamage;
+  List<String> get sinkholeDimensionList=>_sinkholeDimensionList;
+  double get sinkholeDimensionSlider=>_sinkholeDimensionSlider;
 
-  void changeDimensionOfSinkhole({required String value}){
-    _sinkholeDamage["sinkhole_dimension"]=int.parse(value);
+  void changeDimensionOfSinkhole({required double value}){
+    _sinkholeDimensionSlider=value;
+    _sinkholeDamage["sinkhole_dimension"]=_sinkholeDimensionList[value.toInt()];
+    update();
   }
 
   void selectObservedDamageForSinkhole({required String value}){
@@ -419,13 +470,15 @@ class ReportEventController extends GetxController{
 
   //// Building Settlement
 
+  double _buildingSettlementCrackDimensionSlider=0.3;
   final Map<String,dynamic> _buildingSettlementDamage={
     "building_settlement_type": "",
     "building_settlement_other_structures": "",
     "building_settlement_crack_direction": [],
-    "building_settlement_crack_dimension": 10,
+    "building_settlement_crack_dimension": "<0.3mm",
   };
 
+  double get buildingSettlementCrackDimensionSlider=>_buildingSettlementCrackDimensionSlider;
   Map<String,dynamic> get buildingSettlementDamage=>_buildingSettlementDamage;
 
   void selectTypeOfSettlementForBuildingSettlement({required String value}){
@@ -455,21 +508,24 @@ class ReportEventController extends GetxController{
     update();
   }
 
-  void changeDimensionOfCrackForBuildingSettlement({required String value}){
-    _buildingSettlementDamage["building_settlement_crack_dimension"]=int.parse(value);
-    // update();
+  void changeDimensionOfCrackForBuildingSettlement({required double value}){
+    _buildingSettlementCrackDimensionSlider=value;
+    _buildingSettlementDamage["building_settlement_crack_dimension"]=value<=15.0?"<${value}mm":">${value.toInt()}mm";
+    update();
   }
 
   /// MARINE FLOODING
 
+  double _waterLevelSlider=0;
   final Map<String,dynamic> _marineFloodingDamage={
     "marine_flooding_submersion_type": "",
-    "marine_flooding_water_level": 10,
+    "marine_flooding_water_level": "Level 1",
     "marine_flooding_environment_type": [],
     "marine_flooding_visit_frequency": "1st time",
     "marine_flooding_free_comments": "",
   };
 
+  double get waterLevelSlider=>_waterLevelSlider;
   Map<String,dynamic> get marineFloodingDamage=>_marineFloodingDamage;
 
   void changeMarineFloodingSubmersionType({required String value}){
@@ -481,8 +537,33 @@ class ReportEventController extends GetxController{
     update();
   }
 
-  void changeMarineFloodingWaterLevel({required String value}){
-    _marineFloodingDamage["marine_flooding_water_level"]=int.parse(value);
+  // void changeMarineFloodingWaterLevelSlider
+  void changeMarineFloodingWaterLevel({required int value}){
+    _waterLevelSlider=value.toDouble();
+    String waterLevel="Level 1";
+    switch(value){
+      case 0:{
+        waterLevel="Level 1";
+        break;
+      }
+      case 1:{
+        waterLevel="Level 2";
+        break;
+      }
+      case 2:{
+        waterLevel="Level 3";
+        break;
+      }
+      case 3:{
+        waterLevel="Level 4";
+        break;
+      }
+      default:{
+        waterLevel ="Level 1";
+      }
+    }
+    _marineFloodingDamage["marine_flooding_water_level"]=waterLevel;
+    update();
   }
 
   void changeMarineFloodingEnvironmentType({required String value}){
@@ -507,6 +588,11 @@ class ReportEventController extends GetxController{
   //// Coastal Erosion
 
   double _coastalErosionDamageLevelSlider=0;
+  double _coastalErosionHeightOfSandLostSlider=0;
+  double _coastalErosionConfidentSlider=0;
+  final List<String> _coastalErosionHeightOfSandLostValueList=["Don't know","20cm","50cm","1m",">1m"];
+  double _coastalErosionDebrisVolumeSlider=0;
+
   final Map<String,dynamic> _coastalErosionDamage={
     "coastal_erosion_eroded_object":"",
     "coastal_erosion_visit_frequency":"Daily",
@@ -533,7 +619,11 @@ class ReportEventController extends GetxController{
   };
 
   Map<String,dynamic> get coastalErosionDamage=>_coastalErosionDamage;
+  double get coastalErosionDebrisVolumeSlider=>_coastalErosionDebrisVolumeSlider;
   double get coastalErosionDamageLevelSlider=>_coastalErosionDamageLevelSlider;
+  double get coastalErosionHeightOfSandLostSlider=>_coastalErosionHeightOfSandLostSlider;
+  List<String> get coastalErosionHeightOfSandLostValueList=>_coastalErosionHeightOfSandLostValueList;
+  double get coastalErosionConfidentSlider=>_coastalErosionConfidentSlider;
 
   void changeCoastalErosionErodedObject({required String value}){
     if(_coastalErosionDamage["coastal_erosion_eroded_object"]!=value){
@@ -557,8 +647,28 @@ class ReportEventController extends GetxController{
     _coastalErosionDamage["Cliff"]["coastal_erosion_debris_presence"]=value;
     update();
   }
-  void changeCoastalErosionCliffDebrisVolume({required String value}){
-    _coastalErosionDamage["Cliff"]["coastal_erosion_debris_volume"]=value;
+  void changeCoastalErosionCliffDebrisVolume({required int value}){
+    _coastalErosionDebrisVolumeSlider=value.toDouble();
+    String volumeOfDebris="Don't know";
+    switch(value){
+      case 0:{
+        volumeOfDebris="Don't know";
+        break;
+      }
+      case 1:{
+        volumeOfDebris="Level 1";
+        break;
+      }
+      case 2:{
+        volumeOfDebris="Level 2";
+        break;
+      }
+      case 3:{
+        volumeOfDebris="Level 3";
+        break;
+      }
+    }
+    _coastalErosionDamage["Cliff"]["coastal_erosion_debris_volume"]=volumeOfDebris;
     update();
   }
   void changeCoastalErosionCliffErodedPart({required String value}){
@@ -577,8 +687,9 @@ class ReportEventController extends GetxController{
     }
     update();
   }
-  void changeCoastalErosionBeachSandHeightLost({required String value}){
-    _coastalErosionDamage["Beach"]["coastal_erosion_sand_height_lost"]=value;
+  void changeCoastalErosionBeachSandHeightLost({required int value}){
+    _coastalErosionHeightOfSandLostSlider=value.toDouble();
+    _coastalErosionDamage["Beach"]["coastal_erosion_sand_height_lost"]=_coastalErosionHeightOfSandLostValueList[value];
     update();
   }
   void changeCoastalErosionDuneErodedPart({required String value}){
@@ -637,8 +748,9 @@ class ReportEventController extends GetxController{
     }
     update();
   }
-  void changeCoastalErosionCoastalDefencesResponseConfidence({required String value}){
-    _coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_response_confidence"]=int.parse(value);
+  void changeCoastalErosionCoastalDefencesResponseConfidence({required double value}){
+    _coastalErosionConfidentSlider=value;
+    _coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_response_confidence"]=value.toInt();
     update();
   }
 
@@ -707,7 +819,7 @@ class ReportEventController extends GetxController{
   }
 
   Future<String> reportEvent()async{
-    _eventDetail.sensorData=_sensorDataList.last;
+    _eventDetail.sensorData=_sensorDataList;
     _eventDetail.commonEventDetails=_quickReportingIsActive.value?{}:createCommonQuestionObject();
     _eventDetail.city="Mumbai";
     _eventDetail.country="India";

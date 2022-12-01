@@ -11,23 +11,23 @@
 import 'package:ageoClient/api.dart';
 import 'package:test/test.dart';
 
-// tests for InlineObject3
+// tests for InlineObject7
 void main() {
-  final instance = InlineObject3();
+  final instance = InlineObject7();
 
-  group('test InlineObject3', () {
-    // String name
-    test('to test the property `name`', () async {
+  group('test InlineObject7', () {
+    // String downloadType
+    test('to test the property `downloadType`', () async {
       // TODO
     });
 
-    // String email
-    test('to test the property `email`', () async {
+    // String searchKeyword
+    test('to test the property `searchKeyword`', () async {
       // TODO
     });
 
-    // String password
-    test('to test the property `password`', () async {
+    // List<String> userIdList (default value: const [])
+    test('to test the property `userIdList`', () async {
       // TODO
     });
 

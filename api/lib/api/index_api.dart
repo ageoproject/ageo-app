@@ -16,6 +16,62 @@ class IndexApi {
 
   final ApiClient apiClient;
 
+  /// Submit contact us form
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [InlineObject] formData:
+  Future<Response> contactUsWithHttpInfo({ InlineObject? formData, }) async {
+    // Verify required params are set.
+
+    // ignore: prefer_const_declarations
+    final path = r'/anonymous/contact_us';
+
+    // ignore: prefer_final_locals
+    Object? postBody = formData;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>[];
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Submit contact us form
+  ///
+  /// Parameters:
+  ///
+  /// * [InlineObject] formData:
+  Future<String?> contactUs({ InlineObject? formData, }) async {
+    final response = await contactUsWithHttpInfo( formData: formData, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'String',) as String?;
+    
+    }
+    return Future<String>.value();
+  }
+
   /// Get paginated list of events
   ///
   /// Note: This method returns the HTTP [Response].
@@ -30,8 +86,10 @@ class IndexApi {
   ///
   /// * [num] toDate:
   ///
+  /// * [String] userRole:
+  ///
   /// * [Object] datatableoptions:
-  Future<Response> getDatatableEventListWithHttpInfo({ String? eventType, String? eventStatus, num? fromDate, num? toDate, Object? datatableoptions, }) async {
+  Future<Response> getDatatableEventListWithHttpInfo({ String? eventType, String? eventStatus, num? fromDate, num? toDate, String? userRole, Object? datatableoptions, }) async {
     // Verify required params are set.
 
     // ignore: prefer_const_declarations
@@ -55,6 +113,9 @@ class IndexApi {
     }
     if (toDate != null) {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'toDate', toDate));
+    }
+    if (userRole != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'userRole', userRole));
     }
 
     const authNames = <String>[];
@@ -85,9 +146,11 @@ class IndexApi {
   ///
   /// * [num] toDate:
   ///
+  /// * [String] userRole:
+  ///
   /// * [Object] datatableoptions:
-  Future<InlineResponse200?> getDatatableEventList({ String? eventType, String? eventStatus, num? fromDate, num? toDate, Object? datatableoptions, }) async {
-    final response = await getDatatableEventListWithHttpInfo( eventType: eventType, eventStatus: eventStatus, fromDate: fromDate, toDate: toDate, datatableoptions: datatableoptions, );
+  Future<InlineResponse200?> getDatatableEventList({ String? eventType, String? eventStatus, num? fromDate, num? toDate, String? userRole, Object? datatableoptions, }) async {
+    final response = await getDatatableEventListWithHttpInfo( eventType: eventType, eventStatus: eventStatus, fromDate: fromDate, toDate: toDate, userRole: userRole, datatableoptions: datatableoptions, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -176,8 +239,10 @@ class IndexApi {
   ///
   /// * [num] toDate:
   ///
+  /// * [String] userRole:
+  ///
   /// * [List<List<num>>] polygon:
-  Future<Response> getMapEventListWithHttpInfo({ String? eventType, String? eventStatus, num? fromDate, num? toDate, List<List<num>>? polygon, }) async {
+  Future<Response> getMapEventListWithHttpInfo({ String? eventType, String? eventStatus, num? fromDate, num? toDate, String? userRole, List<List<num>>? polygon, }) async {
     // Verify required params are set.
 
     // ignore: prefer_const_declarations
@@ -201,6 +266,9 @@ class IndexApi {
     }
     if (toDate != null) {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'toDate', toDate));
+    }
+    if (userRole != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'userRole', userRole));
     }
 
     const authNames = <String>[];
@@ -231,9 +299,11 @@ class IndexApi {
   ///
   /// * [num] toDate:
   ///
+  /// * [String] userRole:
+  ///
   /// * [List<List<num>>] polygon:
-  Future<List<Event>> getMapEventList({ String? eventType, String? eventStatus, num? fromDate, num? toDate, List<List<num>>? polygon, }) async {
-    final response = await getMapEventListWithHttpInfo( eventType: eventType, eventStatus: eventStatus, fromDate: fromDate, toDate: toDate, polygon: polygon, );
+  Future<List<Event>> getMapEventList({ String? eventType, String? eventStatus, num? fromDate, num? toDate, String? userRole, List<List<num>>? polygon, }) async {
+    final response = await getMapEventListWithHttpInfo( eventType: eventType, eventStatus: eventStatus, fromDate: fromDate, toDate: toDate, userRole: userRole, polygon: polygon, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

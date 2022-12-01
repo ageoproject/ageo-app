@@ -272,50 +272,79 @@ class _CoastalErosionState extends State<CoastalErosion> {
           ),
         ),
 
-        Row(
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 4.0),
-                child: Text("${tr("monitor_event.coastal_erosion.cliff_detail.volume_of_debris")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-              ),
+            Text("${tr("monitor_event.coastal_erosion.cliff_detail.volume_of_debris")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+            Slider(
+              value: _reportEventController.coastalErosionDebrisVolumeSlider,
+              max: 3,
+              divisions: 3,
+              activeColor: appTheme.primaryActionColor,
+              inactiveColor: appTheme.toggleSelectionColor,
+              onChanged: (value){
+                _reportEventController.changeCoastalErosionCliffDebrisVolume(value: value.toInt());
+              },
             ),
-            Container(
-              width:130,
-              decoration:BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: appTheme.inputFieldsBorderColor),
-                  borderRadius: BorderRadius.circular(4)
-              ),
-              padding:const EdgeInsets.only(left: 4),
-              child: ButtonTheme(
-                alignedDropdown: true,
-                child: DropdownButton<String>(
-                  value: _reportEventController.coastalErosionDamage["Cliff"]["coastal_erosion_debris_volume"],
-                  underline:const SizedBox(),
-                  isExpanded: true,
-                  items: ["Don't know","Cycle","Car","Truck"].map((String value) {
-                    return DropdownMenuItem<String>(
-                      key: Key(value),
-                      value: value,
-                      //child: new Text(value),
-                      child: Padding(
-                        padding: const EdgeInsets.all(0.0),
-                        child: Text("monitor_event.coastal_erosion.cliff_detail.$value",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)).tr(),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    if(value!=null) {
-                      _reportEventController.changeCoastalErosionCliffDebrisVolume(value: value);
-                      // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
-                    }
-                  },
-                ),
-              ),
-            ),
+            Row(
+              children: List.generate(4, (index) {
+                if(index==0){
+                  return Expanded(
+                    child:Text("monitor_event.coastal_erosion.cliff_detail.Don't know",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)).tr(),
+                  );
+                }else{
+                  return Expanded(
+                    child: Image.asset("assets/images/report_event/event_specific_images/coastal_erosion/debris_volume_$index.png",height: index>2?30:18,),
+                  );
+                }
+              })
+            )
           ],
         ),
+        // Row(
+        //   children: [
+        //     Expanded(
+        //       child: Padding(
+        //         padding: const EdgeInsets.only(right: 4.0),
+        //         child: Text("${tr("monitor_event.coastal_erosion.cliff_detail.volume_of_debris")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+        //       ),
+        //     ),
+        //     Container(
+        //       width:130,
+        //       decoration:BoxDecoration(
+        //           color: Colors.white,
+        //           border: Border.all(color: appTheme.inputFieldsBorderColor),
+        //           borderRadius: BorderRadius.circular(4)
+        //       ),
+        //       padding:const EdgeInsets.only(left: 4),
+        //       child: ButtonTheme(
+        //         alignedDropdown: true,
+        //         child: DropdownButton<String>(
+        //           value: _reportEventController.coastalErosionDamage["Cliff"]["coastal_erosion_debris_volume"],
+        //           underline:const SizedBox(),
+        //           isExpanded: true,
+        //           items: ["Don't know","Cycle","Car","Truck"].map((String value) {
+        //             return DropdownMenuItem<String>(
+        //               key: Key(value),
+        //               value: value,
+        //               //child: new Text(value),
+        //               child: Padding(
+        //                 padding: const EdgeInsets.all(0.0),
+        //                 child: Text("monitor_event.coastal_erosion.cliff_detail.$value",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)).tr(),
+        //               ),
+        //             );
+        //           }).toList(),
+        //           onChanged: (value) {
+        //             if(value!=null) {
+        //               _reportEventController.changeCoastalErosionCliffDebrisVolume(value: value);
+        //               // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
+        //             }
+        //           },
+        //         ),
+        //       ),
+        //     ),
+        //   ],
+        // ),
 
         Padding(
           padding: const EdgeInsets.only(top:18.0,bottom: 12),
@@ -409,60 +438,144 @@ class _CoastalErosionState extends State<CoastalErosion> {
 
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0),
-          child: Row(
+          child: Column(
             children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 12.0),
-                  child: Image.asset("assets/images/report_event/event_specific_images/coastal_erosion/height_of_sand_ic.png"),
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+              Row(
                 children: [
+                  Expanded(child: Text("${tr("monitor_event.coastal_erosion.beach_details.height_of_sand_lost")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),)),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Text("${tr("monitor_event.coastal_erosion.beach_details.height_of_sand_lost")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-                  ),
-                  Container(
-                    width:160,
-                    decoration:BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: appTheme.inputFieldsBorderColor),
-                        borderRadius: BorderRadius.circular(4)
-                    ),
-                    padding:const EdgeInsets.only(left: 4),
-                    child: ButtonTheme(
-                      alignedDropdown: true,
-                      child: DropdownButton<String>(
-                        value: _reportEventController.coastalErosionDamage["Beach"]["coastal_erosion_sand_height_lost"],
-                        underline:const SizedBox(),
-                        isExpanded: true,
-                        items: ["Don't know","20cm","50cm","1m",">1m"].map((String value) {
-                          return DropdownMenuItem<String>(
-                            key: Key(value),
-                            value: value,
-                            //child: new Text(value),
-                            child: Padding(
-                              padding: const EdgeInsets.all(0.0),
-                              child: Text("monitor_event.coastal_erosion.beach_details.$value",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)).tr(),
-                            ),
-                          );
-                        }).toList(),
-                        onChanged: (value) {
-                          if(value!=null) {
-                            _reportEventController.changeCoastalErosionBeachSandHeightLost(value: value);
-                            // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
-                          }
-                        },
-                      ),
-                    ),
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: Image.asset("assets/images/report_event/event_specific_images/coastal_erosion/height_of_sand_ic.png",width:150,),
                   ),
                 ],
               ),
+              Slider(
+                value: _reportEventController.coastalErosionHeightOfSandLostSlider,
+                max: 4,
+                divisions: 4,
+                activeColor: appTheme.primaryActionColor,
+                inactiveColor: appTheme.toggleSelectionColor,
+                label: tr("monitor_event.coastal_erosion.beach_details.${_reportEventController.coastalErosionHeightOfSandLostValueList[_reportEventController.coastalErosionHeightOfSandLostSlider.toInt()]}"),
+                onChanged: (value){
+                  _reportEventController.changeCoastalErosionBeachSandHeightLost(value: value.toInt());
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(_reportEventController.coastalErosionHeightOfSandLostValueList.length, (index) {
+                    return Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Text("monitor_event.coastal_erosion.beach_details.${_reportEventController.coastalErosionHeightOfSandLostValueList[index]}",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)).tr(),
+                      ),
+                    );
+                  }),
+                ),
+              )
+
+
+              // Column(
+              //   crossAxisAlignment: CrossAxisAlignment.end,
+              //   children: [
+              //
+              //     Container(
+              //       width:160,
+              //       decoration:BoxDecoration(
+              //           color: Colors.white,
+              //           border: Border.all(color: appTheme.inputFieldsBorderColor),
+              //           borderRadius: BorderRadius.circular(4)
+              //       ),
+              //       padding:const EdgeInsets.only(left: 4),
+              //       child: ButtonTheme(
+              //         alignedDropdown: true,
+              //         child: DropdownButton<String>(
+              //           value: _reportEventController.coastalErosionDamage["Beach"]["coastal_erosion_sand_height_lost"],
+              //           underline:const SizedBox(),
+              //           isExpanded: true,
+              //           items: ["Don't know","20cm","50cm","1m",">1m"].map((String value) {
+              //             return DropdownMenuItem<String>(
+              //               key: Key(value),
+              //               value: value,
+              //               //child: new Text(value),
+              //               child: Padding(
+              //                 padding: const EdgeInsets.all(0.0),
+              //                 child: Text("monitor_event.coastal_erosion.beach_details.$value",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)).tr(),
+              //               ),
+              //             );
+              //           }).toList(),
+              //           onChanged: (value) {
+              //             if(value!=null) {
+              //               _reportEventController.changeCoastalErosionBeachSandHeightLost(value: value);
+              //               // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
+              //             }
+              //           },
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(vertical: 12.0),
+        //   child: Row(
+        //     children: [
+        //       Expanded(
+        //         child: Padding(
+        //           padding: const EdgeInsets.only(right: 12.0),
+        //           child: Image.asset("assets/images/report_event/event_specific_images/coastal_erosion/height_of_sand_ic.png"),
+        //         ),
+        //       ),
+        //       Column(
+        //         crossAxisAlignment: CrossAxisAlignment.end,
+        //         children: [
+        //           Padding(
+        //             padding: const EdgeInsets.only(bottom: 8.0),
+        //             child: Text("${tr("monitor_event.coastal_erosion.beach_details.height_of_sand_lost")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+        //           ),
+        //           Container(
+        //             width:160,
+        //             decoration:BoxDecoration(
+        //                 color: Colors.white,
+        //                 border: Border.all(color: appTheme.inputFieldsBorderColor),
+        //                 borderRadius: BorderRadius.circular(4)
+        //             ),
+        //             padding:const EdgeInsets.only(left: 4),
+        //             child: ButtonTheme(
+        //               alignedDropdown: true,
+        //               child: DropdownButton<String>(
+        //                 value: _reportEventController.coastalErosionDamage["Beach"]["coastal_erosion_sand_height_lost"],
+        //                 underline:const SizedBox(),
+        //                 isExpanded: true,
+        //                 items: ["Don't know","20cm","50cm","1m",">1m"].map((String value) {
+        //                   return DropdownMenuItem<String>(
+        //                     key: Key(value),
+        //                     value: value,
+        //                     //child: new Text(value),
+        //                     child: Padding(
+        //                       padding: const EdgeInsets.all(0.0),
+        //                       child: Text("monitor_event.coastal_erosion.beach_details.$value",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)).tr(),
+        //                     ),
+        //                   );
+        //                 }).toList(),
+        //                 onChanged: (value) {
+        //                   if(value!=null) {
+        //                     _reportEventController.changeCoastalErosionBeachSandHeightLost(value: value);
+        //                     // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
+        //                   }
+        //                 },
+        //               ),
+        //             ),
+        //           ),
+        //         ],
+        //       ),
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }
@@ -664,57 +777,94 @@ class _CoastalErosionState extends State<CoastalErosion> {
 
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0),
-          child: Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 4.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("${tr("monitor_event.coastal_erosion.coastal_defences_detail.response_confident")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-                      Text(tr("monitor_event.coastal_erosion.coastal_defences_detail.response_confident_hint"),style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-                    ],
-                  ),
+              Padding(
+                padding: const EdgeInsets.only(right: 4.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("${tr("monitor_event.coastal_erosion.coastal_defences_detail.response_confident")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                    Text(tr("monitor_event.coastal_erosion.coastal_defences_detail.response_confident_hint"),style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                  ],
                 ),
               ),
-              Container(
-                width:110,
-                decoration:BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: appTheme.inputFieldsBorderColor),
-                    borderRadius: BorderRadius.circular(4)
-                ),
-                padding:const EdgeInsets.only(left: 4),
-                child: ButtonTheme(
-                  alignedDropdown: true,
-                  child: DropdownButton<String>(
-                    value: _reportEventController.coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_response_confidence"].toString(),
-                    underline:const SizedBox(),
-                    isExpanded: true,
-                    items: ["1","2","3","4","5"].map((String value) {
-                      return DropdownMenuItem<String>(
-                        key: Key(value),
-                        value: value,
-                        //child: new Text(value),
-                        child: Padding(
-                          padding: const EdgeInsets.all(0.0),
-                          child: Text(value,style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)),
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      if(value!=null) {
-                        _reportEventController.changeCoastalErosionCoastalDefencesResponseConfidence(value: value);
-                        // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
-                      }
-                    },
-                  ),
-                ),
+              Slider(
+                value: _reportEventController.coastalErosionConfidentSlider,
+                max: 4,
+                divisions: 4,
+                activeColor: appTheme.primaryActionColor,
+                inactiveColor: appTheme.toggleSelectionColor,
+                label: _reportEventController.coastalErosionConfidentSlider.toInt().toString(),
+                onChanged: (value){
+                  _reportEventController.changeCoastalErosionCoastalDefencesResponseConfidence(value: value);
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(5, (index) {
+                  return Expanded(
+                    child:Align(alignment: Alignment.center,child: Text("${index+1}",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,))),
+                  );
+                }),
               ),
             ],
           ),
         ),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(vertical: 12.0),
+        //   child: Row(
+        //     children: [
+        //       Expanded(
+        //         child: Padding(
+        //           padding: const EdgeInsets.only(right: 4.0),
+        //           child: Column(
+        //             crossAxisAlignment: CrossAxisAlignment.start,
+        //             children: [
+        //               Text("${tr("monitor_event.coastal_erosion.coastal_defences_detail.response_confident")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+        //               Text(tr("monitor_event.coastal_erosion.coastal_defences_detail.response_confident_hint"),style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+        //             ],
+        //           ),
+        //         ),
+        //       ),
+        //       Container(
+        //         width:110,
+        //         decoration:BoxDecoration(
+        //             color: Colors.white,
+        //             border: Border.all(color: appTheme.inputFieldsBorderColor),
+        //             borderRadius: BorderRadius.circular(4)
+        //         ),
+        //         padding:const EdgeInsets.only(left: 4),
+        //         child: ButtonTheme(
+        //           alignedDropdown: true,
+        //           child: DropdownButton<String>(
+        //             value: _reportEventController.coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_response_confidence"].toString(),
+        //             underline:const SizedBox(),
+        //             isExpanded: true,
+        //             items: ["1","2","3","4","5"].map((String value) {
+        //               return DropdownMenuItem<String>(
+        //                 key: Key(value),
+        //                 value: value,
+        //                 //child: new Text(value),
+        //                 child: Padding(
+        //                   padding: const EdgeInsets.all(0.0),
+        //                   child: Text(value,style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)),
+        //                 ),
+        //               );
+        //             }).toList(),
+        //             onChanged: (value) {
+        //               if(value!=null) {
+        //                 _reportEventController.changeCoastalErosionCoastalDefencesResponseConfidence(value: value);
+        //                 // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
+        //               }
+        //             },
+        //           ),
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
 
       ],
     );

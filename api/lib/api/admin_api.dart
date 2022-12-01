@@ -129,8 +129,8 @@ class AdminApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject6] filters:
-  Future<Response> downloadApiuserListWithHttpInfo({ InlineObject6? filters, }) async {
+  /// * [InlineObject7] filters:
+  Future<Response> downloadApiuserListWithHttpInfo({ InlineObject7? filters, }) async {
     // Verify required params are set.
 
     // ignore: prefer_const_declarations
@@ -163,8 +163,8 @@ class AdminApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject6] filters:
-  Future<MultipartFile?> downloadApiuserList({ InlineObject6? filters, }) async {
+  /// * [InlineObject7] filters:
+  Future<MultipartFile?> downloadApiuserList({ InlineObject7? filters, }) async {
     final response = await downloadApiuserListWithHttpInfo( filters: filters, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -185,8 +185,8 @@ class AdminApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject5] filters:
-  Future<Response> downloadManagerListWithHttpInfo({ InlineObject5? filters, }) async {
+  /// * [InlineObject6] filters:
+  Future<Response> downloadManagerListWithHttpInfo({ InlineObject6? filters, }) async {
     // Verify required params are set.
 
     // ignore: prefer_const_declarations
@@ -219,8 +219,8 @@ class AdminApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject5] filters:
-  Future<MultipartFile?> downloadManagerList({ InlineObject5? filters, }) async {
+  /// * [InlineObject6] filters:
+  Future<MultipartFile?> downloadManagerList({ InlineObject6? filters, }) async {
     final response = await downloadManagerListWithHttpInfo( filters: filters, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));

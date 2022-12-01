@@ -1,4 +1,4 @@
-# ageoClient.model.InlineObject4
+# ageoClient.model.InlineObject7
 
 ## Load the model package
 ```dart
@@ -8,8 +8,9 @@ import 'package:ageoClient/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**token** | **String** |  | [optional] 
-**newPassword** | **String** |  | [optional] 
+**downloadType** | **String** |  | [optional] 
+**searchKeyword** | **String** |  | [optional] 
+**userIdList** | **List<String>** |  | [optional] [default to const []]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

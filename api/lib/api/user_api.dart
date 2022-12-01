@@ -83,8 +83,8 @@ class UserApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject] changePreferredLanguage (required):
-  Future<Response> changePreferredLanguageWithHttpInfo(InlineObject changePreferredLanguage,) async {
+  /// * [InlineObject1] changePreferredLanguage (required):
+  Future<Response> changePreferredLanguageWithHttpInfo(InlineObject1 changePreferredLanguage,) async {
     // Verify required params are set.
     if (changePreferredLanguage == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: changePreferredLanguage');
@@ -120,8 +120,8 @@ class UserApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject] changePreferredLanguage (required):
-  Future<void> changePreferredLanguage(InlineObject changePreferredLanguage,) async {
+  /// * [InlineObject1] changePreferredLanguage (required):
+  Future<void> changePreferredLanguage(InlineObject1 changePreferredLanguage,) async {
     final response = await changePreferredLanguageWithHttpInfo(changePreferredLanguage,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));

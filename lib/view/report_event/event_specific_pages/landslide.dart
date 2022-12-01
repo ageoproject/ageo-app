@@ -52,50 +52,75 @@ class Landslide extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Text("${tr("monitor_event.landslide.displaced_land")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-                          ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Text("${tr("monitor_event.landslide.displaced_land")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
                         ),
-                        Container(
-                          width:90,
-                          decoration:BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(color: appTheme.inputFieldsBorderColor),
-                              borderRadius: BorderRadius.circular(4)
-                          ),
-                          padding:const EdgeInsets.only(left: 4),
-                          child: ButtonTheme(
-                            alignedDropdown: true,
-                            child: DropdownButton<String>(
-                              value: _reportEventController.landslideDamage["landslide_displaced_land_volume"],
-                              underline:const SizedBox(),
-                              isExpanded: true,
-                              items: ["10%","20%","30%","40%","50%","60%","70%","80%","90%","100%"].map((String value) {
-                                return DropdownMenuItem<String>(
-                                  key: Key(value),
-                                  value: value,
-                                  //child: new Text(value),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(0.0),
-                                    child: Text(value,style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)),
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (value) {
-                                if(value!=null) {
-                                  _reportEventController.changeVolumeOfDisplacedLand(value: value);
-                                  // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
-                                }
-                              },
-                            ),
-                          ),
+                        Slider(
+                          value: _reportEventController.landslideDisplacedLandSlider,
+                          max: 3,
+                          divisions: 3,
+                          activeColor: appTheme.primaryActionColor,
+                          inactiveColor: appTheme.toggleSelectionColor,
+                          onChanged: (value){
+                            _reportEventController.changeVolumeOfDisplacedLand(value: value);
+                          },
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: List.generate(4, (index) {
+                              return Expanded(child: Image.asset("assets/images/report_event/event_specific_images/landslide/displacedLandLevel_$index.png",height: index<=1?20:30,alignment: Alignment.bottomCenter));
+                            })
                         ),
                       ],
                     ),
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //       child: Padding(
+                    //         padding: const EdgeInsets.only(right: 8.0),
+                    //         child: Text("${tr("monitor_event.landslide.displaced_land")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                    //       ),
+                    //     ),
+                    //     Container(
+                    //       width:90,
+                    //       decoration:BoxDecoration(
+                    //           color: Colors.white,
+                    //           border: Border.all(color: appTheme.inputFieldsBorderColor),
+                    //           borderRadius: BorderRadius.circular(4)
+                    //       ),
+                    //       padding:const EdgeInsets.only(left: 4),
+                    //       child: ButtonTheme(
+                    //         alignedDropdown: true,
+                    //         child: DropdownButton<String>(
+                    //           value: _reportEventController.landslideDamage["landslide_displaced_land_volume"],
+                    //           underline:const SizedBox(),
+                    //           isExpanded: true,
+                    //           items: ["10%","20%","30%","40%","50%","60%","70%","80%","90%","100%"].map((String value) {
+                    //             return DropdownMenuItem<String>(
+                    //               key: Key(value),
+                    //               value: value,
+                    //               //child: new Text(value),
+                    //               child: Padding(
+                    //                 padding: const EdgeInsets.all(0.0),
+                    //                 child: Text(value,style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,)),
+                    //               ),
+                    //             );
+                    //           }).toList(),
+                    //           onChanged: (value) {
+                    //             if(value!=null) {
+                    //               _reportEventController.changeVolumeOfDisplacedLand(value: value);
+                    //               // _reportEventController.changeNumberOfBuilding(index: buildingIndex, numberOfBuilding: value);
+                    //             }
+                    //           },
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     Padding(
                       padding: const EdgeInsets.only(top:18.0,bottom: 12),
                       child: Text("common_key.select_observe_damage",style: TextStyle(fontSize:14,color:appTheme.primaryActionColor,fontWeight: FontWeight.w600 ),).tr(),

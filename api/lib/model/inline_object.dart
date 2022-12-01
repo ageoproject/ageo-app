@@ -13,27 +13,59 @@ part of openapi.api;
 class InlineObject {
   /// Returns a new [InlineObject] instance.
   InlineObject({
-    this.prefLang,
+    this.title,
+    this.name,
+    this.email,
+    this.phone,
+    this.message,
   });
 
-  String? prefLang;
+  String? title;
+
+  String? name;
+
+  String? email;
+
+  String? phone;
+
+  String? message;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is InlineObject &&
-     other.prefLang == prefLang;
+     other.title == title &&
+     other.name == name &&
+     other.email == email &&
+     other.phone == phone &&
+     other.message == message;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (prefLang == null ? 0 : prefLang.hashCode);
+    (title == null ? 0 : title.hashCode) +
+    (name == null ? 0 : name.hashCode) +
+    (email == null ? 0 : email.hashCode) +
+    (phone == null ? 0 : phone.hashCode) +
+    (message == null ? 0 : message.hashCode);
 
   @override
-  String toString() => 'InlineObject[prefLang=$prefLang]';
+  String toString() => 'InlineObject[title=$title, name=$name, email=$email, phone=$phone, message=$message]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (prefLang != null) {
-      json[r'prefLang'] = prefLang;
+    if (title != null) {
+      json[r'title'] = title;
+    }
+    if (name != null) {
+      json[r'name'] = name;
+    }
+    if (email != null) {
+      json[r'email'] = email;
+    }
+    if (phone != null) {
+      json[r'phone'] = phone;
+    }
+    if (message != null) {
+      json[r'message'] = message;
     }
     return json;
   }
@@ -45,7 +77,11 @@ class InlineObject {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return InlineObject(
-        prefLang: mapValueOfType<String>(json, r'prefLang'),
+        title: mapValueOfType<String>(json, r'title'),
+        name: mapValueOfType<String>(json, r'name'),
+        email: mapValueOfType<String>(json, r'email'),
+        phone: mapValueOfType<String>(json, r'phone'),
+        message: mapValueOfType<String>(json, r'message'),
       );
     }
     return null;

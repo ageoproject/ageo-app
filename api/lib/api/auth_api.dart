@@ -83,8 +83,8 @@ class AuthApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject1] loginRequest:
-  Future<Response> loginWithHttpInfo({ InlineObject1? loginRequest, }) async {
+  /// * [InlineObject2] loginRequest:
+  Future<Response> loginWithHttpInfo({ InlineObject2? loginRequest, }) async {
     // Verify required params are set.
 
     // ignore: prefer_const_declarations
@@ -117,8 +117,8 @@ class AuthApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject1] loginRequest:
-  Future<LoginResponse?> login({ InlineObject1? loginRequest, }) async {
+  /// * [InlineObject2] loginRequest:
+  Future<LoginResponse?> login({ InlineObject2? loginRequest, }) async {
     final response = await loginWithHttpInfo( loginRequest: loginRequest, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -177,8 +177,8 @@ class AuthApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject3] signupRequest:
-  Future<Response> resetPasswordWithHttpInfo({ InlineObject3? signupRequest, }) async {
+  /// * [InlineObject4] signupRequest:
+  Future<Response> resetPasswordWithHttpInfo({ InlineObject4? signupRequest, }) async {
     // Verify required params are set.
 
     // ignore: prefer_const_declarations
@@ -211,8 +211,8 @@ class AuthApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject3] signupRequest:
-  Future<String?> resetPassword({ InlineObject3? signupRequest, }) async {
+  /// * [InlineObject4] signupRequest:
+  Future<String?> resetPassword({ InlineObject4? signupRequest, }) async {
     final response = await resetPasswordWithHttpInfo( signupRequest: signupRequest, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -233,8 +233,8 @@ class AuthApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject2] signupRequest:
-  Future<Response> signupWithHttpInfo({ InlineObject2? signupRequest, }) async {
+  /// * [InlineObject3] signupRequest:
+  Future<Response> signupWithHttpInfo({ InlineObject3? signupRequest, }) async {
     // Verify required params are set.
 
     // ignore: prefer_const_declarations
@@ -267,8 +267,8 @@ class AuthApi {
   ///
   /// Parameters:
   ///
-  /// * [InlineObject2] signupRequest:
-  Future<LoginResponse?> signup({ InlineObject2? signupRequest, }) async {
+  /// * [InlineObject3] signupRequest:
+  Future<LoginResponse?> signup({ InlineObject3? signupRequest, }) async {
     final response = await signupWithHttpInfo( signupRequest: signupRequest, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));

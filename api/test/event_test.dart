@@ -76,7 +76,7 @@ void main() {
       // TODO
     });
 
-    // Object sensorData
+    // List<Object> sensorData (default value: const [])
     test('to test the property `sensorData`', () async {
       // TODO
     });

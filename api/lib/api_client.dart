@@ -211,6 +211,8 @@ class ApiClient {
           return InlineObject5.fromJson(value);
         case 'InlineObject6':
           return InlineObject6.fromJson(value);
+        case 'InlineObject7':
+          return InlineObject7.fromJson(value);
         case 'InlineResponse200':
           return InlineResponse200.fromJson(value);
         case 'LoginResponse':

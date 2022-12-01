@@ -88,7 +88,7 @@ flutter:
     - assets/images/report_event/map_view/
     - assets/images/report_event/event_specific_images/earthquake/
     - assets/images/report_event/event_specific_images/landslide/
-    - assets/images/report_event/event_specific_images/flood/
+    - assets/images/report_event/event_specific_images/river_flooding/
     - assets/images/report_event/event_specific_images/sinkhole/
     - assets/images/report_event/event_specific_images/building_settlement/
     - assets/images/report_event/event_specific_images/marine_flooding/

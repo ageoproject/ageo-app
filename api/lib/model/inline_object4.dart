@@ -13,83 +13,35 @@ part of openapi.api;
 class InlineObject4 {
   /// Returns a new [InlineObject4] instance.
   InlineObject4({
-    this.downloadType,
-    this.eventType,
-    this.eventStatus,
-    this.fromDate,
-    this.toDate,
-    this.eventIdList = const [],
-    this.searchKeyword,
-    this.polygon = const [],
+    this.token,
+    this.newPassword,
   });
 
-  String? downloadType;
+  String? token;
 
-  String? eventType;
-
-  String? eventStatus;
-
-  num? fromDate;
-
-  num? toDate;
-
-  List<String>? eventIdList;
-
-  String? searchKeyword;
-
-  List<List<num>?>? polygon;
+  String? newPassword;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is InlineObject4 &&
-     other.downloadType == downloadType &&
-     other.eventType == eventType &&
-     other.eventStatus == eventStatus &&
-     other.fromDate == fromDate &&
-     other.toDate == toDate &&
-     other.eventIdList == eventIdList &&
-     other.searchKeyword == searchKeyword &&
-     other.polygon == polygon;
+     other.token == token &&
+     other.newPassword == newPassword;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (downloadType == null ? 0 : downloadType.hashCode) +
-    (eventType == null ? 0 : eventType.hashCode) +
-    (eventStatus == null ? 0 : eventStatus.hashCode) +
-    (fromDate == null ? 0 : fromDate.hashCode) +
-    (toDate == null ? 0 : toDate.hashCode) +
-    (eventIdList == null ? 0 : eventIdList.hashCode) +
-    (searchKeyword == null ? 0 : searchKeyword.hashCode) +
-    (polygon == null ? 0 : polygon.hashCode);
+    (token == null ? 0 : token.hashCode) +
+    (newPassword == null ? 0 : newPassword.hashCode);
 
   @override
-  String toString() => 'InlineObject4[downloadType=$downloadType, eventType=$eventType, eventStatus=$eventStatus, fromDate=$fromDate, toDate=$toDate, eventIdList=$eventIdList, searchKeyword=$searchKeyword, polygon=$polygon]';
+  String toString() => 'InlineObject4[token=$token, newPassword=$newPassword]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (downloadType != null) {
-      json[r'downloadType'] = downloadType;
+    if (token != null) {
+      json[r'token'] = token;
     }
-    if (eventType != null) {
-      json[r'eventType'] = eventType;
-    }
-    if (eventStatus != null) {
-      json[r'eventStatus'] = eventStatus;
-    }
-    if (fromDate != null) {
-      json[r'fromDate'] = fromDate;
-    }
-    if (toDate != null) {
-      json[r'toDate'] = toDate;
-    }
-    if (eventIdList != null) {
-      json[r'eventIdList'] = eventIdList;
-    }
-    if (searchKeyword != null) {
-      json[r'searchKeyword'] = searchKeyword;
-    }
-    if (polygon != null) {
-      json[r'polygon'] = polygon;
+    if (newPassword != null) {
+      json[r'newPassword'] = newPassword;
     }
     return json;
   }
@@ -101,24 +53,8 @@ class InlineObject4 {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return InlineObject4(
-        downloadType: mapValueOfType<String>(json, r'downloadType'),
-        eventType: mapValueOfType<String>(json, r'eventType'),
-        eventStatus: mapValueOfType<String>(json, r'eventStatus'),
-        fromDate: json[r'fromDate'] == null
-          ? null
-          : num.parse(json[r'fromDate'].toString()),
-        toDate: json[r'toDate'] == null
-          ? null
-          : num.parse(json[r'toDate'].toString()),
-        eventIdList: json[r'eventIdList'] is List
-          ? (json[r'eventIdList'] as List).cast<String>()
-          : null,
-        searchKeyword: mapValueOfType<String>(json, r'searchKeyword'),
-        polygon: json[r'polygon'] is List
-          ? (json[r'polygon'] as List).map(
-              (e) => e == null ? null : (e as List).cast<num>()
-            ).toList(growable: false)
-          : null,
+        token: mapValueOfType<String>(json, r'token'),
+        newPassword: mapValueOfType<String>(json, r'newPassword'),
       );
     }
     return null;

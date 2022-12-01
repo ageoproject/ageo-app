@@ -13,35 +13,43 @@ part of openapi.api;
 class InlineObject3 {
   /// Returns a new [InlineObject3] instance.
   InlineObject3({
-    this.token,
-    this.newPassword,
+    this.name,
+    this.email,
+    this.password,
   });
 
-  String? token;
+  String? name;
 
-  String? newPassword;
+  String? email;
+
+  String? password;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is InlineObject3 &&
-     other.token == token &&
-     other.newPassword == newPassword;
+     other.name == name &&
+     other.email == email &&
+     other.password == password;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
-    (token == null ? 0 : token.hashCode) +
-    (newPassword == null ? 0 : newPassword.hashCode);
+    (name == null ? 0 : name.hashCode) +
+    (email == null ? 0 : email.hashCode) +
+    (password == null ? 0 : password.hashCode);
 
   @override
-  String toString() => 'InlineObject3[token=$token, newPassword=$newPassword]';
+  String toString() => 'InlineObject3[name=$name, email=$email, password=$password]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (token != null) {
-      json[r'token'] = token;
+    if (name != null) {
+      json[r'name'] = name;
     }
-    if (newPassword != null) {
-      json[r'newPassword'] = newPassword;
+    if (email != null) {
+      json[r'email'] = email;
+    }
+    if (password != null) {
+      json[r'password'] = password;
     }
     return json;
   }
@@ -53,8 +61,9 @@ class InlineObject3 {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
       return InlineObject3(
-        token: mapValueOfType<String>(json, r'token'),
-        newPassword: mapValueOfType<String>(json, r'newPassword'),
+        name: mapValueOfType<String>(json, r'name'),
+        email: mapValueOfType<String>(json, r'email'),
+        password: mapValueOfType<String>(json, r'password'),
       );
     }
     return null;

@@ -16,43 +16,13 @@ void main() {
   final instance = InlineObject4();
 
   group('test InlineObject4', () {
-    // String downloadType
-    test('to test the property `downloadType`', () async {
+    // String token
+    test('to test the property `token`', () async {
       // TODO
     });
 
-    // String eventType
-    test('to test the property `eventType`', () async {
-      // TODO
-    });
-
-    // String eventStatus
-    test('to test the property `eventStatus`', () async {
-      // TODO
-    });
-
-    // num fromDate
-    test('to test the property `fromDate`', () async {
-      // TODO
-    });
-
-    // num toDate
-    test('to test the property `toDate`', () async {
-      // TODO
-    });
-
-    // List<String> eventIdList (default value: const [])
-    test('to test the property `eventIdList`', () async {
-      // TODO
-    });
-
-    // String searchKeyword
-    test('to test the property `searchKeyword`', () async {
-      // TODO
-    });
-
-    // List<List<num>> polygon (default value: const [])
-    test('to test the property `polygon`', () async {
+    // String newPassword
+    test('to test the property `newPassword`', () async {
       // TODO
     });
 

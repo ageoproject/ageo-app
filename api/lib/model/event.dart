@@ -25,7 +25,7 @@ class Event {
     this.city,
     this.state,
     this.country,
-    this.sensorData,
+    this.sensorData = const [],
     this.commonEventDetails,
     this.customEventDetails,
     this.verifyBy,
@@ -55,7 +55,7 @@ class Event {
 
   String? country;
 
-  Object? sensorData;
+  List<Object>? sensorData;
 
   Object? commonEventDetails;
 
@@ -179,7 +179,10 @@ class Event {
         city: mapValueOfType<String>(json, r'city'),
         state: mapValueOfType<String>(json, r'state'),
         country: mapValueOfType<String>(json, r'country'),
-        sensorData: mapValueOfType<Object>(json, r'sensorData'),
+        // sensorData: Object.listFromJson(json[r'sensorData']),
+        sensorData: json[r'sensorData'] is List
+            ? (json[r'sensorData'] as List).cast<Object>()
+            : null,
         commonEventDetails: mapValueOfType<Object>(json, r'commonEventDetails'),
         customEventDetails: mapValueOfType<Object>(json, r'customEventDetails'),
         verifyBy: User.fromJson(json[r'verifyBy']),

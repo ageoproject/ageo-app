@@ -9,6 +9,7 @@ All URIs are relative to *http://localhost:3000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**contactUs**](IndexApi.md#contactus) | **POST** /anonymous/contact_us | Submit contact us form
 [**getDatatableEventList**](IndexApi.md#getdatatableeventlist) | **POST** /anonymous/get_datatable_event_list | Get paginated list of events
 [**getEventDetails**](IndexApi.md#geteventdetails) | **GET** /anonymous/get_event_details | Get details of an event
 [**getMapEventList**](IndexApi.md#getmapeventlist) | **POST** /anonymous/get_map_event_list | Get list of events for map view
@@ -16,8 +17,49 @@ Method | HTTP request | Description
 [**reportEvent**](IndexApi.md#reportevent) | **POST** /anonymous/report_event | Report events
 
 
+# **contactUs**
+> String contactUs(formData)
+
+Submit contact us form
+
+### Example
+```dart
+import 'package:ageoClient/api.dart';
+
+final api_instance = IndexApi();
+final formData = InlineObject(); // InlineObject | 
+
+try {
+    final result = api_instance.contactUs(formData);
+    print(result);
+} catch (e) {
+    print('Exception when calling IndexApi->contactUs: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **formData** | [**InlineObject**](InlineObject.md)|  | [optional] 
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getDatatableEventList**
-> InlineResponse200 getDatatableEventList(eventType, eventStatus, fromDate, toDate, datatableoptions)
+> InlineResponse200 getDatatableEventList(eventType, eventStatus, fromDate, toDate, userRole, datatableoptions)
 
 Get paginated list of events
 
@@ -30,10 +72,11 @@ final eventType = eventType_example; // String |
 final eventStatus = eventStatus_example; // String | 
 final fromDate = 8.14; // num | 
 final toDate = 8.14; // num | 
+final userRole = userRole_example; // String | 
 final datatableoptions = Object(); // Object | 
 
 try {
-    final result = api_instance.getDatatableEventList(eventType, eventStatus, fromDate, toDate, datatableoptions);
+    final result = api_instance.getDatatableEventList(eventType, eventStatus, fromDate, toDate, userRole, datatableoptions);
     print(result);
 } catch (e) {
     print('Exception when calling IndexApi->getDatatableEventList: $e\n');
@@ -48,6 +91,7 @@ Name | Type | Description  | Notes
  **eventStatus** | **String**|  | [optional] 
  **fromDate** | **num**|  | [optional] 
  **toDate** | **num**|  | [optional] 
+ **userRole** | **String**|  | [optional] 
  **datatableoptions** | **Object**|  | [optional] 
 
 ### Return type
@@ -107,7 +151,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getMapEventList**
-> List<Event> getMapEventList(eventType, eventStatus, fromDate, toDate, polygon)
+> List<Event> getMapEventList(eventType, eventStatus, fromDate, toDate, userRole, polygon)
 
 Get list of events for map view
 
@@ -120,10 +164,11 @@ final eventType = eventType_example; // String |
 final eventStatus = eventStatus_example; // String | 
 final fromDate = 8.14; // num | 
 final toDate = 8.14; // num | 
+final userRole = userRole_example; // String | 
 final polygon = [List<List<num>>()]; // List<List<num>> | 
 
 try {
-    final result = api_instance.getMapEventList(eventType, eventStatus, fromDate, toDate, polygon);
+    final result = api_instance.getMapEventList(eventType, eventStatus, fromDate, toDate, userRole, polygon);
     print(result);
 } catch (e) {
     print('Exception when calling IndexApi->getMapEventList: $e\n');
@@ -138,6 +183,7 @@ Name | Type | Description  | Notes
  **eventStatus** | **String**|  | [optional] 
  **fromDate** | **num**|  | [optional] 
  **toDate** | **num**|  | [optional] 
+ **userRole** | **String**|  | [optional] 
  **polygon** | [**List<List<num>>**](List.md)|  | [optional] 
 
 ### Return type

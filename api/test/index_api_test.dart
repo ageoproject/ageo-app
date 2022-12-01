@@ -17,9 +17,16 @@ void main() {
   final instance = IndexApi();
 
   group('tests for IndexApi', () {
+    // Submit contact us form
+    //
+    //Future<String> contactUs({ InlineObject formData }) async
+    test('test contactUs', () async {
+      // TODO
+    });
+
     // Get paginated list of events
     //
-    //Future<InlineResponse200> getDatatableEventList({ String eventType, String eventStatus, num fromDate, num toDate, Object datatableoptions }) async
+    //Future<InlineResponse200> getDatatableEventList({ String eventType, String eventStatus, num fromDate, num toDate, String userRole, Object datatableoptions }) async
     test('test getDatatableEventList', () async {
       // TODO
     });
@@ -33,7 +40,7 @@ void main() {
 
     // Get list of events for map view
     //
-    //Future<List<Event>> getMapEventList({ String eventType, String eventStatus, num fromDate, num toDate, List<List<num>> polygon }) async
+    //Future<List<Event>> getMapEventList({ String eventType, String eventStatus, num fromDate, num toDate, String userRole, List<List<num>> polygon }) async
     test('test getMapEventList', () async {
       // TODO
     });
@@ -47,7 +54,7 @@ void main() {
 
     // Report events
     //
-    //Future<Event> reportEvent(String eventType, num time, String location, { MultipartFile image1, MultipartFile image2, MultipartFile image3, bool quickReport, String comment, String sensorData, String commonEventDetails, String customEventDetails }) async
+    //Future<Event> reportEvent(String eventType, String time, String location, { MultipartFile image1, MultipartFile image2, MultipartFile image3, bool quickReport, String comment, String sensorData, String commonEventDetails, String customEventDetails }) async
     test('test reportEvent', () async {
       // TODO
     });

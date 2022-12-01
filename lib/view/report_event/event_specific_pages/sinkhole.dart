@@ -10,7 +10,6 @@ class Sinkhole extends StatelessWidget {
   Sinkhole({Key? key}) : super(key: key);
   final ReportEventController _reportEventController=Get.find();
   final double _inputFieldBorderRadius = 4;
-  final GlobalKey<FormState> _sinkholeDimensionKey = GlobalKey<FormState>();
   final List<Map<String,String>> _typeOfSinkholeDamage=[
     {
       "localization_ref":"monitor_event.sinkhole.green_area",
@@ -72,82 +71,110 @@ class Sinkhole extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Text("${tr("monitor_event.sinkhole.sinkhole_dimension")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-                          ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Text("${tr("monitor_event.sinkhole.sinkhole_dimension")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
                         ),
-                        SizedBox(
-                          width: 75,
-                          child: Form(
-                            key: _sinkholeDimensionKey,
-                            child: TextFormField(
-                              initialValue:_reportEventController.sinkholeDamage["sinkhole_dimension"].toString(),
-                              keyboardType:const TextInputType.numberWithOptions(signed: true, decimal: false),
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                              maxLength: 4,
-                              textInputAction: TextInputAction.done,
-                              style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.white,
-                                counterText: "",
-                                errorMaxLines: 2,
-                                contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(_inputFieldBorderRadius),
-                                  ),
-                                ),
-                                disabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(_inputFieldBorderRadius),
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(_inputFieldBorderRadius),
-                                  ),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(color:appTheme.placeHolderTextColor),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(_inputFieldBorderRadius),
-                                  ),
-                                ),
-                              ),
-                              validator: (value){
-                                if(value!.isEmpty){
-                                  return tr("monitor_event.sinkhole.empty_sinkhole_dimension_error");
-                                }else if(int.parse(value)<=0){
-                                  return tr("monitor_event.sinkhole.invalid_sinkhole_dimension_error");
-                                }else{
-                                  return null;
-                                }
-                              },
-                              onChanged: (value)async{
-                                if(_sinkholeDimensionKey.currentState!.validate()){
-                                  _reportEventController.changeDimensionOfSinkhole(value: value);
-                                  showSubmitButton=true;
-                                }else{
-                                  showSubmitButton=false;
-                                }
-                                _reportEventController.update();
-                                // await _showCalendar(selectedDate: DateTime.parse("${_studentProfile.user!.dob}"));
-                              },
-                            ),
-                          ),
+                        Slider(
+                          value: _reportEventController.sinkholeDimensionSlider,
+                          max: 5,
+                          divisions: 5,
+                          activeColor: appTheme.primaryActionColor,
+                          inactiveColor: appTheme.toggleSelectionColor,
+                          label: _reportEventController.sinkholeDimensionList[_reportEventController.sinkholeDimensionSlider.toInt()],
+                          onChanged: (value){
+                            _reportEventController.changeDimensionOfSinkhole(value: value);
+                          },
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(_reportEventController.sinkholeDimensionList.length, (index) {
+                            return Expanded(
+                              child:Align(alignment: Alignment.center,child: Text(_reportEventController.sinkholeDimensionList[index],style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,))),
+                            );
+                          }),
                         ),
                       ],
                     ),
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //       child: Padding(
+                    //         padding: const EdgeInsets.only(right: 8.0),
+                    //         child: Text("${tr("monitor_event.sinkhole.sinkhole_dimension")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                    //       ),
+                    //     ),
+                    //     SizedBox(
+                    //       width: 75,
+                    //       child: Form(
+                    //         key: _sinkholeDimensionKey,
+                    //         child: TextFormField(
+                    //           initialValue:_reportEventController.sinkholeDamage["sinkhole_dimension"].toString(),
+                    //           keyboardType:const TextInputType.numberWithOptions(signed: true, decimal: false),
+                    //           inputFormatters: [
+                    //             FilteringTextInputFormatter.digitsOnly
+                    //           ],
+                    //           maxLength: 4,
+                    //           textInputAction: TextInputAction.done,
+                    //           style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),
+                    //           decoration: InputDecoration(
+                    //             filled: true,
+                    //             fillColor: Colors.white,
+                    //             counterText: "",
+                    //             errorMaxLines: 2,
+                    //             contentPadding:const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                    //             enabledBorder: OutlineInputBorder(
+                    //               borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                    //               borderRadius: BorderRadius.all(
+                    //                 Radius.circular(_inputFieldBorderRadius),
+                    //               ),
+                    //             ),
+                    //             disabledBorder: OutlineInputBorder(
+                    //               borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                    //               borderRadius: BorderRadius.all(
+                    //                 Radius.circular(_inputFieldBorderRadius),
+                    //               ),
+                    //             ),
+                    //             focusedBorder: OutlineInputBorder(
+                    //               borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                    //               borderRadius: BorderRadius.all(
+                    //                 Radius.circular(_inputFieldBorderRadius),
+                    //               ),
+                    //             ),
+                    //             border: OutlineInputBorder(
+                    //               borderSide: BorderSide(color:appTheme.placeHolderTextColor),
+                    //               borderRadius: BorderRadius.all(
+                    //                 Radius.circular(_inputFieldBorderRadius),
+                    //               ),
+                    //             ),
+                    //           ),
+                    //           validator: (value){
+                    //             if(value!.isEmpty){
+                    //               return tr("monitor_event.sinkhole.empty_sinkhole_dimension_error");
+                    //             }else if(int.parse(value)<=0){
+                    //               return tr("monitor_event.sinkhole.invalid_sinkhole_dimension_error");
+                    //             }else{
+                    //               return null;
+                    //             }
+                    //           },
+                    //           onChanged: (value)async{
+                    //             if(_sinkholeDimensionKey.currentState!.validate()){
+                    //               _reportEventController.changeDimensionOfSinkhole(value: value);
+                    //               showSubmitButton=true;
+                    //             }else{
+                    //               showSubmitButton=false;
+                    //             }
+                    //             _reportEventController.update();
+                    //             // await _showCalendar(selectedDate: DateTime.parse("${_studentProfile.user!.dob}"));
+                    //           },
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     Padding(
                       padding: const EdgeInsets.only(top:18.0,bottom: 12),
                       child: Text("common_key.select_observe_damage",style: TextStyle(fontSize:14,color:appTheme.primaryActionColor,fontWeight: FontWeight.w600 ),).tr(),

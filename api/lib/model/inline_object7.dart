@@ -10,35 +10,35 @@
 
 part of openapi.api;
 
-class InlineObject6 {
-  /// Returns a new [InlineObject6] instance.
-  InlineObject6({
+class InlineObject7 {
+  /// Returns a new [InlineObject7] instance.
+  InlineObject7({
     this.downloadType,
     this.searchKeyword,
-    this.managerIdList = const [],
+    this.userIdList = const [],
   });
 
   String? downloadType;
 
   String? searchKeyword;
 
-  List<String>? managerIdList;
+  List<String>? userIdList;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is InlineObject6 &&
+  bool operator ==(Object other) => identical(this, other) || other is InlineObject7 &&
      other.downloadType == downloadType &&
      other.searchKeyword == searchKeyword &&
-     other.managerIdList == managerIdList;
+     other.userIdList == userIdList;
 
   @override
   int get hashCode =>
   // ignore: unnecessary_parenthesis
     (downloadType == null ? 0 : downloadType.hashCode) +
     (searchKeyword == null ? 0 : searchKeyword.hashCode) +
-    (managerIdList == null ? 0 : managerIdList.hashCode);
+    (userIdList == null ? 0 : userIdList.hashCode);
 
   @override
-  String toString() => 'InlineObject6[downloadType=$downloadType, searchKeyword=$searchKeyword, managerIdList=$managerIdList]';
+  String toString() => 'InlineObject7[downloadType=$downloadType, searchKeyword=$searchKeyword, userIdList=$userIdList]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -48,52 +48,52 @@ class InlineObject6 {
     if (searchKeyword != null) {
       json[r'searchKeyword'] = searchKeyword;
     }
-    if (managerIdList != null) {
-      json[r'managerIdList'] = managerIdList;
+    if (userIdList != null) {
+      json[r'userIdList'] = userIdList;
     }
     return json;
   }
 
-  /// Returns a new [InlineObject6] instance and imports its values from
+  /// Returns a new [InlineObject7] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static InlineObject6? fromJson(dynamic value) {
+  static InlineObject7? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
-      return InlineObject6(
+      return InlineObject7(
         downloadType: mapValueOfType<String>(json, r'downloadType'),
         searchKeyword: mapValueOfType<String>(json, r'searchKeyword'),
-        managerIdList: json[r'managerIdList'] is List
-          ? (json[r'managerIdList'] as List).cast<String>()
+        userIdList: json[r'userIdList'] is List
+          ? (json[r'userIdList'] as List).cast<String>()
           : null,
       );
     }
     return null;
   }
 
-  static List<InlineObject6?>? listFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) =>
+  static List<InlineObject7?>? listFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) =>
     json is List && json.isNotEmpty
-      ? json.map(InlineObject6.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <InlineObject6>[];
+      ? json.map(InlineObject7.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <InlineObject7>[];
 
-  static Map<String, InlineObject6?> mapFromJson(dynamic json) {
-    final map = <String, InlineObject6?>{};
+  static Map<String, InlineObject7?> mapFromJson(dynamic json) {
+    final map = <String, InlineObject7?>{};
     if (json is Map && json.isNotEmpty) {
       json
         .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = InlineObject6.fromJson(value));
+        .forEach((key, dynamic value) => map[key] = InlineObject7.fromJson(value));
     }
     return map;
   }
 
-  // maps a json object with a list of InlineObject6-objects as value to a dart map
-  static Map<String, List<InlineObject6?>?> mapListFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) {
-    final Map<String, List<InlineObject6?>?> map = <String, List<InlineObject6>?>{};
+  // maps a json object with a list of InlineObject7-objects as value to a dart map
+  static Map<String, List<InlineObject7?>?> mapListFromJson(dynamic json, {bool? emptyIsNull, bool? growable,}) {
+    final Map<String, List<InlineObject7?>?> map = <String, List<InlineObject7>?>{};
     if (json is Map && json.isNotEmpty) {
       json
         .cast<String, dynamic>()
         .forEach((key, dynamic value) {
-          map[key] = InlineObject6.listFromJson(
+          map[key] = InlineObject7.listFromJson(
             value,
             emptyIsNull: emptyIsNull,
             growable: growable,

@@ -75,6 +75,7 @@ Class | Method | HTTP request | Description
 *AuthApi* | [**recoverPasswordRequest**](doc//AuthApi.md#recoverpasswordrequest) | **POST** /auth/recover_password_request | Reset Password
 *AuthApi* | [**resetPassword**](doc//AuthApi.md#resetpassword) | **POST** /auth/reset_password | Reset Password Request
 *AuthApi* | [**signup**](doc//AuthApi.md#signup) | **POST** /auth/signup | Sign up
+*IndexApi* | [**contactUs**](doc//IndexApi.md#contactus) | **POST** /anonymous/contact_us | Submit contact us form
 *IndexApi* | [**getDatatableEventList**](doc//IndexApi.md#getdatatableeventlist) | **POST** /anonymous/get_datatable_event_list | Get paginated list of events
 *IndexApi* | [**getEventDetails**](doc//IndexApi.md#geteventdetails) | **GET** /anonymous/get_event_details | Get details of an event
 *IndexApi* | [**getMapEventList**](doc//IndexApi.md#getmapeventlist) | **POST** /anonymous/get_map_event_list | Get list of events for map view
@@ -98,6 +99,7 @@ Class | Method | HTTP request | Description
  - [InlineObject4](doc//InlineObject4.md)
  - [InlineObject5](doc//InlineObject5.md)
  - [InlineObject6](doc//InlineObject6.md)
+ - [InlineObject7](doc//InlineObject7.md)
  - [InlineResponse200](doc//InlineResponse200.md)
  - [LoginResponse](doc//LoginResponse.md)
  - [User](doc//User.md)

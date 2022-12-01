@@ -26,8 +26,8 @@ void main() {
       // TODO
     });
 
-    // List<String> userIdList (default value: const [])
-    test('to test the property `userIdList`', () async {
+    // List<String> managerIdList (default value: const [])
+    test('to test the property `managerIdList`', () async {
       // TODO
     });
 
