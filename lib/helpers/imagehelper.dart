@@ -1,9 +1,13 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'package:ageo/controllers/report_event_controller.dart';
+import 'package:ageo/helpers/SQLite.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/custom_camera.dart';
+import 'package:ageo/model/image_model.dart';
 import 'package:camera/camera.dart';
+import 'package:crypto/crypto.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +19,7 @@ class ImageSelector extends StatelessWidget {
 
   final ImagePicker _picker = ImagePicker();
   final ReportEventController _reportEventController=Get.find();
+  final SQLiteHelper _sqLiteHelper=SQLiteHelper();
 
    Future<String> getFileSize(String filepath, int decimals) async {
      // this function return file size.
@@ -88,7 +93,11 @@ class ImageSelector extends StatelessWidget {
                     onPressed: ()async{
                       XFile? galleryImage = await _picker.pickImage(source: ImageSource.gallery);
                       if(galleryImage!=null){
-                        _reportEventController.updateSensorDataForGalleryUpload();
+                        Digest digest = await md5.bind(File(galleryImage.path).openRead()).first;
+                        String hash = base64.encode(digest.bytes);
+                        // print("Gallery image hash value => $hash");
+                        ImageModel? image = await _sqLiteHelper.getImage(hashValue: hash);
+                        _reportEventController.updateSensorDataForGalleryUpload(sensorValue: image?.sensorData);
                         _reportEventController.addImage(image: galleryImage);
                       }
                       Navigator.pop(context);

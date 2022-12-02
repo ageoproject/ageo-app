@@ -44,7 +44,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app needs access to location to report event.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Need Photo Library acess to select and upload images</string>
+	<string>Need Photo Library access to select and upload images</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

@@ -1,10 +1,16 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 import 'package:ageo/controllers/report_event_controller.dart';
+import 'package:ageo/helpers/SQLite.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/open_image_preview.dart';
+import 'package:ageo/model/image_model.dart';
 import 'package:camera/camera.dart';
+import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
 class CameraPage extends StatefulWidget {
@@ -22,9 +28,10 @@ class _CameraPageState extends State<CameraPage> {
   int _activeCameraId=0;
   late CustomThemeData appTheme;
   FlashMode _flashMode=FlashMode.auto;
-  late StreamSubscription<MagnetometerEvent> streamSubscriptionMagnetometer;
-  late StreamSubscription<GyroscopeEvent> streamSubscriptionGyroscopeEvent;
-  late StreamSubscription<AccelerometerEvent> streamSubscriptionAccelerometerEvent;
+  late StreamSubscription<MagnetometerEvent>? streamSubscriptionMagnetometer;
+  late StreamSubscription<GyroscopeEvent>? streamSubscriptionGyroscopeEvent;
+  late StreamSubscription<AccelerometerEvent>? streamSubscriptionAccelerometerEvent;
+  late Map<String,dynamic> _sensorDataReferenceObject;
 
   @override
   void initState() {
@@ -73,27 +80,26 @@ class _CameraPageState extends State<CameraPage> {
 
   void closeStreamSubscriptionMagnetometer(){
     // this function stop listening to Magnetometer sensor stream
-    streamSubscriptionMagnetometer.cancel();
+    streamSubscriptionMagnetometer?.cancel();
   }
   void cloeStreamSubscriptionGyroscopeEvent(){
     // this function stop listening to Gyroscope sensor stream
-    streamSubscriptionGyroscopeEvent.cancel();
+    streamSubscriptionGyroscopeEvent?.cancel();
   }
   void closeStreamSubscriptionAccelerometerEvent(){
     // this function stop listening to Accelerometer sensor stream
-    streamSubscriptionAccelerometerEvent.cancel();
+    streamSubscriptionAccelerometerEvent?.cancel();
   }
 
   @override
   void dispose() {
     // this function destroy or release all controller and stream
     _cameraController.dispose();
-    streamSubscriptionMagnetometer.cancel();
-    streamSubscriptionGyroscopeEvent.cancel();
-    streamSubscriptionAccelerometerEvent.cancel();
+    streamSubscriptionMagnetometer?.cancel();
+    streamSubscriptionGyroscopeEvent?.cancel();
+    streamSubscriptionAccelerometerEvent?.cancel();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -170,8 +176,40 @@ class _CameraPageState extends State<CameraPage> {
                     });
 
                     final XFile image = await _cameraController.takePicture();
+                    // storing sensor data in object
+                    _sensorDataReferenceObject= {
+                      "accelerometer":{
+                        "x":accelerometerEvent.x,
+                        "y":accelerometerEvent.y,
+                        "z":accelerometerEvent.z,
+                      },
+                      "gyroscope":{
+                        "x":gyroscopeEvent.x,
+                        "y":gyroscopeEvent.y,
+                        "z":gyroscopeEvent.z,
+                      },
+                      "magnetometer":{
+                        "x":magnetometerEvent.x,
+                        "y":magnetometerEvent.y,
+                        "z":magnetometerEvent.z,
+                      }
+                    };
 
                     if (!mounted) return;
+
+                    // Saving image to gallery
+                    // await GallerySaver.saveImage(image.path);
+                    await ImageGallerySaver.saveFile(image.path);
+                    // Directory directory = await getApplicationDocumentsDirectory();
+                    // File imageFile=await File(image.path).copy("${directory.path}/${image.name}");
+                    // print("image path => ${imageFile.path}");
+
+                    // Converting image into MD5 hash value
+                    Digest digest = await md5.bind(File(image.path).openRead()).first;
+                    String hash = base64.encode(digest.bytes);
+                    ImageModel imageModel=ImageModel(id: 1, imageHash: hash, imageName: image.name, sensorData: _sensorDataReferenceObject);
+                    SQLiteHelper sqLite=SQLiteHelper();
+                    sqLite.insertImage(imageModel: imageModel);
                     // this will push to new screen to show preview of capture image and ask user to approve or reject image
                     // if rejected then allow user to capture new image and if approved then save sensor date and go to previous page.
                     bool approved =await Navigator.of(context).push(MaterialPageRoute(builder: (context) => OpenImagePreview(imagePath: image.path,showActionButton: true,)),)??false;

@@ -173,9 +173,10 @@ class DevicePermissionsHandler extends StatelessWidget {
                           Permission.location,
                           Permission.camera,
                           Permission.photos,
+                          Permission.storage
                         ].request();
                         if(Platform.isAndroid){
-                          if(statuses[Permission.location] == PermissionStatus.granted && statuses[Permission.camera] == PermissionStatus.granted){
+                          if(statuses[Permission.location] == PermissionStatus.granted && statuses[Permission.camera] == PermissionStatus.granted && statuses[Permission.storage] == PermissionStatus.granted){
                             Navigator.pop(context,true);
                           }else if(statuses[Permission.location] == PermissionStatus.permanentlyDenied || statuses[Permission.camera] == PermissionStatus.permanentlyDenied){
                             locationHelper.showLocationPermissionError(context: context, errorMessage: tr("permission_page.permission_denied_permanently"), actionType: "permission_denied_permanently");

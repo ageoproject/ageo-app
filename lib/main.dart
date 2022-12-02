@@ -1,4 +1,5 @@
 import 'package:ageo/ageoConfig.dart';
+import 'package:ageo/helpers/SQLite.dart';
 import 'package:ageo/helpers/language_helper.dart';
 import 'package:ageo/helpers/local_Storage.dart';
 import 'package:ageo/controllers/main_controller.dart';
@@ -20,7 +21,11 @@ void main() async{
   final AgeoConfig ageoConfig = AgeoConfig();
   await ageoConfig.checkAppVersion();
   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+  // Initialized sharedPreferences
   localStorage.initSharedPreferences(sharedPreferences: sharedPreferences);
+  SQLiteHelper sqLiteHelper= SQLiteHelper();
+  // Initialized SQLite DB
+  await sqLiteHelper.initDataBase();
   // await localStorage.deleteValue(key: languageHelper.languageKey);
   String? languageCode=localStorage.readStringValue(key: languageHelper.languageKey); // to check if user has selected any preferred language or not.
   Locale defaultLanguage=Locale(languageHelper.englishLanguageCode,);// it will select default language to english

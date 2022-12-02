@@ -50,6 +50,9 @@ dependencies:
   share_plus: ^6.2.0
   package_info_plus: ^3.0.1
   flutter_inappwebview: ^5.7.1+1
+  sqflite: ^2.2.1
+  crypto: ^3.0.2
+  image_gallery_saver: ^1.7.1
 
   ageoClient:
     path: ./api/

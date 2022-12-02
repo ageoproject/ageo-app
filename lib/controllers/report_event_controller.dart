@@ -271,8 +271,13 @@ class ReportEventController extends GetxController{
     _sensorDataList.add(sensorData);
   }
 
-  void updateSensorDataForGalleryUpload(){
-    Map<String,dynamic> sensorData=json.decode(json.encode(_sensorDataReferenceObject));
+  void updateSensorDataForGalleryUpload({required Map<String,dynamic>? sensorValue}){
+    Map<String,dynamic> sensorData;
+    if(sensorValue!=null){
+      sensorData=sensorValue;
+    }else{
+      sensorData=json.decode(json.encode(_sensorDataReferenceObject));
+    }
     _sensorDataList.add(sensorData);
   }
 
