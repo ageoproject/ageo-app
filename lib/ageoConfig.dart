@@ -11,7 +11,7 @@ class AgeoConfig{
   late IndexApi _indexApi;
   late String _basePath;
   late String _appVersion;
-  final String _frontendBasePath="https://ageo-web.web.app";
+  late String _frontendBasePath;
 
   String get frontendBasePath=>_frontendBasePath;
   String get appVersion=>_appVersion;
@@ -20,9 +20,11 @@ class AgeoConfig{
   AgeoConfig._constructor(){
     // this constructor select correct basePath for debug and production env base on app build type
     if(kReleaseMode){
-      _basePath="https://api.staging.ageo.blackcurrantapps.com/api";
+      _basePath="https://ageoplatform.ucd.ie/api";
+      _frontendBasePath="https://ageoplatform.ucd.ie";
     }else{
       _basePath="https://api.staging.ageo.blackcurrantapps.com/api";
+      _frontendBasePath="https://ageo-web.web.app";
       // _basePath="http://192.168.1.22:3000";
       // _basePath="https://8cd7-110-226-182-4.in.ngrok.io";
     }

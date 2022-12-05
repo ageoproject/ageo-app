@@ -826,9 +826,6 @@ class ReportEventController extends GetxController{
   Future<String> reportEvent()async{
     _eventDetail.sensorData=_sensorDataList;
     _eventDetail.commonEventDetails=_quickReportingIsActive.value?{}:createCommonQuestionObject();
-    _eventDetail.city="Mumbai";
-    _eventDetail.country="India";
-    _eventDetail.state="Maharashtra";
     _eventDetail.quickReport=_quickReportingIsActive.value;
     _eventDetail.customEventDetails=_quickReportingIsActive.value?{}:selectCustomEventDetail();
     // print(_eventDetail);

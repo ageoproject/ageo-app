@@ -44,7 +44,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.app.ageo"
+        applicationId "eu.ageoplatform.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         minSdkVersion 21
@@ -71,16 +71,17 @@ android {
     }
     buildTypes {
         debug {
-            manifestPlaceholders = [ mapApiKeyValue:"AIzaSyBjH9cpklkD16Mm5mldcoZ68uoK-bF0xYs"]
+            applicationIdSuffix ".staging"
+//            manifestPlaceholders = [ mapApiKeyValue:""]
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.DebugSign
+            signingConfig signingConfigs.ProdSign
         }
         release {
-            manifestPlaceholders = [ mapApiKeyValue:"AIzaSyBjH9cpklkD16Mm5mldcoZ68uoK-bF0xYs"]
+//            manifestPlaceholders = [ mapApiKeyValue:""]
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.DebugSign
+            signingConfig signingConfigs.ProdSign
         }
     }
 }

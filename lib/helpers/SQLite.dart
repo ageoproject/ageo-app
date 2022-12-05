@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:ageo/model/image_model.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 
 class SQLiteHelper{
 
@@ -18,7 +19,7 @@ class SQLiteHelper{
 
   Future<void> initDataBase()async{
     String databasesPath = await getDatabasesPath();
-    _databaseInstance= await openDatabase(databasesPath+_dbName,onCreate: _createTable,version: 1);
+    _databaseInstance= await openDatabase(join(databasesPath,_dbName),onCreate: _createTable,version: 1);
     // print("Data initialized");
   }
 

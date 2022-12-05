@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:sensors_plus/sensors_plus.dart';
+// import 'package:gallery_saver/gallery_saver.dart';
+// import 'package:path_provider/path_provider.dart';
 
 class CameraPage extends StatefulWidget {
   final List<CameraDescription> cameraList;
