@@ -121,8 +121,8 @@ class _CoastalErosionState extends State<CoastalErosion> {
       "icon_path":"assets/images/report_event/event_specific_images/coastal_erosion/vegetation_ic.png"
     },
     {
-      "localization_ref":"monitor_event.coastal_erosion.dune_detail.granville_slats",
-      "type_of_damage":"Granville slats",
+      "localization_ref":"monitor_event.coastal_erosion.dune_detail.sand_fence",
+      "type_of_damage":"Sand fence",
       "icon_path":"assets/images/report_event/event_specific_images/coastal_erosion/granville_slats_ic.png"
     },
     {
@@ -922,7 +922,7 @@ class _CoastalErosionState extends State<CoastalErosion> {
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.only(top: 12.0),
+                      padding: const EdgeInsets.symmetric(vertical: 12.0),
                       child: selectDetailScreen(),
                     ),
 

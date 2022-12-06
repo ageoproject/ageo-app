@@ -13,7 +13,7 @@ class RiverFlooding extends StatelessWidget {
   final List<Map<String,String>> _typeOfRiverFloodingDamage=[
     {
       "localization_ref":"monitor_event.river_flood.building",
-      "type_of_damage":"Building",
+      "type_of_damage":"Buildings",
       "icon_path":"assets/images/report_event/event_specific_images/river_flooding/building_ic.png"
     },
     {

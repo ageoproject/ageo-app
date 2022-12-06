@@ -138,7 +138,7 @@ class MarineFlooding extends StatelessWidget {
                             activeColor: appTheme.primaryActionColor,
                             inactiveColor: appTheme.toggleSelectionColor,
                             onChanged: (value){
-                              _reportEventController.changeWaterLevelOfFlood(value: value);
+                              _reportEventController.changeMarineFloodingWaterLevel(value: value.toInt());
                             },
                           ),
                           Row(
