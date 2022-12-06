@@ -70,7 +70,7 @@
       "Weekly": "Weekly"
     },
     "tab_view": {
-      "event_type": "Event type",
+      "event_type": "Event Type",
       "map": "Map",
       "questions": "Questions",
       "damage": "Damage"
@@ -80,7 +80,7 @@
       "tsunami": "Tsunami",
       "earthquake": "Earthquake",
       "rockfall": "Rockfall",
-      "land_slide": "Land Slide",
+      "land_slide": "LandSlide",
       "flood": "River Flooding",
       "sinkhole": "Sinkhole",
       "building_settlement": "Building Settlement",
@@ -91,7 +91,7 @@
     "toast_message": {
       "select_event_type": "Please select event type",
       "select_location": "Please mark event location on map",
-      "select_event_date_time": "Please capture and upload event image"
+      "select_event_date_time": "Please select or capture event photo(s)"
     },
     "earthquake": {
       "number_of_floors": "Number of floors",
@@ -112,7 +112,7 @@
     },
     "river_flood": {
       "water_level": "Water level",
-      "building": "Building",
+      "building": "Buildings",
       "green_area": "Green area",
       "road": "Road",
       "railway": "Railway",
@@ -210,7 +210,7 @@
         "dune_migration": "Dune migration",
         "dune_features": "Features on the dune",
         "vegetation":"Vegetation",
-        "granville_slats": "Granville slats",
+        "sand_fence": "Sand fence",
         "foot_path": "Foot path"
       },
       "coastal_defences_detail": {
@@ -244,7 +244,7 @@
     "Animals at risk ?": "Animals at risk ?",
     "Assets at risk ?": "Assets at risk ?",
     "I am safe ?": "I am safe ?",
-    "upload_or_capture": "Upload or capture (min 1 and max 3)",
+    "upload_or_capture": "Select or capture photo(s) (min 1 and max 3)",
     "add_comments": "Add comments",
     "comment_hint": "Type here...",
     "time_error": "You cannot report event in future time"

@@ -70,7 +70,7 @@
       "Weekly": "Weekly"
     },
     "tab_view": {
-      "event_type": "Event type",
+      "event_type": "Event Type",
       "map": "Map",
       "questions": "Questions",
       "damage": "Damage"
@@ -80,7 +80,7 @@
       "tsunami": "Tsunami",
       "earthquake": "Earthquake",
       "rockfall": "Rockfall",
-      "land_slide": "Land Slide",
+      "land_slide": "LandSlide",
       "flood": "River Flooding",
       "sinkhole": "Sinkhole",
       "building_settlement": "Building Settlement",
