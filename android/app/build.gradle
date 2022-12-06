@@ -58,6 +58,7 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
             storeFile file('/Users/manish/.android/debug.keystore')
+//            storeFile file("/Users/levent/Desktop/please/AGEO Key/ageo.jks")
             //storeFile file('C:/Users/BLC-blackmagic/.android/debug.keystore')
             storePassword 'android'
         }
@@ -65,6 +66,7 @@ android {
             keyAlias 'AGEO_Observatory'
             keyPassword 'ageo@app'
             storeFile file("/Users/manish/Workspace/Ageo/Ageo key/ageo.jks")
+//            storeFile file("/Users/levent/Desktop/please/AGEO Key/ageo.jks")
             //storeFile file("C:/Users/BLC-blackmagic/AppData/BeyondSkool key/beyondskool.jks")
             storePassword 'ageo@app'
         }
