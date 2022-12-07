@@ -170,6 +170,12 @@ class CustomAppDrawer extends StatelessWidget {
                     _customUrlLauncher.openInBrowser(url: _ageoConfig.frontendBasePath);
                   },
                 ),
+                TextButton(
+                  child: Text("app_drawer.privacy_policy",style: TextStyle(fontSize: 14,color: appTheme.primaryActionColor),).tr(),
+                  onPressed: (){
+                    _customUrlLauncher.openInBrowser(url: "https://www.ageoplatform.eu/mobile-privacy-policy");
+                  },
+                ),
                 Padding(
                   padding: EdgeInsets.only(bottom: Platform.isIOS ? 18 : 4,top: 16),
                   child: Text("${_ageoConfig.versionText} ",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),),
