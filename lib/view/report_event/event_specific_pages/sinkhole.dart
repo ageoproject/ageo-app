@@ -78,24 +78,35 @@ class Sinkhole extends StatelessWidget {
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Text("${tr("monitor_event.sinkhole.sinkhole_dimension")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
                         ),
-                        Slider(
-                          value: _reportEventController.sinkholeDimensionSlider,
-                          max: 5,
-                          divisions: 5,
-                          activeColor: appTheme.primaryActionColor,
-                          inactiveColor: appTheme.toggleSelectionColor,
-                          label: _reportEventController.sinkholeDimensionList[_reportEventController.sinkholeDimensionSlider.toInt()],
-                          onChanged: (value){
-                            _reportEventController.changeDimensionOfSinkhole(value: value);
-                          },
-                        ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: List.generate(_reportEventController.sinkholeDimensionList.length, (index) {
-                            return Expanded(
-                              child:Align(alignment: Alignment.center,child: Text(_reportEventController.sinkholeDimensionList[index],style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,))),
-                            );
-                          }),
+                          children: [
+                            Image.asset("assets/images/report_event/event_specific_images/sinkhole/walk_ic.png",height: 56,),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Slider(
+                                    value: _reportEventController.sinkholeDimensionSlider,
+                                    max: 5,
+                                    divisions: 5,
+                                    activeColor: appTheme.primaryActionColor,
+                                    inactiveColor: appTheme.toggleSelectionColor,
+                                    label: _reportEventController.sinkholeDimensionList[_reportEventController.sinkholeDimensionSlider.toInt()],
+                                    onChanged: (value){
+                                      _reportEventController.changeDimensionOfSinkhole(value: value);
+                                    },
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: List.generate(_reportEventController.sinkholeDimensionList.length, (index) {
+                                      return Expanded(
+                                        child:Align(alignment: Alignment.center,child: Text(_reportEventController.sinkholeDimensionList[index],style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,))),
+                                      );
+                                    }),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
                         ),
                       ],
                     ),

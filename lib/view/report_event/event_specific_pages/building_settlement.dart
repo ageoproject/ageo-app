@@ -3,14 +3,13 @@ import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/view/report_event/submit_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class BuildingSettlement extends StatelessWidget {
   BuildingSettlement({Key? key}) : super(key: key);
   final ReportEventController _reportEventController=Get.find();
   final double _imageContainerBorderRadius=12.0;
-  final double _inputFieldBorderRadius = 4;
+  // final double _inputFieldBorderRadius = 4;
   final List<Map<String,dynamic>> _settlementTypeList=[
     {
       "type_of_damage":"Outer Center Settlement",
@@ -202,6 +201,20 @@ class BuildingSettlement extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(right: 8.0),
                             child: Text("${tr("monitor_event.building_settlement.crack_dimension")}: ",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 14.0),
+                            child: Row(
+                              children: List.generate(5, (index) {
+                                return Expanded(
+                                  child: Container(
+                                    padding:const EdgeInsets.only(right: 8),
+                                    height: 7*(index+1.0),
+                                    child: Image.asset("assets/images/report_event/event_specific_images/building_settlement/circle_ic.png"),
+                                  ),
+                                );
+                              })
+                            ),
                           ),
                           Slider(
                             value: _reportEventController.buildingSettlementCrackDimensionSlider,

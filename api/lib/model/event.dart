@@ -245,7 +245,7 @@ class EventEventTypeEnum {
   static const BUILDING_SETTLEMENT = EventEventTypeEnum._(r'BUILDING_SETTLEMENT');
   static const SINKHOLE = EventEventTypeEnum._(r'SINKHOLE');
   static const ERUPTION = EventEventTypeEnum._(r'ERUPTION');
-  static const FOREST_FIRE = EventEventTypeEnum._(r'FOREST_FIRE');
+  static const WILDFIRE = EventEventTypeEnum._(r'WILDFIRE');
   static const COASTAL_EROSION = EventEventTypeEnum._(r'COASTAL_EROSION');
   static const MARINE_FLOODING = EventEventTypeEnum._(r'MARINE_FLOODING');
 
@@ -259,7 +259,7 @@ class EventEventTypeEnum {
     BUILDING_SETTLEMENT,
     SINKHOLE,
     ERUPTION,
-    FOREST_FIRE,
+    WILDFIRE,
     COASTAL_EROSION,
     MARINE_FLOODING,
   ];
@@ -301,7 +301,7 @@ class EventEventTypeEnumTypeTransformer {
         case r'BUILDING_SETTLEMENT': return EventEventTypeEnum.BUILDING_SETTLEMENT;
         case r'SINKHOLE': return EventEventTypeEnum.SINKHOLE;
         case r'ERUPTION': return EventEventTypeEnum.ERUPTION;
-        case r'FOREST_FIRE': return EventEventTypeEnum.FOREST_FIRE;
+        case r'WILDFIRE': return EventEventTypeEnum.WILDFIRE;
         case r'COASTAL_EROSION': return EventEventTypeEnum.COASTAL_EROSION;
         case r'MARINE_FLOODING': return EventEventTypeEnum.MARINE_FLOODING;
         default:

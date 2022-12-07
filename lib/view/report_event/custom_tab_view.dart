@@ -29,9 +29,9 @@ class CustomTabView extends StatelessWidget {
   }
 
   bool allowToChangeTab({required BuildContext context,required String actionType}){
-    // if(kDebugMode){
-    //   return true;
-    // }
+    if(kDebugMode){
+      return true;
+    }
     switch(actionType){
       case "event_type":{
         return true;

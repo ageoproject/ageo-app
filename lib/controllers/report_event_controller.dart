@@ -34,9 +34,9 @@ class ReportEventController extends GetxController{
   final String _filePath="assets/images/report_event/event_type/";
   final List<Map<String,dynamic>> _eventDetailList=[
     {
-      "event_name": "monitor_event.event_type_tab.forest_fire",
+      "event_name": "monitor_event.event_type_tab.wild_fire",
       "icon_name": "forestFire_ic",
-      "event_type": EventEventTypeEnum.FOREST_FIRE
+      "event_type": EventEventTypeEnum.WILDFIRE
     },
     {
       "event_name": "monitor_event.event_type_tab.tsunami",

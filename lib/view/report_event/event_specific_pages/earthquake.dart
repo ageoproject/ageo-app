@@ -12,21 +12,25 @@ class Earthquake extends StatelessWidget {
     {
       "localization_ref":"monitor_event.earthquake.falling_object",
       "type_of_damage":"Falling Object",
+      "color_code":"0xff60D160",
       "icon_path":"assets/images/report_event/event_specific_images/earthquake/falling_object_ic.png"
     },
     {
       "localization_ref":"monitor_event.earthquake.minor_damage",
       "type_of_damage":"Minor Damage",
+      "color_code":"0xffFEE26C",
       "icon_path":"assets/images/report_event/event_specific_images/earthquake/minor_damage_ic.png"
     },
     {
       "localization_ref":"monitor_event.earthquake.moderate_damage",
       "type_of_damage":"Moderate Damage",
+      "color_code":"0xffF87A4B",
       "icon_path":"assets/images/report_event/event_specific_images/earthquake/moderate_damage_ic.png"
     },
     {
       "localization_ref":"monitor_event.earthquake.total_damage",
       "type_of_damage":"Partial/Total collapse",
+      "color_code":"0xffF64242",
       "icon_path":"assets/images/report_event/event_specific_images/earthquake/total_damage_ic.png"
     }
   ];
@@ -137,11 +141,20 @@ class Earthquake extends StatelessWidget {
                                             // border: Border.all(color: appTheme.inputFieldsBorderColor)
                                             border: _reportEventController.earthquakeDamage["earthquake_observed_damage"][buildingIndex]["observed_building_damage"]== _typeOfEarthquakeDamage[index]["type_of_damage"] ? Border.all(color: appTheme.primaryActionColor,width: 2) : Border.all(color: appTheme.inputFieldsBorderColor),
                                           ),
-                                          padding:const EdgeInsets.all(12),
+                                          // padding:const EdgeInsets.all(12),
                                           child: Row(
                                             children: [
-                                              Image.asset(_typeOfEarthquakeDamage[index]["icon_path"]!,),
-                                              const SizedBox(width: 12,),
+                                              Container(
+                                                width:20,
+                                                decoration: BoxDecoration(
+                                                  color: Color(int.parse(_typeOfEarthquakeDamage[index]["color_code"]!)),
+                                                  borderRadius:const BorderRadius.only(topLeft: Radius.circular(10),bottomLeft: Radius.circular(10))
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.all(12.0,),
+                                                child: Image.asset(_typeOfEarthquakeDamage[index]["icon_path"]!,),
+                                              ),
                                               Expanded(child: Text(_typeOfEarthquakeDamage[index]["localization_ref"]!,style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr())
                                             ],
                                           ),

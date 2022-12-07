@@ -34,6 +34,7 @@ class _CameraPageState extends State<CameraPage> {
   late StreamSubscription<GyroscopeEvent>? streamSubscriptionGyroscopeEvent;
   late StreamSubscription<AccelerometerEvent>? streamSubscriptionAccelerometerEvent;
   late Map<String,dynamic> _sensorDataReferenceObject;
+  bool allowImageClick=true;
 
   @override
   void initState() {
@@ -155,7 +156,8 @@ class _CameraPageState extends State<CameraPage> {
               IconButton(
                 // this button used to capture image
                 icon: Icon(Icons.camera,color: appTheme.primaryActionColor,),
-                onPressed: ()async{
+                onPressed:!allowImageClick?null: ()async{
+                  allowImageClick=false;
                   try {
                     await _initializeControllerFuture;
                     // as soon as user capture capture image the sensor data must be capture
@@ -219,9 +221,12 @@ class _CameraPageState extends State<CameraPage> {
                       _reportEventController.updateSensorDataForCameraClick(accelerometerEvent: accelerometerEvent, gyroscopeEvent: gyroscopeEvent, magnetometerEvent: magnetometerEvent);
                       Navigator.pop(context,image);
                     }
+                    allowImageClick=true;
                   } catch (e) {
                     // print(e);
+                    allowImageClick=true;
                   }
+
                 },
               ),
               IconButton(
