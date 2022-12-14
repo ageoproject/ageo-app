@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 import 'dart:ui';
 import 'package:ageo/helpers/app_theme.dart';
@@ -176,14 +178,15 @@ class DevicePermissionsHandler extends StatelessWidget {
                           Permission.storage
                         ].request();
                         if(Platform.isAndroid){
-                          if(statuses[Permission.location] == PermissionStatus.granted && statuses[Permission.camera] == PermissionStatus.granted && statuses[Permission.storage] == PermissionStatus.granted){
+                            if((statuses[Permission.location] == PermissionStatus.granted || statuses[Permission.location] == PermissionStatus.limited) && (statuses[Permission.camera] == PermissionStatus.granted || statuses[Permission.camera] == PermissionStatus.limited) && (statuses[Permission.storage] == PermissionStatus.granted)){
                             Navigator.pop(context,true);
-                          }else if(statuses[Permission.location] == PermissionStatus.permanentlyDenied || statuses[Permission.camera] == PermissionStatus.permanentlyDenied){
+                          }else if(statuses[Permission.location] == PermissionStatus.permanentlyDenied || statuses[Permission.camera] == PermissionStatus.permanentlyDenied || statuses[Permission.storage] == PermissionStatus.permanentlyDenied){
                             locationHelper.showLocationPermissionError(context: context, errorMessage: tr("permission_page.permission_denied_permanently"), actionType: "permission_denied_permanently");
                             // openAppSettings();
                           }
                         }else{
-                          if(statuses[Permission.location] == PermissionStatus.granted && statuses[Permission.camera] == PermissionStatus.granted && statuses[Permission.photos] == PermissionStatus.granted){
+                          print("permission status camera => ${statuses[Permission.photos]}");
+                          if((statuses[Permission.location] == PermissionStatus.granted || statuses[Permission.location] == PermissionStatus.limited) && (statuses[Permission.camera] == PermissionStatus.granted || statuses[Permission.camera] == PermissionStatus.limited) && (statuses[Permission.photos] == PermissionStatus.granted || statuses[Permission.photos] == PermissionStatus.limited)){
                             Navigator.pop(context,true);
                           }else if(statuses[Permission.location] == PermissionStatus.permanentlyDenied || statuses[Permission.camera] == PermissionStatus.permanentlyDenied || statuses[Permission.photos] == PermissionStatus.permanentlyDenied){
                             // openAppSettings();
