@@ -728,90 +728,6 @@ class _CoastalErosionState extends State<CoastalErosion> {
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(top:18.0,bottom: 12),
-          child: Text("monitor_event.coastal_erosion.coastal_defences_detail.damage_cause",style: TextStyle(fontSize:14,color:appTheme.primaryActionColor,fontWeight: FontWeight.w600 ),).tr(),
-        ),
-
-        Column(
-          children: List.generate(_causeOfDamage.length, (index) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: GestureDetector(
-                onTap: (){
-                  _reportEventController.changeCoastalErosionCoastalDefencesDamageCauses(value: _causeOfDamage[index]["type_of_damage"]!);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: _reportEventController.coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_causes"].contains(_causeOfDamage[index]["type_of_damage"])?appTheme.toggleSelectionColor:Colors.white,
-                    borderRadius: BorderRadius.circular(_inputFieldBorderRadius),
-                    border: Border.all(color: appTheme.inputFieldsBorderColor),
-                  ),
-                  padding:const EdgeInsets.symmetric(vertical: 12,horizontal: 14),
-                  child: Row(
-                    children: [
-                      Container(
-                        height:18,
-                        padding: const EdgeInsets.only(right: 25),
-                        child: Checkbox(
-                          value: _reportEventController.coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_causes"].contains(_causeOfDamage[index]["type_of_damage"]),
-                          checkColor: appTheme.primaryActionColor,
-                          side: BorderSide(color: appTheme.inputFieldsBorderColor),
-                          fillColor: MaterialStateProperty.all(Colors.white),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
-                          onChanged: (value){
-                            _reportEventController.changeCoastalErosionCoastalDefencesDamageCauses(value: _causeOfDamage[index]["type_of_damage"]!);
-                          },
-                        ),
-                      ),
-                      Expanded(
-                        child: Text("${_causeOfDamage[index]["localization_ref"]}",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr(),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            );
-          }),
-        ),
-
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 4.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("${tr("monitor_event.coastal_erosion.coastal_defences_detail.response_confident")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-                    Text(tr("monitor_event.coastal_erosion.coastal_defences_detail.response_confident_hint"),style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-                  ],
-                ),
-              ),
-              Slider(
-                value: _reportEventController.coastalErosionConfidentSlider,
-                max: 4,
-                divisions: 4,
-                activeColor: appTheme.primaryActionColor,
-                inactiveColor: appTheme.toggleSelectionColor,
-                label: _reportEventController.coastalErosionConfidentSlider.toInt().toString(),
-                onChanged: (value){
-                  _reportEventController.changeCoastalErosionCoastalDefencesResponseConfidence(value: value);
-                },
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(5, (index) {
-                  return Expanded(
-                    child:Align(alignment: Alignment.center,child: Text("${index+1}",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,))),
-                  );
-                }),
-              ),
-            ],
-          ),
-        ),
         // Padding(
         //   padding: const EdgeInsets.symmetric(vertical: 12.0),
         //   child: Row(
@@ -979,6 +895,90 @@ class _CoastalErosionState extends State<CoastalErosion> {
                     //     ],
                     //   ),
                     // ),
+                    Padding(
+                      padding: const EdgeInsets.only(top:18.0,bottom: 12),
+                      child: Text("monitor_event.coastal_erosion.coastal_defences_detail.damage_cause",style: TextStyle(fontSize:14,color:appTheme.primaryActionColor,fontWeight: FontWeight.w600 ),).tr(),
+                    ),
+
+                    Column(
+                      children: List.generate(_causeOfDamage.length, (index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: GestureDetector(
+                            onTap: (){
+                              _reportEventController.changeCoastalErosionCoastalDefencesDamageCauses(value: _causeOfDamage[index]["type_of_damage"]!);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: _reportEventController.coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_causes"].contains(_causeOfDamage[index]["type_of_damage"])?appTheme.toggleSelectionColor:Colors.white,
+                                borderRadius: BorderRadius.circular(_inputFieldBorderRadius),
+                                border: Border.all(color: appTheme.inputFieldsBorderColor),
+                              ),
+                              padding:const EdgeInsets.symmetric(vertical: 12,horizontal: 14),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height:18,
+                                    padding: const EdgeInsets.only(right: 25),
+                                    child: Checkbox(
+                                      value: _reportEventController.coastalErosionDamage["Coastal defences or buildings"]["coastal_erosion_damage_causes"].contains(_causeOfDamage[index]["type_of_damage"]),
+                                      checkColor: appTheme.primaryActionColor,
+                                      side: BorderSide(color: appTheme.inputFieldsBorderColor),
+                                      fillColor: MaterialStateProperty.all(Colors.white),
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
+                                      onChanged: (value){
+                                        _reportEventController.changeCoastalErosionCoastalDefencesDamageCauses(value: _causeOfDamage[index]["type_of_damage"]!);
+                                      },
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text("${_causeOfDamage[index]["localization_ref"]}",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr(),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 4.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("${tr("monitor_event.coastal_erosion.coastal_defences_detail.response_confident")}:",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                                Text(tr("monitor_event.coastal_erosion.coastal_defences_detail.response_confident_hint"),style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
+                              ],
+                            ),
+                          ),
+                          Slider(
+                            value: _reportEventController.coastalErosionConfidentSlider,
+                            max: 4,
+                            divisions: 4,
+                            activeColor: appTheme.primaryActionColor,
+                            inactiveColor: appTheme.toggleSelectionColor,
+                            label: _reportEventController.coastalErosionConfidentSlider.toInt().toString(),
+                            onChanged: (value){
+                              _reportEventController.changeCoastalErosionCoastalDefencesResponseConfidence(value: value);
+                            },
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: List.generate(5, (index) {
+                              return Expanded(
+                                child:Align(alignment: Alignment.center,child: Text("${index+1}",style: TextStyle(color: appTheme.primaryTextColor,fontSize: 14,))),
+                              );
+                            }),
+                          ),
+                        ],
+                      ),
+                    ),
                     VisitFrequencySlider(eventType: _reportEventController.selectedEventType.toString(),),
 
                     Padding(

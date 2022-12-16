@@ -40,7 +40,6 @@ class VisitFrequencySlider extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("${tr("monitor_event.frequency_of_visits.text")} ${tr("monitor_event.frequency_of_visits.text_hint")} :",style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
-        Text(tr("monitor_event.frequency_of_visits.text_hint"),style: TextStyle(fontSize: 14,color: appTheme.iconColor),),
         GetBuilder<ReportEventController>(
           builder:(_)=> Slider(
             value: _reportEventController.visitFrequencySlider,
