@@ -74,7 +74,10 @@
       "event_type": "Event Type",
       "map": "Map",
       "questions": "Questions",
-      "damage": "Damage"
+      "damage": "Damage",
+      "whatToDo": "What to do",
+      "bePrepared": "Be Prepared",
+      "about": "About"
     },
     "event_type_tab": {
       "wild_fire": "Wildfires",

@@ -74,7 +74,10 @@
       "event_type": "Tipo de evento",
       "map": "Mapa",
       "questions": "Preguntas",
-      "damage": "Daño"
+      "damage": "Daño",
+      "whatToDo": "Qué hacer",
+      "bePrepared": "Estar preparada",
+      "about": "Sobre"
     },
     "event_type_tab": {
       "wild_fire": "Incendios Forestales",

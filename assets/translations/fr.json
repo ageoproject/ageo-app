@@ -74,7 +74,10 @@
       "event_type": "Type d'événement",
       "map": "Carte",
       "questions": "Questions",
-      "damage": "Dégâts"
+      "damage": "Dégâts",
+      "whatToDo": "Ce qu'il faut faire",
+      "bePrepared": "Soyez prêt",
+      "about": "À propos"
     },
     "event_type_tab": {
       "wild_fire": "Feux de forêt",

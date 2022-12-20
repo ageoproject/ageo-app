@@ -1,6 +1,8 @@
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/helpers/toast_message.dart';
+import 'package:ageo/view/report_event/event_specific_pages/event_specific_educational_content.dart';
 import 'package:ageo/view/report_event/quick_report_event.dart';
+import 'package:ageoClient/api.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -186,7 +188,33 @@ class CustomTabView extends StatelessWidget {
                             ),
                           ),
                         ),
+                        GetBuilder<ReportEventController>(
+                          builder: (_)=>Visibility(
+                            visible: _reportEventController.selectedEventType!=null && _reportEventController.selectedEventType!=EventEventTypeEnum.WILDFIRE,
+                            child: PopupMenuButton(
+                              itemBuilder: (BuildContext context) {
+                              return [
+                                PopupMenuItem(
+                                  value: "whatToDo",
+                                  child: Text("monitor_event.tab_view.whatToDo",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr(),
+                                ),
+                                PopupMenuItem(
+                                  value: "bePrepared",
+                                  child: Text("monitor_event.tab_view.bePrepared",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr(),
+                                ),
+                                PopupMenuItem(
+                                  value: "about",
+                                  child: Text("monitor_event.tab_view.about",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr(),
+                                ),
+                              ];
+                            },
+                              onSelected: (String value){
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>EventSpecificEducationalContent(url: "https://ageoplatform.eu/education/${_reportEventController.selectedEventType}?isWebView=true&anchorSection=$value")));
+                              },
 
+                            ),
+                          ),
+                        ),
                 ],
               ),
                   ),

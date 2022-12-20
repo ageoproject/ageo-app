@@ -33,7 +33,7 @@ class EducationalContent extends StatelessWidget {
             CustomAppBar(title: tr("app_drawer.educational"),),
             Expanded(
               child: InAppWebView(
-                initialUrlRequest: URLRequest(url: Uri.parse("https://ageo-web.web.app/education-mobile-view")),
+                initialUrlRequest: URLRequest(url: Uri.parse("https://ageoplatform.eu/education/ALL?isWebView=true")),
                 initialOptions: InAppWebViewGroupOptions(
 
                     android: AndroidInAppWebViewOptions(
