@@ -209,7 +209,7 @@ class CustomTabView extends StatelessWidget {
                               ];
                             },
                               onSelected: (String value){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>EventSpecificEducationalContent(url: "https://ageoplatform.eu/education/${_reportEventController.selectedEventType}?isWebView=true&anchorSection=$value")));
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>EventSpecificEducationalContent(eventId: _reportEventController.selectedEventType.toString(), anchorSection: value)));
                               },
 
                             ),

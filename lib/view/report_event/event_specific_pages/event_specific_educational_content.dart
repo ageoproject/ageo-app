@@ -4,8 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class EventSpecificEducationalContent extends StatelessWidget {
-  final String url;
-  const EventSpecificEducationalContent({Key? key,required this.url}) : super(key: key);
+  final String eventId, anchorSection;
+  const EventSpecificEducationalContent({Key? key,required this.eventId,required this.anchorSection}) : super(key: key);
+  // final CommonComponent _commonComponent=CommonComponent();
+  // late InAppWebViewController _controller;
+
+  Future<void> loadEducationalContent({required InAppWebViewController controller})async{
+    // await _controller.loadData( data: _commonComponent.educationalContent);
+    await controller.loadFile( assetFilePath: 'assets/educational_content/educational-content.html');
+
+    Future.delayed(const Duration(milliseconds: 500),(){
+      controller.evaluateJavascript( source: 'changeEducationalContent("$eventId","$anchorSection")');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +27,8 @@ class EventSpecificEducationalContent extends StatelessWidget {
           CustomAppBar(title: tr("app_drawer.educational"),showBackButton: true,onBackButtonClick: (){Navigator.pop(context);},),
           Expanded(
             child: InAppWebView(
-              initialUrlRequest: URLRequest(url: Uri.parse(url)),
+              // initialUrlRequest: URLRequest(url: Uri.parse(url)),
+              // initialData: InAppWebViewInitialData(data: _commonComponent.educationalContent,baseUrl: Uri.parse(url)),
               initialOptions: InAppWebViewGroupOptions(
                   android: AndroidInAppWebViewOptions(
                     useHybridComposition: true,
@@ -43,7 +55,12 @@ class EventSpecificEducationalContent extends StatelessWidget {
               onWebViewCreated: (InAppWebViewController controller)async{
                 // _controller=controller;
                 // controller.
+                loadEducationalContent(controller: controller);
               },
+              // onConsoleMessage: (InAppWebViewController controller, ConsoleMessage? m){
+              //   print(m);
+              // },
+
             ),
           ),
         ],

@@ -56,7 +56,7 @@ class AgeoConfig{
       sensorData: json.encode(eventDetail.sensorData),
       commonEventDetails: json.encode(eventDetail.commonEventDetails),
       customEventDetails: json.encode(eventDetail.customEventDetails),
-      image1: await http.MultipartFile.fromPath("image1",imagePathList[0]),
+      image1: imagePathList.isNotEmpty?await http.MultipartFile.fromPath("image1",imagePathList[0]):null,
       image2: imagePathList.length>=2?await http.MultipartFile.fromPath("image2",imagePathList[1]):null,
       image3: imagePathList.length>=3?await http.MultipartFile.fromPath("image3",imagePathList[2]):null,
     );

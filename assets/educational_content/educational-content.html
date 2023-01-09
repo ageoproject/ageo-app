@@ -1,28 +1,9 @@
-import 'dart:ui';
-import 'package:ageo/ageoConfig.dart';
-import 'package:ageo/helpers/app_theme.dart';
-import 'package:ageo/helpers/url_launcher.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-import 'package:share_plus/share_plus.dart';
-
-class CommonComponent{
-  final GlobalKey _globalKey = GlobalKey();
-  late CustomThemeData _appTheme;
-  // final CustomToastMessage _toastMessage=CustomToastMessage();
-  final CustomUrlLauncher _customUrlLauncher=CustomUrlLauncher();
-
-  final String _educationalContent='''
-  
 <html>
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Educational Content</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="bootstrap.css">
   <style>
     .dataTables_empty {
       display: none;
@@ -684,10 +665,10 @@ class CommonComponent{
       }
 
       .main {
-        padding: 64px 16px 16px;
+        padding: 4px 16px 16px;
       }
 
-      
+
     }
     .event-badge {
       border: 1px solid #c2d1d6;
@@ -705,15 +686,16 @@ class CommonComponent{
 </head>
 
 <body>
-  <div class="main">
-    <div class="education-content">
-      <div class="row justify-content-center">
-        <div class="col-lg-9 col-xl-6">
-          <div class="card" id="education-content"></div>
-        </div><!-- col -->
-      </div><!-- row -->
-    </div><!-- educational-content -->
-  </div><!-- main -->
+<div class="main">
+  <div class="education-content">
+    <div class="row justify-content-center">
+      <div class="col-lg-9 col-xl-6">
+        <p style="margin: 10px;" onclick="changeEducationalContent('ALL')" id="home"><a class="cursor"><img src="./arrow-left-line.svg"> Home</a></p>
+        <div class="card" id="education-content"></div>
+      </div><!-- col -->
+    </div><!-- row -->
+  </div><!-- educational-content -->
+</div><!-- main -->
 </body>
 <script>
   // var urlParams = new URLSearchParams(location.search)
@@ -763,10 +745,15 @@ class CommonComponent{
         document.getElementById('education-content').innerHTML = "<h1>Coastal Erosion</h1><ol><li><h3 id='whatToDo'>What to do</h3><ul class='px-0'><li><h4>Report the erosion:</h4><p>If you can, inform affected neighbours and contact your public works, fire, or police department.</p><p>In the event of severe storms or flooding it can lead to erosion that threatens where you liveandwork.</p></li><li><h4>If you suspect imminent danger:</h4><h5><strong>Outdoors</strong></h5><p>Walk away immediately and stay away.</p><h5><strong>Indoors</strong></h5><p>Prepare to evacuate immediately if the structure becomes unstable. Make sure that you knowwhere valuable documents are located and that you have a safe location to go to.</p></li><li><h4>What to do next:</h4><h5><strong>Avoid damaged area</strong></h5><p>Stay away from the damaged area, until local officials declare it is safe.</p><h5><strong>Keep in touch</strong></h5><p>Let friends and family know you’re safe. Stay alert by monitoring local news and reports.</p></li></ul></li><li><h3 id='bePrepared'>Be prepared</h3><ul class='px-0'><li><h4>Know your risk:</h4><p>Become familiar with the land around you. Find out if you live in an area where erosion can haveahuge impact on where you live and work. If your property is identified in District Plan maps as acoastal erosion area, check with local officials if they have mitigation or community plans orsuggestions for reducing erosion risk. Be familiar with warning signs: Learn how to recognizesignsof potential imminent rockfall, landslide or building collapse. Learn how to recognize signs ofdamage to your home. Erosion can cause water to collect around your foundation. When thishappens, the water can weaken your concrete foundation, or it can seep through the porous surfaceof your foundation and cause moisture issues in your home or business.</p><p>Ensure that your home is sufficiently anchored, especially if it is on sand. Using piles thatdriveintomore secure layers of the ground is highly recommended, especially for homes that are older.</p></li><li><h4>Make a plan:</h4><p>The key to staying safe is to prepare and to have an emergency plan in place.</p></li></ul></li><li><h3 id='about'>About</h3><ul class='px-0'><li><h4>What is coastal erosion and what causes it?</h4><p>Erosion is the geological process in which earthen materials are worn away and transported bynaturalforces such as wind or water.</p></li><li><h4>Coastal erosion:</h4><p>Coastal erosion is the wearing away of rocks, earth, or beach sand. It can change the shape ofentirecoastlines. During the process of coastal erosion, waves pound rocks into pebbles and pebbles intosand.Waves and currents sometimes transport sand away from beaches, moving the coastline fartherinland.Coastal erosion can have a huge impact on human settlement as well as coastal ecosystems.</p></li><li><h4>Factors Impacting Erosion:</h4><p>Some of the natural factors impacting erosion in a landscape include climate, topography,vegetation,and tectonic activity.Burrowing animals, such as beetles and worms, contribute to erosion bydisplacingsoil.Erosion is a natural process, but human activity can make it happen more quickly.</p></li></ul></li></ol>"
         break;
     }
+    if(_eventType == 'ALL' || _anchorSection) {
+      document.getElementById('home').style.display = "none"
+    } else {
+      document.getElementById('home').style.display = "block"
+    }
     if(_anchorSection) {
     scrollDownToView(_anchorSection)
     }
-  
+
   }
   function scrollDownToView(anchorSection) {
     let element = document.getElementById(anchorSection)
@@ -778,176 +765,5 @@ class CommonComponent{
       })
   }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
+<script type="text/javascript" src="bootstrap.js"></script>
 </html>
-  ''';
-
-  String get educationalContent=>_educationalContent;
-
-  void initializeLoader({required BuildContext context,String? message}){
-    // this popup loader screen with custom message
-    _appTheme=Theme.of(context).customTheme;
-    TextStyle inputStyle=const TextStyle(fontSize: 14,color: Colors.white);
-    showDialog(context: context,barrierDismissible: false,useRootNavigator: false, builder: (BuildContext context){
-      return WillPopScope(
-        onWillPop:()async{
-          return false;
-        },
-        child: Center(
-          child: Container(
-            padding:const EdgeInsets.all(20),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)
-              ),
-              color: _appTheme.primaryActionColor,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    //Icon(Icons.wifi_off_outlined,size: 40,color: Colors.white,),
-                    CircularProgressIndicator(color: _appTheme.primaryActionColor,backgroundColor: Colors.white),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16),
-                      child: Text("monitor_event.please_wait",style: inputStyle,textAlign: TextAlign.center,).tr(),
-                    ),
-                    Text("$message",style: inputStyle,textAlign: TextAlign.center,),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-    });
-  }
-
-  void  showEventShareDialog({required BuildContext context,required String message}){
-    // this show popup when user successfully submit event detail to backend
-    // this popup allow user to share event link and copy link on clipboard
-    _appTheme=Theme.of(context).customTheme;
-    AgeoConfig ageoConfig=AgeoConfig();
-    String eventLink="${ageoConfig.frontendBasePath}/event-details/$message";
-    showDialog(context: context,barrierDismissible: false,useRootNavigator: false, builder: (BuildContext context){
-      return WillPopScope(
-        onWillPop:()async{
-          return false;
-        },
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
-          child: Center(
-            child:Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  // height: 200,
-                  padding:const EdgeInsets.symmetric(horizontal: 20),
-                  child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: [
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: Padding(
-                          // height: 180,
-                          padding:const EdgeInsets.only(bottom: 20),
-                          child: Card(
-                            color: Colors.white,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                IconButton(
-                                  icon: Image.asset("assets/images/report_event/close_ic.png",width: 28,),
-                                  onPressed: (){
-                                    Navigator.popUntil(context, (route) => route.isFirst);
-                                    // Navigator.pop(context);
-                                  },
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                  child: Column(
-                                    children: [
-                                      Icon(Icons.check,color: _appTheme.primaryActionColor,),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                        child: Text("monitor_event.send_ageo",style: TextStyle(color:_appTheme.primaryTextColor,fontSize: 14),).tr(),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(bottom: 16.0),
-                                              child: TextButton(
-                                                onPressed: (){
-                                                  _customUrlLauncher.openInBrowser(url: eventLink);
-                                                },
-                                                child: Text(eventLink,style: TextStyle(color: _appTheme.primaryActionColor,fontSize: 14,decoration: TextDecoration.underline),),
-                                              ),
-                                            ),
-                                          ),
-                                          IconButton(
-                                            icon: Image.asset("assets/images/report_event/copy_ic.png",height: 20,),
-                                            onPressed: ()async{
-                                              await Clipboard.setData(ClipboardData(text: eventLink));
-                                              // _toastMessage.showSuccessToastMessage(message: tr("monitor_event.linked_copied"), duration: 1, context: context);
-                                              Get.showSnackbar( GetSnackBar(
-                                                message: tr("monitor_event.linked_copied"),
-                                                duration:const Duration(seconds: 2),
-                                                icon:const Icon(Icons.done_all,color: Colors.white,),
-                                                backgroundColor: _appTheme.primaryActionColor,
-                                                margin:const EdgeInsets.all(12),
-                                                borderRadius: 12,
-                                              ));
-                                            },
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 150,
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: TextButton(
-                          key: _globalKey,
-                          style: TextButton.styleFrom(
-                            backgroundColor: _appTheme.primaryActionColor,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
-                                child: Image.asset("assets/images/report_event/share_ic.png",height: 15,),
-                              ),
-                              const Text("monitor_event.share",style: TextStyle(color: Colors.white,fontSize: 14),).tr(),
-                            ],
-                          ),
-                          onPressed: (){
-                            RenderBox box = _globalKey.currentContext?.findRenderObject() as RenderBox;
-                            Offset position = box.localToGlobal(Offset.zero); //this is global position of button in app view
-                            Share.share(eventLink,sharePositionOrigin: Rect.fromCenter(center: Offset(position.dx+60,position.dy+24),width: 1,height: 1));
-                          },
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-    });
-  }
-}

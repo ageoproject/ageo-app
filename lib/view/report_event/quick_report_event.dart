@@ -164,7 +164,8 @@ class _QuickReportEventState extends State<QuickReportEvent> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Visibility(
-              visible: _reportEventController.uploadedImageList.isNotEmpty,
+              // visible: _reportEventController.uploadedImageList.isNotEmpty,
+              visible: true,
               child: Container(
                 color:appTheme.primaryActionColor,
                 // padding: EdgeInsets.only(bottom: 14),
