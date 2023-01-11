@@ -27,7 +27,7 @@ class AgeoConfig{
       // _frontendBasePath="https://ageo-web.web.app";
       _basePath="https://ageoplatform.eu/api";
       _frontendBasePath="https://ageoplatform.eu";
-      // _basePath="http://192.168.1.22:3000";
+      // _basePath="http://192.168.1.17:3000/api";
       // _basePath="https://8cd7-110-226-182-4.in.ngrok.io";
     }
     _apiClient=ApiClient(basePath: _basePath);
