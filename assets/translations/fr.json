@@ -248,6 +248,7 @@
     "Assets at risk ?": "Eléments exposés ?",
     "I am safe ?": "Je suis en sécurité ?",
     "upload_or_capture": "Sélectionner ou prendre des photos (min 1 et max 3)",
+    "quick_upload_or_capture": "Sélectionner ou prendre des photos",
     "add_comments": "Ajouter des commentaires",
     "comment_hint": "Écrire ici...",
     "time_error": "Vous ne pouvez pas signaler un événement à l'avenir"

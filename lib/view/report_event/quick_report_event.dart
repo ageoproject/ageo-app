@@ -40,7 +40,7 @@ class _QuickReportEventState extends State<QuickReportEvent> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("common_question_page.upload_or_capture",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
+                          child: Text("common_question_page.quick_upload_or_capture",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color:appTheme.primaryTextColor),).tr(),
                         ),
                         Wrap(
                           spacing: 12,
