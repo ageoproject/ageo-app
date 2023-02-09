@@ -172,27 +172,28 @@ class Earthquake extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    child: GestureDetector(
-                      onTap: (){
-                        _reportEventController.addNewBuilding();
-                      },
-                      child: Container(
-                        height: 60,
-                        width: 145,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: appTheme.inputFieldsBorderColor),
-                        ),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
                         padding:const EdgeInsets.all(12),
-                        child: Row(
-                          children: [
-                            Image.asset("assets/images/report_event/event_specific_images/landslide/add_ic.png",height: 19,),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 12.0),
-                              child: Text("monitor_event.earthquake.add_building",style: TextStyle(fontSize: 14,color: appTheme.placeHolderTextColor),).tr(),
-                            ),
-                          ],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
+                        side: BorderSide(color: appTheme.inputFieldsBorderColor)
+                      ),
+                      // height: 60,
+                      // width: 145,
+                      onPressed: (){
+                          _reportEventController.addNewBuilding();
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset("assets/images/report_event/event_specific_images/landslide/add_ic.png",height: 19,),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 12.0),
+                            child: Text("monitor_event.earthquake.add_building",style: TextStyle(fontSize: 14,color: appTheme.placeHolderTextColor),).tr(),
+                          ),
+                        ],
                       ),
                     ),
                   )

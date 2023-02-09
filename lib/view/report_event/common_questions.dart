@@ -5,7 +5,6 @@ import 'package:ageo/helpers/imagehelper.dart';
 import 'package:ageo/helpers/open_image_preview.dart';
 import 'package:ageo/helpers/toast_message.dart';
 import 'package:ageo/view/report_event/submit_button.dart';
-import 'package:camera/camera.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -72,6 +71,7 @@ class CommonQuestions extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(bottom: _reportEventController.nextAndSubmitButtonHeight),
           child: SingleChildScrollView(
+            keyboardDismissBehavior: Platform.isAndroid? ScrollViewKeyboardDismissBehavior.manual :ScrollViewKeyboardDismissBehavior.onDrag,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 8),
               child: Column(
@@ -326,7 +326,7 @@ class CommonQuestions extends StatelessWidget {
                         TextFormField(
                           initialValue: _reportEventController.comment,
                           // initialValue:_studentProfile.user?.dob==null?"": _component.formatDateMonthYearInWords.format(DateTime.parse("${_studentProfile.user!.dob}")),
-                          textInputAction: TextInputAction.next,
+                          textInputAction: TextInputAction.newline,
                           minLines: 6,
                           keyboardType: TextInputType.multiline,
                           maxLines: null,
@@ -381,7 +381,7 @@ class CommonQuestions extends StatelessWidget {
           builder:(_)=> Align(
             alignment: Alignment.bottomCenter,
             child: _reportEventController.hasSpecificDamagePage.contains(_reportEventController.selectedEventType)? Visibility(
-              visible: _reportEventController.uploadedImageList.isNotEmpty,
+              // visible: _reportEventController.uploadedImageList.isNotEmpty,
               child: Container(
                 color:appTheme.primaryActionColor,
                 // padding: EdgeInsets.only(bottom: 14),
@@ -401,7 +401,7 @@ class CommonQuestions extends StatelessWidget {
                 ),
               ),
             ):Visibility(
-              visible: _reportEventController.uploadedImageList.isNotEmpty,
+              // visible: _reportEventController.uploadedImageList.isNotEmpty,
               child: SubmitButton(),
             ),
           ),

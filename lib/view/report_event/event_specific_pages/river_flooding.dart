@@ -1,9 +1,9 @@
+import 'dart:io';
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/view/report_event/submit_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class RiverFlooding extends StatelessWidget {
@@ -44,6 +44,7 @@ class RiverFlooding extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(bottom: _reportEventController.nextAndSubmitButtonHeight),
               child: SingleChildScrollView(
+                keyboardDismissBehavior: Platform.isAndroid? ScrollViewKeyboardDismissBehavior.manual :ScrollViewKeyboardDismissBehavior.onDrag,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 8),
                   child: Column(
@@ -196,7 +197,7 @@ class RiverFlooding extends StatelessWidget {
                             ),
                             TextFormField(
                               initialValue: _reportEventController.riverFloodingDamage["river_flooding_other_observed_damage"],
-                              textInputAction: TextInputAction.next,
+                              textInputAction: TextInputAction.newline,
                               minLines: 4,
                               maxLength: 1500,
                               keyboardType: TextInputType.multiline,

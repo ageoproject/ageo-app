@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:ageo/controllers/report_event_controller.dart';
 import 'package:ageo/helpers/app_theme.dart';
 import 'package:ageo/view/report_event/event_specific_pages/visit_frequency_slider.dart';
@@ -796,6 +797,7 @@ class _CoastalErosionState extends State<CoastalErosion> {
           builder: (_)=>Padding(
             padding: EdgeInsets.only(bottom: _reportEventController.nextAndSubmitButtonHeight),
             child: SingleChildScrollView(
+              keyboardDismissBehavior: Platform.isAndroid? ScrollViewKeyboardDismissBehavior.manual :ScrollViewKeyboardDismissBehavior.onDrag,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 8),
                 child:Column(
@@ -992,7 +994,7 @@ class _CoastalErosionState extends State<CoastalErosion> {
                           ),
                           TextFormField(
                             initialValue: _reportEventController.coastalErosionDamage["coastal_erosion_free_comment"],
-                            textInputAction: TextInputAction.next,
+                            textInputAction: TextInputAction.newline,
                             minLines: 4,
                             keyboardType: TextInputType.multiline,
                             maxLines: null,

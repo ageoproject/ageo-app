@@ -91,27 +91,48 @@ class _MapViewState extends State<MapView> {
          },
          child: Align(
            alignment: Alignment.center,
-           child: Container(
-             decoration: BoxDecoration(
-                 color: Colors.white,
-                 borderRadius: BorderRadius.circular(8)
-             ),
-             padding:const EdgeInsets.all(20),
-             child: Column(
-               mainAxisSize: MainAxisSize.min,
-               children: [
-                 Text("permission_page.fail_to_fetch_location",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr(),
-                 TextButton(
-                   style: TextButton.styleFrom(
-                       backgroundColor: appTheme.primaryActionColor
+           child: Padding(
+             padding: const EdgeInsets.symmetric(horizontal: 26.0),
+             child: Container(
+               decoration: BoxDecoration(
+                   color: Colors.white,
+                   borderRadius: BorderRadius.circular(8)
+               ),
+               padding:const EdgeInsets.only(bottom:18,top: 8),
+               child: Column(
+                 mainAxisSize: MainAxisSize.min,
+                 children: [
+                   Align(
+                       alignment: Alignment.topRight,
+                       child: TextButton(
+                         // child: Text("Close",style: TextStyle(fontSize: 16,color: appTheme.primaryTextColor),),
+                         child: Icon(Icons.close,color: appTheme.primaryTextColor,size: 24,),
+                         onPressed: (){
+                           Get.back();
+                         },
+                       )
                    ),
-                   child: const Text("permission_page.try_again",style: TextStyle(fontSize: 14,color: Colors.white),).tr(),
-                   onPressed: ()async{
-                     Get.back();
-                     initializeLocation();
-                   },
-                 ),
-               ],
+                   Padding(
+                     padding:const EdgeInsets.symmetric(horizontal: 18),
+                     child: Column(
+                       mainAxisSize: MainAxisSize.min,
+                       children: [
+                         Text("permission_page.fail_to_fetch_location",style: TextStyle(fontSize: 14,color: appTheme.primaryTextColor),).tr(),
+                         TextButton(
+                           style: TextButton.styleFrom(
+                               backgroundColor: appTheme.primaryActionColor
+                           ),
+                           child: const Text("permission_page.try_again",style: TextStyle(fontSize: 14,color: Colors.white),).tr(),
+                           onPressed: ()async{
+                             Get.back();
+                             initializeLocation();
+                           },
+                         ),
+                       ],
+                     ),
+                   ),
+                 ],
+               ),
              ),
            ),
          ),

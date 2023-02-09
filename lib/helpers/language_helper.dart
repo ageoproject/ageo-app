@@ -8,11 +8,11 @@ class LanguageHelper {
   final String portugueseLanguageCode="pt";
 
   List<String> get languageCodeList => [englishLanguageCode,frenchLanguageCode,spanishLanguageCode,portugueseLanguageCode];
-  List<String> get languageNameList => ["English","French","Spanish","Portuguese"];
+  List<String> get languageNameList => ["English","Français","Espagnol","Portugais"];
   Map<String,String> get languageMap=>{
     "English": englishLanguageCode,
-    "French": frenchLanguageCode,
-    "Spanish": spanishLanguageCode,
-    "Portuguese": portugueseLanguageCode
+    "Français": frenchLanguageCode,
+    "Espagnol": spanishLanguageCode,
+    "Portugais": portugueseLanguageCode
   };
 }

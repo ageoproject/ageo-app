@@ -107,7 +107,7 @@
       "add_building": "Add building"
     },
     "landslide": {
-      "displaced_land": "Volume of displaced land (in %)",
+      "displaced_land": "Volume of displaced rock(s) (in %)",
       "building": "Building",
       "green_area": "Green area",
       "road": "Road",

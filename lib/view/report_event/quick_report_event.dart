@@ -30,6 +30,7 @@ class _QuickReportEventState extends State<QuickReportEvent> {
           Padding(
             padding: EdgeInsets.only(bottom: _reportEventController.nextAndSubmitButtonHeight),
             child: SingleChildScrollView(
+              keyboardDismissBehavior: Platform.isAndroid? ScrollViewKeyboardDismissBehavior.manual :ScrollViewKeyboardDismissBehavior.onDrag,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 10),
                 child: Column(
@@ -110,7 +111,7 @@ class _QuickReportEventState extends State<QuickReportEvent> {
                           TextFormField(
                             initialValue: _reportEventController.comment,
                             // initialValue:_studentProfile.user?.dob==null?"": _component.formatDateMonthYearInWords.format(DateTime.parse("${_studentProfile.user!.dob}")),
-                            textInputAction: TextInputAction.next,
+                            textInputAction: TextInputAction.newline,
                             minLines: 6,
                             maxLength: 1500,
                             keyboardType: TextInputType.multiline,

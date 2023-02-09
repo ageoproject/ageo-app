@@ -107,7 +107,7 @@
       "add_building": "Ajouter un bâtiment"
     },
     "landslide": {
-      "displaced_land": "Volume de terrain déplacé (en %)",
+      "displaced_land": "Volume de roche(s) déplacée(s) (en %)",
       "building": "Bâtiments",
       "green_area": "Espaces naturels",
       "road": "Route",

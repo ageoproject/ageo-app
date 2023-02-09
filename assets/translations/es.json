@@ -50,7 +50,7 @@
       "location_description": "Se necesita acceso a la ubicación para\nregistrar la localización del evento",
       "camera": "Cámara",
       "camera_description": "Se necesita acceso a la cámara para\nsacar fotografías del evento",
-      "media": "Medios de comunicación",
+      "media": "Multimedia de comunicación",
       "media_description": "Se necesita acceso a las fotos/videos para\n cargar fotografías del evento desde la galería"
     }
   },
@@ -107,7 +107,7 @@
       "add_building": "Añadir edificio"
     },
     "landslide": {
-      "displaced_land": "Volumen de material mobilizado (en %)",
+      "displaced_land": "Volumen de roca(s) desplazada(s) (en %)",
       "building": "Edificio",
       "green_area": "Área verde",
       "road": "Carretera",

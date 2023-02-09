@@ -860,12 +860,24 @@ class CommonComponent{
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                IconButton(
-                                  icon: Image.asset("assets/images/report_event/close_ic.png",width: 28,),
-                                  onPressed: (){
-                                    Navigator.popUntil(context, (route) => route.isFirst);
-                                    // Navigator.pop(context);
-                                  },
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        padding: const EdgeInsets.only(bottom: 12.0,top: 12,left: 50),
+                                        child: Image.asset('assets/images/splash_screen/ageo_logo.png',height: 30,),
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon: Image.asset("assets/images/report_event/close_ic.png",width: 28,),
+                                      onPressed: (){
+                                        Navigator.popUntil(context, (route) => route.isFirst);
+                                        // Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -877,6 +889,8 @@ class CommonComponent{
                                         child: Text("monitor_event.send_ageo",style: TextStyle(color:_appTheme.primaryTextColor,fontSize: 14),).tr(),
                                       ),
                                       Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Expanded(
                                             child: Padding(
