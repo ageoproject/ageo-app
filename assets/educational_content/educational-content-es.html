@@ -1,28 +1,9 @@
-import 'dart:ui';
-import 'package:ageo/ageoConfig.dart';
-import 'package:ageo/helpers/app_theme.dart';
-import 'package:ageo/helpers/url_launcher.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-import 'package:share_plus/share_plus.dart';
-
-class CommonComponent{
-  final GlobalKey _globalKey = GlobalKey();
-  late CustomThemeData _appTheme;
-  // final CustomToastMessage _toastMessage=CustomToastMessage();
-  final CustomUrlLauncher _customUrlLauncher=CustomUrlLauncher();
-
-  final String _educationalContent='''
-  
 <html>
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Educational Content</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <title>Educational Content ES</title>
+  <link rel="stylesheet" href="bootstrap.css">
   <style>
     .dataTables_empty {
       display: none;
@@ -684,10 +665,10 @@ class CommonComponent{
       }
 
       .main {
-        padding: 64px 16px 16px;
+        padding: 4px 16px 16px;
       }
 
-      
+
     }
     .event-badge {
       border: 1px solid #c2d1d6;
@@ -705,15 +686,16 @@ class CommonComponent{
 </head>
 
 <body>
-  <div class="main">
-    <div class="education-content">
-      <div class="row justify-content-center">
-        <div class="col-lg-9 col-xl-6">
-          <div class="card" id="education-content"></div>
-        </div><!-- col -->
-      </div><!-- row -->
-    </div><!-- educational-content -->
-  </div><!-- main -->
+<div class="main">
+  <div class="education-content">
+    <div class="row justify-content-center">
+      <div class="col-lg-9 col-xl-6">
+        <p style="margin: 10px;" onclick="changeEducationalContent('ALL')" id="home"><a class="cursor"><img src="./arrow-left-line.svg"> Home</a></p>
+        <div class="card" id="education-content"></div>
+      </div><!-- col -->
+    </div><!-- row -->
+  </div><!-- educational-content -->
+</div><!-- main -->
 </body>
 <script>
   // var urlParams = new URLSearchParams(location.search)
@@ -725,18 +707,22 @@ class CommonComponent{
   // if(anchorSection) {
   //   scrollDownToView(anchorSection)
   // }
+  var eventType="ALL"
+  var anchorSection=""
   function changeEducationalContent (_eventType,_anchorSection) {
-  console.log(" changeEducationalContent called",_eventType)
-  console.log(" Anchor section=>",_anchorSection)
+  //eventType=_eventType
+  //anchorSection=_anchorSection
+  // console.log(" changeEducationalContent called",_eventType)
+  // console.log(" Anchor section=>",_anchorSection)
     switch (_eventType) {
       case 'ALL':
-        document.getElementById('education-content').innerHTML = `<div class='row'><h2 class='text-center'>Select an event</h2><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("TSUNAMI")'><div class='event-badge cursor h-100'><img src='./event_icons/TSUNAMI.svg' /><p class='mb-0 mt-2'>Tsunami</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("EARTHQUAKE")'><div class='event-badge cursor h-100'><img src='./event_icons/EARTHQUAKE.svg' /><p class='mb-0 mt-2'>Earthquake</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("ROCKFALL")'><div class='event-badge cursor h-100'><img src='./event_icons/ROCKFALL.svg' /><p class='mb-0 mt-2'>Rockfall</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("SINKHOLE")'><div class='event-badge cursor h-100'><img src='./event_icons/SINKHOLE.svg' /><p class='mb-0 mt-2'>Sinkhole</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("ERUPTION")'><div class='event-badge cursor h-100'><img src='./event_icons/ERUPTION.svg' /><p class='mb-0 mt-2'>Eruption</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("LANDSLIDE")'><div class='event-badge cursor h-100'><img src='./event_icons/LANDSLIDE.svg' /><p class='mb-0 mt-2'>Landslide</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("RIVER_FLOODING")'><div class='event-badge cursor h-100'><img src='./event_icons/RIVER_FLOODING.svg' /><p class='mb-0 mt-2'>River Flooding</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("MARINE_FLOODING")'><div class='event-badge cursor h-100'><img src='./event_icons/MARINE_FLOODING.svg' /><p class='mb-0 mt-2'>Marine Flooding</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("COASTAL_EROSION")'><div class='event-badge cursor h-100'><img src='./event_icons/COASTAL_EROSION.svg' /><p class='mb-0 mt-2'>Coastal Erosion</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("BUILDING_SETTLEMENT")'><div class='event-badge cursor h-100'><img src='./event_icons/BUILDING_SETTLEMENT.svg' /><p class='mb-0 mt-2'>Building Settlement</p></div></div></div></div>`
+        document.getElementById('education-content').innerHTML = `<div class='row'><h2 class='text-center'>Select an event ES</h2><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("TSUNAMI")'><div class='event-badge cursor h-100'><img src='./event_icons/TSUNAMI.svg' /><p class='mb-0 mt-2'>Tsunami</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("EARTHQUAKE")'><div class='event-badge cursor h-100'><img src='./event_icons/EARTHQUAKE.svg' /><p class='mb-0 mt-2'>Earthquake</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("ROCKFALL")'><div class='event-badge cursor h-100'><img src='./event_icons/ROCKFALL.svg' /><p class='mb-0 mt-2'>Rockfall</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("SINKHOLE")'><div class='event-badge cursor h-100'><img src='./event_icons/SINKHOLE.svg' /><p class='mb-0 mt-2'>Sinkhole</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("ERUPTION")'><div class='event-badge cursor h-100'><img src='./event_icons/ERUPTION.svg' /><p class='mb-0 mt-2'>Eruption</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("LANDSLIDE")'><div class='event-badge cursor h-100'><img src='./event_icons/LANDSLIDE.svg' /><p class='mb-0 mt-2'>Landslide</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("RIVER_FLOODING")'><div class='event-badge cursor h-100'><img src='./event_icons/RIVER_FLOODING.svg' /><p class='mb-0 mt-2'>River Flooding</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("MARINE_FLOODING")'><div class='event-badge cursor h-100'><img src='./event_icons/MARINE_FLOODING.svg' /><p class='mb-0 mt-2'>Marine Flooding</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("COASTAL_EROSION")'><div class='event-badge cursor h-100'><img src='./event_icons/COASTAL_EROSION.svg' /><p class='mb-0 mt-2'>Coastal Erosion</p></div></div></div><div class='col-6 col-md-3 my-2'><div onclick='changeEducationalContent("BUILDING_SETTLEMENT")'><div class='event-badge cursor h-100'><img src='./event_icons/BUILDING_SETTLEMENT.svg' /><p class='mb-0 mt-2'>Building Settlement</p></div></div></div></div>`
         break;
       case 'TSUNAMI':
-        document.getElementById('education-content').innerHTML = "<h1>Tsunami</h1><ol><li><h3 id='whatToDo'>What to do</h3><ul class='px-0'><li><h4>Reducing risks from tsunamis</h4><p>Scientists cannot predict when and where the next tsunami will strike. However, there are tsunamiwarning centers that monitor which earthquakes are likely to generate tsunamis and can issuemessageswhen one is possible. They monitor networks of deep-ocean and coastal sea-level observationsystemsdesigned to detect tsunamis and use information from these networks to forecast coastal impactsandguide local decisions about evacuation. Tsunami warning capabilities have become dramaticallybettersince the 2004 Indian Ocean tsunami and there are several tsunami early warning operations in theNorth Atlantic and Mediterranean region as well as throughout the world.</p><p>The source of a tsunami has a direct impact on the amount of warning time available. This rangesfrom adistance source (more than 3 hours away) to a regional source (1 to 3 hours away) and a localsource(less than an hour away). In some local cases there may only be a few minutes’ warning.</p><p>Despite significant developments in tsunami early warning centers, there are still a number ofoperational weaknesses that exist including an inability to detect landslide and volcanic sources,and aninability to provide early enough warnings for local tsunamis except in a few areas.</p><p>Tsunami warnings come in different forms. There are official warnings issued by tsunami warningcenters that are broadcast through local radio and television, websites, and social media. Theymayalsocome through outdoor sirens, local officials, text message alerts, and telephone notifications.</p></li></ul></li><li><h3 id='bePrepared'>Be prepared</h3><p>There may not be time to wait for an official warning, so it is important to be able to recognizenaturaltsunami warnings. These include strong or long earthquakes, a loud roar (like that of a train or anairplane) coming from the ocean, and a sudden rise or fall of the sea level that is not related to thetide.Official and natural warnings are equally important.</p><p>For those living in coastal areas at risk from tsunamis it is important to be prepared to respondimmediately to any tsunami warnings. Move quickly to a safe place by following posted evacuationsigns. If you do not see an evacuation route, go to high ground or as far inland as possible.</p><p>When they strike land, most tsunamis are less than 3m high, but in extreme cases, they can exceed 30mnear their source. A tsunami may come onshore like a fast-rising flood or a wall of turbulent water,anda large tsunami can flood low-lying coastal areas several kilometers inland.</p></li><li><h3 id='about'>About</h3><ul class='px-0'><li><h4>What is a tsunami?</h4><p>A tsunami is a series of extremely long waves caused by a large and sudden displacement of theocean,usually the result of an earthquake below or near the ocean floor but sometimes by underwaterlandslides or volcanic eruptions. This force creates waves that radiate outward in all directionsawayfrom their source, sometimes crossing entire ocean basins. Unlike wind-driven waves, which onlytravelthrough the topmost layer of the ocean, tsunamis move through the entire water column, from theocean floor to the ocean surface.</p></li><li><h4>Why do tsunamis occur?</h4><p>Most tsunamis are caused by earthquakes on converging tectonic plate boundaries. However,tsunamiscan also be caused by landslides, volcanic activity, and possibly by near-earth objects (e.g.,asteroids,comets) colliding with or exploding above the ocean.</p><p>When an event like an underwater earthquake happens, the movement forces a lot of water to movevery quickly. The whole water column (the water from surface all the way to the seafloor) moves atspeeds of up to 1000km per hour away from the earthquake location. Because of the way tsunamis arecaused, they produce multiple waves (like the ripples you get when you drop a stone into water).Asthefront edge of the wave gets to shallower water it slows. However, the back of the wave in thedeeperwater is still moving fast so the water ‘piles up’, and the tsunami wave height increases as itreaches thecoast. Sometimes it looks like the water sucks down and away from the coast, then rushes back inwithenormous speed and force. When the wave reaches the shore, it travels inland on gentle slopes orflatland or pushes uphill on steep slopes, travelling at speeds like a fast car. As the waves move,theycarrydebris (like trees, rocks, boats, vehicles or bits of building) that cause damage.</p><p>Once a tsunami forms, its speed depends on the depth of the ocean. In the deep ocean, a tsunamicanmove as fast as a jet plane, over 500 mph, and its wavelength, the distance from crest to crest,maybehundreds of miles. Mariners at sea will not normally notice a tsunami as it passes beneath them;indeepwater, the top of the wave rarely reaches more than three feet higher than the ocean swell.Erosionisthe geological process in which earthen materials are worn away and transported by natural forcessuchas wind or water.</p></li></ul></li></ol>"
+        document.getElementById('education-content').innerHTML = "<h1>Tsunami ES</h1><ol><li><h3 id='whatToDo'>What to do</h3><ul class='px-0'><li><h4>Reducing risks from tsunamis</h4><p>Scientists cannot predict when and where the next tsunami will strike. However, there are tsunamiwarning centers that monitor which earthquakes are likely to generate tsunamis and can issuemessageswhen one is possible. They monitor networks of deep-ocean and coastal sea-level observationsystemsdesigned to detect tsunamis and use information from these networks to forecast coastal impactsandguide local decisions about evacuation. Tsunami warning capabilities have become dramaticallybettersince the 2004 Indian Ocean tsunami and there are several tsunami early warning operations in theNorth Atlantic and Mediterranean region as well as throughout the world.</p><p>The source of a tsunami has a direct impact on the amount of warning time available. This rangesfrom adistance source (more than 3 hours away) to a regional source (1 to 3 hours away) and a localsource(less than an hour away). In some local cases there may only be a few minutes’ warning.</p><p>Despite significant developments in tsunami early warning centers, there are still a number ofoperational weaknesses that exist including an inability to detect landslide and volcanic sources,and aninability to provide early enough warnings for local tsunamis except in a few areas.</p><p>Tsunami warnings come in different forms. There are official warnings issued by tsunami warningcenters that are broadcast through local radio and television, websites, and social media. Theymayalsocome through outdoor sirens, local officials, text message alerts, and telephone notifications.</p></li></ul></li><li><h3 id='bePrepared'>Be prepared</h3><p>There may not be time to wait for an official warning, so it is important to be able to recognizenaturaltsunami warnings. These include strong or long earthquakes, a loud roar (like that of a train or anairplane) coming from the ocean, and a sudden rise or fall of the sea level that is not related to thetide.Official and natural warnings are equally important.</p><p>For those living in coastal areas at risk from tsunamis it is important to be prepared to respondimmediately to any tsunami warnings. Move quickly to a safe place by following posted evacuationsigns. If you do not see an evacuation route, go to high ground or as far inland as possible.</p><p>When they strike land, most tsunamis are less than 3m high, but in extreme cases, they can exceed 30mnear their source. A tsunami may come onshore like a fast-rising flood or a wall of turbulent water,anda large tsunami can flood low-lying coastal areas several kilometers inland.</p></li><li><h3 id='about'>About</h3><ul class='px-0'><li><h4>What is a tsunami?</h4><p>A tsunami is a series of extremely long waves caused by a large and sudden displacement of theocean,usually the result of an earthquake below or near the ocean floor but sometimes by underwaterlandslides or volcanic eruptions. This force creates waves that radiate outward in all directionsawayfrom their source, sometimes crossing entire ocean basins. Unlike wind-driven waves, which onlytravelthrough the topmost layer of the ocean, tsunamis move through the entire water column, from theocean floor to the ocean surface.</p></li><li><h4>Why do tsunamis occur?</h4><p>Most tsunamis are caused by earthquakes on converging tectonic plate boundaries. However,tsunamiscan also be caused by landslides, volcanic activity, and possibly by near-earth objects (e.g.,asteroids,comets) colliding with or exploding above the ocean.</p><p>When an event like an underwater earthquake happens, the movement forces a lot of water to movevery quickly. The whole water column (the water from surface all the way to the seafloor) moves atspeeds of up to 1000km per hour away from the earthquake location. Because of the way tsunamis arecaused, they produce multiple waves (like the ripples you get when you drop a stone into water).Asthefront edge of the wave gets to shallower water it slows. However, the back of the wave in thedeeperwater is still moving fast so the water ‘piles up’, and the tsunami wave height increases as itreaches thecoast. Sometimes it looks like the water sucks down and away from the coast, then rushes back inwithenormous speed and force. When the wave reaches the shore, it travels inland on gentle slopes orflatland or pushes uphill on steep slopes, travelling at speeds like a fast car. As the waves move,theycarrydebris (like trees, rocks, boats, vehicles or bits of building) that cause damage.</p><p>Once a tsunami forms, its speed depends on the depth of the ocean. In the deep ocean, a tsunamicanmove as fast as a jet plane, over 500 mph, and its wavelength, the distance from crest to crest,maybehundreds of miles. Mariners at sea will not normally notice a tsunami as it passes beneath them;indeepwater, the top of the wave rarely reaches more than three feet higher than the ocean swell.Erosionisthe geological process in which earthen materials are worn away and transported by natural forcessuchas wind or water.</p></li></ul></li></ol>"
         break;
       case 'EARTHQUAKE':
-        document.getElementById('education-content').innerHTML = "<h1>Earthquake</h1><ol><li><h3 id='whatToDo'>What to do?</h3><ul class='px-0'><li><h4>During an earthquake</h4><p>If you can, inform affected neighbours and contact your public works, fire, or police department.</p><p>In the event of severe storms or flooding it can lead to erosion that threatens where you liveandwork.</p><h5><strong>Indoors</strong></h5><p>Drop: Drop to the ground before the earthquake causes you to fall.</p><p>Cover: Take cover under a piece of sturdy furniture such as a desk or table to protect your headand torso from falling objects</p><p>Hold: Hold on to the object you are under to remain covered</p><h5><strong>Outdoors</strong></h5><p>Go to an open area away from buildings. If you are near a coastline move to higher ground. Inyourcar</p><p>Watch for collapsed pavement, mud, fallen rocks and other debris flow. Avoid bridges and roadswithflowing mud.</p></li><li><h4>What to do next:</h4><h5>Get shoes</h5><p>Before going anywhere, even to the next room.</p><h5>Turn off gas and electricity</h5><p>If you can, turn off the gas and electricity to the building. If you can’t, evacuate.</p><h5>Avoid damaged buildings</h5><p>Expect aftershocks and damaged structures. Evacuate the building, and head for a safe meetingpoint.</p></li></ul></li><li><h3 id='bePrepared'>Be prepared?</h3><ul class='px-0'><li><h4>Prepare an emergency kit:</h4><p>Make sure you bring the items to survive for the next few days: water, food, whistle, radio andbatteries.</p></li><li><h4>Set a meeting point</h4><p>Pick a location where your family will meet outside of your home and neighborhood.</p><p>Move heavy items to lower shelves, beds, and chairs away windows.</p><p>Don't hang heavy pictures and other items over beds.</p><p>Protect your valuable belongings with anti-skid pads, Velcro and safety straps.</p><p>Secure tall furniture and heavy objects, lamps, paintings, and mirrors, with latches and hooks.</p><p>Retrofit chimneys, balconies, and roof.</p></li></ul></li><li><h3 id='about'>About</h3><ul class='px-0'><li><h4>What is an earthquake and what causes them to happen?</h4><p>An earthquake is caused by a sudden slip on a fault. The tectonic plates are always slowly moving,butthey get stuck at their edges due to friction. When the stress on the edge overcomes the friction,thereis an earthquake that releases energy in waves that travel through the earth&#39;s crust and causetheshaking that we feel. Millions of earthquakes hit Europe every year, though most are too small tobefeltor to cause damage. However, severe events occur periodically. Each time such a strong earthquakeaffects a region in Europe, it reminds us of the impact it can have. In Europe, earthquakes aremainly aresult of stress in the earth’s crust. For naturally occurring earthquakes, the source of thisstress is platetectonics. The Eurasian plate encompasses much of Europe’s and Asia’s mainland. It shifts towardstheneighboring plates in the South (African plate), Southeast (Anatolian microplate), and West (NorthAmerica plate).</p></li></ul></li></ol>"
+        document.getElementById('education-content').innerHTML = "<h1>Earthquake ES</h1><ol><li><h3 id='whatToDo'>What to do?</h3><ul class='px-0'><li><h4>During an earthquake</h4><p>If you can, inform affected neighbours and contact your public works, fire, or police department.</p><p>In the event of severe storms or flooding it can lead to erosion that threatens where you liveandwork.</p><h5><strong>Indoors</strong></h5><p>Drop: Drop to the ground before the earthquake causes you to fall.</p><p>Cover: Take cover under a piece of sturdy furniture such as a desk or table to protect your headand torso from falling objects</p><p>Hold: Hold on to the object you are under to remain covered</p><h5><strong>Outdoors</strong></h5><p>Go to an open area away from buildings. If you are near a coastline move to higher ground. Inyourcar</p><p>Watch for collapsed pavement, mud, fallen rocks and other debris flow. Avoid bridges and roadswithflowing mud.</p></li><li><h4>What to do next:</h4><h5>Get shoes</h5><p>Before going anywhere, even to the next room.</p><h5>Turn off gas and electricity</h5><p>If you can, turn off the gas and electricity to the building. If you can’t, evacuate.</p><h5>Avoid damaged buildings</h5><p>Expect aftershocks and damaged structures. Evacuate the building, and head for a safe meetingpoint.</p></li></ul></li><li><h3 id='bePrepared'>Be prepared?</h3><ul class='px-0'><li><h4>Prepare an emergency kit:</h4><p>Make sure you bring the items to survive for the next few days: water, food, whistle, radio andbatteries.</p></li><li><h4>Set a meeting point</h4><p>Pick a location where your family will meet outside of your home and neighborhood.</p><p>Move heavy items to lower shelves, beds, and chairs away windows.</p><p>Don't hang heavy pictures and other items over beds.</p><p>Protect your valuable belongings with anti-skid pads, Velcro and safety straps.</p><p>Secure tall furniture and heavy objects, lamps, paintings, and mirrors, with latches and hooks.</p><p>Retrofit chimneys, balconies, and roof.</p></li></ul></li><li><h3 id='about'>About</h3><ul class='px-0'><li><h4>What is an earthquake and what causes them to happen?</h4><p>An earthquake is caused by a sudden slip on a fault. The tectonic plates are always slowly moving,butthey get stuck at their edges due to friction. When the stress on the edge overcomes the friction,thereis an earthquake that releases energy in waves that travel through the earth&#39;s crust and causetheshaking that we feel. Millions of earthquakes hit Europe every year, though most are too small tobefeltor to cause damage. However, severe events occur periodically. Each time such a strong earthquakeaffects a region in Europe, it reminds us of the impact it can have. In Europe, earthquakes aremainly aresult of stress in the earth’s crust. For naturally occurring earthquakes, the source of thisstress is platetectonics. The Eurasian plate encompasses much of Europe’s and Asia’s mainland. It shifts towardstheneighboring plates in the South (African plate), Southeast (Anatolian microplate), and West (NorthAmerica plate).</p></li></ul></li></ol>"
         break;
       case 'LANDSLIDE':
         document.getElementById('education-content').innerHTML = "<h1>Landslide</h1><ol><li><h3 id='whatToDo'>What to do</h3><ul class='px-0'><li><h4>During landslide:</h4><h5><strong>Indoors</strong></h5><p>Take shelter under a strong table or a bench. Hold on firmly and stay put until all movement hasstopped.</p><h5><strong>Outdoors</strong></h5><p>If you are in the path of a landslide move uphill as quickly as possible. Avoid river valleys.</p></li><li><h4>What to do next:</h4><h5><strong>Avoid damaged area</strong></h5><p>Stay away from the slide area. There may be danger of additional slides. Prepare for secondaryriskssuch as flooding, downed power lines, and damaged buildings.</p><h5><strong>Stay alert</strong></h5><p>Listen to local radio or television stations for the latest emergency information.</p></li></ul></li><li><h3 id='bePrepared'>Be prepared:</h3><ul class='px-0'><li><h4>Prepare an emergency kit:</h4><p>Make sure you bring the items to survive for the next few days: water, food, whistle, radio, andbatteries.</p></li><li><h4>Set a meeting point</h4><p>Pick a location where your family will meet outside of your home and neighborhood.</p></li><li><h4>Be familiar with landslide and debris flow warning signs:</h4><ul><li>Near the slope crest: recent cracks.</li><li>Near the slope toe: new cracks appear in plaster, tile, brick, foundations, sidewalks, etc.</li><li>Doors and windows stick or jam for the first time.</li><li>Outside walls, walkways or stairs pull away from the building.</li><li>Underground utility lines break.</li><li>The ground slides downward and may begin to shift.</li><li>Fences, utility poles, decks, floors, retaining walls and trees tilt or move.</li></ul></li></ul></li><li><h3 id='about'>About</h3><ul class='px-0'><li><h4>What is a landslide and what causes one?</h4><p>A landslide is the movement of a mass of rock, debris, or earth down a slope.</p><p>Landslides encompass five modes of slope movement:</p><ul><li>falls,</li><li>topples,</li><li>slides,</li><li>spreads, and</li><li>flows.</li></ul><p>Landslides occur when earth slides down the side of a hill or mountain, often carrying with itrocks,plants and other debris.Almost every landslide has multiple causes. Landslides can be initiated inslopes already on the verge of movement by rainfall, snowmelt, changes in water level, streamerosion, changes in ground water, earthquakes, volcanic activity, disturbance by human activities,orany combination of these factors.</p><p>Earthquake shaking and other factors can also induce landslides underwater. These landslides arecalled submarine landslides. Submarine landslides sometimes cause tsunamis that damage coastalareas.</p></li></ul></li></ol>"
@@ -763,10 +749,15 @@ class CommonComponent{
         document.getElementById('education-content').innerHTML = "<h1>Coastal Erosion</h1><ol><li><h3 id='whatToDo'>What to do</h3><ul class='px-0'><li><h4>Report the erosion:</h4><p>If you can, inform affected neighbours and contact your public works, fire, or police department.</p><p>In the event of severe storms or flooding it can lead to erosion that threatens where you liveandwork.</p></li><li><h4>If you suspect imminent danger:</h4><h5><strong>Outdoors</strong></h5><p>Walk away immediately and stay away.</p><h5><strong>Indoors</strong></h5><p>Prepare to evacuate immediately if the structure becomes unstable. Make sure that you knowwhere valuable documents are located and that you have a safe location to go to.</p></li><li><h4>What to do next:</h4><h5><strong>Avoid damaged area</strong></h5><p>Stay away from the damaged area, until local officials declare it is safe.</p><h5><strong>Keep in touch</strong></h5><p>Let friends and family know you’re safe. Stay alert by monitoring local news and reports.</p></li></ul></li><li><h3 id='bePrepared'>Be prepared</h3><ul class='px-0'><li><h4>Know your risk:</h4><p>Become familiar with the land around you. Find out if you live in an area where erosion can haveahuge impact on where you live and work. If your property is identified in District Plan maps as acoastal erosion area, check with local officials if they have mitigation or community plans orsuggestions for reducing erosion risk. Be familiar with warning signs: Learn how to recognizesignsof potential imminent rockfall, landslide or building collapse. Learn how to recognize signs ofdamage to your home. Erosion can cause water to collect around your foundation. When thishappens, the water can weaken your concrete foundation, or it can seep through the porous surfaceof your foundation and cause moisture issues in your home or business.</p><p>Ensure that your home is sufficiently anchored, especially if it is on sand. Using piles thatdriveintomore secure layers of the ground is highly recommended, especially for homes that are older.</p></li><li><h4>Make a plan:</h4><p>The key to staying safe is to prepare and to have an emergency plan in place.</p></li></ul></li><li><h3 id='about'>About</h3><ul class='px-0'><li><h4>What is coastal erosion and what causes it?</h4><p>Erosion is the geological process in which earthen materials are worn away and transported bynaturalforces such as wind or water.</p></li><li><h4>Coastal erosion:</h4><p>Coastal erosion is the wearing away of rocks, earth, or beach sand. It can change the shape ofentirecoastlines. During the process of coastal erosion, waves pound rocks into pebbles and pebbles intosand.Waves and currents sometimes transport sand away from beaches, moving the coastline fartherinland.Coastal erosion can have a huge impact on human settlement as well as coastal ecosystems.</p></li><li><h4>Factors Impacting Erosion:</h4><p>Some of the natural factors impacting erosion in a landscape include climate, topography,vegetation,and tectonic activity.Burrowing animals, such as beetles and worms, contribute to erosion bydisplacingsoil.Erosion is a natural process, but human activity can make it happen more quickly.</p></li></ul></li></ol>"
         break;
     }
+    if(_eventType == 'ALL' || _anchorSection) {
+      document.getElementById('home').style.display = "none"
+    } else {
+      document.getElementById('home').style.display = "block"
+    }
     if(_anchorSection) {
     scrollDownToView(_anchorSection)
     }
-  
+
   }
   function scrollDownToView(anchorSection) {
     let element = document.getElementById(anchorSection)
@@ -778,190 +769,5 @@ class CommonComponent{
       })
   }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
+<script type="text/javascript" src="bootstrap.js"></script>
 </html>
-  ''';
-
-  String get educationalContent=>_educationalContent;
-
-  void initializeLoader({required BuildContext context,String? message}){
-    // this popup loader screen with custom message
-    _appTheme=Theme.of(context).customTheme;
-    TextStyle inputStyle=const TextStyle(fontSize: 14,color: Colors.white);
-    showDialog(context: context,barrierDismissible: false,useRootNavigator: false, builder: (BuildContext context){
-      return WillPopScope(
-        onWillPop:()async{
-          return false;
-        },
-        child: Center(
-          child: Container(
-            padding:const EdgeInsets.all(20),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)
-              ),
-              color: _appTheme.primaryActionColor,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    //Icon(Icons.wifi_off_outlined,size: 40,color: Colors.white,),
-                    CircularProgressIndicator(color: _appTheme.primaryActionColor,backgroundColor: Colors.white),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16),
-                      child: Text("monitor_event.please_wait",style: inputStyle,textAlign: TextAlign.center,).tr(),
-                    ),
-                    Text("$message",style: inputStyle,textAlign: TextAlign.center,),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-    });
-  }
-
-  void  showEventShareDialog({required BuildContext context,required String message}){
-    // this show popup when user successfully submit event detail to backend
-    // this popup allow user to share event link and copy link on clipboard
-    _appTheme=Theme.of(context).customTheme;
-    AgeoConfig ageoConfig=AgeoConfig();
-    String eventLink="${ageoConfig.frontendBasePath}/event-details/$message";
-    showDialog(context: context,barrierDismissible: false,useRootNavigator: false, builder: (BuildContext context){
-      return WillPopScope(
-        onWillPop:()async{
-          return false;
-        },
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
-          child: Center(
-            child:Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  // height: 200,
-                  padding:const EdgeInsets.symmetric(horizontal: 20),
-                  child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: [
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: Padding(
-                          // height: 180,
-                          padding:const EdgeInsets.only(bottom: 20),
-                          child: Card(
-                            color: Colors.white,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        padding: const EdgeInsets.only(bottom: 12.0,top: 12,left: 50),
-                                        child: Image.asset('assets/images/splash_screen/ageo_logo.png',height: 30,),
-                                      ),
-                                    ),
-                                    IconButton(
-                                      icon: Image.asset("assets/images/report_event/close_ic.png",width: 28,),
-                                      onPressed: (){
-                                        Navigator.popUntil(context, (route) => route.isFirst);
-                                        // Navigator.pop(context);
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                  child: Column(
-                                    children: [
-                                      Icon(Icons.check,color: _appTheme.primaryActionColor,),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                        child: Text("monitor_event.send_ageo",style: TextStyle(color:_appTheme.primaryTextColor,fontSize: 14),).tr(),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Expanded(
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(bottom: 16.0),
-                                              child: TextButton(
-                                                onPressed: (){
-                                                  _customUrlLauncher.openInBrowser(url: eventLink);
-                                                },
-                                                child: Text(eventLink,style: TextStyle(color: _appTheme.primaryActionColor,fontSize: 14,decoration: TextDecoration.underline),),
-                                              ),
-                                            ),
-                                          ),
-                                          IconButton(
-                                            icon: Image.asset("assets/images/report_event/copy_ic.png",height: 20,),
-                                            onPressed: ()async{
-                                              await Clipboard.setData(ClipboardData(text: "I just sent event report on AGEO Platform:\n$eventLink"));
-                                              // _toastMessage.showSuccessToastMessage(message: tr("monitor_event.linked_copied"), duration: 1, context: context);
-                                              Get.showSnackbar( GetSnackBar(
-                                                message: tr("monitor_event.linked_copied"),
-                                                duration:const Duration(seconds: 2),
-                                                icon:const Icon(Icons.done_all,color: Colors.white,),
-                                                backgroundColor: _appTheme.primaryActionColor,
-                                                margin:const EdgeInsets.all(12),
-                                                borderRadius: 12,
-                                              ));
-                                            },
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 150,
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: TextButton(
-                          key: _globalKey,
-                          style: TextButton.styleFrom(
-                            backgroundColor: _appTheme.primaryActionColor,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
-                                child: Image.asset("assets/images/report_event/share_ic.png",height: 15,),
-                              ),
-                              const Text("monitor_event.share",style: TextStyle(color: Colors.white,fontSize: 14),).tr(),
-                            ],
-                          ),
-                          onPressed: (){
-                            RenderBox box = _globalKey.currentContext?.findRenderObject() as RenderBox;
-                            Offset position = box.localToGlobal(Offset.zero); //this is global position of button in app view
-                            Share.share("I just sent event report on AGEO Platform:\n$eventLink",sharePositionOrigin: Rect.fromCenter(center: Offset(position.dx+60,position.dy+24),width: 1,height: 1));
-                          },
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-    });
-  }
-}

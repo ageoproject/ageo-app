@@ -13,7 +13,7 @@ class ReportEventController extends GetxController{
   final Event _eventDetail= Event();
   final double _nextAndSubmitButtonHeight=50;
   double _visitFrequencySlider=1;
-  final List<EventEventTypeEnum> _hasSpecificDamagePage=[EventEventTypeEnum.EARTHQUAKE,EventEventTypeEnum.LANDSLIDE,EventEventTypeEnum.RIVER_FLOODING,EventEventTypeEnum.SINKHOLE,EventEventTypeEnum.BUILDING_SETTLEMENT,EventEventTypeEnum.MARINE_FLOODING,EventEventTypeEnum.COASTAL_EROSION];
+  final List<EventEventTypeEnum> _hasSpecificDamagePage=[EventEventTypeEnum.EARTHQUAKE,EventEventTypeEnum.LANDSLIDE,EventEventTypeEnum.ROCKFALL,EventEventTypeEnum.RIVER_FLOODING,EventEventTypeEnum.SINKHOLE,EventEventTypeEnum.BUILDING_SETTLEMENT,EventEventTypeEnum.MARINE_FLOODING,EventEventTypeEnum.COASTAL_EROSION];
 
   RxString get activeTab=> _activeTab;
   Event get eventDetail=>_eventDetail;

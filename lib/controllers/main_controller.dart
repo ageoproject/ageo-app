@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:ageo/helpers/language_helper.dart';
 import 'package:ageo/helpers/local_Storage.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -11,10 +12,13 @@ class MainController extends GetxController {
   final RxString _appLanguage ="English".obs;
   String? _appLanguageCode;
   final RxString _initialRoute="splash_screen".obs;
+  final StreamController<String> _languageStreamController=StreamController<String>.broadcast();
 
   RxBool get showSplashScreen=>_showSplashScreen;
   RxString get appLanguage=>_appLanguage;
   RxString get initialRoute=> _initialRoute;
+  String? get appLanguageCode=>_appLanguageCode;
+  StreamController<String> get languageStreamController=>_languageStreamController;
 
   void initAppLanguage()async{
     // this check local storage if user has selected any preferred language or not.
@@ -63,6 +67,7 @@ class MainController extends GetxController {
         context.setLocale(Locale(languageCode));
         Get.updateLocale(Locale(languageCode));
         _localStorage.storeStringValue(key: _languageHelper.languageKey, value: languageCode);
+        _languageStreamController.add(languageCode);
       }
     }catch(_){}
   }

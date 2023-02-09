@@ -7,6 +7,7 @@ import 'package:ageo/view/report_event/event_specific_pages/building_settlement.
 import 'package:ageo/view/report_event/event_specific_pages/coastal_erosion.dart';
 import 'package:ageo/view/report_event/event_specific_pages/earthquake.dart';
 import 'package:ageo/view/report_event/event_specific_pages/landslide.dart';
+import 'package:ageo/view/report_event/event_specific_pages/rockfall.dart';
 import 'package:ageo/view/report_event/event_specific_pages/sinkhole.dart';
 import 'package:ageo/view/report_event/event_type.dart';
 import 'package:ageo/view/report_event/map_view.dart';
@@ -14,7 +15,6 @@ import 'package:ageoClient/api.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'event_specific_pages/marine_flooding.dart';
 import 'event_specific_pages/river_flooding.dart';
 
@@ -55,6 +55,9 @@ class _ReportEventState extends State<ReportEvent> {
       }
       case EventEventTypeEnum.LANDSLIDE:{
         return Landslide();
+      }
+      case EventEventTypeEnum.ROCKFALL:{
+        return Rockfall();
       }
       case EventEventTypeEnum.RIVER_FLOODING:{
         return RiverFlooding();
