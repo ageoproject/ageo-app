@@ -249,7 +249,7 @@
     "Animals at risk ?": "Animals at risk ?",
     "Assets at risk ?": "Assets at risk ?",
     "I am safe ?": "I am safe ?",
-    "upload_or_capture": "Select or capture photo(s) (min 1 and max 3)",
+    "upload_or_capture": "Select or capture photo(s)",
     "quick_upload_or_capture": "Select or capture photo(s)",
     "add_comments": "Add comments",
     "comment_hint": "Type here...",

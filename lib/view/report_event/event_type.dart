@@ -16,6 +16,7 @@ class EventTypeList extends StatelessWidget {
     CustomThemeData appTheme=Theme.of(context).customTheme;
     bool isMobile=MediaQuery.of(context).size.shortestSide<600;
     bool isPortrait=MediaQuery.of(context).orientation == Orientation.portrait;
+    _reportEventController.changeEventDateAndTime();
     return GetBuilder<ReportEventController>(
       builder:(controller)=> Stack(
         children: [
