@@ -17,35 +17,34 @@ class EducationalContent extends StatefulWidget {
 class _EducationalContentState extends State<EducationalContent> {
   final MainController _mainController=Get.find();
 
-  // late StreamSubscription<String> _languageStreamSubscription;
+  late StreamSubscription<String> _languageStreamSubscription;
 
   String? _appLanguageCode;
 
   // final CommonComponent _commonComponent=CommonComponent();
   Future<void> loadEducationalContent({required InAppWebViewController controller})async{
-    _appLanguageCode=_mainController.appLanguageCode;
+    _appLanguageCode=_mainController.appLanguageCode?.toUpperCase()??"PT";
     await controller.loadFile( assetFilePath: 'assets/educational_content/educational-content.html');
-    Future.delayed(const Duration(milliseconds: 500),(){
-      controller.evaluateJavascript( source: 'changeEducationalContent("ALL","")');
+    Future.delayed(const Duration(milliseconds: 500),()async{
+      await controller.evaluateJavascript( source: 'changeEducationalContent("ALL","$_appLanguageCode")');
+      await Future.delayed(const Duration(seconds: 1));
     });
   }
 
-  // Future<void> checkAppLanguageChange({required InAppWebViewController controller})async{
-  //   _languageStreamSubscription=_mainController.languageStreamController.stream.listen((event)async {
-  //     if(_appLanguageCode!=event){
-  //       _appLanguageCode=event;
-  //       print("assets/educational_content/educational-content-$event.html");
-  //       await controller.loadFile( assetFilePath: 'assets/educational_content/educational-content-es.html');
-  //       Future.delayed(const Duration(milliseconds: 500),(){
-  //         controller.evaluateJavascript( source: 'changeEducationalContent("ALL","")');
-  //       });
-  //     }
-  //   });
-  // }
+  Future<void> checkAppLanguageChange({required InAppWebViewController controller})async{
+    _languageStreamSubscription=_mainController.languageStreamController.stream.listen((event)async {
+      if(_appLanguageCode!=event){
+        _appLanguageCode=event.toUpperCase();
+
+        var val =await controller.evaluateJavascript( source: 'eventType');
+        await controller.evaluateJavascript( source: 'changeEducationalContent("$val","$_appLanguageCode")');
+      }
+    });
+  }
 
   @override
   void dispose() {
-    // _languageStreamSubscription.cancel();
+    _languageStreamSubscription.cancel();
     super.dispose();
   }
   // onWillPop: ()async{
@@ -88,9 +87,12 @@ class _EducationalContentState extends State<EducationalContent> {
               onWebViewCreated: (InAppWebViewController controller)async{
                 // _controller=controller;
                 await loadEducationalContent(controller: controller);
-                // await checkAppLanguageChange(controller: controller);
+                await checkAppLanguageChange(controller: controller);
                 // controller.
                 },
+              onConsoleMessage: (InAppWebViewController controller, ConsoleMessage message){
+                print(message.message);
+              },
             ),
           ),
         ],
