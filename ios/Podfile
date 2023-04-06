@@ -53,3 +53,8 @@ post_install do |installer|
     end
   end
 end
+
+=begin
+iOS Build fail in Script "[CP] Embed Pods Frameworks" with invalid path
+ https://github.com/flutter/flutter/issues/123852
+ =end
