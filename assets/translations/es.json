@@ -5,6 +5,7 @@
     "submit_btn": "Enviar",
     "select_observe_damage": "Seleccione el daño observado",
     "other": "Añadir otros daños observados",
+    "submitting_response": "Envío de respuesta",
     "new_add_comment": "Cualquier otra observación que pueda ser de interés:\n"
   },
   "home_page": {
@@ -57,7 +58,7 @@
   "monitor_event": {
     "report_error": "Parece que algo salió mal. Por favor inténtalo de nuevo ",
     "linked_copied": "Enlace copiado correctamente",
-    "send_ageo": "La información del evento se envía a AGEO",
+    "send_ageo": "La información del evento se envía a AGEO. Utilice el siguiente enlace para seguir el estado de su evento.",
     "please_wait": "Espere por favor..",
     "share": "Compartir",
     "app_bar_tittle": "Seleccionar tipo de evento",

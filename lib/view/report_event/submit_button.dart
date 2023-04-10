@@ -28,7 +28,7 @@ class SubmitButton extends StatelessWidget {
         ),
         onPressed: ()async{
           try{
-            _commonComponent.initializeLoader(context: context,message: "Submitting response");
+            _commonComponent.initializeLoader(context: context,message: tr("common_key.submitting_response"));
             String eventId = await _reportEventController.reportEvent();
             Get.back();
             _commonComponent.showEventShareDialog(context: context, message: eventId);

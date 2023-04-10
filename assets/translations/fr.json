@@ -5,6 +5,7 @@
     "submit_btn": "Envoyer",
     "select_observe_damage": "Sélectionner les dommages observés",
     "other": "Ajouter d'autres dommages observés",
+    "submitting_response": "Envoi de la réponse",
     "new_add_comment": "Précision qui pourrait être intéressante :\n date de la dernière tempête, date du dommage si connue, etc.\n Nom, courriel (optionnels)"
   },
   "home_page": {
@@ -57,7 +58,7 @@
   "monitor_event": {
     "report_error": "Erreur. Réessayer svp...",
     "linked_copied": "Lien copié avec succès",
-    "send_ageo": "Les informations sur l'événement sont envoyées à AGEO",
+    "send_ageo": "Les informations sur l'événement sont envoyées à AGEO. Utilisez le lien suivant pour suivre l'état de votre événement.",
     "please_wait": "Patienter svp..",
     "share": "Partager",
     "app_bar_tittle": "Sélectionner le type d'événement",

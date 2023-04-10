@@ -5,6 +5,7 @@
     "submit_btn": "Enviar",
     "select_observe_damage": "Selecione o dano observado",
     "other": "Adicionar outro dano observado",
+    "submitting_response": "Enviando resposta",
     "new_add_comment": "Dados adicionais de interesse: \n data da última tempestade, data em que o dano ocorreu, etc.\n Nome, endereço de e-mail (opcional)"
   },
   "home_page": {
@@ -57,7 +58,7 @@
   "monitor_event": {
     "report_error": "Algo deu errado. ",
     "linked_copied": "Link copiado com sucesso",
-    "send_ageo": "As informações do evento foram enviadas para a AGEO",
+    "send_ageo": "As informações do evento são enviadas para a AGEO. Use o link a seguir para acompanhar o status do seu evento.",
     "please_wait": "Aguarde ...",
     "share": "Partilhar",
     "app_bar_tittle": "Selecione o tipo de risco",

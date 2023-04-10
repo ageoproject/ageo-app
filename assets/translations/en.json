@@ -5,6 +5,7 @@
     "submit_btn": "Submit",
     "select_observe_damage": "Select observed damage",
     "other": "Add other observed damage",
+    "submitting_response": "Submitting response",
     "new_add_comment": "Any precision that could be of interest: \ndate of last storm, date of the damage if known, etc.\nName, e-mail address (optional)"
   },
   "home_page": {
@@ -57,7 +58,7 @@
   "monitor_event": {
     "report_error": "Something went wrong. Please try again...",
     "linked_copied": "Link copied successfully",
-    "send_ageo": "The event information is sent to AGEO",
+    "send_ageo": "The event information is sent to AGEO. Use the following link to track the status of your event.",
     "please_wait": "Please wait..",
     "share": "Share",
     "app_bar_tittle": "Select Event Type",
