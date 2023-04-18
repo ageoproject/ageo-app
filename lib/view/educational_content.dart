@@ -15,15 +15,22 @@ class EducationalContent extends StatefulWidget {
 }
 
 class _EducationalContentState extends State<EducationalContent> {
+
   final MainController _mainController=Get.find();
-
   late StreamSubscription<String> _languageStreamSubscription;
-
   String? _appLanguageCode;
 
   // final CommonComponent _commonComponent=CommonComponent();
   Future<void> loadEducationalContent({required InAppWebViewController controller})async{
     _appLanguageCode=_mainController.appLanguageCode?.toUpperCase()??"PT";
+    // const assetFile = 'assets/educational_content/educational-content.html';
+    // final assetContent = await rootBundle.loadString(assetFile);
+    // final  String initialData = '''
+    //   data:text/html;charset=utf-8,
+    //   ${Uri.encodeComponent(assetContent)}
+    // ''';
+    // await controller.loadData(data: assetContent,mimeType: "text/html",encoding: 'utf-8');
+
     await controller.loadFile( assetFilePath: 'assets/educational_content/educational-content.html');
     Future.delayed(const Duration(milliseconds: 500),()async{
       await controller.evaluateJavascript( source: 'changeEducationalContent("ALL","$_appLanguageCode")');
