@@ -57,4 +57,5 @@ end
 # =begin
 # iOS Build fail in Script "[CP] Embed Pods Frameworks" with invalid path
 #  https://github.com/flutter/flutter/issues/123852
+# arch -x86_64 pod install --repo-update
 #  =end
